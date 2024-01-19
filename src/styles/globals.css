@@ -48,3 +48,6 @@
     --ring: 142.4 71.8% 29.2%;
   }
 }
+.grecaptcha-badge {
+  visibility: hidden;
+}

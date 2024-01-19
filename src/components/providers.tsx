@@ -2,10 +2,12 @@
 
 import React, { useState } from "react"
 import { url } from "@/config"
+import { env } from "@/env.mjs"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { httpBatchLink } from "@trpc/client"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3"
 import superjson from "superjson"
 
 import { trpc } from "@/app/_trpc/client"
@@ -30,7 +32,13 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <NextThemesProvider {...props}>{children}</NextThemesProvider>
+        <NextThemesProvider {...props}>
+          <GoogleReCaptchaProvider
+            reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          >
+            {children}
+          </GoogleReCaptchaProvider>
+        </NextThemesProvider>
       </QueryClientProvider>
     </trpc.Provider>
   )

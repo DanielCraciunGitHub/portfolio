@@ -10,3 +10,8 @@ export type NavItem = {
       icon: React.ReactNode
     }
 )
+export type ActionResponse = {
+  ok: boolean
+  error?: string
+  code?: number
+}
