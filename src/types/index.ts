@@ -1,4 +1,4 @@
-import type React from "react"
+import React from "react"
 
 export type NavItem = {
   href: string
@@ -10,6 +10,11 @@ export type NavItem = {
       icon: React.ReactNode
     }
 )
+export type SocialLink = {
+  href: string
+  name: string
+  icon: React.ReactNode
+}
 export type ActionResponse = {
   ok: boolean
   error?: string
