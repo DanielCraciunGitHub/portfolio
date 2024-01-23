@@ -20,7 +20,7 @@ export default function page() {
           <h1 className="max-w-3xl text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl mb-4">
             About Me
           </h1>
-          <p className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl font-mono">
+          <p className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-muted-foreground">
             Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem
             IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum Lorem
             IpsuLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum

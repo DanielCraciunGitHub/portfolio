@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { url } from "@/config"
+import { siteConfig } from "@/config"
 import { env } from "@/env.mjs"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { httpBatchLink } from "@trpc/client"
@@ -24,7 +24,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `${url}/api/trpc`,
+          url: `${siteConfig.url}/api/trpc`,
         }),
       ],
     })

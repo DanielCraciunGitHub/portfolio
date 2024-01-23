@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/toaster"
-
-import { Footer } from "./Footer"
-import NavBar from "./Navbar"
+import { Footer } from "@/components/Footer"
+import NavBar from "@/components/Navbar/Navbar"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

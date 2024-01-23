@@ -14,6 +14,11 @@ export const env = createEnv({
 
     NODEMAILER_EMAIL: z.string(),
     NODEMAILER_PASSWORD: z.string(),
+
+    STRIPE_SECRET_KEY: z.string().min(1),
+    STRIPE_PUBLIC_KEY: z.string().min(1),
+    STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    STANDARD_PLAN_ID: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,

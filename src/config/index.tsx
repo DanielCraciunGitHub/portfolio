@@ -1,10 +1,5 @@
-import { NavItem, SocialLink } from "@/types"
+import { NavItem, Project, SocialLink } from "@/types"
 import { BsGithub, BsLinkedin, BsMedium, BsTwitterX } from "react-icons/bs"
-
-export const url =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
-    : "[[url-here]]"
 
 export const siteConfig = {
   url:
@@ -15,6 +10,10 @@ export const siteConfig = {
     {
       name: "DC",
       href: "/",
+    },
+    {
+      name: "eBook",
+      href: "/ebook",
     },
     {
       name: "About",
@@ -28,7 +27,7 @@ export const siteConfig = {
       name: "Contact",
       href: "/contact",
     },
-  ] as const satisfies NavItem[],
+  ] satisfies NavItem[],
   socialLinks: [
     {
       href: "https://medium.com/@danielcracbusiness",
@@ -50,5 +49,48 @@ export const siteConfig = {
       name: "Linkedin.com",
       icon: <BsLinkedin />,
     },
-  ] as const satisfies SocialLink[],
-}
+  ] satisfies SocialLink[],
+  projects: [
+    {
+      name: "EduMentorMe (EMM)",
+      type: "Website",
+      description:
+        "A hub of many educational features. Each feature is unique and serves a common purpose, which is to boost the grades of all students.",
+      href: "https://github.com/DanielCraciunGitHub/emm",
+      imageHref: "/images/emm.png",
+    },
+    {
+      name: "Notes app",
+      type: "Website",
+      description:
+        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
+      href: "https://github.com/DanielCraciunGitHub/emm",
+      imageHref: "/images/emm.png",
+    },
+    {
+      name: "Portfolio",
+      type: "Website",
+      description:
+        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
+      href: "https://github.com/DanielCraciunGitHub/emm",
+      imageHref: "/images/emm.png",
+    },
+    {
+      name: "create-dc-app",
+      type: "Website",
+      description:
+        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
+      href: "https://github.com/DanielCraciunGitHub/emm",
+      imageHref: "/images/emm.png",
+    },
+    {
+      name: "2D Surivival Game",
+      type: "Desktop",
+      description:
+        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
+      href: "https://github.com/DanielCraciunGitHub/emm",
+      imageHref: "/images/emm.png",
+    },
+  ] satisfies Project[],
+  eBookPrice: 13.99,
+} as const

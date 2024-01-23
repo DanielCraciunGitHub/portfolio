@@ -9,7 +9,7 @@ import {
 
 export function HeroStats() {
   return (
-    <Card className="flex justify-between">
+    <Card className="flex flex-col md:flex-row md:justify-between md:w-full">
       <CardHeader>
         <CardTitle className="font-bold">10,000</CardTitle>
         <CardDescription>Monthly Blog Readers</CardDescription>

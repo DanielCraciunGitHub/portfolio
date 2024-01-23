@@ -20,3 +20,10 @@ export type ActionResponse = {
   error?: string
   code?: number
 }
+export type Project = {
+  name: string
+  type?: "Mobile" | "Website" | "Desktop"
+  description?: string
+  imageHref: string
+  href: string
+}

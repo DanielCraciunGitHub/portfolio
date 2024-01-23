@@ -1,0 +1,45 @@
+import Image from "next/image"
+import { siteConfig } from "@/config"
+
+import { Button } from "@/components/ui/button"
+
+export default function page() {
+  return (
+    <section className="flex flex-col justify-center items-center">
+      <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
+        <div className="lg:col-span-5 place-self-center">
+          <Image
+            priority
+            src="/images/book-cover.jpg"
+            alt="Book cover"
+            width={400}
+            height={300}
+            className="rounded-lg"
+          />
+        </div>
+        <div className="flex flex-col lg:col-span-7 space-y-4 place-self-center">
+          <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl mb-4">
+            The <span className="text-primary">Zero B*llsh*t</span> Guide to
+            Next.js
+          </h1>
+          <p className="max-w-3xl mb-6 lg:mb-8 sm:text-md md:text-lg lg:text-xl text-muted-foreground">
+            Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem Ipsum
+          </p>
+          <div className="flex flex-col items-center space-y-4 pt-4">
+            <div className="flex flex-col">
+              <span className="text-center text-4xl text-red-500 line-through">{`$${(siteConfig.eBookPrice * 2).toString()}`}</span>
+              <span className="text-center text-4xl text-primary">{`$${siteConfig.eBookPrice.toString()}`}</span>
+            </div>
+            <Button className="w-1/2 text-foreground">Buy Now</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
