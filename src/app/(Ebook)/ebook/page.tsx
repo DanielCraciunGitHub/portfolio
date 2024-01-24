@@ -1,10 +1,23 @@
 import Image from "next/image"
 import { siteConfig } from "@/config"
 
-import { Button } from "@/components/ui/button"
+import StripeButton from "./StripeButton"
 
-export default function page() {
-  return (
+export default function page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  return searchParams?.purchase === "success" ? (
+    <section className="mx-auto space-y-6 container flex flex-col justify-center">
+      <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl text-center">
+        <span className="text-primary">Thank you</span> for your purchase!
+      </h1>
+      <p className="sm:text-md md:text-lg lg:text-xl text-muted-foreground text-center">
+        Check your inbox for the PDF and EPUB files.
+      </p>
+    </section>
+  ) : (
     <section className="flex flex-col justify-center items-center">
       <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
         <div className="lg:col-span-5 place-self-center">
@@ -36,7 +49,7 @@ export default function page() {
               <span className="text-center text-4xl text-red-500 line-through">{`$${(siteConfig.eBookPrice * 2).toString()}`}</span>
               <span className="text-center text-4xl text-primary">{`$${siteConfig.eBookPrice.toString()}`}</span>
             </div>
-            <Button className="w-1/2 text-foreground">Buy Now</Button>
+            <StripeButton className="w-1/2 text-foreground" name="Buy Now" />
           </div>
         </div>
       </div>

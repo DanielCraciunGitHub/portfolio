@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 import { useForm } from "react-hook-form"
@@ -10,14 +9,19 @@ import { contactFormSchema } from "@/lib/validations/form"
 import { Form } from "@/components/ui/form"
 import InputField from "@/components/InputField"
 import { SpinnerButton } from "@/components/SpinnerButton"
-import { captchaVerification, receiveEmail } from "@/app/_actions/form"
+import { trpc } from "@/app/_trpc/client"
 
 type Inputs = z.infer<typeof contactFormSchema>
 
 const ContactForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-
   const { executeRecaptcha } = useGoogleReCaptcha()
+
+  const {
+    mutateAsync: receiveEmail,
+    isError,
+    error,
+    isLoading,
+  } = trpc.contactRouter.receiveEmail.useMutation({})
 
   const form = useForm<Inputs>({
     resolver: zodResolver(contactFormSchema),
@@ -33,31 +37,18 @@ const ContactForm = () => {
     }
 
     const { toast } = await import("@/components/ui/use-toast")
-    setIsSubmitting(true)
 
     try {
-      const token = await executeRecaptcha()
+      await receiveEmail({ ...values, token: await executeRecaptcha() })
 
-      const res = await captchaVerification(token)
-
-      if (!res.ok) {
-        throw new Error("Failed Verification! Please try again later.")
-      }
-
-      const feedbackRes = await receiveEmail(values)
-
-      if (!feedbackRes.ok) {
-        if (feedbackRes.code === 429) {
-          throw new Error("You can only send feedback once every hour.")
-        } else {
-          throw new Error("Failed to send email! Please try again later.")
-        }
+      if (isError) {
+        throw new Error(error.message)
       }
 
       toast({
         title: "Success",
         description:
-          "We appreciate you taking your time to fill in this form, we will get back to you shortly.",
+          "Thank you for contacting me. I will get back to you shortly.",
       })
     } catch (err: any) {
       toast({
@@ -67,7 +58,6 @@ const ContactForm = () => {
       })
     } finally {
       form.reset()
-      setIsSubmitting(false)
     }
   }
   return (
@@ -90,7 +80,7 @@ const ContactForm = () => {
           control={form.control}
         />
         <GoogleNotice />
-        <SpinnerButton name="Send" state={isSubmitting} type="submit" />
+        <SpinnerButton name="Send" state={isLoading} type="submit" />
       </form>
     </Form>
   )

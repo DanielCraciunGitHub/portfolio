@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           "ml-4 mt-8 w-fit"
         )}
       >
-        <FaChevronLeft /> Home
+        <FaChevronLeft />
       </Link>
       <main className="flex-1 flex justify-center">{children}</main>
       <Footer />
