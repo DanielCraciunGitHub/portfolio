@@ -27,3 +27,4 @@ export type Project = {
   imageHref: string
   href: string
 }
+export type HeroStat = Record<string, string>

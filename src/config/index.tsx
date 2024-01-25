@@ -1,11 +1,11 @@
-import { NavItem, Project, SocialLink } from "@/types"
+import { HeroStat, NavItem, Project, SocialLink } from "@/types"
 import { BsGithub, BsLinkedin, BsMedium, BsTwitterX } from "react-icons/bs"
 
 export const siteConfig = {
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "[[url-here]]",
+      : "https://portfolio-orpin-phi-56.vercel.app",
   navLinks: [
     {
       name: "DC",
@@ -93,4 +93,10 @@ export const siteConfig = {
     },
   ] satisfies Project[],
   eBookPrice: 13.99,
+  heroStats: [
+    { "5+": "Projects Completed" },
+    { "20,000+": "Monthly Blog Readers" },
+    { "350+": " Blog Followers" },
+    { "60+": "Blog Posts" },
+  ] satisfies HeroStat[],
 } as const

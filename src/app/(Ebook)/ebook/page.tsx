@@ -1,13 +1,16 @@
 import Image from "next/image"
 import { siteConfig } from "@/config"
 
+import { serverClient } from "@/app/_trpc/serverClient"
+
 import StripeButton from "./StripeButton"
 
-export default function page({
+export default async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
   return searchParams?.purchase === "success" ? (
     <section className="mx-auto space-y-6 container flex flex-col justify-center">
       <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl text-center">
@@ -36,18 +39,12 @@ export default function page({
             Next.js
           </h1>
           <p className="max-w-3xl mb-6 lg:mb-8 sm:text-md md:text-lg lg:text-xl text-muted-foreground">
-            Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem Ipsum
+            COMING SOON...
           </p>
           <div className="flex flex-col items-center space-y-4 pt-4">
             <div className="flex flex-col">
-              <span className="text-center text-4xl text-red-500 line-through">{`$${(siteConfig.eBookPrice * 2).toString()}`}</span>
-              <span className="text-center text-4xl text-primary">{`$${siteConfig.eBookPrice.toString()}`}</span>
+              <span className="text-center text-4xl text-red-500 line-through">{`$${Number(eBookPrice) * 2}`}</span>
+              <span className="text-center text-4xl text-primary">{`$${eBookPrice}`}</span>
             </div>
             <StripeButton className="w-1/2 text-foreground" name="Buy Now" />
           </div>

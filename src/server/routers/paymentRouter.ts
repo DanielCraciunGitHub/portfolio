@@ -26,4 +26,16 @@ export const paymentRouter = router({
       console.error(error)
     }
   }),
+  getEbookPrice: publicProcedure.query(async () => {
+    try {
+      const priceId = env.EBOOK_PRODUCT_ID // Replace with your actual price ID
+      const price = await stripe.prices.retrieve(priceId)
+
+      console.log("Product Price:", (price.unit_amount! / 100).toString())
+
+      return (price.unit_amount! / 100).toString()
+    } catch (error: any) {
+      console.error("Error fetching price:", error.message)
+    }
+  }),
 })

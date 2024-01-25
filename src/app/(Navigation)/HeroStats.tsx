@@ -1,4 +1,5 @@
 import * as React from "react"
+import { siteConfig } from "@/config"
 
 import {
   Card,
@@ -10,22 +11,16 @@ import {
 export function HeroStats() {
   return (
     <Card className="flex flex-col md:flex-row md:justify-between md:w-full">
-      <CardHeader>
-        <CardTitle className="font-bold">10,000</CardTitle>
-        <CardDescription>Monthly Blog Readers</CardDescription>
-      </CardHeader>
-      <CardHeader>
-        <CardTitle>10</CardTitle>
-        <CardDescription>Full-Stack Projects</CardDescription>
-      </CardHeader>
-      <CardHeader>
-        <CardTitle>1m</CardTitle>
-        <CardDescription>Users</CardDescription>
-      </CardHeader>
-      <CardHeader>
-        <CardTitle>100,000</CardTitle>
-        <CardDescription>Posts</CardDescription>
-      </CardHeader>
+      {siteConfig.heroStats.map((heroStat) => {
+        const [value, label]: [string, string] = Object.entries(heroStat)[0]
+
+        return (
+          <CardHeader key={value}>
+            <CardTitle className="font-bold">{value}</CardTitle>
+            <CardDescription>{label}</CardDescription>
+          </CardHeader>
+        )
+      })}
     </Card>
   )
 }
