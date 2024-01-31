@@ -33,7 +33,7 @@ export default function ProjectCard({
           className="rounded-t-lg group-hover:blur-sm"
         />
         <div className="invisible space-x-10 absolute w-full h-full group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
-          <Link href={href}>
+          <Link href={href} target="_blank" rel="noopener noreferrer">
             <BsGithub className="sm:size-10 size-5" />
           </Link>
         </div>

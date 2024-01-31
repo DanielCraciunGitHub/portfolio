@@ -50,53 +50,71 @@ export const siteConfig = {
       icon: <BsLinkedin />,
     },
   ] satisfies SocialLink[],
+  contactMe: [
+    `Connect with me today through social media or by filling in the contact form.`,
+    `Thank you.`,
+  ],
+} as const
+
+export const danielConfig = {
+  name: "Daniel Craciun",
+  description: "Full-Stack Web Developer | Medium Blogger",
+  aboutMe: [
+    `As a web developer and a freelance blogger, I combine my technical skills and creativity to create engaging and user-friendly Websites and Blogs.`,
+    `I am currently pursuing a BSc in Computer Science at the University of Southampton, where I learn the fundamentals and best practices of Software Engineering and Web Development.`,
+  ],
+
+  heroStats: [
+    { "5+": "Large-Scale Projects Completed 🎯" },
+    { "60+": "Blog Posts Written 📝" },
+    { "20,000+": "Monthly Blog Readers 📖" },
+    { "400+": " Blog Followers 🧑‍🤝‍🧑" },
+  ] satisfies HeroStat[],
   projects: [
     {
-      name: "EduMentorMe (EMM)",
+      name: "My Portfolio",
       type: "Website",
       description:
-        "A hub of many educational features. Each feature is unique and serves a common purpose, which is to boost the grades of all students.",
+        "A website that encapsulates my experience as a Web Developer and Blog Writer.",
+      href: "https://github.com/DanielCraciunGitHub/portfolio",
+      imageHref: "/images/portfolio.png",
+    },
+    {
+      name: "EduMentorMe",
+      type: "Website",
+      description:
+        "A hub of many unique educational features serving a common purpose, and that is to help students excel in their studies.",
       href: "https://github.com/DanielCraciunGitHub/emm",
       imageHref: "/images/emm.png",
     },
     {
-      name: "Notes app",
-      type: "Website",
+      name: "create-ndpt-app",
+      type: "CLI Tool",
       description:
-        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
-      href: "https://github.com/DanielCraciunGitHub/emm",
-      imageHref: "/images/emm.png",
+        "An alternative to 'create-next-app' which provides a production-ready Next.js starter template using: Auth.js, Drizzle ORM + PlanetScale, tRPC, and shadcn/ui.",
+      href: "https://github.com/DanielCraciunGitHub/create-ndpt-app",
+      imageHref: "/images/create-ndpt-app.png",
     },
     {
-      name: "Portfolio",
+      name: "Notes App",
       type: "Website",
       description:
-        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
-      href: "https://github.com/DanielCraciunGitHub/emm",
-      imageHref: "/images/emm.png",
+        "A 'Google Keep' inspired Notes App that involves CRUD, reminders, authentication, and so much more.",
+      href: "https://github.com/DanielCraciunGitHub/notes-app",
+      imageHref: "/images/notes-app.png",
     },
     {
-      name: "create-dc-app",
-      type: "Website",
-      description:
-        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
-      href: "https://github.com/DanielCraciunGitHub/emm",
-      imageHref: "/images/emm.png",
-    },
-    {
-      name: "2D Surivival Game",
+      name: "2D Survival Game",
       type: "Desktop",
       description:
-        "This project is designed as a hub of many different features. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students.",
-      href: "https://github.com/DanielCraciunGitHub/emm",
-      imageHref: "/images/emm.png",
+        "A Unity game in which you battle endless opposition using mystery items.",
+      href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
+      imageHref: "/images/programmingProject.png",
     },
   ] satisfies Project[],
-  eBookPrice: 13.99,
-  heroStats: [
-    { "5+": "Projects Completed" },
-    { "20,000+": "Monthly Blog Readers" },
-    { "350+": " Blog Followers" },
-    { "60+": "Blog Posts" },
-  ] satisfies HeroStat[],
+  skills: ["Next.js", "TypeScript", "React", "SEO"],
+  education: ["University of Southampton", "Lampton Academy"],
+  certification: ["CS50x"],
 } as const
+
+export const eBookConfig = {} as const

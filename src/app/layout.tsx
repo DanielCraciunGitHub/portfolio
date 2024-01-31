@@ -1,13 +1,17 @@
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 
 import "@/styles/globals.css"
 
 import NextTopLoader from "nextjs-toploader"
 
+import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Provider } from "@/components/providers"
 
 export const metadata: Metadata = {
-  title: "App",
+  ...baseMetadata,
+}
+export const viewport: Viewport = {
+  ...baseViewport,
 }
 
 export default function RootLayout({

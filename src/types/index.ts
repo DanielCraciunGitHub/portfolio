@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticImageData } from "next/image"
 
 export type NavItem = {
   href: string
@@ -22,9 +23,9 @@ export type ActionResponse = {
 }
 export type Project = {
   name: string
-  type?: "Mobile" | "Website" | "Desktop"
+  type?: "Mobile" | "Website" | "Desktop" | string
   description?: string
-  imageHref: string
+  imageHref: string | StaticImageData
   href: string
 }
 export type HeroStat = Record<string, string>

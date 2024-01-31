@@ -1,6 +1,13 @@
+import { Metadata } from "next"
 import Image from "next/image"
+import { danielConfig } from "@/config"
 
+import { staticMetadata } from "@/config/metadata"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export const metadata: Metadata = {
+  ...staticMetadata.about,
+}
 
 export default function page() {
   return (
@@ -20,11 +27,11 @@ export default function page() {
           <h1 className="max-w-3xl text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl mb-4">
             About Me
           </h1>
-          <p className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-muted-foreground">
-            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum Lorem Ipsum Lorem
-            IpsuLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
-          </p>
+          <div className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-muted-foreground space-y-4">
+            {danielConfig.aboutMe.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <Tabs defaultValue="skills" className="list-disc">
             <TabsList>
               <TabsTrigger value="skills">Skills</TabsTrigger>
@@ -32,17 +39,19 @@ export default function page() {
               <TabsTrigger value="certification">Certification</TabsTrigger>
             </TabsList>
             <TabsContent value="skills">
-              <li>Next.js</li>
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>SEO</li>
+              {danielConfig.skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
             </TabsContent>
             <TabsContent value="education">
-              <li>University of Southampton</li>
-              <li>Lampton Academy</li>
+              {danielConfig.education.map((institution) => (
+                <li key={institution}>{institution}</li>
+              ))}
             </TabsContent>
             <TabsContent value="certification">
-              <li>CS50x</li>
+              {danielConfig.certification.map((certificate) => (
+                <li key={certificate}>{certificate}</li>
+              ))}
             </TabsContent>
           </Tabs>
         </div>

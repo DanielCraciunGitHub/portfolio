@@ -1,9 +1,20 @@
+import { Metadata, Viewport } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { danielConfig } from "@/config"
 
+import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Button } from "@/components/ui/button"
 
 import { HeroStats } from "./HeroStats"
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  title: { absolute: "Daniel Craciun" },
+}
+export const viewport: Viewport = {
+  ...baseViewport,
+}
 
 export default async function Home() {
   return (
@@ -14,10 +25,10 @@ export default async function Home() {
       <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
         <div className=" place-self-center lg:col-span-7">
           <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight md:text-5xl xl:text-7xl mb-4 text-primary">
-            Daniel Craciun
+            {danielConfig.name}
           </h1>
           <p className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl font-mono">
-            Full-Stack Web Developer | Medium Blogger
+            {danielConfig.description}
           </p>
           <div className="space-x-5 flex">
             <Button className="dark:text-foreground" asChild>

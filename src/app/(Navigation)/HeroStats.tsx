@@ -1,5 +1,5 @@
 import * as React from "react"
-import { siteConfig } from "@/config"
+import { danielConfig } from "@/config"
 
 import {
   Card,
@@ -11,7 +11,7 @@ import {
 export function HeroStats() {
   return (
     <Card className="flex flex-col md:flex-row md:justify-between md:w-full">
-      {siteConfig.heroStats.map((heroStat) => {
+      {danielConfig.heroStats.map((heroStat) => {
         const [value, label]: [string, string] = Object.entries(heroStat)[0]
 
         return (

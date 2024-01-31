@@ -1,8 +1,14 @@
+import { Metadata } from "next"
 import { siteConfig } from "@/config"
+
+import { staticMetadata } from "@/config/metadata"
 
 import ContactForm from "./ContactForm"
 import SocialLink from "./SocialLink"
 
+export const metadata: Metadata = {
+  ...staticMetadata.contact,
+}
 export default function page() {
   return (
     <section className="flex justify-center items-center container">
@@ -11,13 +17,11 @@ export default function page() {
           <h1 className="max-w-3xl text-lg font-semibold md:text-2xl xl:text-3xl mb-4">
             Let's Connect
           </h1>
-          <p className="text-muted-foreground">
-            Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
-            ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
-            ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
-            ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
-            ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-          </p>
+          <div className="text-muted-foreground space-y-4">
+            {siteConfig.contactMe.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
           <div className="space-x-4">
             {siteConfig.socialLinks.map(({ href, icon, name }) => (
               <SocialLink key={href} href={href} name={name} icon={icon} />

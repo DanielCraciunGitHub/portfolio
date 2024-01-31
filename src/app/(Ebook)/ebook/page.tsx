@@ -1,9 +1,14 @@
+import { Metadata } from "next"
 import Image from "next/image"
-import { siteConfig } from "@/config"
 
+import { staticMetadata } from "@/config/metadata"
 import { serverClient } from "@/app/_trpc/serverClient"
 
 import StripeButton from "./StripeButton"
+
+export const metadata: Metadata = {
+  ...staticMetadata.eBook,
+}
 
 export default async function page({
   searchParams,
