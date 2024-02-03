@@ -2,6 +2,7 @@ import { Metadata, Viewport } from "next"
 
 import "@/styles/globals.css"
 
+import { Analytics } from "@vercel/analytics/react"
 import NextTopLoader from "nextjs-toploader"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Provider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </Provider>
+        <Analytics />
       </body>
     </html>
   )
