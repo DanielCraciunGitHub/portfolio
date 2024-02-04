@@ -15,7 +15,7 @@ export default function page() {
       <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
         <div className=" lg:col-span-6 lg:flex">
           <Image
-            src="/images/about.jpg"
+            src="/images/about.png"
             alt="hero image"
             width={700}
             height={300}

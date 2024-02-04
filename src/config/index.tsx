@@ -5,7 +5,7 @@ export const siteConfig = {
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://portfolio-orpin-phi-56.vercel.app",
+      : "https://www.danielfullstack.com",
   navLinks: [
     {
       name: "DC",
@@ -117,4 +117,7 @@ export const danielConfig = {
   certification: ["CS50x"],
 } as const
 
-export const eBookConfig = {} as const
+export const eBookConfig = {
+  title: "The Ultimate Guide to Next.js",
+  description: "Coming Soon...",
+} as const

@@ -1,5 +1,5 @@
 import { Metadata, Viewport } from "next"
-import { danielConfig, siteConfig } from "@/config"
+import { danielConfig, siteConfig, eBookConfig } from "@/config"
 
 export const baseMetadata: Metadata = {
   title: {
@@ -68,13 +68,13 @@ export const baseMetadata: Metadata = {
 export const staticMetadata = {
   ...baseMetadata,
   eBook: {
-    title: "Ebook",
-    description: "Ebook Description",
+    title: eBookConfig.title,
+    description: eBookConfig.description,
     openGraph: {
       ...baseMetadata.openGraph,
       url: `/ebook`,
-      title: "Ebook",
-      description: "Ebook Description",
+      title: eBookConfig.title,
+      description: eBookConfig.description,
       images: [
         {
           url: `${siteConfig.url}/images/book-cover.jpg`,
@@ -87,8 +87,8 @@ export const staticMetadata = {
     },
     twitter: {
       ...baseMetadata.openGraph,
-      title: "Ebook",
-      description: "Ebook Description",
+      title: eBookConfig.title,
+      description: eBookConfig.description,
       images: [
         {
           url: `${siteConfig.url}/images/book-cover.jpg`,

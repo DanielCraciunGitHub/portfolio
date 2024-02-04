@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import { eBookConfig } from "@/config"
 
 import { staticMetadata } from "@/config/metadata"
 import { serverClient } from "@/app/_trpc/serverClient"
@@ -40,16 +41,19 @@ export default async function page({
         </div>
         <div className="flex flex-col lg:col-span-7 space-y-4 place-self-center">
           <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl mb-4">
-            The <span className="text-primary">Zero B*llsh*t</span> Guide to
-            Next.js
+            {eBookConfig.title}
           </h1>
           <p className="max-w-3xl mb-6 lg:mb-8 sm:text-md md:text-lg lg:text-xl text-muted-foreground">
-            COMING SOON...
+            {eBookConfig.description}
           </p>
           <div className="flex flex-col items-center space-y-4 pt-4">
             <div className="flex flex-col">
-              <span className="text-center text-4xl text-red-500 line-through">{`$${Number(eBookPrice) * 2}`}</span>
-              <span className="text-center text-4xl text-primary">{`$${eBookPrice}`}</span>
+              <span className="text-center text-4xl text-red-500 line-through">
+                {Number(eBookPrice) * 2}
+              </span>
+              <span className="text-center text-4xl text-primary">
+                {eBookPrice}
+              </span>
             </div>
             <StripeButton className="w-1/2 text-foreground" name="Buy Now" />
           </div>

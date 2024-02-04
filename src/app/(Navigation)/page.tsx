@@ -34,7 +34,7 @@ export default async function Home() {
             <Button className="dark:text-foreground" asChild>
               <Link href="/contact">Connect With Me</Link>
             </Button>
-            <Button className="dark:text-foreground" variant="link" asChild>
+            <Button className="text-foreground" variant="link" asChild>
               <a download href="/CV.pdf">
                 Download CV
               </a>
