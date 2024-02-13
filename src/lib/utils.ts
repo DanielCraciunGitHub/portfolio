@@ -4,3 +4,6 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+export function nameToPath(name: string): string {
+  return `/${name.toLowerCase().replaceAll(" ", "_")}`
+}

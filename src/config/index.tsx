@@ -1,6 +1,8 @@
 import { HeroStat, NavItem, Project, SocialLink } from "@/types"
 import { BsGithub, BsLinkedin, BsMedium, BsTwitterX } from "react-icons/bs"
 
+import { nameToPath } from "@/lib/utils"
+
 export const siteConfig = {
   url:
     process.env.NODE_ENV === "development"
@@ -10,6 +12,10 @@ export const siteConfig = {
     {
       name: "DC",
       href: "/",
+    },
+    {
+      name: "Blog",
+      href: "/blog",
     },
     {
       name: "eBook",
@@ -121,3 +127,20 @@ export const eBookConfig = {
   title: "The Ultimate Guide to Next.js",
   description: "Coming Soon...",
 } as const
+
+export const blogConfig = {
+  categoryLinks: [
+    {
+      name: "Web Development",
+      href: nameToPath("Web Development"),
+    },
+    {
+      name: "Organisation",
+      href: nameToPath("Organisation"),
+    },
+    {
+      name: "Self Development",
+      href: nameToPath("Self Development"),
+    },
+  ] satisfies NavItem[],
+}
