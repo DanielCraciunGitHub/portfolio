@@ -16,6 +16,6 @@ async function getBlogs() {
 
 export default async function page() {
   const data = await getBlogs()
-  console.log(data)
+
   return <div>test</div>
 }

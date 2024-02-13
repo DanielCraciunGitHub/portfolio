@@ -23,7 +23,7 @@ export function NavItem(props: NavItemProps) {
       className={cn(
         buttonVariants({ variant: "ghost" }),
         "rounded text-muted-foreground hover:text-primary hover:transition hover:ease-linear dark:hover:text-primary",
-        page.startsWith(`/${segment}`) ? "text-primary dark:text-primary" : "",
+        page.includes(`/${segment}`) ? "text-primary dark:text-primary" : "",
         className
       )}
       {...restProps}

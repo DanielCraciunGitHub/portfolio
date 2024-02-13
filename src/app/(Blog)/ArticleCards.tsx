@@ -5,62 +5,55 @@ import { useInView } from "react-intersection-observer"
 
 import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import { trpc } from "../_trpc/client"
 import ArticleCard from "./ArticleCard"
 
 const articlesPerPage = 6
 
-export default function ArticleCards() {
+interface ArticleCardProps {
+  category?: BlogCard["category"] | string | undefined
+}
+
+export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView()
 
-  const { data, fetchNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
       {
         limit: articlesPerPage,
+        category,
       },
       {
-        getNextPageParam: (lastPage) => lastPage.nextId,
+        getNextPageParam: (lastPage) => lastPage.nextId ?? undefined,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
+        refetchOnMount: false,
       }
     )
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage) {
+      console.log("RAN")
       fetchNextPage()
     }
   }, [fetchNextPage, inView])
 
-  const renderBlogs = (inputCategory: BlogCard["category"]) => {
-    const allBlogs = data?.pages.flatMap((page) => page.blogs)
+  const renderBlogs = () => {
+    const blogs = data?.pages.flatMap((page) => page.blogs)
 
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center gap-8">
-        {allBlogs?.map((blogCard) => (
+        {blogs?.map((blogCard) => (
           <ArticleCard key={blogCard._id} {...blogCard} />
         ))}
       </div>
     )
   }
   return (
-    <Tabs defaultValue="Web Development" className="flex flex-col items-center">
-      <TabsList>
-        <TabsTrigger value="Web Development">Web Development</TabsTrigger>
-        <TabsTrigger value="Organisation">Organisation</TabsTrigger>
-        <TabsTrigger value="Self Development">Self Development</TabsTrigger>
-      </TabsList>
-      <TabsContent value="Web Development">
-        {renderBlogs("Web Development")}
-      </TabsContent>
-      <TabsContent value="Organisation">
-        {renderBlogs("Organisation")}
-      </TabsContent>
-      <TabsContent value="Self Development">
-        {renderBlogs("Self Development")}
-      </TabsContent>
-      <Button ref={ref} variant={"ghost"}></Button>
-    </Tabs>
+    <div>
+      {renderBlogs()}
+      <Button variant={"ghost"} ref={ref}></Button>
+    </div>
   )
 }

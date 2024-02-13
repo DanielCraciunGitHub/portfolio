@@ -1,26 +1,8 @@
-import { groq } from "next-sanity"
 import { z } from "zod"
 
-import { BlogCard } from "@/types/blog"
-import { client } from "@/lib/sanity/lib/client"
+import { getBlogs } from "@/lib/getBlogs"
 
 import { publicProcedure, router } from "../trpc"
-
-async function getBlogs(cursor: string, limit: number) {
-  const query = groq`*[_type == "blog" && _createdAt < $cursor] | order(_createdAt desc) [${0}...${limit}]{
-          _id,
-          _createdAt,
-          title,
-          subtitle,
-          category,
-          description,
-          "currentSlug": slug.current,
-          image,
-        }`
-  const blogs = await client.fetch<BlogCard[]>(query, { cursor })
-
-  return blogs
-}
 
 export const blogRouter = router({
   getInfinitePosts: publicProcedure
@@ -28,14 +10,22 @@ export const blogRouter = router({
       z.object({
         limit: z.number().min(1).max(6),
         cursor: z.string().nullish(),
+        category: z.string().optional(),
       })
     )
     .query(async ({ input }) => {
-      const blogs = await getBlogs(input.cursor ?? Date.toString(), input.limit)
+      const blogs = await getBlogs(
+        input.cursor ?? Date.toString(),
+        input.limit,
+        input.category
+      )
 
-      const nextId = blogs[blogs.length - 1]._createdAt
-
-      console.log(blogs)
+      let nextId
+      if (blogs.length < input.limit) {
+        nextId = null
+      } else {
+        nextId = blogs[blogs.length - 1]._createdAt
+      }
 
       return {
         blogs,
