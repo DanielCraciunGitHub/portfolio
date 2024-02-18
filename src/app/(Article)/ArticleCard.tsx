@@ -35,7 +35,7 @@ export default function ArticleCard({
           <CardTitle>{title}</CardTitle>
           <CardDescription className="truncate">{subtitle}</CardDescription>
         </CardHeader>
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex flex-col md:flex-row md:justify-between space-y-2 md:space-y-0">
           <Badge variant="secondary" className="inline-flex">
             {category}
           </Badge>

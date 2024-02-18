@@ -7,6 +7,7 @@ import NextTopLoader from "nextjs-toploader"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Provider } from "@/components/providers"
+import ScrollToTopButton from "@/components/ScrollToTopButton"
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -28,6 +29,7 @@ export default function RootLayout({
           {children}
         </Provider>
         <Analytics />
+        <ScrollToTopButton />
       </body>
     </html>
   )

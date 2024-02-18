@@ -1,9 +1,11 @@
 import { Metadata, Viewport } from "next"
-import { siteConfig } from "@/config"
+import Link from "next/link"
+import { FaChevronLeft } from "react-icons/fa"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { DarkModeButton } from "@/components/DarkModeButton"
-import { NavItem } from "@/components/Navbar/NavItem"
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -15,24 +17,23 @@ export const viewport: Viewport = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <BlogNavbar />
+      <ArticleNavbar />
       <main className="container">{children}</main>
     </>
   )
 }
-const BlogNavbar = () => {
-  const [firstLink] = siteConfig.navLinks
+const ArticleNavbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background">
       <div className="flex justify-center p-6">
         <div className="flex justify-between w-2/3">
           <div>
-            <NavItem
-              key={firstLink.name}
-              page={firstLink.href}
-              text={firstLink.name}
-              className="text-4xl"
-            />
+            <Link
+              href="/blog"
+              className={cn(buttonVariants({ variant: "outline" }))}
+            >
+              <FaChevronLeft />
+            </Link>
           </div>
           <div>
             <DarkModeButton />

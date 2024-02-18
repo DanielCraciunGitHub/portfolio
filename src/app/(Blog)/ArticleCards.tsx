@@ -7,7 +7,7 @@ import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
 
 import { trpc } from "../_trpc/client"
-import ArticleCard from "./ArticleCard"
+import ArticleCard from "../(Article)/ArticleCard"
 
 const articlesPerPage = 6
 

@@ -33,7 +33,6 @@ const myPortableTextComponents = {
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
 
-  console.log(article.content)
   return (
     <div className="mt-5 mx-auto max-w-2xl">
       <Badge variant="secondary" className="inline-flex">

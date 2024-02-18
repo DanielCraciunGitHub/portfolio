@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Info <span className="text-primary">Library</span>
           </h1>
         </Link>
-        <div>Search</div>
+        {/* <div>Search</div> */}
         <CategoryNavbar />
         <main className="flex-1 flex justify-center">{children}</main>
       </section>
