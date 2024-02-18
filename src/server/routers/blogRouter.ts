@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { getBlogs } from "@/lib/getBlogs"
+import { getBlogs } from "@/lib/blogs"
 
 import { publicProcedure, router } from "../trpc"
 

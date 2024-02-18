@@ -8,15 +8,15 @@ export function nameToPath(name: string): string {
   return `/${name.toLowerCase().replaceAll(" ", "_")}`
 }
 
-export function pathToName(path: string): string {
-  const cleanedPath = path.replace(/^\//, "")
+export function pathToName(path: string | undefined): string | undefined {
+  const cleanedPath = path?.replace(/^\//, "")
 
-  const nameWithSpaces = cleanedPath.replace(/_/g, " ")
+  const nameWithSpaces = cleanedPath?.replace(/_/g, " ")
 
-  const words = nameWithSpaces.split(" ")
-  const capitalizedWords = words.map(
+  const words = nameWithSpaces?.split(" ")
+  const capitalizedWords = words?.map(
     (word) => word.charAt(0).toUpperCase() + word.slice(1)
   )
 
-  return capitalizedWords.join(" ")
+  return capitalizedWords?.join(" ")
 }

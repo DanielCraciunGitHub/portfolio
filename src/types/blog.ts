@@ -1,11 +1,23 @@
-import { Image } from "sanity"
+import { Image, TypedObject } from "sanity"
+
+type Category = "Web Development" | "Organisation" | "Self Development"
 
 export interface BlogCard {
   _id: string
   _createdAt: string
   title: string
   subtitle: string
-  category: "Web Development" | "Organisation" | "Self Development"
+  category: Category
+  image: Image
+  currentSlug: string
+}
+export interface Article {
+  _id: string
+  _createdAt: string
+  title: string
+  subtitle: string
+  category: Category
+  content: TypedObject[]
   image: Image
   currentSlug: string
 }

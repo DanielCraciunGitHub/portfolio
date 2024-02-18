@@ -18,7 +18,7 @@ interface ArticleCardProps {
 export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView()
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage } =
     trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
       {
         limit: articlesPerPage,
@@ -34,10 +34,9 @@ export default function ArticleCards({ category }: ArticleCardProps) {
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      console.log("RAN")
       fetchNextPage()
     }
-  }, [fetchNextPage, inView])
+  }, [fetchNextPage, inView, hasNextPage])
 
   const renderBlogs = () => {
     const blogs = data?.pages.flatMap((page) => page.blogs)

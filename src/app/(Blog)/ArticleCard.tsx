@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { BlogCard } from "@/types/blog"
-import { nameToPath } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -12,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { urlForImage } from "../../lib/sanity/lib/image"
+import { urlForImage } from "../../../sanity/lib/image"
 
 export default function ArticleCard({
   title,
@@ -23,10 +22,9 @@ export default function ArticleCard({
   _createdAt,
 }: BlogCard) {
   return (
-    <Link href={`${nameToPath(category)}/${currentSlug}`} className="w-2/3">
+    <Link href={`/article/${currentSlug}`} className="w-2/3">
       <Card>
         <Image
-          priority
           src={urlForImage(image)}
           alt={title}
           width={500}
@@ -35,7 +33,7 @@ export default function ArticleCard({
         />
         <CardHeader>
           <CardTitle>{title}</CardTitle>
-          <CardDescription>{subtitle}</CardDescription>
+          <CardDescription className="truncate">{subtitle}</CardDescription>
         </CardHeader>
         <CardFooter className="flex justify-between">
           <Badge variant="secondary" className="inline-flex">

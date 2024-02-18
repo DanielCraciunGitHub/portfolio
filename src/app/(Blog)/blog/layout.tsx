@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Link>
         <div>Search</div>
         <CategoryNavbar />
-        {children}
+        <main className="flex-1 flex justify-center">{children}</main>
       </section>
     </>
   )

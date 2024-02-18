@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <BlogNavbar />
-      <main className="flex-1 flex justify-center">{children}</main>
+      <main className="container">{children}</main>
       <ScrollToTopButton />
     </>
   )
@@ -26,8 +26,8 @@ const BlogNavbar = () => {
   const [firstLink] = siteConfig.navLinks
   return (
     <nav className="sticky top-0 z-50 bg-background">
-      <div className="hidden md:flex md:justify-center md:p-6">
-        <div className="md:flex md:justify-between md:w-2/3">
+      <div className="flex justify-center p-6">
+        <div className="flex justify-between w-2/3">
           <div>
             <NavItem
               key={firstLink.name}

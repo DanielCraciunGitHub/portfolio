@@ -44,11 +44,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           title: "Image",
         },
         {
-          name: "description",
-          type: "text",
-          title: "Description",
-        },
-        {
           name: "content",
           type: "array",
           title: "Content",
