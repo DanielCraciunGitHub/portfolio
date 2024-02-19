@@ -7,7 +7,8 @@ import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
 
 import { trpc } from "../_trpc/client"
-import ArticleCard from "../(Article)/ArticleCard"
+import ArticleCard from "./ArticleCard"
+import { ArticleCardsShell } from "./ArticleCardShell"
 
 const articlesPerPage = 6
 
@@ -18,7 +19,7 @@ interface ArticleCardProps {
 export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView()
 
-  const { data, fetchNextPage, hasNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetching } =
     trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
       {
         limit: articlesPerPage,
@@ -38,7 +39,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
     }
   }, [fetchNextPage, inView, hasNextPage])
 
-  const renderBlogs = () => {
+  const BlogCards = () => {
     const blogs = data?.pages.flatMap((page) => page.blogs)
 
     return (
@@ -49,9 +50,10 @@ export default function ArticleCards({ category }: ArticleCardProps) {
       </div>
     )
   }
+
   return (
     <div>
-      {renderBlogs()}
+      {isFetching ? <ArticleCardsShell /> : <BlogCards />}
       <Button variant={"ghost"} ref={ref}></Button>
     </div>
   )
