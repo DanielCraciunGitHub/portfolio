@@ -1,5 +1,7 @@
 import { type SchemaTypeDefinition } from "sanity"
 
+import { blogConfig } from "../src/config"
+
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     {
@@ -13,9 +15,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           type: "string",
           options: {
             list: [
-              { title: "Web Development", value: "Web Development" },
-              { title: "Organisation", value: "Organisation" },
-              { title: "Self Development", value: "Self Development" },
+              ...blogConfig.categoryLinks.map(({ name }) => ({
+                title: name,
+                value: name,
+              })),
             ],
           },
           validation: (Rule) => Rule.required(),

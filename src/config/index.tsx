@@ -1,7 +1,7 @@
-import { HeroStat, NavItem, Project, SocialLink } from "@/types"
 import { BsGithub, BsLinkedin, BsMedium, BsTwitterX } from "react-icons/bs"
 
-import { nameToPath } from "@/lib/utils"
+import { nameToPath } from "../lib/utils"
+import { HeroStat, NavItem, Project, SocialLink } from "../types"
 
 export const siteConfig = {
   url:
@@ -129,6 +129,9 @@ export const eBookConfig = {
 } as const
 
 export const blogConfig = {
+  title: "Info Library",
+  description:
+    "My personal blog, an information library spanning countless niches.",
   categoryLinks: [
     {
       name: "Web Development",

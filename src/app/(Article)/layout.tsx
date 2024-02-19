@@ -1,18 +1,9 @@
-import { Metadata, Viewport } from "next"
 import Link from "next/link"
 import { FaChevronLeft } from "react-icons/fa"
 
-import { baseMetadata, baseViewport } from "@/config/metadata"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { DarkModeButton } from "@/components/DarkModeButton"
-
-export const metadata: Metadata = {
-  ...baseMetadata,
-}
-export const viewport: Viewport = {
-  ...baseViewport,
-}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

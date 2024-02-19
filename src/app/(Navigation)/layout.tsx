@@ -1,8 +1,10 @@
+import { Metadata, Viewport } from "next"
+
+import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Toaster } from "@/components/ui/toaster"
 import { Footer } from "@/components/Footer"
 import NavBar from "@/components/Navbar/Navbar"
-import { Metadata, Viewport } from "next"
-import {baseMetadata, baseViewport} from "@/config/metadata"
+
 export const metadata: Metadata = {
   ...baseMetadata,
 }

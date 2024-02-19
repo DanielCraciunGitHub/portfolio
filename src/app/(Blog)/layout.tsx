@@ -1,16 +1,7 @@
-import { Metadata, Viewport } from "next"
 import { siteConfig } from "@/config"
 
-import { baseMetadata, baseViewport } from "@/config/metadata"
 import { DarkModeButton } from "@/components/DarkModeButton"
 import { NavItem } from "@/components/Navbar/NavItem"
-
-export const metadata: Metadata = {
-  ...baseMetadata,
-}
-export const viewport: Viewport = {
-  ...baseViewport,
-}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

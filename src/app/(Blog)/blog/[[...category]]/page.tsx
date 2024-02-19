@@ -1,6 +1,13 @@
+import { Metadata } from "next"
+
+import { staticMetadata } from "@/config/metadata"
 import { pathToName } from "@/lib/utils"
 
 import ArticleCards from "../../ArticleCards"
+
+export const metadata: Metadata = {
+  ...staticMetadata.blog,
+}
 
 interface pageProps {
   params: { category: string[] }

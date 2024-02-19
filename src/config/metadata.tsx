@@ -1,5 +1,5 @@
 import { Metadata, Viewport } from "next"
-import { danielConfig, siteConfig, eBookConfig } from "@/config"
+import { blogConfig, danielConfig, eBookConfig, siteConfig } from "@/config"
 
 export const baseMetadata: Metadata = {
   title: {
@@ -67,6 +67,27 @@ export const baseMetadata: Metadata = {
 }
 export const staticMetadata = {
   ...baseMetadata,
+  blog: {
+    title: blogConfig.title,
+    description: blogConfig.description,
+    keywords: [
+      ...new Set([
+        ...baseMetadata.keywords!,
+        ...blogConfig.categoryLinks.map(({ name }) => name),
+      ]),
+    ],
+    openGraph: {
+      ...baseMetadata.openGraph,
+      title: blogConfig.title,
+      description: blogConfig.description,
+      url: "/blog",
+    },
+    twitter: {
+      ...baseMetadata.twitter,
+      title: blogConfig.title,
+      description: blogConfig.description,
+    },
+  } satisfies Metadata,
   eBook: {
     title: eBookConfig.title,
     description: eBookConfig.description,
@@ -78,7 +99,7 @@ export const staticMetadata = {
       images: [
         {
           url: `${siteConfig.url}/images/book-cover.jpg`,
-          type: "image/png",
+          type: "image/jpg",
           width: 1200,
           height: 630,
           alt: "Book Cover",
@@ -92,7 +113,7 @@ export const staticMetadata = {
       images: [
         {
           url: `${siteConfig.url}/images/book-cover.jpg`,
-          type: "image/png",
+          type: "image/jpg",
           width: 1200,
           height: 630,
           alt: "Book Cover",

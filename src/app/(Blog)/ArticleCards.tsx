@@ -42,7 +42,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
     const blogs = data?.pages.flatMap((page) => page.blogs)
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center gap-y-24">
         {blogs?.map((blogCard) => (
           <ArticleCard key={blogCard._id} {...blogCard} />
         ))}

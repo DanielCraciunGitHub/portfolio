@@ -1,13 +1,64 @@
+import { Metadata } from "next"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { CodeInputValue } from "@sanity/code-input"
 import { Image as SanityImage } from "sanity"
 
+import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { CodeBlock } from "../CodeBlock"
+
+export async function generateMetadata({
+  params,
+}: pageProps): Promise<Metadata> {
+  const article = await getCurrentArticle(params.title)
+
+  return {
+    ...baseMetadata,
+    title: { absolute: article.title },
+    description: `${article.category}: ${article.title} | ${article.subtitle}`,
+    keywords: [
+      ...new Set([
+        ...baseMetadata.keywords!,
+        ...article.title.split(" "),
+        ...article.subtitle.split(" "),
+        article.category,
+      ]),
+    ],
+    openGraph: {
+      ...baseMetadata.openGraph,
+      title: { absolute: article.title },
+      description: article.subtitle,
+      url: `/article/${article.currentSlug}`,
+      images: [
+        {
+          url: urlForImage(article.image),
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      ...baseMetadata.twitter,
+      title: { absolute: article.title },
+      description: article.subtitle,
+      images: [
+        {
+          url: urlForImage(article.image),
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+  }
+}
 
 interface pageProps {
   params: { title: string }
@@ -19,7 +70,7 @@ const myPortableTextComponents = {
       <Image
         priority
         src={urlForImage(value)}
-        alt={"Blog Image"}
+        alt="Blog Image"
         width={800}
         height={800}
         className="rounded-md"
