@@ -9,7 +9,7 @@ import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
-import { CodeBlock } from "../CodeBlock"
+import { CodeBlock } from "../SanityCodeBlock"
 
 export async function generateMetadata({
   params,

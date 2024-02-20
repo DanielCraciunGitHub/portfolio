@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <BlogNavbar />
-      <main className="container">{children}</main>
+      <main>{children}</main>
     </>
   )
 }

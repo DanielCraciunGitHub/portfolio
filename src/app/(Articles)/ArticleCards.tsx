@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 
 import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { trpc } from "../_trpc/client"
 import ArticleCard from "./ArticleCard"
@@ -19,7 +20,7 @@ interface ArticleCardProps {
 export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView()
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
       {
         limit: articlesPerPage,
@@ -38,23 +39,22 @@ export default function ArticleCards({ category }: ArticleCardProps) {
       fetchNextPage()
     }
   }, [fetchNextPage, inView, hasNextPage])
-
-  const BlogCards = () => {
-    const blogs = data?.pages.flatMap((page) => page.blogs)
-
-    return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center gap-y-24">
-        {blogs?.map((blogCard) => (
-          <ArticleCard key={blogCard._id} {...blogCard} />
-        ))}
-      </div>
-    )
-  }
+  const blogs = data?.pages.flatMap((page) => page.blogs)
 
   return (
-    <div>
-      {isFetching ? <ArticleCardsShell /> : <BlogCards />}
+    <>
+      <div
+        className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center ${isFetching && !isFetchingNextPage ? "gap-28" : "gap-y-24"}`}
+      >
+        {isFetching && !isFetchingNextPage ? (
+          <ArticleCardsShell />
+        ) : (
+          blogs?.map((blogCard) => (
+            <ArticleCard key={blogCard._id} {...blogCard} />
+          ))
+        )}
+      </div>
       <Button variant={"ghost"} ref={ref}></Button>
-    </div>
+    </>
   )
 }
