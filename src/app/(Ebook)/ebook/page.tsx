@@ -16,7 +16,6 @@ export default async function page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
   return searchParams?.purchase === "success" ? (
     <section className="mx-auto space-y-6 container flex flex-col justify-center">
       <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl text-center">
@@ -47,18 +46,22 @@ export default async function page({
             {eBookConfig.description}
           </p>
           <div className="flex flex-col items-center space-y-4 pt-4">
-            <div className="flex flex-col">
-              <span className="text-center text-4xl text-red-500 line-through">
-                {Number(eBookPrice) * 2}
-              </span>
-              <span className="text-center text-4xl text-primary">
-                {eBookPrice}
-              </span>
-            </div>
+            <EbookPrice />
             <StripeButton className="w-1/2 text-foreground" name="Buy Now" />
           </div>
         </div>
       </div>
     </section>
+  )
+}
+async function EbookPrice() {
+  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
+  return (
+    <div className="flex flex-col">
+      <span className="text-center text-4xl text-red-500 line-through">
+        ${Number(eBookPrice) * 2}
+      </span>
+      <span className="text-center text-4xl text-primary">${eBookPrice}</span>
+    </div>
   )
 }

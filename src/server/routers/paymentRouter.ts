@@ -31,8 +31,6 @@ export const paymentRouter = router({
       const priceId = env.EBOOK_PRODUCT_ID // Replace with your actual price ID
       const price = await stripe.prices.retrieve(priceId)
 
-      console.log("Product Price:", (price.unit_amount! / 100).toString())
-
       return (price.unit_amount! / 100).toString()
     } catch (error: any) {
       console.error("Error fetching price:", error.message)

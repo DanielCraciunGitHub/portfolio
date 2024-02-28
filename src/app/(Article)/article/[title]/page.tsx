@@ -1,15 +1,19 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
-import { CodeInputValue } from "@sanity/code-input"
-import { Image as SanityImage } from "sanity"
 
 import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
-import { CodeBlock } from "../SanityCodeBlock"
+import { myPortableTextComponents } from "./SanityCustomComponents"
+
+export const revalidate = 60
+
+interface pageProps {
+  params: { title: string }
+}
 
 export async function generateMetadata({
   params,
@@ -60,35 +64,19 @@ export async function generateMetadata({
   }
 }
 
-interface pageProps {
-  params: { title: string }
-}
-
-const myPortableTextComponents = {
-  types: {
-    Image: ({ value }: { value: SanityImage }) => (
-      <Image
-        priority
-        src={urlForImage(value)}
-        alt="Blog Image"
-        width={800}
-        height={800}
-        className="rounded-md"
-      />
-    ),
-    Code: ({ value }: { value: CodeInputValue }) => {
-      return <CodeBlock value={value} />
-    },
-  },
-}
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
 
   return (
     <div className="mt-5 mx-auto max-w-2xl">
-      <Badge variant="secondary" className="inline-flex">
-        {article.category}
-      </Badge>
+      <div className="flex items-center justify-between space-x-4">
+        <Badge variant="secondary" className="inline-flex">
+          {article.category}
+        </Badge>
+        <div className="font-semibold text-xs">
+          {new Date(article._createdAt).toDateString()}
+        </div>
+      </div>
       <h1 className="mt-3 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
       </h1>
