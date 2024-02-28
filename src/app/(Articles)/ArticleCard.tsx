@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { urlForImage } from "../../../sanity/lib/image"
+import { urlFor } from "../../../sanity/lib/image"
 
 export default function ArticleCard({
   title,
@@ -25,7 +25,7 @@ export default function ArticleCard({
     <Link href={`/article/${currentSlug}`} className="w-2/3">
       <Card>
         <Image
-          src={urlForImage(image)}
+          src={urlFor(image).size(1200, 600).url()}
           alt={title}
           width={500}
           height={500}

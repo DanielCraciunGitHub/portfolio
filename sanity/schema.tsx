@@ -1,5 +1,7 @@
 import { type SchemaTypeDefinition } from "sanity"
 
+import { Separator } from "@/components/ui/separator"
+
 import { blogConfig } from "../src/config"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -54,6 +56,16 @@ export const schema: { types: SchemaTypeDefinition[] } = {
             { type: "block" },
             { name: "Code", type: "code" },
             { name: "Image", type: "image" },
+            { name: "Table", title: "Table", type: "table" },
+            {
+              name: "Divider",
+              type: "object",
+              title: "Divider",
+              fields: [{ type: "string", name: "divider" }],
+              components: {
+                preview: () => <hr />,
+              },
+            },
           ],
         },
       ],

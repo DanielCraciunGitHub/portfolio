@@ -20,5 +20,9 @@ export const myPortableTextComponents = {
     Code: ({ value }: { value: CodeInputValue }) => {
       return <CodeBlock value={value} />
     },
+    Divider: () => <hr className="my-4 border-muted-foreground/50" />,
+    Table: () => {
+      return null
+    },
   },
 }
