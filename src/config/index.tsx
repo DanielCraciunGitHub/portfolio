@@ -154,6 +154,10 @@ export const blogConfig = {
       href: nameToPath("Organisation"),
     },
     {
+      name: "Food",
+      href: nameToPath("Food"),
+    },
+    {
       name: "Self Development",
       href: nameToPath("Self Development"),
     },

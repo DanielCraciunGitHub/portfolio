@@ -29,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           name: "title",
           type: "string",
           title: "Title",
+          validation: (Rule) => Rule.required(),
         },
         {
           name: "subtitle",
@@ -42,18 +43,51 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           options: {
             source: "title",
           },
+          validation: (Rule) => Rule.required(),
         },
         {
           name: "image",
           type: "image",
           title: "Image",
+          validation: (Rule) => Rule.required(),
         },
         {
           name: "content",
           type: "array",
           title: "Content",
           of: [
-            { type: "block" },
+            {
+              type: "block",
+              marks: {
+                annotations: [
+                  {
+                    name: "link",
+                    type: "object",
+                    title: "External link",
+                    fields: [
+                      {
+                        name: "href",
+                        type: "url",
+                        title: "URL",
+                      },
+                    ],
+                  },
+                  //   {
+                  //     name: "internalLink",
+                  //     type: "object",
+                  //     title: "Internal link",
+                  //     fields: [
+                  //       {
+                  //         name: "reference",
+                  //         type: "reference",
+                  //         title: "Reference",
+                  //         to: [{ type: "blog" }],
+                  //       },
+                  //     ],
+                  //   },
+                ],
+              },
+            },
             { name: "Code", type: "code" },
             { name: "Image", type: "image" },
             { name: "Table", title: "Table", type: "table" },

@@ -7,7 +7,7 @@ export interface BlogCard {
   _createdAt: string
   _updatedAt: string
   title: string
-  subtitle: string
+  subtitle?: string
   category: Category
   image: Image
   currentSlug: string
@@ -16,7 +16,7 @@ export interface Article {
   _id: string
   _createdAt: string
   title: string
-  subtitle: string
+  subtitle?: string
   category: Category
   content: TypedObject[]
   image: Image

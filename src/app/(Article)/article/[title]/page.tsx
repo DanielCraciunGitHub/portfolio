@@ -28,7 +28,7 @@ export async function generateMetadata({
       ...new Set([
         ...baseMetadata.keywords!,
         ...article.title.split(" "),
-        ...article.subtitle.split(" "),
+        ...(article.subtitle?.split(" ") ?? ""),
         article.category,
       ]),
     ],
