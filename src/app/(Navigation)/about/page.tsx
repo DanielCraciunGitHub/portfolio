@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-20 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
+    <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
       <div className=" lg:col-span-6">
         <Image
           src="/images/about.png"

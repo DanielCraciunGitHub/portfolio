@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { getBlogs } from "@/lib/blogs"
+import { getInfiniteBlogs } from "@/lib/blogs"
 
 import { publicProcedure, router } from "../trpc"
 
@@ -14,7 +14,7 @@ export const blogRouter = router({
       })
     )
     .query(async ({ input }) => {
-      const blogs = await getBlogs(
+      const blogs = await getInfiniteBlogs(
         input.cursor ?? Date.toString(),
         input.limit,
         input.category

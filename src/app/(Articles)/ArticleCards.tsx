@@ -5,7 +5,6 @@ import { useInView } from "react-intersection-observer"
 
 import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
 
 import { trpc } from "../_trpc/client"
 import ArticleCard from "./ArticleCard"

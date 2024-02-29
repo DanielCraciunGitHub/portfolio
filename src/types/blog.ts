@@ -5,6 +5,7 @@ type Category = "Web Development" | "Organisation" | "Self Development"
 export interface BlogCard {
   _id: string
   _createdAt: string
+  _updatedAt: string
   title: string
   subtitle: string
   category: Category
