@@ -91,7 +91,7 @@ export default async function page({ params }: pageProps) {
         height={800}
         className="rounded-md mt-5"
       />
-      <div className="mt-10 prose prose-xl dark:prose-invert">
+      <div className="mt-10 prose prose-xl dark:prose-invert mb-20">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}

@@ -3,6 +3,8 @@ import { siteConfig } from "@/config"
 
 import { getBlogs } from "@/lib/blogs"
 
+export const revalidate = 60
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogs = await getBlogs()
 
