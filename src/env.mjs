@@ -1,5 +1,8 @@
 import { createEnv } from "@t3-oss/env-nextjs"
+import dotenv from "dotenv"
 import { z } from "zod"
+
+dotenv.config({ path: ".env.local" })
 
 export const env = createEnv({
   client: {
@@ -19,6 +22,10 @@ export const env = createEnv({
     STRIPE_PUBLIC_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     EBOOK_PRODUCT_ID: z.string().min(1),
+
+    AUTH_SECRET: z.string().min(1),
+    AUTH_GOOGLE_ID: z.string().min(1),
+    AUTH_GOOGLE_SECRET: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,

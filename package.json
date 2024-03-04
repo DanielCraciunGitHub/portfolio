@@ -13,6 +13,8 @@
     "migrations:drop": "drizzle-kit drop"
   },
   "dependencies": {
+    "@auth/core": "^0.28.0",
+    "@auth/drizzle-adapter": "^0.3.12",
     "@hookform/resolvers": "^3.3.4",
     "@planetscale/database": "^1.16.0",
     "@portabletext/react": "^3.0.11",
@@ -58,12 +60,14 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.1",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.14",
     "drizzle-orm": "^0.29.4",
     "embla-carousel-react": "^8.0.0",
     "lucide-react": "^0.343.0",
     "mysql2": "^3.9.2",
     "next": "14.1.0",
+    "next-auth": "5.0.0-beta.15",
     "next-sanity": "^8.1.3",
     "next-themes": "^0.2.1",
     "nextjs-toploader": "^1.6.6",

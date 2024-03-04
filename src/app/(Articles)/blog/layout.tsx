@@ -3,7 +3,11 @@ import { blogConfig } from "@/config"
 
 import { NavItem } from "@/components/Navbar/NavItem"
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <>
       <section className="flex flex-col items-center mt-10 space-y-4">
