@@ -15,6 +15,20 @@
       "when": 1709584685054,
       "tag": "0001_robust_alex_wilder",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709743561962,
+      "tag": "0002_left_eddie_brock",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1709744997927,
+      "tag": "0003_narrow_prima",
+      "breakpoints": true
     }
   ]
 }

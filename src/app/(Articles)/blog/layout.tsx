@@ -3,6 +3,8 @@ import { blogConfig } from "@/config"
 
 import { NavItem } from "@/components/Navbar/NavItem"
 
+export const revalidate = 60
+
 export default async function Layout({
   children,
 }: {

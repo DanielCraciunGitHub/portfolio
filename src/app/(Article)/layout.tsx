@@ -3,6 +3,7 @@ import { FaChevronLeft } from "react-icons/fa"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Toaster } from "@/components/ui/toaster"
 import { DarkModeButton } from "@/components/DarkModeButton"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -10,6 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <ArticleNavbar />
       <main className="container">{children}</main>
+      <Toaster />
     </>
   )
 }

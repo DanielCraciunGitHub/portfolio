@@ -1,4 +1,3 @@
-// db/schema/auth.ts
 import { randomUUID } from "crypto"
 import type { AdapterAccount } from "@auth/core/adapters"
 import {
@@ -38,7 +37,9 @@ export const accounts = mysqlTable(
     session_state: text("session_state"),
   },
   (account) => ({
-    compoundKey: primaryKey(account.provider, account.providerAccountId),
+    compoundKey: primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
   })
 )
 
@@ -49,28 +50,32 @@ export const sessions = mysqlTable("sessions", {
 })
 
 export const verificationTokens = mysqlTable(
-  "verificationToken",
+  "verificationTokens",
   {
     identifier: varchar("identifier", { length: 255 }).notNull(),
     token: varchar("token", { length: 255 }).notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (vt) => ({
-    compoundKey: primaryKey(vt.identifier, vt.token),
+    compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 )
-////////////////////////////////////////////////////////////////////////////////
-export const notes = mysqlTable("notes", {
+export const articleLikes = mysqlTable("articleLikes", {
   id: varchar("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   userId: varchar("userId", { length: 255 }).notNull(),
-
-  body: text("body").default("").notNull(),
-  createdAt: timestamp("createdAt", { mode: "date" }).notNull().defaultNow(),
-  updatedAt: timestamp("updatedAt", { mode: "date" }).onUpdateNow(),
-  deleted: boolean("deleted").default(false).notNull(),
-  archived: boolean("archived").default(false).notNull(),
-  reminder: timestamp("reminder", { mode: "date" }),
+  articleSlug: varchar("userId", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).onUpdateNow().notNull(),
+})
+export const articleComments = mysqlTable("articleComments", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => randomUUID()),
+  parentId: varchar("parentId", { length: 255 }),
+  userId: varchar("userId", { length: 255 }).notNull(),
+  articleSlug: varchar("userId", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).onUpdateNow().notNull(),
 })

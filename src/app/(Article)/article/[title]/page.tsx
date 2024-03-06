@@ -7,6 +7,7 @@ import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
+import { BlogInteractor } from "./BlogInteractor"
 import { myPortableTextComponents } from "./SanityCustomComponents"
 
 export const revalidate = 60
@@ -91,12 +92,13 @@ export default async function page({ params }: pageProps) {
         height={800}
         className="rounded-md mt-5"
       />
-      <div className="mt-10 prose prose-xl dark:prose-invert mb-20">
+      <div className="mt-10 prose prose-xl dark:prose-invert mb-10">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}
         />
       </div>
+      {/* <BlogInteractor currentSlug={article.currentSlug} /> */}
     </div>
   )
 }
