@@ -3,8 +3,10 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 
 import { baseMetadata } from "@/config/metadata"
+import { auth } from "@/lib/auth"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
+import AuthButton from "@/components/AuthButton"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { BlogInteractor } from "./BlogInteractor"
@@ -67,9 +69,11 @@ export async function generateMetadata({
 
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
+  const session = await auth()
 
   return (
     <div className="mt-5 mx-auto max-w-2xl">
+      <AuthButton session={session} />
       <div className="flex items-center justify-between space-x-4">
         <Badge variant="secondary" className="inline-flex">
           {article.category}
@@ -84,6 +88,11 @@ export default async function page({ params }: pageProps) {
       <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl dark:text-gray-400">
         {article.subtitle}
       </h2>
+      <BlogInteractor
+        key="Interactor 1"
+        currentSlug={article.currentSlug}
+        session={session}
+      />
       <Image
         priority
         src={urlForImage(article.image)}
@@ -98,7 +107,11 @@ export default async function page({ params }: pageProps) {
           components={myPortableTextComponents}
         />
       </div>
-      {/* <BlogInteractor currentSlug={article.currentSlug} /> */}
+      <BlogInteractor
+        key="Interactor 2"
+        currentSlug={article.currentSlug}
+        session={session}
+      />
     </div>
   )
 }

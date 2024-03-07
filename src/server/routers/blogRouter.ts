@@ -1,3 +1,7 @@
+import { db } from "@/db"
+import { articleLikes } from "@/db/schema"
+import { and, eq } from "drizzle-orm"
+import { Session } from "next-auth"
 import { z } from "zod"
 
 import { getInfiniteBlogs } from "@/lib/blogs"
@@ -30,6 +34,66 @@ export const blogRouter = router({
       return {
         blogs,
         nextId,
+      }
+    }),
+  getArticleLikeData: publicProcedure
+    .input(z.object({ slug: z.string(), session: z.custom<Session | null>() }))
+    .query(async ({ input }) => {
+      const likes = (
+        await db
+          .select()
+          .from(articleLikes)
+          .where(eq(articleLikes.articleSlug, input.slug))
+      ).length
+      const articleLiked = (
+        await db
+          .select()
+          .from(articleLikes)
+          .where(
+            and(
+              eq(articleLikes.articleSlug, input.slug),
+              eq(articleLikes.userId, input.session?.user.id ?? "")
+            )
+          )
+      ).length
+
+      if (articleLiked) {
+        return { likes, fill: "red" }
+      }
+      return { likes, fill: "none" }
+    }),
+  updateArticleLikes: publicProcedure
+    .input(z.object({ slug: z.string(), session: z.custom<Session | null>() }))
+    .mutation(async ({ input }) => {
+      // get current like state for the user and article
+      const articleLiked = (
+        await db
+          .select()
+          .from(articleLikes)
+          .where(
+            and(
+              eq(articleLikes.articleSlug, input.slug),
+              eq(articleLikes.userId, input.session?.user.id ?? "")
+            )
+          )
+      ).length
+
+      if (articleLiked) {
+        await db
+          .delete(articleLikes)
+          .where(
+            and(
+              eq(articleLikes.articleSlug, input.slug),
+              eq(articleLikes.userId, input.session?.user.id!)
+            )
+          )
+        return 0
+      } else {
+        await db.insert(articleLikes).values({
+          articleSlug: input.slug,
+          userId: input.session?.user.id!,
+        })
+        return 1
       }
     }),
 })

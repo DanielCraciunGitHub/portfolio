@@ -1,32 +1,60 @@
-import { useState } from "react"
 import { Heart } from "lucide-react"
+import { Session } from "next-auth"
 
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import AuthButton from "@/components/AuthButton"
+import { trpc } from "@/app/_trpc/client"
 
 interface LikeButtonProps {
   currentSlug: string
+  session: Session | null
 }
-export const LikeButton = ({ currentSlug }: LikeButtonProps) => {
-  const defaultFill = "none"
-  const [fill, setFill] = useState<string>(defaultFill)
+export const LikeButton = ({ currentSlug, session }: LikeButtonProps) => {
+  const { data: likesData, refetch: getArticleLikes } =
+    trpc.blogRouter.getArticleLikeData.useQuery(
+      { slug: currentSlug, session },
+      {
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
+      }
+    )
+  const { mutateAsync: updateLikeCount } =
+    trpc.blogRouter.updateArticleLikes.useMutation({
+      onSuccess: () => {
+        getArticleLikes()
+      },
+    })
 
-  const handleButtonPress = () => {
-    // fetch initial state (if liked previously)
-
-    if (fill === defaultFill) {
-      setFill("red")
-      // increment
-    } else {
-      setFill(defaultFill)
-      // decrement
-    }
+  const onLikeArticle = async () => {
+    await updateLikeCount({ session, slug: currentSlug })
   }
   return (
     <div className="flex items-center">
-      <Button variant="ghost" size="icon" onClick={handleButtonPress}>
-        <Heart fill={fill} />
-      </Button>
-      <div>1000</div>
+      <Popover>
+        {session ? (
+          <Button variant="ghost" size="icon" onClick={onLikeArticle}>
+            <Heart fill={likesData?.fill ?? "none"} />
+          </Button>
+        ) : (
+          <PopoverTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Heart fill={likesData?.fill ?? "none"} />
+            </Button>
+          </PopoverTrigger>
+        )}
+        <PopoverContent className="flex flex-col text-center space-y-4 border-muted-foreground/50">
+          <Label>Login to like this article ❤️</Label>
+          <AuthButton session={session} />
+        </PopoverContent>
+      </Popover>
+      <div>{likesData?.likes ?? "0"}</div>
     </div>
   )
 }

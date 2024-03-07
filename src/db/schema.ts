@@ -66,8 +66,11 @@ export const articleLikes = mysqlTable("articleLikes", {
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   userId: varchar("userId", { length: 255 }).notNull(),
-  articleSlug: varchar("userId", { length: 255 }).notNull(),
-  createdAt: timestamp("createdAt", { mode: "date" }).onUpdateNow().notNull(),
+  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" })
+    .defaultNow()
+    .onUpdateNow()
+    .notNull(),
 })
 export const articleComments = mysqlTable("articleComments", {
   id: varchar("id", { length: 255 })
@@ -76,6 +79,9 @@ export const articleComments = mysqlTable("articleComments", {
     .$defaultFn(() => randomUUID()),
   parentId: varchar("parentId", { length: 255 }),
   userId: varchar("userId", { length: 255 }).notNull(),
-  articleSlug: varchar("userId", { length: 255 }).notNull(),
-  createdAt: timestamp("createdAt", { mode: "date" }).onUpdateNow().notNull(),
+  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" })
+    .defaultNow()
+    .onUpdateNow()
+    .notNull(),
 })

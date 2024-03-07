@@ -19,7 +19,7 @@ const ArticleNavbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-background">
       <div className="flex justify-center p-6">
-        <div className="flex justify-between w-2/3">
+        <div className="flex justify-around w-full">
           <div>
             <Link
               href="/blog"

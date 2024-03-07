@@ -1,0 +1,1 @@
+ALTER TABLE `articleComments` MODIFY COLUMN `createdAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP;
