@@ -1,7 +1,5 @@
 import { type SchemaTypeDefinition } from "sanity"
 
-import { Separator } from "@/components/ui/separator"
-
 import { blogConfig } from "../src/config"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -49,6 +47,16 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           name: "image",
           type: "image",
           title: "Image",
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+            },
+          ],
           validation: (Rule) => Rule.required(),
         },
         {
@@ -89,7 +97,21 @@ export const schema: { types: SchemaTypeDefinition[] } = {
               },
             },
             { name: "Code", type: "code" },
-            { name: "Image", type: "image" },
+            {
+              name: "Image",
+              type: "image",
+              title: "Image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "caption",
+                  type: "string",
+                  title: "Caption",
+                },
+              ],
+            },
             { name: "Table", title: "Table", type: "table" },
             {
               name: "Divider",
