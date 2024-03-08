@@ -88,11 +88,6 @@ export default async function page({ params }: pageProps) {
       <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl dark:text-gray-400">
         {article.subtitle}
       </h2>
-      <BlogInteractor
-        key="Interactor 1"
-        currentSlug={article.currentSlug}
-        session={session}
-      />
       <Image
         priority
         src={urlForImage(article.image)}
@@ -107,11 +102,7 @@ export default async function page({ params }: pageProps) {
           components={myPortableTextComponents}
         />
       </div>
-      <BlogInteractor
-        key="Interactor 2"
-        currentSlug={article.currentSlug}
-        session={session}
-      />
+      <BlogInteractor currentSlug={article.currentSlug} session={session} />
     </div>
   )
 }

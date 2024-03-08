@@ -10,7 +10,12 @@ import { CodeBlock } from "../SanityCodeBlock"
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {
     link: ({ value, children }) => (
-      <Link href={value.href} target="_blank" rel="noopener noreferrer">
+      <Link
+        className="text-blue-500"
+        href={value.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {children}
       </Link>
     ),
