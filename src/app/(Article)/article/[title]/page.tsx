@@ -73,7 +73,6 @@ export default async function page({ params }: pageProps) {
 
   return (
     <div className="mt-5 mx-auto max-w-2xl">
-      <AuthButton session={session} />
       <div className="flex items-center justify-between space-x-4">
         <Badge variant="secondary" className="inline-flex">
           {article.category}

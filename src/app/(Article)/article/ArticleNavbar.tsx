@@ -12,7 +12,7 @@ export const ArticleNavbar = () => {
   const { scrollY, scrollingUp } = useScrollUp()
   return (
     <nav
-      className={`sticky top-0 z-50 transition ease-in-out duration-300 ${scrollingUp || scrollY === 0 ? "translate-y-1" : "invisible"}`}
+      className={`sticky bg-background md:bg-transparent z-50 transition ease-in-out duration-300 ${scrollingUp || scrollY === 0 ? "-top-1 translate-y-1" : "invisible"}`}
     >
       <div className="flex justify-center p-6">
         <div className="flex justify-around w-full">

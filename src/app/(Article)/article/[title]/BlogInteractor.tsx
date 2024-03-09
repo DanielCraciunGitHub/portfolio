@@ -28,7 +28,7 @@ export const BlogInteractor = ({
       className={`dark:bg-gray-500 bg-gray-200 mb-5 mt-10 flex space-x-6 justify-around items-center sticky bottom-5 transition ease-in-out duration-300 ${scrollingUp || scrollY + window.innerHeight >= document.documentElement.scrollHeight * scrollThreshold ? "-translate-y-1" : "invisible"}`}
     >
       <LikeButton currentSlug={currentSlug} session={session} />
-      <CommentButton />
+      <CommentButton currentSlug={currentSlug} session={session} />
       <ShareButton currentSlug={currentSlug} />
     </Card>
   )
