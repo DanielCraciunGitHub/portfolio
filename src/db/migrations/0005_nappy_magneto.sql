@@ -1,1 +1,0 @@
-ALTER TABLE `articleLikes` MODIFY COLUMN `createdAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP;

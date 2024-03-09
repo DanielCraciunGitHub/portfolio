@@ -1,38 +1,30 @@
 import { randomUUID } from "crypto"
 import type { AdapterAccount } from "@auth/core/adapters"
-import {
-  boolean,
-  int,
-  mysqlTable,
-  primaryKey,
-  text,
-  timestamp,
-  varchar,
-} from "drizzle-orm/mysql-core"
+import { sql } from "drizzle-orm"
+import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
 
-export const users = mysqlTable("users", {
-  id: varchar("id", { length: 255 }).notNull().primaryKey(),
-  name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 255 }).notNull(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: varchar("image", { length: 255 }),
+export const users = sqliteTable("user", {
+  id: text("id").notNull().primaryKey(),
+  name: text("name"),
+  email: text("email").notNull(),
+  emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
+  image: text("image"),
 })
 
-export const accounts = mysqlTable(
-  "accounts",
+export const accounts = sqliteTable(
+  "account",
   {
-    userId: varchar("userId", { length: 255 }).notNull(),
-    type: varchar("type", { length: 255 })
-      .$type<AdapterAccount["type"]>()
-      .notNull(),
-    provider: varchar("provider", { length: 255 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
-    refresh_token: varchar("refresh_token", { length: 255 }),
-    refresh_token_expires_in: int("refresh_token_expires_in"),
-    access_token: varchar("access_token", { length: 255 }),
-    expires_at: int("expires_at"),
-    token_type: varchar("token_type", { length: 255 }),
-    scope: varchar("scope", { length: 255 }),
+    userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    type: text("type").$type<AdapterAccount["type"]>().notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("providerAccountId").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
     id_token: text("id_token"),
     session_state: text("session_state"),
   },
@@ -43,45 +35,42 @@ export const accounts = mysqlTable(
   })
 )
 
-export const sessions = mysqlTable("sessions", {
-  sessionToken: varchar("sessionToken", { length: 255 }).notNull().primaryKey(),
-  userId: varchar("userId", { length: 255 }).notNull(),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
+export const sessions = sqliteTable("session", {
+  sessionToken: text("sessionToken").notNull().primaryKey(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
 })
 
-export const verificationTokens = mysqlTable(
-  "verificationTokens",
+export const verificationTokens = sqliteTable(
+  "verificationToken",
   {
-    identifier: varchar("identifier", { length: 255 }).notNull(),
-    token: varchar("token", { length: 255 }).notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
+    identifier: text("identifier").notNull(),
+    token: text("token").notNull(),
+    expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 )
-export const articleLikes = mysqlTable("articleLikes", {
-  id: varchar("id", { length: 255 })
+
+export const articleLikes = sqliteTable("articleLikes", {
+  id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
-  userId: varchar("userId", { length: 255 }).notNull(),
-  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
-  createdAt: timestamp("createdAt", { mode: "date" })
-    .defaultNow()
-    .onUpdateNow()
-    .notNull(),
+  userId: text("userId", { length: 255 }).notNull(),
+  articleSlug: text("articleSlug", { length: 255 }).notNull(),
+  createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
 })
-export const articleComments = mysqlTable("articleComments", {
-  id: varchar("id", { length: 255 })
+export const articleComments = sqliteTable("articleComments", {
+  id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
-  parentId: varchar("parentId", { length: 255 }),
-  userId: varchar("userId", { length: 255 }).notNull(),
-  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
-  createdAt: timestamp("createdAt", { mode: "date" })
-    .defaultNow()
-    .onUpdateNow()
-    .notNull(),
+  parentId: text("parentId", { length: 255 }),
+  userId: text("userId", { length: 255 }).notNull(),
+  articleSlug: text("articleSlug", { length: 255 }).notNull(),
+  createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
 })

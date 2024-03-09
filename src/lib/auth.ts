@@ -1,9 +1,8 @@
 import { db } from "@/db"
 import { env } from "@/env.mjs"
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import NextAuth, { DefaultSession } from "next-auth"
 import Google from "next-auth/providers/google"
-
-import { PlanetScaleAdapter } from "./PlanetScaleAdapter"
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -19,7 +18,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: PlanetScaleAdapter(db),
+  adapter: DrizzleAdapter(db),
   providers: [Google],
   trustHost: true,
   session: {

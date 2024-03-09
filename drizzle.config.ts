@@ -6,8 +6,9 @@ export default {
   schema: "./src/db/schema.ts",
   out: "./src/db/migrations",
   dbCredentials: {
-    uri: env.PLANET_SCALE_DATABASE_URL,
+    url: env.TURSO_DATABASE_URL,
+    authToken: env.TURSO_AUTH_TOKEN,
   },
-  driver: "mysql2",
+  driver: "turso",
   breakpoints: true,
 } satisfies Config

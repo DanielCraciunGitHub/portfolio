@@ -5,50 +5,15 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1701272379646,
-      "tag": "0000_swift_amphibian",
+      "when": 1710005065409,
+      "tag": "0000_lonely_captain_stacy",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1709584685054,
-      "tag": "0001_robust_alex_wilder",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1709743561962,
-      "tag": "0002_left_eddie_brock",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1709744997927,
-      "tag": "0003_narrow_prima",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1709809043092,
-      "tag": "0004_zippy_ultragirl",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1709809273838,
-      "tag": "0005_nappy_magneto",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1709809291775,
-      "tag": "0006_nifty_warbird",
+      "when": 1710005255030,
+      "tag": "0001_absent_drax",
       "breakpoints": true
     }
   ]

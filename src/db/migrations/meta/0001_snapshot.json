@@ -1,78 +1,71 @@
 {
   "version": "5",
-  "dialect": "mysql",
-  "id": "d28d7115-0f3f-4ae3-a493-c7bf53538afc",
-  "prevId": "f855767d-4b26-4e30-8a2d-55653d594fd1",
+  "dialect": "sqlite",
+  "id": "a9ec41c2-bcae-49c3-b165-8a8e7493a608",
+  "prevId": "f139b294-3716-4029-bfae-c4f0c1fc4ed1",
   "tables": {
-    "accounts": {
-      "name": "accounts",
+    "account": {
+      "name": "account",
       "columns": {
         "userId": {
           "name": "userId",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "type": {
           "name": "type",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "provider": {
           "name": "provider",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "providerAccountId": {
           "name": "providerAccountId",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "refresh_token": {
           "name": "refresh_token",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "refresh_token_expires_in": {
-          "name": "refresh_token_expires_in",
-          "type": "int",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "access_token": {
           "name": "access_token",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "expires_at": {
           "name": "expires_at",
-          "type": "int",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "token_type": {
           "name": "token_type",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "scope": {
           "name": "scope",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -93,166 +86,193 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "account_userId_user_id_fk": {
+          "name": "account_userId_user_id_fk",
+          "tableFrom": "account",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {
-        "accounts_provider_providerAccountId_pk": {
-          "name": "accounts_provider_providerAccountId_pk",
+        "account_provider_providerAccountId_pk": {
           "columns": [
             "provider",
             "providerAccountId"
-          ]
+          ],
+          "name": "account_provider_providerAccountId_pk"
         }
       },
       "uniqueConstraints": {}
     },
-    "notes": {
-      "name": "notes",
+    "articleComments": {
+      "name": "articleComments",
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
-          "primaryKey": false,
+          "type": "text(255)",
+          "primaryKey": true,
           "notNull": true,
+          "autoincrement": false
+        },
+        "parentId": {
+          "name": "parentId",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         },
         "userId": {
           "name": "userId",
-          "type": "varchar(255)",
+          "type": "text(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "body": {
-          "name": "body",
-          "type": "text",
+        "articleSlug": {
+          "name": "articleSlug",
+          "type": "text(255)",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "('')"
+          "autoincrement": false
         },
         "createdAt": {
           "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(now())"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "onUpdate": true
-        },
-        "deleted": {
-          "name": "deleted",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": false
-        },
-        "archived": {
-          "name": "archived",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": false
-        },
-        "reminder": {
-          "name": "reminder",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "notes_id": {
-          "name": "notes_id",
-          "columns": [
-            "id"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "sessions": {
-      "name": "sessions",
+    "articleLikes": {
+      "name": "articleLikes",
       "columns": {
-        "sessionToken": {
-          "name": "sessionToken",
-          "type": "varchar(255)",
-          "primaryKey": false,
+        "id": {
+          "name": "id",
+          "type": "text(255)",
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
         "userId": {
           "name": "userId",
-          "type": "varchar(255)",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "articleSlug": {
+          "name": "articleSlug",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "session": {
+      "name": "session",
+      "columns": {
+        "sessionToken": {
+          "name": "sessionToken",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "expires": {
           "name": "expires",
-          "type": "timestamp",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "sessions_sessionToken": {
-          "name": "sessions_sessionToken",
-          "columns": [
-            "sessionToken"
-          ]
+      "foreignKeys": {
+        "session_userId_user_id_fk": {
+          "name": "session_userId_user_id_fk",
+          "tableFrom": "session",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "users": {
-      "name": "users",
+    "user": {
+      "name": "user",
       "columns": {
         "id": {
           "name": "id",
-          "type": "varchar(255)",
-          "primaryKey": false,
+          "type": "text",
+          "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
         "name": {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "email": {
           "name": "email",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "emailVerified": {
           "name": "emailVerified",
-          "type": "timestamp",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         },
         "image": {
           "name": "image",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -260,14 +280,7 @@
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "users_id": {
-          "name": "users_id",
-          "columns": [
-            "id"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
     "verificationToken": {
@@ -275,21 +288,21 @@
       "columns": {
         "identifier": {
           "name": "identifier",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "token": {
           "name": "token",
-          "type": "varchar(255)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "expires": {
           "name": "expires",
-          "type": "timestamp",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -299,17 +312,17 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {
         "verificationToken_identifier_token_pk": {
-          "name": "verificationToken_identifier_token_pk",
           "columns": [
             "identifier",
             "token"
-          ]
+          ],
+          "name": "verificationToken_identifier_token_pk"
         }
       },
       "uniqueConstraints": {}
     }
   },
-  "schemas": {},
+  "enums": {},
   "_meta": {
     "schemas": {},
     "tables": {},

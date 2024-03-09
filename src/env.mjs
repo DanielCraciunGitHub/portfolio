@@ -9,7 +9,6 @@ export const env = createEnv({
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string().min(1),
   },
   server: {
-    PLANET_SCALE_DATABASE_URL: z.string().min(1),
     RECAPTCHA_SECRET_KEY: z.string().min(1),
 
     UPSTASH_REDIS_REST_URL: z.string().min(1),
@@ -26,6 +25,9 @@ export const env = createEnv({
     AUTH_SECRET: z.string().min(1),
     AUTH_GOOGLE_ID: z.string().min(1),
     AUTH_GOOGLE_SECRET: z.string().min(1),
+
+    TURSO_AUTH_TOKEN: z.string().min(1),
+    TURSO_DATABASE_URL: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
