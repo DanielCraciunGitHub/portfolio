@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { SocialLink } from "@/types"
+import type { SocialLink } from "@/types"
 
 import { buttonVariants } from "@/components/ui/button"
 

@@ -6,7 +6,7 @@ import { baseMetadata } from "@/config/metadata"
 import { auth } from "@/lib/auth"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
-import AuthButton from "@/components/AuthButton"
+import { serverClient } from "@/app/_trpc/serverClient"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { BlogInteractor } from "./BlogInteractor"
@@ -70,6 +70,10 @@ export async function generateMetadata({
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
   const session = await auth()
+  const initialLikesData = await serverClient.blogRouter.getArticleLikeData({
+    session,
+    slug: article.currentSlug,
+  })
 
   return (
     <div className="mt-5 mx-auto max-w-2xl">
@@ -101,7 +105,11 @@ export default async function page({ params }: pageProps) {
           components={myPortableTextComponents}
         />
       </div>
-      <BlogInteractor currentSlug={article.currentSlug} session={session} />
+      <BlogInteractor
+        currentSlug={article.currentSlug}
+        session={session}
+        initialLikesData={initialLikesData}
+      />
     </div>
   )
 }

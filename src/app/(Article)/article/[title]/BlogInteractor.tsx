@@ -2,6 +2,7 @@
 
 import { Session } from "next-auth"
 
+import { LikeData } from "@/types/blog"
 import { useScrollUp } from "@/hooks/useScrollUp"
 import { Card } from "@/components/ui/card"
 
@@ -12,11 +13,13 @@ import { ShareButton } from "./ShareButton"
 interface BlogInteractorProps {
   currentSlug: string
   session: Session | null
+  initialLikesData: LikeData
 }
 
 export const BlogInteractor = ({
   currentSlug,
   session,
+  initialLikesData,
 }: BlogInteractorProps) => {
   const { scrollY, scrollingUp } = useScrollUp()
 
@@ -27,7 +30,11 @@ export const BlogInteractor = ({
     <Card
       className={`dark:bg-gray-500 bg-gray-200 mb-5 mt-10 flex space-x-6 justify-around items-center sticky bottom-5 transition ease-in-out duration-300 ${scrollingUp || scrollY + window.innerHeight >= document.documentElement.scrollHeight * scrollThreshold ? "-translate-y-1" : "invisible"}`}
     >
-      <LikeButton currentSlug={currentSlug} session={session} />
+      <LikeButton
+        currentSlug={currentSlug}
+        session={session}
+        initialLikesData={initialLikesData}
+      />
       <CommentButton currentSlug={currentSlug} session={session} />
       <ShareButton currentSlug={currentSlug} />
     </Card>

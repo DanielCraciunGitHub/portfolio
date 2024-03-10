@@ -27,3 +27,5 @@ export interface Article {
 
 export type Like = InferSelectModel<typeof articleLikes>
 export type Comment = InferSelectModel<typeof articleComments>
+
+export type LikeData = { likes: number; isLiked: boolean }
