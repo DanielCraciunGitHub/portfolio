@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "5521c860-0c49-41b7-894f-000ee2a8075d",
-  "prevId": "c31729ee-3fc9-45da-994d-18f95ab6dd54",
+  "id": "767e7919-9200-49c5-bf50-a5bfce660822",
+  "prevId": "5521c860-0c49-41b7-894f-000ee2a8075d",
   "tables": {
     "account": {
       "name": "account",
@@ -203,13 +203,6 @@
           "notNull": false,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
-        },
-        "commentID": {
-          "name": "commentID",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
         }
       },
       "indexes": {},

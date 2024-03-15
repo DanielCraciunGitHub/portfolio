@@ -8,7 +8,7 @@ import { authenticate } from "@/app/_actions/authenticate"
 import { Button } from "./ui/button"
 
 interface AuthSession {
-  session: Session | null
+  session?: Session | null
 }
 
 export default function AuthButton({ session }: AuthSession) {

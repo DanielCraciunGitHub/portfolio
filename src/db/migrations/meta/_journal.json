@@ -1,19 +1,47 @@
 {
   "version": "5",
-  "dialect": "mysql",
+  "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1710005065409,
-      "tag": "0000_lonely_captain_stacy",
+      "when": 1710443426768,
+      "tag": "0000_wonderful_talisman",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1710005255030,
-      "tag": "0001_absent_drax",
+      "when": 1710443780090,
+      "tag": "0001_shocking_ultimo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710443861452,
+      "tag": "0002_smiling_texas_twister",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1710443883103,
+      "tag": "0003_bizarre_newton_destine",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710444107574,
+      "tag": "0004_red_mockingbird",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1710444727609,
+      "tag": "0005_exotic_quasimodo",
       "breakpoints": true
     }
   ]

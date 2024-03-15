@@ -3,10 +3,8 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 
 import { baseMetadata } from "@/config/metadata"
-import { auth } from "@/lib/auth"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
-import { serverClient } from "@/app/_trpc/serverClient"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { BlogInteractor } from "./BlogInteractor"
@@ -69,11 +67,6 @@ export async function generateMetadata({
 
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
-  const session = await auth()
-  const initialLikesData = await serverClient.blogRouter.getArticleLikeData({
-    session,
-    slug: article.currentSlug,
-  })
 
   return (
     <div className="mt-5 mx-auto max-w-2xl">
@@ -88,7 +81,7 @@ export default async function page({ params }: pageProps) {
       <h1 className="mt-3 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
       </h1>
-      <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl dark:text-gray-400">
+      <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl text-muted-foreground">
         {article.subtitle}
       </h2>
       <Image
@@ -105,11 +98,7 @@ export default async function page({ params }: pageProps) {
           components={myPortableTextComponents}
         />
       </div>
-      <BlogInteractor
-        currentSlug={article.currentSlug}
-        session={session}
-        initialLikesData={initialLikesData}
-      />
+      <BlogInteractor />
     </div>
   )
 }

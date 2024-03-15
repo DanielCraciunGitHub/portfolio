@@ -1,4 +1,4 @@
-import { articleComments, articleLikes } from "@/db/schema"
+import { articleComments, articleLikes, users } from "@/db/schema"
 import { InferSelectModel } from "drizzle-orm"
 import { Image, TypedObject } from "sanity"
 
@@ -25,7 +25,8 @@ export interface Article {
   currentSlug: string
 }
 
-export type Like = InferSelectModel<typeof articleLikes>
-export type Comment = InferSelectModel<typeof articleComments>
+export type ArticleLike = InferSelectModel<typeof articleLikes>
+export type ArticleComment = InferSelectModel<typeof articleComments>
+export type User = InferSelectModel<typeof users>
 
 export type LikeData = { likes: number; isLiked: boolean }

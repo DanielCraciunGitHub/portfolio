@@ -1,26 +1,13 @@
 "use client"
 
-import { Session } from "next-auth"
-
-import { LikeData } from "@/types/blog"
 import { useScrollUp } from "@/hooks/useScrollUp"
 import { Card } from "@/components/ui/card"
 
-import { CommentButton } from "./CommentButton"
-import { LikeButton } from "./LikeButton"
+import { ArticleLikeButton } from "./ArticleLikeButton"
+import { CommentSection } from "./CommentSection"
 import { ShareButton } from "./ShareButton"
 
-interface BlogInteractorProps {
-  currentSlug: string
-  session: Session | null
-  initialLikesData: LikeData
-}
-
-export const BlogInteractor = ({
-  currentSlug,
-  session,
-  initialLikesData,
-}: BlogInteractorProps) => {
+export const BlogInteractor = () => {
   const { scrollY, scrollingUp } = useScrollUp()
 
   // When (100-scrollThreshold)% from the bottom of the screen, show the interactor
@@ -30,13 +17,9 @@ export const BlogInteractor = ({
     <Card
       className={`dark:bg-gray-500 bg-gray-200 mb-5 mt-10 flex space-x-6 justify-around items-center sticky bottom-5 transition ease-in-out duration-300 ${scrollingUp || scrollY + window.innerHeight >= document.documentElement.scrollHeight * scrollThreshold ? "-translate-y-1" : "invisible"}`}
     >
-      <LikeButton
-        currentSlug={currentSlug}
-        session={session}
-        initialLikesData={initialLikesData}
-      />
-      <CommentButton currentSlug={currentSlug} session={session} />
-      <ShareButton currentSlug={currentSlug} />
+      <ArticleLikeButton />
+      <CommentSection />
+      <ShareButton />
     </Card>
   )
 }

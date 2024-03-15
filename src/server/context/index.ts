@@ -1,3 +1,6 @@
+import { auth } from "@/lib/auth"
+
 export const createContext = async () => {
-  return {}
+  const session = await auth()
+  return { session }
 }

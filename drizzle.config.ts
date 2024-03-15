@@ -1,6 +1,9 @@
+import dotenv from "dotenv"
 import type { Config } from "drizzle-kit"
 
 import { env } from "./src/env.mjs"
+
+dotenv.config({ path: ".env.local" })
 
 export default {
   schema: "./src/db/schema.ts",
@@ -10,5 +13,4 @@ export default {
     authToken: env.TURSO_AUTH_TOKEN,
   },
   driver: "turso",
-  breakpoints: true,
 } satisfies Config

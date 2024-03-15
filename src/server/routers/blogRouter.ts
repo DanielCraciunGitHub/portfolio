@@ -1,11 +1,14 @@
+import { randomUUID } from "crypto"
 import { db } from "@/db"
-import { articleLikes } from "@/db/schema"
-import { and, eq } from "drizzle-orm"
+import { articleComments, articleLikes } from "@/db/schema"
+import { and, eq, isNull } from "drizzle-orm"
 import { Session } from "next-auth"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
+import { auth } from "@/lib/auth"
 import { getInfiniteBlogs } from "@/lib/blogs"
+import { CommentProps } from "@/app/(Article)/article/[title]/Comment"
 
 import { publicProcedure, router } from "../trpc"
 
@@ -39,28 +42,23 @@ export const blogRouter = router({
     }),
 
   getArticleLikeData: publicProcedure
-    .input(z.object({ slug: z.string(), session: z.custom<Session | null>() }))
+    .input(z.object({ slug: z.string() }))
     .query(async ({ input }): Promise<LikeData> => {
-      const currentLikes = (
-        await db
-          .select()
-          .from(articleLikes)
-          .where(eq(articleLikes.articleSlug, input.slug))
+      const session = await auth()
+
+      // Get the current likes for the article only.
+      const currentLikes = await db.query.articleLikes.findMany({
+        where: and(
+          eq(articleLikes.articleSlug, input.slug),
+          isNull(articleLikes.commentId)
+        ),
+      })
+      const articleLiked = currentLikes.filter(
+        (currentLike) => currentLike.userId === session?.user.id
       ).length
 
-      const articleLiked = (
-        await db
-          .select()
-          .from(articleLikes)
-          .where(
-            and(
-              eq(articleLikes.articleSlug, input.slug),
-              eq(articleLikes.userId, input.session?.user.id ?? "")
-            )
-          )
-      ).length
-
-      return { likes: currentLikes, isLiked: !!articleLiked }
+      // Return the Like Data in this format
+      return { likes: currentLikes.length, isLiked: !!articleLiked }
     }),
 
   updateArticleLikes: publicProcedure
@@ -72,28 +70,17 @@ export const blogRouter = router({
       })
     )
     .mutation(async ({ input }) => {
-      // // get current like state for the user and article
-      // const articleLiked = (
-      //   await db
-      //     .select()
-      //     .from(articleLikes)
-      //     .where(
-      //       and(
-      //         eq(articleLikes.articleSlug, input.slug),
-      //         eq(articleLikes.userId, input.session?.user.id ?? "")
-      //       )
-      //     )
-      // ).length
-
       if (input.isLiked) {
         await db
           .delete(articleLikes)
           .where(
             and(
               eq(articleLikes.articleSlug, input.slug),
-              eq(articleLikes.userId, input.session?.user.id!)
+              eq(articleLikes.userId, input.session?.user.id!),
+              isNull(articleLikes.commentId)
             )
           )
+
         return 0
       } else {
         await db.insert(articleLikes).values({
@@ -103,4 +90,51 @@ export const blogRouter = router({
         return 1
       }
     }),
+  getCommentsData: publicProcedure
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ input }) => {
+      // filter for this slug
+      const data = await db.query.articleComments.findMany({
+        with: {
+          likes: true,
+          author: true,
+          replies: true,
+        },
+        where: eq(articleComments.articleSlug, input.slug),
+      })
+
+      return data
+    }),
+  updateCommentLikes: publicProcedure
+    .input(z.custom<CommentProps>())
+    .mutation(async ({ input }) => {
+      const session = await auth()
+
+      const isLiked = !!input.comment.likes.filter(
+        (currentLike) => currentLike.userId === session?.user.id
+      ).length
+
+      if (isLiked) {
+        await db
+          .delete(articleLikes)
+          .where(
+            and(
+              eq(articleLikes.articleSlug, input.comment.articleSlug),
+              eq(articleLikes.userId, session?.user.id!),
+              eq(articleLikes.commentId, input.comment.id)
+            )
+          )
+
+        return 0
+      } else {
+        await db.insert(articleLikes).values({
+          articleSlug: input.comment.articleSlug,
+          userId: session?.user.id!,
+          commentId: input.comment.id,
+        })
+        return 1
+      }
+    }),
+  // updateCommentBody
+  //
 })

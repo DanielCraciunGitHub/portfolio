@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "5521c860-0c49-41b7-894f-000ee2a8075d",
-  "prevId": "c31729ee-3fc9-45da-994d-18f95ab6dd54",
+  "id": "ea7e99dd-7eac-4a52-a689-adf349f1741f",
+  "prevId": "92a7eb98-2bc1-481e-b181-816e0cd32bd5",
   "tables": {
     "account": {
       "name": "account",
@@ -189,6 +189,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "commentId": {
+          "name": "commentId",
+          "type": "text(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "articleSlug": {
           "name": "articleSlug",
           "type": "text(255)",
@@ -203,13 +210,6 @@
           "notNull": false,
           "autoincrement": false,
           "default": "CURRENT_TIMESTAMP"
-        },
-        "commentID": {
-          "name": "commentID",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
         }
       },
       "indexes": {},

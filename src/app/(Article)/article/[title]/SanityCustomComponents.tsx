@@ -44,7 +44,7 @@ export const myPortableTextComponents: PortableTextComponents = {
           height={400}
           className="rounded-md"
         />
-        <p className="block text-sm sm:text-base leading-8 tracking-tight dark:text-gray-400 text-gray-500">
+        <p className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
           {value.caption}
         </p>
       </div>

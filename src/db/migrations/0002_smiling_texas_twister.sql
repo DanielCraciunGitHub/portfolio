@@ -1,0 +1,1 @@
+ALTER TABLE `articleLikes` DROP COLUMN `commentID`;

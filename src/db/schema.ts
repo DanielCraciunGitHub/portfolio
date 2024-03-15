@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto"
 import type { AdapterAccount } from "@auth/core/adapters"
-import { sql } from "drizzle-orm"
+import { relations, sql } from "drizzle-orm"
 import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
 
 export const users = sqliteTable("user", {
@@ -54,23 +54,62 @@ export const verificationTokens = sqliteTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 )
-
 export const articleLikes = sqliteTable("articleLikes", {
   id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   userId: text("userId", { length: 255 }).notNull(),
+  commentId: text("commentId", { length: 255 }),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
   createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
 })
+
 export const articleComments = sqliteTable("articleComments", {
   id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
-  parentId: text("parentId", { length: 255 }),
-  userId: text("userId", { length: 255 }).notNull(),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
-  createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
+  userId: text("userId", { length: 255 }).notNull(),
+  updatedAt: text("updatedAt").default(sql`CURRENT_TIMESTAMP`),
+  body: text("body"),
+  parentId: text("parentId", { length: 255 }),
 })
+
+export const usersRelations = relations(users, ({ many }) => ({
+  author: many(articleComments, {
+    relationName: "author",
+  }),
+  liker: many(articleLikes, {
+    relationName: "liker",
+  }),
+}))
+
+export const likesRelations = relations(articleLikes, ({ one }) => ({
+  liker: one(users, {
+    fields: [articleLikes.userId],
+    references: [users.id],
+    relationName: "liker",
+  }),
+  likes: one(articleComments, {
+    fields: [articleLikes.commentId],
+    references: [articleComments.id],
+  }),
+}))
+
+export const commentsRelations = relations(
+  articleComments,
+  ({ one, many }) => ({
+    author: one(users, {
+      fields: [articleComments.userId],
+      references: [users.id],
+      relationName: "author",
+    }),
+    likes: many(articleLikes),
+    replies: one(articleComments, {
+      fields: [articleComments.id],
+      references: [articleComments.parentId],
+    }),
+  })
+)

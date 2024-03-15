@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
+import { useParams } from "next/navigation"
 import { debounce } from "lodash"
 import { Heart } from "lucide-react"
-import { Session } from "next-auth"
 
-import { LikeData } from "@/types/blog"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import {
@@ -14,25 +13,23 @@ import {
 import AuthButton from "@/components/AuthButton"
 import { trpc } from "@/app/_trpc/client"
 
-interface LikeButtonProps {
-  currentSlug: string
-  session: Session | null
-  initialLikesData: LikeData
-}
-export const LikeButton = ({
-  currentSlug,
-  session,
-  initialLikesData,
-}: LikeButtonProps) => {
-  const { data } = trpc.blogRouter.getArticleLikeData.useQuery(
-    { slug: currentSlug, session },
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-      initialData: initialLikesData,
-    }
-  )
+export const ArticleLikeButton = () => {
+  const { title: currentSlug }: { title: string } = useParams()
+
+  const { data: session } = trpc.authRouter.getSession.useQuery(undefined, {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  })
+  const { data, refetch: invalidateLikeData } =
+    trpc.blogRouter.getArticleLikeData.useQuery(
+      { slug: currentSlug },
+      {
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
+      }
+    )
   const [likesData, setLikesData] = useState(data)
   useEffect(() => {
     setLikesData(data)
@@ -47,6 +44,9 @@ export const LikeButton = ({
         } else {
           setLikesData((prev) => ({ isLiked: true, likes: prev!.likes + 1 }))
         }
+      },
+      onSuccess: () => {
+        invalidateLikeData()
       },
     })
 
@@ -80,7 +80,7 @@ export const LikeButton = ({
           <AuthButton session={session} />
         </PopoverContent>
       </Popover>
-      <div>{likesData?.likes ?? "0"}</div>
+      <div>{likesData?.likes ?? "--"}</div>
     </div>
   )
 }
