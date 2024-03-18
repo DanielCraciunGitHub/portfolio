@@ -158,5 +158,11 @@ export const blogRouter = router({
         parentId: input.replyingTo,
       })
     }),
-  // deleteComment: publicProcedure.input()
+  deleteComment: publicProcedure
+    .input(z.custom<CommentProps>())
+    .mutation(async ({ input }) => {
+      await db
+        .delete(articleComments)
+        .where(eq(articleComments.id, input.comment.id))
+    }),
 })

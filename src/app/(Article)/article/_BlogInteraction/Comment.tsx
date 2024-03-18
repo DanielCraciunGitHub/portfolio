@@ -1,8 +1,8 @@
-import { ElementRef, useRef, useState } from "react"
+import { useState } from "react"
 import { EllipsisVertical } from "lucide-react"
 import { useSession } from "next-auth/react"
 
-import { FullComment, Reply } from "@/types/blog"
+import { Reply, TopComment } from "@/types/blog"
 import { formatTimeToNow, getInitials } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -17,9 +17,10 @@ import { Textarea } from "@/components/ui/textarea"
 
 import { AddComment } from "./AddComment"
 import { CommentLikeButton } from "./CommentLikeButton"
+import { DeleteComment } from "./DeleteComment"
 
 export interface CommentProps {
-  comment: FullComment | Reply
+  comment: TopComment | Reply
 }
 
 export const Comment = ({ comment }: CommentProps) => {
@@ -62,12 +63,11 @@ export const Comment = ({ comment }: CommentProps) => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
+                  {/* //TODO Get state of textarea as default value */}
                   <AddComment />
                 </DialogContent>
               </Dialog>
-              <Button variant="destructive" onClick={() => {}}>
-                Delete
-              </Button>
+              <DeleteComment comment={comment} />
             </PopoverContent>
           </Popover>
         ) : null}

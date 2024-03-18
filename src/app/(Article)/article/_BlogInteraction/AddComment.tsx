@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { FullComment, Reply } from "@/types/blog"
+import { Reply, TopComment } from "@/types/blog"
 import { articleCommentSchema } from "@/lib/validations/form"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -18,7 +18,7 @@ type Inputs = z.infer<typeof articleCommentSchema>
 
 interface AddCommentProps {
   setIsReplying?: Dispatch<SetStateAction<boolean>>
-  replyingTo?: FullComment | Reply
+  replyingTo?: TopComment | Reply
 }
 
 export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {

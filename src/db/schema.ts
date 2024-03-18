@@ -1,7 +1,13 @@
 import { randomUUID } from "crypto"
 import type { AdapterAccount } from "@auth/core/adapters"
 import { relations, sql } from "drizzle-orm"
-import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
+import {
+  AnySQLiteColumn,
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core"
 
 export const users = sqliteTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -59,22 +65,31 @@ export const articleLikes = sqliteTable("articleLikes", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
-  userId: text("userId", { length: 255 }).notNull(),
-  commentId: text("commentId", { length: 255 }),
+  userId: text("userId", { length: 255 })
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  commentId: text("commentId", { length: 255 }).references(
+    () => articleComments.id,
+    { onDelete: "cascade" }
+  ),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
   createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
 })
-
 export const articleComments = sqliteTable("articleComments", {
   id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
     .$defaultFn(() => randomUUID()),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
-  userId: text("userId", { length: 255 }).notNull(),
+  userId: text("userId", { length: 255 })
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
   updatedAt: text("updatedAt").default(sql`CURRENT_TIMESTAMP`),
   body: text("body"),
-  parentId: text("parentId", { length: 255 }),
+  parentId: text("parentId", { length: 255 }).references(
+    (): AnySQLiteColumn => articleComments.id,
+    { onDelete: "cascade" }
+  ),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({

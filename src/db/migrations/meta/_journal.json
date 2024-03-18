@@ -43,6 +43,27 @@
       "when": 1710444727609,
       "tag": "0005_exotic_quasimodo",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1710759733244,
+      "tag": "0006_lean_venom",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1710759870290,
+      "tag": "0007_tough_violations",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1710759937785,
+      "tag": "0008_ancient_paper_doll",
+      "breakpoints": true
     }
   ]
 }

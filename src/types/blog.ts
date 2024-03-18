@@ -35,7 +35,7 @@ export type Reply = ArticleComment & {
   likes: ArticleLike[]
 }
 
-export type FullComment = ArticleComment & {
+export type TopComment = ArticleComment & {
   author: User
   likes: ArticleLike[]
   replies: Reply[]
