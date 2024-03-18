@@ -5,7 +5,7 @@ import { Session } from "next-auth"
 
 import { authenticate } from "@/app/_actions/authenticate"
 
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 
 interface AuthSession {
   session?: Session | null

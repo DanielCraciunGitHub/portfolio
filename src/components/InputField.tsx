@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 interface FormFieldProps extends HTMLAttributes<HTMLInputElement> {
   name: string
-  label: string
+  label?: string
   description?: string
   placeholder?: string
   type?: "text" | "password" | "textarea" | "tel" | "time"
@@ -42,7 +42,12 @@ const GenericFormField = ({
           </FormDescription>
           <FormControl>
             {type === "textarea" ? (
-              <Textarea placeholder={placeholder} rows={10} {...field} />
+              <Textarea
+                className="resize-none"
+                placeholder={placeholder}
+                rows={5}
+                {...field}
+              />
             ) : (
               <Input placeholder={placeholder} type={type} {...field} />
             )}

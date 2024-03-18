@@ -4,8 +4,8 @@ import { PortableTextComponents } from "@portabletext/react"
 import { CodeInputValue } from "@sanity/code-input"
 import { SanityImageAssetDocument } from "next-sanity"
 
-import { urlForImage } from "../../../../../sanity/lib/image"
-import { CodeBlock } from "../SanityCodeBlock"
+import { urlForImage } from "../../../../sanity/lib/image"
+import { CodeBlock } from "./SanityCodeBlock"
 
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {

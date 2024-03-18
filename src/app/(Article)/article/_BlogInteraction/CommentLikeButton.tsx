@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { debounce } from "lodash"
 import { Heart } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 import { LikeData } from "@/types/blog"
 import { Button } from "@/components/ui/button"
@@ -11,6 +12,8 @@ import { CommentProps } from "./Comment"
 interface CommentLikeButtonProps extends CommentProps {}
 
 export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
+  const { data: session } = useSession()
+
   const articleLiked = comment.likes.filter(
     (currentLike) => currentLike.userId === session?.user.id
   ).length
@@ -18,12 +21,6 @@ export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
   const [likesData, setLikesData] = useState<LikeData>({
     likes: comment.likes.length,
     isLiked: !!articleLiked,
-  })
-
-  const { data: session } = trpc.authRouter.getSession.useQuery(undefined, {
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
   })
 
   const { refetch: invalidateCommentsData } =

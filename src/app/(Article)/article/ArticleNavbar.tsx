@@ -6,7 +6,7 @@ import { FaChevronLeft } from "react-icons/fa"
 import { cn } from "@/lib/utils"
 import { useScrollUp } from "@/hooks/useScrollUp"
 import { buttonVariants } from "@/components/ui/button"
-import { DarkModeButton } from "@/components/DarkModeButton"
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
 
 export const ArticleNavbar = () => {
   const { scrollY, scrollingUp } = useScrollUp()

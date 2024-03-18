@@ -6,9 +6,9 @@ import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
 import { Badge } from "@/components/ui/badge"
 
+import { BlogInteractor } from "../_BlogInteraction/BlogInteractor"
 import { urlForImage } from "../../../../../sanity/lib/image"
-import { BlogInteractor } from "./BlogInteractor"
-import { myPortableTextComponents } from "./SanityCustomComponents"
+import { myPortableTextComponents } from "../SanityCustomComponents"
 
 export const revalidate = 60
 

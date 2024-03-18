@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   ...staticMetadata.eBook,
 }
 
+export const dynamic = "force-dynamic"
+
 export default async function page({
   searchParams,
 }: {

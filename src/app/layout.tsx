@@ -6,8 +6,8 @@ import { Analytics } from "@vercel/analytics/react"
 import NextTopLoader from "nextjs-toploader"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
+import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton"
 import { Provider } from "@/components/providers"
-import ScrollToTopButton from "@/components/ScrollToTopButton"
 
 export const metadata: Metadata = {
   ...baseMetadata,

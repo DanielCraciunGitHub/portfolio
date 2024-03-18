@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { debounce } from "lodash"
 import { Heart } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -10,17 +11,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import AuthButton from "@/components/AuthButton"
+import AuthButton from "@/components/Buttons/AuthButton"
 import { trpc } from "@/app/_trpc/client"
 
 export const ArticleLikeButton = () => {
   const { title: currentSlug }: { title: string } = useParams()
 
-  const { data: session } = trpc.authRouter.getSession.useQuery(undefined, {
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-  })
+  const { data: session } = useSession()
+
   const { data, refetch: invalidateLikeData } =
     trpc.blogRouter.getArticleLikeData.useQuery(
       { slug: currentSlug },

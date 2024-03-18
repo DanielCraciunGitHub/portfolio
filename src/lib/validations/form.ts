@@ -18,3 +18,10 @@ export const googleReCaptchaSchema = z.object({
   score: z.number(),
   action: z.string().optional(),
 })
+
+export const articleCommentSchema = z.object({
+  body: z
+    .string()
+    .min(4, { message: "Message must contain at least 4 characters" })
+    .max(300, { message: "Message must not exceed 300 characters." }),
+})

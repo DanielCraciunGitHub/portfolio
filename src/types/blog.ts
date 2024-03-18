@@ -24,9 +24,19 @@ export interface Article {
   image: Image
   currentSlug: string
 }
+export type LikeData = { likes: number; isLiked: boolean }
 
 export type ArticleLike = InferSelectModel<typeof articleLikes>
 export type ArticleComment = InferSelectModel<typeof articleComments>
 export type User = InferSelectModel<typeof users>
 
-export type LikeData = { likes: number; isLiked: boolean }
+export type Reply = ArticleComment & {
+  author: User
+  likes: ArticleLike[]
+}
+
+export type FullComment = ArticleComment & {
+  author: User
+  likes: ArticleLike[]
+  replies: Reply[]
+}

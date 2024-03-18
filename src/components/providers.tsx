@@ -5,6 +5,7 @@ import { siteConfig } from "@/config"
 import { env } from "@/env.mjs"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { httpBatchLink } from "@trpc/client"
+import { SessionProvider } from "next-auth/react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3"
@@ -36,7 +37,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
           <GoogleReCaptchaProvider
             reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           >
-            {children}
+            <SessionProvider>{children}</SessionProvider>
           </GoogleReCaptchaProvider>
         </NextThemesProvider>
       </QueryClientProvider>

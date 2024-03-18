@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config"
 
-import { DarkModeButton } from "@/components/DarkModeButton"
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
 import { NavItem } from "@/components/Navbar/NavItem"
 
 export default function Layout({ children }: { children: React.ReactNode }) {

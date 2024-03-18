@@ -107,9 +107,13 @@ export const commentsRelations = relations(
       relationName: "author",
     }),
     likes: many(articleLikes),
-    replies: one(articleComments, {
-      fields: [articleComments.id],
-      references: [articleComments.parentId],
+    replyTo: one(articleComments, {
+      fields: [articleComments.parentId],
+      references: [articleComments.id],
+      relationName: "replies",
+    }),
+    replies: many(articleComments, {
+      relationName: "replies",
     }),
   })
 )
