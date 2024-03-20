@@ -1,0 +1,1 @@
+ALTER TABLE articleComments ADD `isEdited` integer DEFAULT 0;

@@ -85,6 +85,8 @@ export const articleComments = sqliteTable("articleComments", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   updatedAt: text("updatedAt").default(sql`CURRENT_TIMESTAMP`),
+  isEdited: integer("isEdited").default(0),
+  replyingTo: text("replyingTo"),
   body: text("body"),
   parentId: text("parentId", { length: 255 }).references(
     (): AnySQLiteColumn => articleComments.id,

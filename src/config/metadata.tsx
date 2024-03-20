@@ -139,7 +139,7 @@ export const staticMetadata = {
   projects: {
     title: "Projects",
     description: danielConfig.projects
-      .map(({ description }) => description)
+      .map(({ description }, i) => `${i + 1}. ${description}`)
       .join("|"),
     keywords: [
       ...danielConfig.projects.map(({ name }) => name),

@@ -1,0 +1,1 @@
+ALTER TABLE articleComments ADD `replyingTo` text;

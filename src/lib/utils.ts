@@ -80,3 +80,12 @@ export function formatTimeToNow(date: Date): string {
     },
   })
 }
+export function sqliteTimestampNow(): string {
+  // Get the current date
+  const currentDate = new Date()
+
+  // Format the date as "YYYY-MM-DD HH:MM:SS"
+  const formattedDate = currentDate.toISOString().slice(0, 19).replace("T", " ")
+
+  return formattedDate
+}

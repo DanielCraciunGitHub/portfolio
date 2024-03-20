@@ -64,6 +64,34 @@
       "when": 1710759937785,
       "tag": "0008_ancient_paper_doll",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1710952848830,
+      "tag": "0009_short_scorpion",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1710953597652,
+      "tag": "0010_little_captain_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1710955613805,
+      "tag": "0011_fancy_talos",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1710955629314,
+      "tag": "0012_smart_toad",
+      "breakpoints": true
     }
   ]
 }

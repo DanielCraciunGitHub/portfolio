@@ -52,14 +52,14 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
 
     // If the reply is for a top-level comment
     if (replyingTo && Object.hasOwn(replyingTo as object, "replies")) {
-      console.log("full comment")
-      await addComment({ body, slug, replyingTo: replyingTo.id })
+      await addComment({ body, slug, replyingToId: replyingTo.id })
     } else if (replyingTo) {
-      // If the reply is for another reply
+      // If the reply is a sub-reply
       await addComment({
-        body: `@${replyingTo.author.name}: ${body}`,
+        body,
         slug,
-        replyingTo: replyingTo.parentId!,
+        replyingToId: replyingTo.parentId!,
+        replyingTo: replyingTo.author.name!,
       })
     } else {
       // If this is a top level comment and not a reply

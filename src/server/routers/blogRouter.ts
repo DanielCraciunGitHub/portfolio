@@ -8,6 +8,7 @@ import { z } from "zod"
 import { LikeData } from "@/types/blog"
 import { auth } from "@/lib/auth"
 import { getInfiniteBlogs } from "@/lib/blogs"
+import { sqliteTimestampNow } from "@/lib/utils"
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
 import { publicProcedure, router } from "../trpc"
@@ -145,6 +146,7 @@ export const blogRouter = router({
       z.object({
         body: z.string(),
         slug: z.string(),
+        replyingToId: z.string().optional(),
         replyingTo: z.string().optional(),
       })
     )
@@ -155,7 +157,8 @@ export const blogRouter = router({
         articleSlug: input.slug,
         userId: session?.user.id!,
         body: input.body,
-        parentId: input.replyingTo,
+        parentId: input.replyingToId,
+        replyingTo: input.replyingTo,
       })
     }),
   deleteComment: publicProcedure
@@ -163,6 +166,16 @@ export const blogRouter = router({
     .mutation(async ({ input }) => {
       await db
         .delete(articleComments)
+        .where(eq(articleComments.id, input.comment.id))
+    }),
+  editComment: publicProcedure
+    .input(
+      z.intersection(z.object({ body: z.string() }), z.custom<CommentProps>())
+    )
+    .mutation(async ({ input }) => {
+      await db
+        .update(articleComments)
+        .set({ body: input.body, updatedAt: sqliteTimestampNow(), isEdited: 1 })
         .where(eq(articleComments.id, input.comment.id))
     }),
 })
