@@ -17,6 +17,7 @@ export interface BlogCard {
 export interface Article {
   _id: string
   _createdAt: string
+  author?: { name: string; avatar: Image }
   title: string
   subtitle?: string
   category: Category

@@ -4,6 +4,8 @@ import { PortableTextComponents } from "@portabletext/react"
 import { CodeInputValue } from "@sanity/code-input"
 import { SanityImageAssetDocument } from "next-sanity"
 
+import { CaptionSource } from "@/lib/utils"
+
 import { urlForImage } from "../../../../sanity/lib/image"
 import { CodeBlock } from "./SanityCodeBlock"
 
@@ -44,9 +46,9 @@ export const myPortableTextComponents: PortableTextComponents = {
           height={400}
           className="rounded-md"
         />
-        <p className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
-          {value.caption}
-        </p>
+        <div className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+          <CaptionSource caption={value.caption} />
+        </div>
       </div>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {

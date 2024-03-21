@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { clsx, type ClassValue } from "clsx"
 import { formatDistanceToNowStrict } from "date-fns"
 import locale from "date-fns/locale/en-US"
@@ -88,4 +89,49 @@ export function sqliteTimestampNow(): string {
   const formattedDate = currentDate.toISOString().slice(0, 19).replace("T", " ")
 
   return formattedDate
+}
+// Format:
+
+// This is a nice image: https://...
+
+// Parsed:
+
+// This is a nice image: <source> <-- this is a link
+
+// Cases:
+/*
+1. empty caption = check outside the function
+2. caption with one word = ok, not a source.
+3. caption with link anywhere but the end = could handle this by extracting
+    words individually and checking for https://
+*/
+
+// omit case 3, because this will require use of dangerous html
+export function CaptionSource({ caption }: { caption: string | undefined }) {
+  if (caption) {
+    const words = caption.split(" ")
+    const source = words[words.length - 1]
+
+    const captionWithoutSource = caption.replace(source, "")
+
+    return source.startsWith("https://") ? (
+      <div>
+        {captionWithoutSource}
+        {source ? (
+          <Link
+            className="text-blue-500"
+            href={source}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {"<source>"}
+          </Link>
+        ) : null}
+      </div>
+    ) : (
+      <div>{caption}</div>
+    )
+  } else {
+    return null
+  }
 }

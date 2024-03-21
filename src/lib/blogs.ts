@@ -1,9 +1,8 @@
 import { groq } from "next-sanity"
 
-import { Article, ArticleLike, BlogCard, LikeData } from "@/types/blog"
+import { Article, BlogCard } from "@/types/blog"
 
 import { client } from "../../sanity/lib/client"
-import { auth } from "./auth"
 
 export async function getInfiniteBlogs(
   cursor: string,
@@ -51,6 +50,7 @@ export async function getCurrentArticle(slug: string) {
     "currentSlug": slug.current,
     _createdAt,
     _updatedAt,
+    author,
     title,
     subtitle,
     category,

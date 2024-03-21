@@ -4,6 +4,8 @@ import { PortableText } from "@portabletext/react"
 
 import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
+import { CaptionSource, getInitials } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 
 import { BlogInteractor } from "../_BlogInteraction/BlogInteractor"
@@ -78,20 +80,37 @@ export default async function page({ params }: pageProps) {
           {new Date(article._createdAt).toDateString()}
         </div>
       </div>
-      <h1 className="mt-3 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
+      <div className="mt-3">
+        {article.author ? (
+          <AuthorAvatar
+            avatar={urlForImage(article.author.avatar)}
+            name={article.author.name}
+          />
+        ) : (
+          <AuthorAvatar avatar="/images/daniel.png" name="Daniel Craciun" />
+        )}
+      </div>
+      <div className="mt-2"></div>
+      <h1 className="mt-2 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
       </h1>
       <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl text-muted-foreground">
         {article.subtitle}
       </h2>
-      <Image
-        priority
-        src={urlForImage(article.image)}
-        alt={article.title}
-        width={800}
-        height={800}
-        className="rounded-md mt-5"
-      />
+      <div className="flex flex-col justify-center items-center space-y-2">
+        <Image
+          priority
+          src={urlForImage(article.image)}
+          alt={article.title}
+          width={800}
+          height={800}
+          className="rounded-md mt-5"
+        />
+        <div className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+          {/* @ts-expect-error - unkown caption type from sanity */}
+          <CaptionSource caption={article.image.caption} />
+        </div>
+      </div>
       <div className="mt-10 prose prose-xl dark:prose-invert mb-10">
         <PortableText
           value={article.content}
@@ -99,6 +118,26 @@ export default async function page({ params }: pageProps) {
         />
       </div>
       <BlogInteractor />
+    </div>
+  )
+}
+export const AuthorAvatar = ({
+  name,
+  avatar,
+}: {
+  name: string
+  avatar: string
+}) => {
+  return (
+    <div className="flex items-center space-x-2">
+      <Avatar>
+        <AvatarImage src={avatar} />
+        <AvatarFallback>{getInitials(name)}</AvatarFallback>
+      </Avatar>
+      <div className="flex flex-col">
+        <div className="text-muted-foreground text-xs italic">Written by:</div>
+        <div className="font-semibold text-sm italic">{name}</div>
+      </div>
     </div>
   )
 }
