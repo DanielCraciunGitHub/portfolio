@@ -30,6 +30,7 @@ export const baseMetadata: Metadata = {
       template: `%s | ${danielConfig.name}`,
     },
     description: danielConfig.description,
+    url: "/",
     type: "website",
     images: [
       {

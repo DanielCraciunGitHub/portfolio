@@ -11,6 +11,14 @@ import { HeroStats } from "./HeroStats"
 export const metadata: Metadata = {
   ...baseMetadata,
   title: { absolute: "Daniel Craciun" },
+  openGraph: {
+    ...baseMetadata.openGraph,
+    title: { absolute: "Daniel Craciun" },
+  },
+  twitter: {
+    ...baseMetadata.twitter,
+    title: { absolute: "Daniel Craciun" },
+  },
 }
 export const viewport: Viewport = {
   ...baseViewport,
