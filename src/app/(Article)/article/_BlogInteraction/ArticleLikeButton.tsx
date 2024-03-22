@@ -58,7 +58,6 @@ export const ArticleLikeButton = () => {
             onClick={debounce(async () => {
               // 250ms debounced used to prevent API overload
               await updateLikeCount({
-                session,
                 slug: currentSlug,
                 isLiked: likesData!.isLiked,
               })

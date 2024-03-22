@@ -1,4 +1,6 @@
 import { Metadata, Viewport } from "next"
+// @ts-ignore - No type declarations
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "@/styles/globals.css"
 
@@ -29,6 +31,7 @@ export default function RootLayout({
           {children}
         </Provider>
         <Analytics />
+        <SpeedInsights />
         <ScrollToTopButton />
       </body>
     </html>

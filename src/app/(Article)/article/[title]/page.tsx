@@ -4,9 +4,9 @@ import { PortableText } from "@portabletext/react"
 
 import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
-import { CaptionSource, getInitials } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { CaptionSource } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { AuthorAvatar } from "@/components/AuthorAvatar"
 
 import { BlogInteractor } from "../_BlogInteraction/BlogInteractor"
 import { urlForImage } from "../../../../../sanity/lib/image"
@@ -118,26 +118,6 @@ export default async function page({ params }: pageProps) {
         />
       </div>
       <BlogInteractor />
-    </div>
-  )
-}
-export const AuthorAvatar = ({
-  name,
-  avatar,
-}: {
-  name: string
-  avatar: string
-}) => {
-  return (
-    <div className="flex items-center space-x-2">
-      <Avatar>
-        <AvatarImage src={avatar} />
-        <AvatarFallback>{getInitials(name)}</AvatarFallback>
-      </Avatar>
-      <div className="flex flex-col">
-        <div className="text-muted-foreground text-xs italic">Written by:</div>
-        <div className="font-semibold text-sm italic">{name}</div>
-      </div>
     </div>
   )
 }

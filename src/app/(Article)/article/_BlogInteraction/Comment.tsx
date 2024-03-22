@@ -78,7 +78,6 @@ export const Comment = ({ comment }: CommentProps) => {
 
       <div className="flex justify-between items-center mt-2">
         <CommentLikeButton comment={comment} />
-        {/* Reply Button */}
         <Button
           onClick={() => {
             setIsReplying(true)

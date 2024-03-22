@@ -63,21 +63,16 @@ export const blogRouter = router({
     }),
 
   updateArticleLikes: publicProcedure
-    .input(
-      z.object({
-        slug: z.string(),
-        session: z.custom<Session | null>(),
-        isLiked: z.boolean(),
-      })
-    )
+    .input(z.object({ slug: z.string(), isLiked: z.boolean() }))
     .mutation(async ({ input }) => {
+      const session = await auth()
       if (input.isLiked) {
         await db
           .delete(articleLikes)
           .where(
             and(
               eq(articleLikes.articleSlug, input.slug),
-              eq(articleLikes.userId, input.session?.user.id!),
+              eq(articleLikes.userId, session?.user.id!),
               isNull(articleLikes.commentId)
             )
           )
@@ -86,7 +81,7 @@ export const blogRouter = router({
       } else {
         await db.insert(articleLikes).values({
           articleSlug: input.slug,
-          userId: input.session?.user.id!,
+          userId: session?.user.id!,
         })
         return 1
       }
