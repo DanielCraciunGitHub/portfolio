@@ -47,10 +47,11 @@ export default async function page({
           <p className="max-w-3xl mb-6 lg:mb-8 sm:text-md md:text-lg lg:text-xl text-muted-foreground">
             {eBookConfig.description}
           </p>
-          <div className="flex flex-col items-center space-y-4 pt-4">
+
+          {/* <div className="flex flex-col items-center space-y-4 pt-4">
             <EbookPrice />
             <StripeButton className="w-1/2 text-foreground" name="Buy Now" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

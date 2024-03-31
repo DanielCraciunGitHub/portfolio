@@ -94,9 +94,9 @@ export default async function page({ params }: pageProps) {
       <h1 className="mt-2 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
       </h1>
-      <h2 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl text-muted-foreground">
+      <h4 className="mt-2 block text-xl leading-8 tracking-tight sm:text-2xl text-muted-foreground">
         {article.subtitle}
-      </h2>
+      </h4>
       <div className="flex flex-col justify-center items-center space-y-2">
         <Image
           priority

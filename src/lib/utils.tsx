@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { clsx, type ClassValue } from "clsx"
 import { formatDistanceToNowStrict } from "date-fns"
-import locale from "date-fns/locale/en-US"
+import locale from "date-fns/locale/en-GB"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -90,6 +90,21 @@ export function sqliteTimestampNow(): string {
 
   return formattedDate
 }
+export function articleSlugToTitle(slug: string): string {
+  // Split the slug by hyphens
+  const words = slug.split("-")
+
+  // Capitalize the first letter of each word
+  const titleWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+  )
+
+  // Join the title words with spaces
+  const title = titleWords.join(" ")
+
+  return title
+}
+
 // Format:
 
 // This is a nice image: https://...

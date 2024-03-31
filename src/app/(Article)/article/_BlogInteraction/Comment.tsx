@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { EllipsisVertical } from "lucide-react"
 import { useSession } from "next-auth/react"
 
@@ -24,12 +25,16 @@ export interface CommentProps {
 }
 
 export const Comment = ({ comment }: CommentProps) => {
+  const searchParams = useSearchParams()
   const [isReplying, setIsReplying] = useState(false)
 
   const { data: session } = useSession()
 
   return (
-    <Card key={comment.id} className={`p-3 w-full`}>
+    <Card
+      key={comment.id}
+      className={`p-3 w-full ${comment.id === searchParams.get("id") ? "bg-destructive" : ""}`}
+    >
       <div className="flex justify-between">
         <div className="flex items-center space-x-2 overflow-x-auto">
           <Avatar>

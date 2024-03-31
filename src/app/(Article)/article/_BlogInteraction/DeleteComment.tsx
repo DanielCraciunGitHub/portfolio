@@ -3,7 +3,6 @@ import { useState } from "react"
 import { Reply, TopComment } from "@/types/blog"
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -43,7 +42,7 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
       <AlertDialogTrigger asChild>
         <Button variant="destructive">Delete</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="border-muted-foreground/50">
+      <AlertDialogContent className="border-muted-foreground/20">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>

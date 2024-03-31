@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto"
 import { db } from "@/db"
-import { articleComments, articleLikes } from "@/db/schema"
-import { and, eq, isNull } from "drizzle-orm"
-import { Session } from "next-auth"
+import { articleComments, articleLikes, users } from "@/db/schema"
+import { env } from "@/env.mjs"
+import { and, eq, isNull, or } from "drizzle-orm"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
@@ -173,4 +173,33 @@ export const blogRouter = router({
         .set({ body: input.body, updatedAt: sqliteTimestampNow(), isEdited: 1 })
         .where(eq(articleComments.id, input.comment.id))
     }),
+
+  fetchInboxData: publicProcedure.query(async () => {
+    const [daniel] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, env.NODEMAILER_EMAIL))
+
+    // article likes
+    const likes = await db.query.articleLikes.findMany({
+      with: {
+        liker: true,
+      },
+      where: isNull(articleLikes.commentId),
+    })
+
+    // replies or top-level comments to me
+    const comments = await db.query.articleComments.findMany({
+      with: {
+        replyTo: true,
+        author: true,
+      },
+      where: or(
+        isNull(articleComments.parentId),
+        eq(articleComments.replyingTo, daniel.name!)
+      ),
+    })
+
+    return [...likes, ...comments]
+  }),
 })
