@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { BlogCard } from "@/types/blog"
+import { formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -39,7 +40,7 @@ export default function ArticleCard({
           <Badge variant="secondary" className="inline-flex">
             {category}
           </Badge>
-          <div className="text-xs">{new Date(_createdAt).toDateString()}</div>
+          <div className="text-sm">{formatTimeToNow(new Date(_createdAt))}</div>
         </CardFooter>
       </Card>
     </Link>

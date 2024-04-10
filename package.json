@@ -83,6 +83,7 @@
     "react-intersection-observer": "^9.8.1",
     "react-resizable-panels": "^2.0.13",
     "react-syntax-highlighter": "^15.5.0",
+    "reading-duration": "^1.1.2",
     "sanity": "^3.33.0",
     "sharp": "^0.33.2",
     "sonner": "^1.4.3",

@@ -1,10 +1,11 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
+import readingDuration from "reading-duration"
 
 import { baseMetadata } from "@/config/metadata"
 import { getCurrentArticle } from "@/lib/blogs"
-import { CaptionSource } from "@/lib/utils"
+import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
@@ -70,17 +71,37 @@ export async function generateMetadata({
 export default async function page({ params }: pageProps) {
   const article = await getCurrentArticle(params.title)
 
+  const articleBlockText = article.content
+    ?.flatMap((content) => content?.children)
+    // @ts-ignore
+    .map((block) => block?.text)
+    .join(" ")
+
+  const articleCode = article.content
+    ?.filter((content) => content?.code)
+    .map((content) => content?.code)
+    .join(" ")
+
+  const rawArticleContent = `${articleBlockText}\n\n${articleCode} `
+
   return (
     <div className="mt-5 mx-auto max-w-2xl">
       <div className="flex items-center justify-between space-x-4">
         <Badge variant="secondary" className="inline-flex">
           {article.category}
         </Badge>
-        <div className="font-semibold text-xs">
-          {new Date(article._createdAt).toDateString()}
+        <div className="flex flex-row items-center space-x-2 text-sm text-muted-foreground font-semibold">
+          <div>
+            {readingDuration(rawArticleContent, {
+              emoji: false,
+              wordsPerMinute: 150,
+            })}
+          </div>
+          <div>•</div>
+          <div>{formatTimeToNow(new Date(article._createdAt))}</div>
         </div>
       </div>
-      <div className="mt-3">
+      <div className="mt-3 flex items-center justify-between space-x-4">
         {article.author ? (
           <AuthorAvatar
             avatar={urlForImage(article.author.avatar)}
@@ -90,7 +111,6 @@ export default async function page({ params }: pageProps) {
           <AuthorAvatar avatar="/images/daniel.png" name="Daniel Craciun" />
         )}
       </div>
-      <div className="mt-2"></div>
       <h1 className="mt-2 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
       </h1>
