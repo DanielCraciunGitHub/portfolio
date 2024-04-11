@@ -2,9 +2,16 @@ import { db } from "@/db"
 import { env } from "@/env.mjs"
 import Google from "@auth/core/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import NextAuth from "next-auth"
+import NextAuth, { DefaultSession } from "next-auth"
 
 declare module "@auth/core/types" {
+  interface Session extends DefaultSession {
+    user: {
+      id: string
+    } & DefaultSession["user"]
+  }
+}
+declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string

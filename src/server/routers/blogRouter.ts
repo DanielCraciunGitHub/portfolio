@@ -174,19 +174,22 @@ export const blogRouter = router({
         .where(eq(articleComments.id, input.comment.id))
     }),
 
-  fetchInboxData: publicProcedure.query(async () => {
-    const [daniel] = await db
-      .select()
-      .from(users)
-      .where(eq(users.email, env.NODEMAILER_EMAIL))
-
-    // article likes
+  fetchInboxLikes: publicProcedure.query(async () => {
     const likes = await db.query.articleLikes.findMany({
       with: {
         liker: true,
       },
       where: isNull(articleLikes.commentId),
     })
+
+    return likes
+  }),
+
+  fetchInboxComments: publicProcedure.query(async () => {
+    const [daniel] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, env.NODEMAILER_EMAIL))
 
     // replies or top-level comments to me
     const comments = await db.query.articleComments.findMany({
@@ -200,6 +203,6 @@ export const blogRouter = router({
       ),
     })
 
-    return [...likes, ...comments]
+    return comments
   }),
 })

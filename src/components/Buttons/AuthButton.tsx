@@ -1,7 +1,7 @@
 "use client"
 
+import { Session } from "@auth/core/types"
 import { LogInIcon, LogOutIcon } from "lucide-react"
-import { Session } from "next-auth"
 
 import { authenticate } from "@/app/_actions/authenticate"
 
