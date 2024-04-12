@@ -61,6 +61,6 @@ function getHeightFromLinesOfCode(code: string) {
 
   const lineHeight = 28.8
 
-  // the 8 signifies the padding of the code block
+  // the 19 signifies the estimated padding height of the code block
   return Math.floor(lines.length * lineHeight + 19)
 }

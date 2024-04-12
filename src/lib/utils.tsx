@@ -130,7 +130,7 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
     const captionWithoutSource = caption.replace(source, "")
 
     return source.startsWith("https://") ? (
-      <div>
+      <figcaption>
         {captionWithoutSource}
         {source ? (
           <Link
@@ -142,9 +142,9 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
             {"<source>"}
           </Link>
         ) : null}
-      </div>
+      </figcaption>
     ) : (
-      <div>{caption}</div>
+      <figcaption>{caption}</figcaption>
     )
   } else {
     return null

@@ -21,6 +21,11 @@ export const myPortableTextComponents: PortableTextComponents = {
         {children}
       </Link>
     ),
+    code: ({ value, children }) => (
+      <span className="bg-gray-300 dark:bg-gray-500 rounded p-0.5 font-mono">
+        {children}
+      </span>
+    ),
     // internalLink: ({ value, children }) => {
     //   const { slug = {} } = value
     //   const href = `/${slug.current}`
@@ -37,18 +42,18 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   types: {
     Image: ({ value }: { value: SanityImageAssetDocument }) => (
-      <div className="flex flex-col justify-center items-center space-y-0">
+      <div className="flex flex-col justify-center items-center">
         <Image
           priority
           src={urlForImage(value)}
           alt="Blog Image"
-          width={750}
-          height={400}
+          width={800}
+          height={800}
           className="rounded-md"
         />
-        <div className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+        <span className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
           <CaptionSource caption={value.caption} />
-        </div>
+        </span>
       </div>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {

@@ -90,7 +90,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           <CaptionSource caption={article.image.caption} />
         </div>
       </div>
-      <div className="mt-10 prose prose-xl dark:prose-invert mb-10">
+      <div className="mt-10 prose prose-xl dark:prose-invert mb-10 prose-blockquote:italic prose-img:m-0 prose-figcaption:italic prose-img:mt-2">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}
