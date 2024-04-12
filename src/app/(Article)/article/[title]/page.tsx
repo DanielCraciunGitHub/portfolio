@@ -1,12 +1,13 @@
-import { Suspense } from "react"
 import { Metadata } from "next"
+import { siteConfig } from "@/config"
 
 import { baseMetadata } from "@/config/metadata"
-import { getCurrentArticle } from "@/lib/blogs"
-import { Skeleton } from "@/components/ui/skeleton"
+import { getArticleMetadata } from "@/lib/blogs"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { ArticleContent } from "./ArticleContent"
+
+export const revalidate = 45
 
 interface pageProps {
   params: { title: string }
@@ -15,11 +16,16 @@ interface pageProps {
 export async function generateMetadata({
   params,
 }: pageProps): Promise<Metadata> {
-  const article = await getCurrentArticle(params.title)
+  const article = await getArticleMetadata(params.title)
 
   return {
     ...baseMetadata,
     title: { absolute: article.title },
+    authors: {
+      name: article.author?.name ?? "Daniel Craciun",
+      url: siteConfig.url,
+    },
+    creator: article.author?.name ?? "Daniel Craciun",
     description: `${article.category}: ${article.title} | ${article.subtitle}`,
     keywords: [
       ...new Set([
@@ -62,20 +68,5 @@ export async function generateMetadata({
 }
 
 export default async function page({ params }: pageProps) {
-  return (
-    <Suspense
-      fallback={
-        <div className="mt-5 mx-auto max-w-2xl space-y-3">
-          <Skeleton className="h-7" />
-          <Skeleton className="h-10" />
-          <Skeleton className="h-10" />
-          <Skeleton className="h-7" />
-
-          <Skeleton className="h-screen" />
-        </div>
-      }
-    >
-      <ArticleContent title={params.title} />
-    </Suspense>
-  )
+  return <ArticleContent title={params.title} />
 }

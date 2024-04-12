@@ -1,4 +1,4 @@
-import { unstable_noStore as noStore } from "next/cache"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import readingDuration from "reading-duration"
@@ -8,16 +8,22 @@ import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-import { BlogInteractor } from "../_BlogInteraction/BlogInteractor"
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { myPortableTextComponents } from "../SanityCustomComponents"
+
+const BlogInteractor = dynamic(
+  () =>
+    import("../_BlogInteraction/BlogInteractor").then(
+      (mod) => mod.BlogInteractor
+    ),
+  { ssr: false }
+)
 
 interface ArticleContentProps {
   title: string
 }
 
 export const ArticleContent = async ({ title }: ArticleContentProps) => {
-  noStore()
   const article = await getCurrentArticle(title)
 
   function ReadingDuration() {

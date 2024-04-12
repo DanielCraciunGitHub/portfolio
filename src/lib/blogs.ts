@@ -62,3 +62,19 @@ export async function getCurrentArticle(slug: string) {
 
   return article
 }
+export async function getArticleMetadata(slug: string) {
+  const query = groq`*[_type == "blog" && slug.current == $slug] {
+    "currentSlug": slug.current,
+    author,
+    title,
+    subtitle,
+    category,
+    image
+}[0]
+`
+  const article = await client.fetch<
+    Omit<Article, "_id" | "content" | "_createdAt">
+  >(query, { slug })
+
+  return article
+}
