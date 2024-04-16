@@ -18,6 +18,7 @@ export default async function Layout({
             Info <span className="text-primary">Library</span>
           </h1>
         </Link>
+        <div className="italic">Free Information Forever</div>
         {/* <div>Search</div> */}
         <CategoryNavbar />
         <main className="flex-1 flex justify-center">{children}</main>
