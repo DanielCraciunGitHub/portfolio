@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
+import ArticleViews from "../ArticleViews"
 import { myPortableTextComponents } from "../SanityCustomComponents"
 
 const BlogInteractor = dynamic(
@@ -53,22 +54,27 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           {article.category}
         </Badge>
         <div className="flex flex-row items-center space-x-2 text-sm text-muted-foreground font-semibold">
-          <div>
-            <ReadingDuration />
-          </div>
-          <div>•</div>
           <div>{formatTimeToNow(new Date(article._createdAt))}</div>
+          <div>•</div>
+          <div>
+            <ArticleViews title={title} />
+          </div>
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between space-x-4">
-        {article.author ? (
-          <AuthorAvatar
-            avatar={urlForImage(article.author.avatar)}
-            name={article.author.name}
-          />
-        ) : (
-          <AuthorAvatar avatar="/images/daniel.png" name="Daniel Craciun" />
-        )}
+        <div>
+          {article.author ? (
+            <AuthorAvatar
+              avatar={urlForImage(article.author.avatar)}
+              name={article.author.name}
+            />
+          ) : (
+            <AuthorAvatar avatar="/images/daniel.png" name="Daniel Craciun" />
+          )}
+        </div>
+        <div className="text-sm text-muted-foreground font-semibold">
+          <ReadingDuration />
+        </div>
       </div>
       <h1 className="mt-2 block text-3xl leading-8 font-bold tracking-tight sm:text-4xl">
         {article.title}
@@ -90,7 +96,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           <CaptionSource caption={article.image.caption} />
         </div>
       </div>
-      <div className="mt-10 prose prose-xl dark:prose-invert mb-10 prose-blockquote:italic prose-img:m-0 prose-figcaption:italic prose-img:mt-2">
+      <div className="mt-10 prose prose-xl dark:prose-invert mb-10 prose-blockquote:italic prose-img:m-0 prose-figcaption:italic prose-img:mt-2 break-words">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}

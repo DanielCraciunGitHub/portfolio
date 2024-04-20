@@ -6,6 +6,8 @@ export const baseMetadata: Metadata = {
     default: danielConfig.name,
     template: `%s | ${danielConfig.name}`,
   },
+  publisher: danielConfig.name,
+  creator: danielConfig.name,
   description: danielConfig.description,
   icons: {
     icon: "/images/daniel.png",
@@ -60,7 +62,7 @@ export const baseMetadata: Metadata = {
       },
     ],
   },
-  creator: danielConfig.name,
+
   category: "Full-Stack Development",
   applicationName: "My Portfolio",
   manifest: `${siteConfig.url}/site.webmanifest`,

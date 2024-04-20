@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto"
 import { db } from "@/db"
-import { articleComments, articleLikes, users } from "@/db/schema"
+import { articleComments, articleLikes, articleViews, users } from "@/db/schema"
 import { env } from "@/env.mjs"
-import { and, eq, isNull, or } from "drizzle-orm"
+import { and, count, eq, isNull, or } from "drizzle-orm"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
@@ -205,4 +205,21 @@ export const blogRouter = router({
 
     return comments
   }),
+
+  getArticleViews: publicProcedure
+    .input(z.string())
+    .query(async ({ input }) => {
+      const [views] = await db
+        .select({ value: count() })
+        .from(articleViews)
+        .where(eq(articleViews.articleSlug, input))
+
+      return views.value
+    }),
+
+  addArticleView: publicProcedure
+    .input(z.string())
+    .mutation(async ({ input }) => {
+      await db.insert(articleViews).values({ articleSlug: input })
+    }),
 })
