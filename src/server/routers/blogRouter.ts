@@ -9,6 +9,7 @@ import { LikeData } from "@/types/blog"
 import { auth } from "@/lib/auth"
 import { getInfiniteBlogs } from "@/lib/blogs"
 import { sqliteTimestampNow } from "@/lib/utils"
+import { sendCheckComments } from "@/app/_actions/discord"
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
 import { publicProcedure, router } from "../trpc"
@@ -147,13 +148,23 @@ export const blogRouter = router({
     )
     .mutation(async ({ input }) => {
       const session = await auth()
-      await db.insert(articleComments).values({
-        id: randomUUID(),
-        articleSlug: input.slug,
-        userId: session?.user.id!,
+
+      const [{ id }] = await db
+        .insert(articleComments)
+        .values({
+          id: randomUUID(),
+          articleSlug: input.slug,
+          userId: session?.user.id!,
+          body: input.body,
+          parentId: input.replyingToId,
+          replyingTo: input.replyingTo,
+        })
+        .returning()
+
+      await sendCheckComments({
         body: input.body,
-        parentId: input.replyingToId,
-        replyingTo: input.replyingTo,
+        slug: input.slug,
+        commentId: id,
       })
     }),
   deleteComment: publicProcedure

@@ -17,6 +17,8 @@ export const env = createEnv({
     NODEMAILER_EMAIL: z.string(),
     NODEMAILER_PASSWORD: z.string(),
 
+    DISCORD_WEBHOOK_URL: z.string().min(1),
+
     STRIPE_SECRET_KEY: z.string().min(1),
     STRIPE_PUBLIC_KEY: z.string().min(1),
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
