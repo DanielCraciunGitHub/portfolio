@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useParams, useSearchParams } from "next/navigation"
 import { MessageCircle } from "lucide-react"
 import { useSession } from "next-auth/react"
 
@@ -16,8 +16,16 @@ export const CommentSection = () => {
   const { title: currentSlug }: { title: string } = useParams()
 
   const [openedOnce, setOpenedOnce] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const { data: session } = useSession()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get("id") != null) {
+      setOpen(true)
+    }
+  }, [searchParams])
 
   const { data: comments } = trpc.blogRouter.getCommentsData.useQuery(
     { slug: currentSlug },
@@ -25,7 +33,7 @@ export const CommentSection = () => {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-      enabled: openedOnce,
+      enabled: open,
     }
   )
 
@@ -34,7 +42,7 @@ export const CommentSection = () => {
   )
 
   return (
-    <Sheet onOpenChange={() => setOpenedOnce(true)}>
+    <Sheet onOpenChange={() => setOpen(!open)} open={open}>
       <SheetTrigger>
         <MessageCircle />
         <span className="sr-only">Open Comment Menu</span>

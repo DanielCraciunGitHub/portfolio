@@ -2,7 +2,7 @@ import { randomUUID } from "crypto"
 import { db } from "@/db"
 import { articleComments, articleLikes, articleViews, users } from "@/db/schema"
 import { env } from "@/env.mjs"
-import { and, count, eq, isNull, or } from "drizzle-orm"
+import { and, asc, count, eq, isNull, or } from "drizzle-orm"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
@@ -201,10 +201,20 @@ export const blogRouter = router({
         isNull(articleComments.parentId),
         eq(articleComments.replyingTo, daniel.name!)
       ),
+      orderBy: asc(articleComments.resolved),
     })
 
     return comments
   }),
+
+  resolveComment: publicProcedure
+    .input(z.object({ id: z.string(), resolved: z.boolean() }))
+    .mutation(async ({ input }) => {
+      await db
+        .update(articleComments)
+        .set({ resolved: !input.resolved })
+        .where(eq(articleComments.id, input.id))
+    }),
 
   getArticleViews: publicProcedure
     .input(z.string())

@@ -100,6 +100,7 @@ export const articleComments = sqliteTable("articleComments", {
     (): AnySQLiteColumn => articleComments.id,
     { onDelete: "cascade" }
   ),
+  resolved: integer("resolved", { mode: "boolean" }).default(false),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({

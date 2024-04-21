@@ -12,7 +12,7 @@ export const WelcomeAdmin = async ({}: WelcomeAdminProps) => {
   if (userRole !== "ADMIN") redirect("/")
 
   return (
-    <div className="flex justify-center font-bold md:text-4xl mb-4">
+    <div className="flex justify-center font-bold md:text-4xl text-3xl pt-2 pb-2">
       Welcome {userRole}
     </div>
   )
