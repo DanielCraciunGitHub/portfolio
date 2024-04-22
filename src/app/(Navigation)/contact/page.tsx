@@ -3,8 +3,8 @@ import { siteConfig } from "@/config"
 
 import { staticMetadata } from "@/config/metadata"
 
+import SocialLink from "../../../components/SocialLink"
 import ContactForm from "./ContactForm"
-import SocialLink from "./SocialLink"
 
 export const metadata: Metadata = {
   ...staticMetadata.contact,

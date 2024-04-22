@@ -1,4 +1,10 @@
-import { BsGithub, BsLinkedin, BsMedium, BsTwitterX } from "react-icons/bs"
+import {
+  BsDiscord,
+  BsGithub,
+  BsLinkedin,
+  BsMedium,
+  BsTwitterX,
+} from "react-icons/bs"
 
 import { nameToPath } from "../lib/utils"
 import { HeroStat, NavItem, Project, SocialLink } from "../types"
@@ -41,19 +47,24 @@ export const siteConfig = {
       icon: <BsMedium />,
     },
     {
+      href: "https://discord.gg/C2PXBMqpuV",
+      name: "Discord.gg",
+      icon: <BsDiscord />,
+    },
+    {
       href: "https://github.com/DanielCraciunGitHub",
       name: "Github.com",
       icon: <BsGithub />,
     },
     {
-      href: "https://twitter.com/craciun_07",
-      name: "X.com",
-      icon: <BsTwitterX />,
-    },
-    {
       href: "https://www.linkedin.com/in/dcraciun07/",
       name: "Linkedin.com",
       icon: <BsLinkedin />,
+    },
+    {
+      href: "https://twitter.com/craciun_07",
+      name: "X.com",
+      icon: <BsTwitterX />,
     },
   ] satisfies SocialLink[],
   contactMe: [
