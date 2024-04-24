@@ -1,4 +1,5 @@
 import { Metadata, Viewport } from "next"
+import { GoogleAnalytics } from "@next/third-parties/google"
 // @ts-ignore - No type declarations
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <ScrollToTopButton />
+        <GoogleAnalytics gaId="G-CQFF80GV96" />
       </body>
     </html>
   )
