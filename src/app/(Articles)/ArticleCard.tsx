@@ -43,7 +43,9 @@ export default function ArticleCard({
           className="rounded-t-lg"
         />
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="line-clamp-2 xl:text-2xl lg:text-xl sm:text-lg text-base font-bold">
+            {title}
+          </CardTitle>
           <CardDescription className="truncate">{subtitle}</CardDescription>
         </CardHeader>
         <CardFooter className="flex flex-col md:flex-row md:justify-between space-y-2 md:space-y-0 pb-3">

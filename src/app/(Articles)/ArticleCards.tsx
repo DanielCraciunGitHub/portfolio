@@ -43,7 +43,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
   return (
     <>
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center ${isFetching && !isFetchingNextPage ? "gap-28" : "gap-y-24"}`}
+        className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center ${isFetching && !isFetchingNextPage ? "gap-x-40 gap-y-24" : "gap-y-20"}`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />

@@ -1,6 +1,6 @@
-import { getInitials } from "@/lib/utils"
+import Image from "next/image"
 
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { getInitials } from "@/lib/utils"
 
 export const AuthorAvatar = ({
   name,
@@ -11,10 +11,13 @@ export const AuthorAvatar = ({
 }): JSX.Element => {
   return (
     <div className="flex items-center space-x-2">
-      <Avatar>
-        <AvatarImage src={avatar} />
-        <AvatarFallback>{getInitials(name)}</AvatarFallback>
-      </Avatar>
+      <Image
+        src={avatar}
+        width={40}
+        height={40}
+        alt={getInitials(name)!}
+        className="rounded-full"
+      />
       <div className="flex flex-col">
         <div className="text-muted-foreground text-xs italic">Written by:</div>
         <div className="font-semibold text-sm italic">{name}</div>
