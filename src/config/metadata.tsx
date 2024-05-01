@@ -10,7 +10,7 @@ export const baseMetadata: Metadata = {
   creator: danielConfig.name,
   description: danielConfig.description,
   icons: {
-    icon: "/images/daniel.png",
+    icon: "/icon.png",
   },
   keywords: [
     ...danielConfig.skills,
@@ -67,6 +67,10 @@ export const baseMetadata: Metadata = {
   applicationName: "My Portfolio",
   manifest: `${siteConfig.url}/site.webmanifest`,
   metadataBase: new URL(siteConfig.url),
+
+  alternates: {
+    canonical: "./",
+  },
 }
 export const staticMetadata = {
   ...baseMetadata,

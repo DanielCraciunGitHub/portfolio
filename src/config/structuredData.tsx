@@ -8,7 +8,7 @@ export const mainStructuredData: WithContext<WebPage> = {
   "@type": "WebPage",
   name: "DanielFullStack",
   url: siteConfig.url,
-  thumbnailUrl: `${siteConfig.url}/daniel.png`,
+  thumbnailUrl: `${siteConfig.url}/icon.png`,
   inLanguage: "en-GB",
   about: {
     "@type": "Article",

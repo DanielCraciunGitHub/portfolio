@@ -43,7 +43,7 @@ export default function ArticleCard({
           className="rounded-t-lg"
         />
         <CardHeader>
-          <CardTitle className="line-clamp-2 xl:text-2xl lg:text-xl sm:text-lg text-base font-bold">
+          <CardTitle className="line-clamp-3 xl:text-2xl lg:text-xl sm:text-lg text-base font-bold">
             {title}
           </CardTitle>
           <CardDescription className="truncate">{subtitle}</CardDescription>
