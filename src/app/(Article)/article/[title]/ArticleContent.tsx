@@ -1,14 +1,19 @@
 import dynamic from "next/dynamic"
 import Image from "next/image"
+import Script from "next/script"
+import { danielConfig, siteConfig } from "@/config"
 import { PortableText } from "@portabletext/react"
 import readingDuration from "reading-duration"
+import { WebPage, WithContext } from "schema-dts"
 
+import { Article as BlogArticle } from "@/types/blog"
+import { baseStructuredData } from "@/config/structuredData"
 import { getCurrentArticle } from "@/lib/blogs"
 import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-import { urlForImage } from "../../../../../sanity/lib/image"
+import { urlFor, urlForImage } from "../../../../../sanity/lib/image"
 import ArticleViews from "../ArticleViews"
 import { myPortableTextComponents } from "../SanityCustomComponents"
 
@@ -45,6 +50,72 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
       emoji: false,
       wordsPerMinute: 150,
     })
+  }
+
+  function ArticleStructuredData(article: BlogArticle) {
+    const featuredImage = urlForImage(article.image)
+
+    const structuredData: WithContext<WebPage> = {
+      ...baseStructuredData,
+      "@id": `${siteConfig.url}/article/${article.currentSlug}`,
+      url: `${siteConfig.url}/article/${article.currentSlug}`,
+      name: `${article.title} - Info Library`,
+      description: article.subtitle,
+      disambiguatingDescription: article.subtitle,
+      datePublished: article._createdAt,
+      thumbnailUrl: featuredImage,
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        "@id": `${siteConfig.url}/article/${article.currentSlug}/#primaryImage`,
+        url: featuredImage,
+        contentUrl: featuredImage,
+        /* @ts-expect-error - unkown caption type from sanity */
+        caption: article.image.caption,
+      },
+      author: {
+        "@type": "Person",
+        name: article.author?.name ?? danielConfig.name,
+        image: {
+          "@type": "ImageObject",
+          "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
+          url: article.author
+            ? urlForImage(article.author.avatar)
+            : `${siteConfig.url}/icon.png`,
+          contentUrl: article.author
+            ? urlForImage(article.author.avatar)
+            : `${siteConfig.url}/icon.png`,
+          caption: article.author?.name ?? danielConfig.name,
+        },
+      },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.url}/article/${article.currentSlug}/#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Info Library",
+            item: `${siteConfig.url}/blog`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: article.title,
+            item: `${siteConfig.url}/article/${article.currentSlug}`,
+          },
+        ],
+      },
+    }
+
+    return (
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+    )
   }
 
   return (
@@ -103,6 +174,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         />
       </div>
       <BlogInteractor />
+      <ArticleStructuredData {...article} />
     </div>
   )
 }

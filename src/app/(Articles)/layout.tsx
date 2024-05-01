@@ -20,6 +20,10 @@ const BlogNavbar = () => {
     (link) => link.name === "Discord.gg"
   )!
 
+  const medium = siteConfig.socialLinks.find(
+    (link) => link.name === "Medium.com"
+  )!
+
   return (
     <nav className="sticky top-0 z-50 bg-background">
       <div className="flex justify-center p-6">
@@ -32,11 +36,20 @@ const BlogNavbar = () => {
               <FaChevronLeft />
             </Link>
           </div>
-          <SocialLink
-            name={discord.name}
-            href={discord.href}
-            icon={discord.icon}
-          />
+          <div className="space-x-2">
+            <SocialLink
+              name={discord.name}
+              href={discord.href}
+              icon={discord.icon}
+              className="bg-blue-600 text-white dark:text-white"
+            />
+            <SocialLink
+              name={medium.name}
+              href={medium.href}
+              icon={medium.icon}
+              className="bg-gray-700 text-white dark:text-white"
+            />
+          </div>
           <div>
             <DarkModeButton />
           </div>

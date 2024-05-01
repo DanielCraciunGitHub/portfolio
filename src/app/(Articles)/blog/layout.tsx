@@ -1,6 +1,8 @@
 import Link from "next/link"
+import Script from "next/script"
 import { blogConfig } from "@/config"
 
+import { staticStructuredData } from "@/config/structuredData"
 import { NavItem } from "@/components/Navbar/NavItem"
 
 export const revalidate = 60
@@ -22,6 +24,13 @@ export default async function Layout({
         {/* <div>Search</div> */}
         <CategoryNavbar />
         <main className="flex-1 flex justify-center">{children}</main>
+        <Script
+          id="WebSite Structured Data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(staticStructuredData.blog),
+          }}
+        />
       </section>
     </>
   )

@@ -3,17 +3,13 @@ import type { WebPage, WithContext } from "schema-dts"
 import { danielConfig, siteConfig } from "."
 import { baseMetadata } from "./metadata"
 
-export const mainStructuredData: WithContext<WebPage> = {
+export const baseStructuredData: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "DanielFullStack",
   url: siteConfig.url,
   thumbnailUrl: `${siteConfig.url}/icon.png`,
   inLanguage: "en-GB",
-  about: {
-    "@type": "Article",
-    name: danielConfig.aboutMe.join(" "),
-  },
   author: {
     "@type": "Person",
     name: danielConfig.name,
@@ -26,7 +22,6 @@ export const mainStructuredData: WithContext<WebPage> = {
     "@type": "Person",
     name: danielConfig.name,
   },
-  countryOfOrigin: "Romania",
   mainEntity: {
     "@type": "Person",
     "@id": siteConfig.url,
@@ -65,4 +60,57 @@ export const mainStructuredData: WithContext<WebPage> = {
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
   },
+}
+
+export const staticStructuredData = {
+  projects: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/projects`,
+    url: `${siteConfig.url}/projects`,
+  },
+  ebook: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/ebook`,
+    url: `${siteConfig.url}/ebook`,
+  },
+  about: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/about`,
+    url: `${siteConfig.url}/about`,
+    about: {
+      "@type": "Person",
+      name: danielConfig.aboutMe.join(" "),
+    },
+  },
+  contact: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/contact`,
+    url: `${siteConfig.url}/contact`,
+  },
+  blog: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/blog`,
+    url: `${siteConfig.url}/blog`,
+    name: "Info Library",
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      "@id": `${siteConfig.url}/blog/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "DanielFullStack",
+          item: `${siteConfig.url}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Info Library",
+          item: `${siteConfig.url}/blog`,
+        },
+      ],
+    },
+  },
+} satisfies {
+  [key: string]: WithContext<WebPage>
 }

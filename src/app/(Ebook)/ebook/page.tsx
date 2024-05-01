@@ -1,8 +1,10 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import Script from "next/script"
 import { eBookConfig } from "@/config"
 
 import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
 import { serverClient } from "@/app/_trpc/serverClient"
 
 import StripeButton from "./StripeButton"
@@ -54,6 +56,13 @@ export default async function page({
           </div> */}
         </div>
       </div>
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(staticStructuredData.ebook),
+        }}
+      />
     </section>
   )
 }

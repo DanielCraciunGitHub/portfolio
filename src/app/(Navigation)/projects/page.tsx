@@ -1,7 +1,9 @@
 import { Metadata } from "next"
+import Script from "next/script"
 import { danielConfig } from "@/config"
 
 import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
 
 import ProjectCard from "./ProjectCard"
 
@@ -15,6 +17,15 @@ export default function page() {
       {danielConfig.projects.map((project) => (
         <ProjectCard key={project.name} {...project} />
       ))}
+      <div>
+        <Script
+          id="WebSite Structured Data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(staticStructuredData.projects),
+          }}
+        />
+      </div>
     </div>
   )
 }

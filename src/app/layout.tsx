@@ -5,10 +5,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "@/styles/globals.css"
 
+import Script from "next/script"
 import { Analytics } from "@vercel/analytics/react"
 import NextTopLoader from "nextjs-toploader"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
+import { baseStructuredData } from "@/config/structuredData"
 import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton"
 import { Provider } from "@/components/providers"
 
@@ -36,6 +38,13 @@ export default function RootLayout({
         <ScrollToTopButton />
         <GoogleAnalytics gaId="G-CQFF80GV96" />
       </body>
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(baseStructuredData),
+        }}
+      />
     </html>
   )
 }

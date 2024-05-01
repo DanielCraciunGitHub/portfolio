@@ -15,6 +15,9 @@ export const ArticleNavbar = () => {
   const discord = siteConfig.socialLinks.find(
     (link) => link.name === "Discord.gg"
   )!
+  const medium = siteConfig.socialLinks.find(
+    (link) => link.name === "Medium.com"
+  )!
 
   return (
     <nav
@@ -30,11 +33,20 @@ export const ArticleNavbar = () => {
               <FaChevronLeft />
             </Link>
           </div>
-          <SocialLink
-            name={discord.name}
-            href={discord.href}
-            icon={discord.icon}
-          />
+          <div className="space-x-2">
+            <SocialLink
+              name={discord.name}
+              href={discord.href}
+              icon={discord.icon}
+              className="bg-blue-600 text-white dark:text-white"
+            />
+            <SocialLink
+              name={medium.name}
+              href={medium.href}
+              icon={medium.icon}
+              className="bg-gray-700 text-white dark:text-white"
+            />
+          </div>
           <div>
             <DarkModeButton />
           </div>

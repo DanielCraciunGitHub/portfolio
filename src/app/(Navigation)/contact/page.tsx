@@ -1,7 +1,9 @@
 import { Metadata } from "next"
+import Script from "next/script"
 import { siteConfig } from "@/config"
 
 import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
 
 import SocialLink from "../../../components/SocialLink"
 import ContactForm from "./ContactForm"
@@ -32,6 +34,13 @@ export default function page() {
           <ContactForm />
         </div>
       </div>
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(staticStructuredData.contact),
+        }}
+      />
     </section>
   )
 }
