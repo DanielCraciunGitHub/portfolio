@@ -41,7 +41,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
   const blogs = data?.pages.flatMap((page) => page.blogs)
 
   return (
-    <>
+    <div>
       <div
         className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center ${isFetching && !isFetchingNextPage ? "gap-x-40 gap-y-24" : "gap-y-20"}`}
       >
@@ -54,6 +54,6 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         )}
       </div>
       <Button variant={"ghost"} ref={ref}></Button>
-    </>
+    </div>
   )
 }

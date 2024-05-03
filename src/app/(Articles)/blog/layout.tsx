@@ -24,14 +24,14 @@ export default async function Layout({
         {/* <div>Search</div> */}
         <CategoryNavbar />
         <main className="flex-1 flex justify-center">{children}</main>
-        <Script
-          id="WebSite Structured Data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(staticStructuredData.blog),
-          }}
-        />
       </section>
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(staticStructuredData.blog),
+        }}
+      />
     </>
   )
 }

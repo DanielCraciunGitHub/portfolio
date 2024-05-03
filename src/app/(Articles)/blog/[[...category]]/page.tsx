@@ -21,10 +21,8 @@ interface pageProps {
 
 export default async function page({ params }: pageProps) {
   return (
-    <div>
-      <ArticleCards
-        category={pathToName(params.category ? params.category[0] : undefined)}
-      />
-    </div>
+    <ArticleCards
+      category={pathToName(params.category ? params.category[0] : undefined)}
+    />
   )
 }

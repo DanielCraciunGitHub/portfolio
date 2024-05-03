@@ -37,6 +37,7 @@ export default function ArticleCard({
       <Card>
         <Image
           src={urlFor(image).size(1200, 600).url()}
+          priority
           alt={title}
           width={500}
           height={500}

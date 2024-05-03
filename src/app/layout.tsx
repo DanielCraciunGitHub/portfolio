@@ -28,6 +28,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1116948015463486"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
+        <Script
+          id="WebSite Structured Data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(baseStructuredData),
+          }}
+        />
+      </head>
+
       <body className="flex min-h-screen flex-col">
         <NextTopLoader showSpinner={false} color="green" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
@@ -38,13 +54,6 @@ export default function RootLayout({
         <ScrollToTopButton />
         <GoogleAnalytics gaId="G-CQFF80GV96" />
       </body>
-      <Script
-        id="WebSite Structured Data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(baseStructuredData),
-        }}
-      />
     </html>
   )
 }

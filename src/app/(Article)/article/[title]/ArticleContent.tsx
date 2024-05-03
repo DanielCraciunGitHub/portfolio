@@ -13,7 +13,7 @@ import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-import { urlFor, urlForImage } from "../../../../../sanity/lib/image"
+import { urlForImage } from "../../../../../sanity/lib/image"
 import ArticleViews from "../ArticleViews"
 import { myPortableTextComponents } from "../SanityCustomComponents"
 
