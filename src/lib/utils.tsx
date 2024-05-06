@@ -130,7 +130,7 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
     const captionWithoutSource = caption.replace(source, "")
 
     return source.startsWith("https://") ? (
-      <figcaption>
+      <figcaption className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
         {captionWithoutSource}
         {source ? (
           <Link

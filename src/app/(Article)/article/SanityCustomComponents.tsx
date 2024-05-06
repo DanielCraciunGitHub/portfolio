@@ -42,7 +42,7 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   types: {
     Image: ({ value }: { value: SanityImageAssetDocument }) => (
-      <div className="flex flex-col justify-center items-center">
+      <figure className="flex flex-col justify-center items-center">
         <Image
           priority
           src={urlForImage(value)}
@@ -51,10 +51,9 @@ export const myPortableTextComponents: PortableTextComponents = {
           height={800}
           className="rounded-md"
         />
-        <span className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
-          <CaptionSource caption={value.caption} />
-        </span>
-      </div>
+
+        <CaptionSource caption={value.caption} />
+      </figure>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {
       return <CodeBlock value={value} />

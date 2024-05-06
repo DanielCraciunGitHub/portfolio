@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { debounce } from "lodash"
-import { Heart } from "lucide-react"
 import { useSession } from "next-auth/react"
 
-import { LikeData } from "@/types/blog"
 import { Button } from "@/components/ui/button"
 import { trpc } from "@/app/_trpc/client"
 
 import { CommentProps } from "./Comment"
+import { LikeHeart } from "./LikeHeart"
 
 interface CommentLikeButtonProps extends CommentProps {}
 
@@ -18,7 +17,7 @@ export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
     (currentLike) => currentLike.userId === session?.user.id
   ).length
 
-  const [likesData, setLikesData] = useState<LikeData>({
+  const [likesData, setLikesData] = useState({
     likes: comment.likes.length,
     isLiked: !!articleLiked,
   })
@@ -60,7 +59,7 @@ export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
           })
         }, 250)}
       >
-        <Heart fill={likesData?.isLiked ? "red" : "none"} />
+        <LikeHeart isLiked={likesData?.isLiked} />
       </Button>
       <div>{likesData?.likes ?? "--"}</div>
     </div>

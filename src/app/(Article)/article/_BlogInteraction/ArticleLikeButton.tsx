@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { debounce } from "lodash"
-import { Heart } from "lucide-react"
 import { useSession } from "next-auth/react"
 
 import { Button } from "@/components/ui/button"
@@ -13,6 +12,8 @@ import {
 } from "@/components/ui/popover"
 import AuthButton from "@/components/Buttons/AuthButton"
 import { trpc } from "@/app/_trpc/client"
+
+import { LikeHeart } from "./LikeHeart"
 
 export const ArticleLikeButton = () => {
   const { title: currentSlug }: { title: string } = useParams()
@@ -91,18 +92,6 @@ export const ArticleLikeButton = () => {
         {likesData ? boostLikes(likesData.likes, articleViews) : "--"}
       </div>
     </div>
-  )
-}
-
-function LikeHeart({ isLiked }: { isLiked?: boolean }) {
-  return (
-    <Heart
-      className={
-        isLiked
-          ? "fill-red-600  transition transform duration-300 ease-out scale-125 opacity-100"
-          : "transition transform duration-300 ease-out scale-100 opacity-50"
-      }
-    />
   )
 }
 
