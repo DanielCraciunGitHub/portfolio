@@ -19,6 +19,17 @@ export const ArticleLikeButton = () => {
 
   const { data: session } = useSession()
 
+  const { data: articleViews } = trpc.blogRouter.getArticleViews.useQuery(
+    currentSlug,
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  )
+
+  console.log(articleViews)
+
   const { data, refetch: invalidateLikeData } =
     trpc.blogRouter.getArticleLikeData.useQuery(
       { slug: currentSlug },
@@ -63,12 +74,12 @@ export const ArticleLikeButton = () => {
               })
             }, 250)}
           >
-            <Heart fill={likesData?.isLiked ? "red" : "none"} />
+            <LikeHeart isLiked={likesData?.isLiked} />
           </Button>
         ) : (
           <PopoverTrigger asChild>
             <Button variant="ghost" size="icon">
-              <Heart fill={likesData?.isLiked ? "red" : "none"} />
+              <LikeHeart isLiked={likesData?.isLiked} />
             </Button>
           </PopoverTrigger>
         )}
@@ -77,7 +88,31 @@ export const ArticleLikeButton = () => {
           <AuthButton session={session} />
         </PopoverContent>
       </Popover>
-      <div>{likesData?.likes ?? "--"}</div>
+
+      <div className="font-bold">
+        {likesData ? boostLikes(likesData.likes, articleViews) : "--"}
+      </div>
     </div>
   )
+}
+
+function LikeHeart({ isLiked }: { isLiked?: boolean }) {
+  return (
+    <Heart
+      className={
+        isLiked
+          ? "fill-red-600  transition transform duration-300 ease-out scale-125 opacity-100"
+          : "transition transform duration-300 ease-out scale-100 opacity-50"
+      }
+    />
+  )
+}
+
+function boostLikes(likes: number, views?: number): number {
+  if (views) {
+    const extraLikes = Math.round(views / 11)
+    return likes + extraLikes
+  } else {
+    return likes + 10
+  }
 }

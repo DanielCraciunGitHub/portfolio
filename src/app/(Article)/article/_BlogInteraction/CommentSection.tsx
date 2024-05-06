@@ -15,7 +15,6 @@ import { Comment } from "./Comment"
 export const CommentSection = () => {
   const { title: currentSlug }: { title: string } = useParams()
 
-  const [openedOnce, setOpenedOnce] = useState(false)
   const [open, setOpen] = useState(false)
 
   const { data: session } = useSession()
