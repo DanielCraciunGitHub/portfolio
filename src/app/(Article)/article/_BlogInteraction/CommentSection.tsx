@@ -16,6 +16,7 @@ export const CommentSection = () => {
   const { title: currentSlug }: { title: string } = useParams()
 
   const [open, setOpen] = useState(false)
+  const [openedOnce, setOpenedOnce] = useState(false)
 
   const { data: session } = useSession()
   const searchParams = useSearchParams()
@@ -32,7 +33,7 @@ export const CommentSection = () => {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-      enabled: open,
+      enabled: openedOnce,
     }
   )
 
@@ -41,7 +42,13 @@ export const CommentSection = () => {
   )
 
   return (
-    <Sheet onOpenChange={() => setOpen(!open)} open={open}>
+    <Sheet
+      onOpenChange={() => {
+        !openedOnce ? setOpenedOnce(true) : null
+        setOpen(!open)
+      }}
+      open={open}
+    >
       <SheetTrigger>
         <MessageCircle />
         <span className="sr-only">Open Comment Menu</span>

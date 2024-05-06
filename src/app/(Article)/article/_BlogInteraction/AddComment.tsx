@@ -6,6 +6,7 @@ import { z } from "zod"
 
 import { Reply, TopComment } from "@/types/blog"
 import { articleCommentSchema } from "@/lib/validations/form"
+import { usePersistComment } from "@/hooks/usePersistComment"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Form } from "@/components/ui/form"
@@ -15,6 +16,8 @@ import { UserAvatar } from "@/components/UserAvatar"
 import { trpc } from "@/app/_trpc/client"
 
 type Inputs = z.infer<typeof articleCommentSchema>
+
+const FORM_DATA_KEY = "comment_form_data"
 
 interface AddCommentProps {
   setIsReplying?: Dispatch<SetStateAction<boolean>>
@@ -27,9 +30,12 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
   const form = useForm<Inputs>({
     resolver: zodResolver(articleCommentSchema),
     defaultValues: {
-      body: "",
+      body: getSavedBody(),
     },
   })
+
+  const body = form.watch("body")
+  usePersistComment({ value: body, key: FORM_DATA_KEY })
 
   const { refetch: invalidateCommentsData } =
     trpc.blogRouter.getCommentsData.useQuery(
@@ -48,7 +54,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
       },
     })
   async function onSubmit({ body }: Inputs) {
-    form.reset()
+    form.reset({ body: "" })
 
     // If the reply is for a top-level comment
     if (replyingTo && Object.hasOwn(replyingTo as object, "replies")) {
@@ -66,6 +72,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
       await addComment({ body, slug })
     }
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -93,4 +100,15 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
       </form>
     </Form>
   )
+}
+const getSavedBody = () => {
+  const data = localStorage.getItem(FORM_DATA_KEY)
+  if (data) {
+    try {
+      return JSON.parse(data)
+    } catch (err) {
+      console.error("Error parsing saved data:", err)
+    }
+  }
+  return ""
 }

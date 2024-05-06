@@ -28,8 +28,6 @@ export const ArticleLikeButton = () => {
     }
   )
 
-  console.log(articleViews)
-
   const { data, refetch: invalidateLikeData } =
     trpc.blogRouter.getArticleLikeData.useQuery(
       { slug: currentSlug },
@@ -110,7 +108,7 @@ function LikeHeart({ isLiked }: { isLiked?: boolean }) {
 
 function boostLikes(likes: number, views?: number): number {
   if (views) {
-    const extraLikes = Math.round(views / 11)
+    const extraLikes = Math.round(views / 14)
     return likes + extraLikes
   } else {
     return likes + 10
