@@ -38,7 +38,6 @@ export function CodeBlock({ value }: CodeBlockProps) {
       {isSyntaxHighlighterLoaded ? (
         <SyntaxHighlighter
           language={value.language}
-          showLineNumbers
           style={gruvboxDark}
           customStyle={{
             borderTopLeftRadius: "0",

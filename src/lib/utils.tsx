@@ -144,7 +144,9 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
         ) : null}
       </figcaption>
     ) : (
-      <figcaption>{caption}</figcaption>
+      <figcaption className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+        {caption}
+      </figcaption>
     )
   } else {
     return null

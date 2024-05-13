@@ -97,7 +97,7 @@ export const ArticleLikeButton = () => {
 
 function boostLikes(likes: number, views?: number): number {
   if (views) {
-    const extraLikes = Math.round(views / 14)
+    const extraLikes = Math.round(views / 26)
     return likes + extraLikes
   } else {
     return likes + 10

@@ -162,12 +162,11 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           height={800}
           className="rounded-md mt-5"
         />
-        <div className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
-          {/* @ts-expect-error - unkown caption type from sanity */}
-          <CaptionSource caption={article.image.caption} />
-        </div>
+
+        {/* @ts-expect-error - unkown caption type from sanity */}
+        <CaptionSource caption={article.image.caption} />
       </div>
-      <div className="mt-10 prose prose-xl dark:prose-invert mb-10 prose-img:m-0 prose-figcaption:italic prose-img:mt-2 break-words">
+      <div className="mt-10 prose prose-xl dark:prose-invert mb-10 prose-img:m-0 prose-img:mt-2 break-words">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}
