@@ -1,38 +1,38 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import Script from "next/script"
-import { eBookConfig } from "@/config"
+import { Metadata } from "next";
+import Image from "next/image";
+import Script from "next/script";
+import { eBookConfig } from "@/config";
 
-import { staticMetadata } from "@/config/metadata"
-import { staticStructuredData } from "@/config/structuredData"
-import { serverClient } from "@/app/_trpc/serverClient"
+import { staticMetadata } from "@/config/metadata";
+import { staticStructuredData } from "@/config/structuredData";
+import { serverClient } from "@/app/_trpc/serverClient";
 
-import StripeButton from "./StripeButton"
+import StripeButton from "./StripeButton";
 
 export const metadata: Metadata = {
   ...staticMetadata.eBook,
-}
+};
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export default async function page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return searchParams?.purchase === "success" ? (
-    <section className="mx-auto space-y-6 container flex flex-col justify-center">
-      <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl text-center">
+    <section className="container mx-auto flex flex-col justify-center space-y-6">
+      <h1 className="text-center text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl">
         <span className="text-primary">Thank you</span> for your purchase!
       </h1>
-      <p className="sm:text-md md:text-lg lg:text-xl text-muted-foreground text-center">
+      <p className="sm:text-md text-center text-muted-foreground md:text-lg lg:text-xl">
         Check your inbox for the PDF and EPUB files.
       </p>
     </section>
   ) : (
-    <section className="flex flex-col justify-center items-center">
-      <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
-        <div className="lg:col-span-5 place-self-center">
+    <section className="flex flex-col items-center justify-center">
+      <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
+        <div className="place-self-center lg:col-span-5">
           <Image
             priority
             src="/images/book-cover.jpg"
@@ -42,11 +42,11 @@ export default async function page({
             className="rounded-lg"
           />
         </div>
-        <div className="flex flex-col lg:col-span-7 space-y-4 place-self-center">
-          <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl mb-4">
+        <div className="flex flex-col space-y-4 place-self-center lg:col-span-7">
+          <h1 className="mb-4 max-w-3xl text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl">
             {eBookConfig.title}
           </h1>
-          <p className="max-w-3xl mb-6 lg:mb-8 sm:text-md md:text-lg lg:text-xl text-muted-foreground">
+          <p className="sm:text-md mb-6 max-w-3xl text-muted-foreground md:text-lg lg:mb-8 lg:text-xl">
             {eBookConfig.description}
           </p>
 
@@ -64,10 +64,10 @@ export default async function page({
         }}
       />
     </section>
-  )
+  );
 }
 async function EbookPrice() {
-  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
+  const eBookPrice = await serverClient.paymentRouter.getEbookPrice();
   return (
     <div className="flex flex-col">
       <span className="text-center text-4xl text-red-500 line-through">
@@ -75,5 +75,5 @@ async function EbookPrice() {
       </span>
       <span className="text-center text-4xl text-primary">${eBookPrice}</span>
     </div>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-"use server"
+"use server";
 
-import { siteConfig } from "@/config"
-import { env } from "@/env.mjs"
+import { siteConfig } from "@/config";
+import { env } from "@/env.mjs";
 
-import { articleSlugToTitle } from "@/lib/utils"
+import { articleSlugToTitle } from "@/lib/utils";
 
 interface Payload {
-  commentId: string
-  body: string
-  slug: string
+  commentId: string;
+  body: string;
+  slug: string;
 }
 
 export const sendCheckComments = async ({ body, slug, commentId }: Payload) => {
@@ -36,8 +36,8 @@ export const sendCheckComments = async ({ body, slug, commentId }: Payload) => {
           },
         ],
       }),
-    })
+    });
   } catch (error: any) {
-    console.log(error.message)
+    console.log(error.message);
   }
-}
+};

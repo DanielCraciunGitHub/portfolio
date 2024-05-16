@@ -1,11 +1,11 @@
-import Link from "next/link"
-import type { SocialLink } from "@/types"
+import Link from "next/link";
+import type { SocialLink } from "@/types";
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 interface SocialLinkProps extends SocialLink {
-  className?: string
+  className?: string;
 }
 
 export default function SocialLink({
@@ -21,11 +21,11 @@ export default function SocialLink({
       target="_blank"
       className={cn(
         buttonVariants({ size: "icon", variant: "outline" }),
-        className
+        className,
       )}
     >
       {icon}
       <span className="sr-only">{name}</span>
     </Link>
-  )
+  );
 }

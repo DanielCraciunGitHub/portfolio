@@ -1,39 +1,39 @@
-import { useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { EllipsisVertical } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { EllipsisVertical } from "lucide-react";
+import { useSession } from "next-auth/react";
 
-import { Reply, TopComment } from "@/types/blog"
-import { formatTimeToNow, getInitials } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { Reply, TopComment } from "@/types/blog";
+import { formatTimeToNow, getInitials } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
 
-import { AddComment } from "./AddComment"
-import { CommentLikeButton } from "./CommentLikeButton"
-import { DeleteComment } from "./DeleteComment"
-import { EditComment } from "./EditComment"
+import { AddComment } from "./AddComment";
+import { CommentLikeButton } from "./CommentLikeButton";
+import { DeleteComment } from "./DeleteComment";
+import { EditComment } from "./EditComment";
 
 export interface CommentProps {
-  comment: TopComment | Reply
+  comment: TopComment | Reply;
 }
 
 export const Comment = ({ comment }: CommentProps) => {
-  const searchParams = useSearchParams()
-  const [isReplying, setIsReplying] = useState(false)
+  const searchParams = useSearchParams();
+  const [isReplying, setIsReplying] = useState(false);
 
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   return (
     <Card
       key={comment.id}
-      className={`p-3 w-full ${comment.id === searchParams.get("id") ? "bg-destructive" : ""}`}
+      className={`w-full p-3 ${comment.id === searchParams.get("id") ? "bg-destructive" : ""}`}
     >
       <div className="flex justify-between">
         <div className="flex items-center space-x-2 overflow-x-auto">
@@ -42,10 +42,10 @@ export const Comment = ({ comment }: CommentProps) => {
             <AvatarFallback>{getInitials(comment.author.name!)}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <div className="font-semibold md:text-sm text-xs">
+            <div className="text-xs font-semibold md:text-sm">
               {comment.author.name}
             </div>
-            <div className="text-muted-foreground text-xs">
+            <div className="text-xs text-muted-foreground">
               {!comment.isEdited
                 ? formatTimeToNow(new Date(comment.updatedAt!))
                 : `${formatTimeToNow(new Date(comment.updatedAt!))} (edited)`}
@@ -60,7 +60,7 @@ export const Comment = ({ comment }: CommentProps) => {
                 <EllipsisVertical />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="flex flex-col space-y-2 w-fit border-none">
+            <PopoverContent className="flex w-fit flex-col space-y-2 border-none">
               <EditComment defaultValue={comment.body!} comment={comment} />
               <DeleteComment comment={comment} />
             </PopoverContent>
@@ -69,23 +69,23 @@ export const Comment = ({ comment }: CommentProps) => {
       </div>
 
       <div className="mt-3 space-y-1">
-        <div className="text-blue-500 text-sm">
+        <div className="text-sm text-blue-500">
           {comment.replyingTo ? `@${comment.replyingTo}` : null}
         </div>
 
         <Textarea
-          className="rounded p-2 resize-none disabled:opacity-100 disabled:cursor-auto"
+          className="resize-none rounded p-2 disabled:cursor-auto disabled:opacity-100"
           value={comment.body!}
           disabled
           rows={5}
         />
       </div>
 
-      <div className="flex justify-between items-center mt-2">
+      <div className="mt-2 flex items-center justify-between">
         <CommentLikeButton comment={comment} />
         <Button
           onClick={() => {
-            setIsReplying(true)
+            setIsReplying(true);
           }}
         >
           Reply
@@ -95,5 +95,5 @@ export const Comment = ({ comment }: CommentProps) => {
         <AddComment setIsReplying={setIsReplying} replyingTo={comment} />
       ) : null}
     </Card>
-  )
-}
+  );
+};

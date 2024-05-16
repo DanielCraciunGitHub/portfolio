@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import { Reply, TopComment } from "@/types/blog"
+import { Reply, TopComment } from "@/types/blog";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -10,16 +10,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
-import { trpc } from "@/app/_trpc/client"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
+import { trpc } from "@/app/_trpc/client";
 
 interface DeleteCommentProps {
-  comment: TopComment | Reply
+  comment: TopComment | Reply;
 }
 export const DeleteComment = ({ comment }: DeleteCommentProps) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const { refetch: invalidateCommentsData } =
     trpc.blogRouter.getCommentsData.useQuery(
@@ -28,14 +28,14 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
-      }
-    )
+      },
+    );
   const { mutateAsync: deleteComment, isLoading } =
     trpc.blogRouter.deleteComment.useMutation({
       onSuccess: () => {
-        invalidateCommentsData()
+        invalidateCommentsData();
       },
-    })
+    });
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -58,12 +58,12 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
             state={isLoading}
             onClick={async () => {
               // TODO make sure the spinner button shows
-              await deleteComment({ comment })
-              setOpen(false)
+              await deleteComment({ comment });
+              setOpen(false);
             }}
           />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
-}
+  );
+};

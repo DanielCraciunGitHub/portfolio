@@ -1,16 +1,16 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Project } from "@/types"
-import { BsGithub } from "react-icons/bs"
+import Image from "next/image";
+import Link from "next/link";
+import { Project } from "@/types";
+import { BsGithub } from "react-icons/bs";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface ProjectCardProps extends Project {}
 
@@ -32,9 +32,9 @@ export default function ProjectCard({
           height={300}
           className="rounded-t-lg group-hover:blur-sm"
         />
-        <div className="invisible space-x-10 absolute w-full h-full group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
+        <div className="invisible absolute h-full w-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
           <Link href={href} target="_blank" rel="noopener noreferrer">
-            <BsGithub className="sm:size-10 size-5" />
+            <BsGithub className="size-5 sm:size-10" />
           </Link>
         </div>
       </div>
@@ -47,5 +47,5 @@ export default function ProjectCard({
         <Badge variant="secondary">{type}</Badge>
       </CardFooter>
     </Card>
-  )
+  );
 }

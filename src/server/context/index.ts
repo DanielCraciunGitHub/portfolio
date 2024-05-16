@@ -1,3 +1,3 @@
 export const createContext = () => {
-  return {}
-}
+  return {};
+};

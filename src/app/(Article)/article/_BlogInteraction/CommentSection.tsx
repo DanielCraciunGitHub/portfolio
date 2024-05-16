@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "next/navigation"
-import { MessageCircle } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { MessageCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
 
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import AuthButton from "@/components/Buttons/AuthButton"
-import { trpc } from "@/app/_trpc/client"
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import AuthButton from "@/components/Buttons/AuthButton";
+import { trpc } from "@/app/_trpc/client";
 
-import { AddComment } from "./AddComment"
-import { Comment } from "./Comment"
+import { AddComment } from "./AddComment";
+import { Comment } from "./Comment";
 
 export const CommentSection = () => {
-  const { title: currentSlug }: { title: string } = useParams()
+  const { title: currentSlug }: { title: string } = useParams();
 
-  const [open, setOpen] = useState(false)
-  const [openedOnce, setOpenedOnce] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openedOnce, setOpenedOnce] = useState(false);
 
-  const { data: session } = useSession()
-  const searchParams = useSearchParams()
+  const { data: session } = useSession();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (searchParams.get("id") != null) {
-      setOpen(true)
+      setOpen(true);
     }
-  }, [searchParams])
+  }, [searchParams]);
 
   const { data: comments } = trpc.blogRouter.getCommentsData.useQuery(
     { slug: currentSlug },
@@ -34,18 +34,18 @@ export const CommentSection = () => {
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
       enabled: openedOnce,
-    }
-  )
+    },
+  );
 
   const topLevelComments = comments?.filter(
-    (comment) => comment.parentId === null
-  )
+    (comment) => comment.parentId === null,
+  );
 
   return (
     <Sheet
       onOpenChange={() => {
-        !openedOnce ? setOpenedOnce(true) : null
-        setOpen(!open)
+        !openedOnce ? setOpenedOnce(true) : null;
+        setOpen(!open);
       }}
       open={open}
     >
@@ -68,7 +68,7 @@ export const CommentSection = () => {
                 <div key={comment.id} className="mt-4 space-y-2">
                   <Comment comment={comment} />
 
-                  <div className="space-y-2 flex flex-col">
+                  <div className="flex flex-col space-y-2">
                     {comment.replies.map((reply) => (
                       <div
                         key={reply.id}
@@ -96,5 +96,5 @@ export const CommentSection = () => {
         )}
       </SheetContent>
     </Sheet>
-  )
-}
+  );
+};

@@ -1,13 +1,13 @@
-import Image from "next/image"
-import Link from "next/link"
-import { PortableTextComponents } from "@portabletext/react"
-import { CodeInputValue } from "@sanity/code-input"
-import { SanityImageAssetDocument } from "next-sanity"
+import Image from "next/image";
+import Link from "next/link";
+import { PortableTextComponents } from "@portabletext/react";
+import { CodeInputValue } from "@sanity/code-input";
+import { SanityImageAssetDocument } from "next-sanity";
 
-import { CaptionSource } from "@/lib/utils"
+import { CaptionSource } from "@/lib/utils";
 
-import { urlForImage } from "../../../../sanity/lib/image"
-import { CodeBlock } from "./SanityCodeBlock"
+import { urlForImage } from "../../../../sanity/lib/image";
+import { CodeBlock } from "./SanityCodeBlock";
 
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {
@@ -22,7 +22,7 @@ export const myPortableTextComponents: PortableTextComponents = {
       </Link>
     ),
     code: ({ value, children }) => (
-      <span className="bg-gray-300 dark:bg-gray-500 rounded p-0.5 font-mono">
+      <span className="rounded bg-gray-300 p-0.5 font-mono dark:bg-gray-500">
         {children}
       </span>
     ),
@@ -42,7 +42,7 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   types: {
     Image: ({ value }: { value: SanityImageAssetDocument }) => (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
         <Image
           priority
           src={urlForImage(value)}
@@ -56,11 +56,11 @@ export const myPortableTextComponents: PortableTextComponents = {
       </div>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {
-      return <CodeBlock value={value} />
+      return <CodeBlock value={value} />;
     },
     Divider: () => <hr className="my-4 border-muted-foreground/50" />,
     Table: () => {
-      return null
+      return null;
     },
   },
-}
+};

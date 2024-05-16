@@ -1,30 +1,30 @@
-import { Metadata, Viewport } from "next"
-import { GoogleAnalytics } from "@next/third-parties/google"
+import { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 // @ts-ignore - No type declarations
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import "@/styles/globals.css"
+import "@/styles/globals.css";
 
-import Script from "next/script"
-import { Analytics } from "@vercel/analytics/react"
-import NextTopLoader from "nextjs-toploader"
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import NextTopLoader from "nextjs-toploader";
 
-import { baseMetadata, baseViewport } from "@/config/metadata"
-import { baseStructuredData } from "@/config/structuredData"
-import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton"
-import { Provider } from "@/components/providers"
+import { baseMetadata, baseViewport } from "@/config/metadata";
+import { baseStructuredData } from "@/config/structuredData";
+import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton";
+import { Provider } from "@/components/providers";
 
 export const metadata: Metadata = {
   ...baseMetadata,
-}
+};
 export const viewport: Viewport = {
   ...baseViewport,
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -53,5 +53,5 @@ export default function RootLayout({
         <GoogleAnalytics gaId="G-CQFF80GV96" />
       </body>
     </html>
-  )
+  );
 }

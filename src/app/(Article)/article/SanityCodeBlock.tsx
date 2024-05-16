@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import dynamic from "next/dynamic"
-import { CodeInputValue } from "@sanity/code-input"
-import { Clipboard, ClipboardCheck } from "lucide-react"
-import CopyToClipboard from "react-copy-to-clipboard"
-import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { CodeInputValue } from "@sanity/code-input";
+import { Clipboard, ClipboardCheck } from "lucide-react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import useLazyLoad from "@/hooks/useLazyLoad"
-import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
+import useLazyLoad from "@/hooks/useLazyLoad";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const SyntaxHighlighter = dynamic(() => import("react-syntax-highlighter"), {
   ssr: false,
-})
+});
 
 interface CodeBlockProps {
-  value: CodeInputValue
+  value: CodeInputValue;
 }
 export function CodeBlock({ value }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
 
   const isSyntaxHighlighterLoaded = useLazyLoad(
-    () => import("react-syntax-highlighter")
-  )
+    () => import("react-syntax-highlighter"),
+  );
 
   return (
     <div className="flex flex-col space-y-0 rounded-sm">
       <CopyToClipboard text={value.code!} onCopy={() => setCopied(true)}>
-        <div className="flex justify-end bg-muted-foreground/50 w-full rounded-t-sm">
+        <div className="flex w-full justify-end rounded-t-sm bg-muted-foreground/50">
           <Button variant="ghost" className="hover:bg-inherit">
             {copied ? <ClipboardCheck /> : <Clipboard />}
           </Button>
@@ -53,13 +53,13 @@ export function CodeBlock({ value }: CodeBlockProps) {
         />
       )}
     </div>
-  )
+  );
 }
 function getHeightFromLinesOfCode(code: string) {
-  const lines = code.split("\n")
+  const lines = code.split("\n");
 
-  const lineHeight = 28.8
+  const lineHeight = 28.8;
 
   // the 19 signifies the estimated padding height of the code block
-  return Math.floor(lines.length * lineHeight + 19)
+  return Math.floor(lines.length * lineHeight + 19);
 }

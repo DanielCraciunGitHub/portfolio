@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export const useScrollUp = () => {
-  const [scrollingUp, setScrollingUp] = useState(true)
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollingUp, setScrollingUp] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      const currentScrollY = window.scrollY;
       setScrollY((prevScrollY) => {
         if (currentScrollY - prevScrollY < 0) {
-          setScrollingUp(true)
+          setScrollingUp(true);
         } else {
-          setScrollingUp(false)
+          setScrollingUp(false);
         }
-        return currentScrollY
-      })
-    }
+        return currentScrollY;
+      });
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  return { scrollingUp, scrollY }
-}
+  return { scrollingUp, scrollY };
+};

@@ -1,12 +1,12 @@
-import { MetadataRoute } from "next"
-import { siteConfig } from "@/config"
+import { MetadataRoute } from "next";
+import { siteConfig } from "@/config";
 
-import { getBlogs } from "@/lib/blogs"
+import { getBlogs } from "@/lib/blogs";
 
-export const revalidate = 60
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogs = await getBlogs()
+  const blogs = await getBlogs();
 
   const sitemapEntries = [
     ...siteConfig.navLinks.map((page) => ({
@@ -21,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.9,
     })),
-  ] as MetadataRoute.Sitemap
+  ] as MetadataRoute.Sitemap;
 
-  return sitemapEntries
+  return sitemapEntries;
 }

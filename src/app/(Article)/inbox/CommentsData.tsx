@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { siteConfig } from "@/config"
-import { Check, Mail, X } from "lucide-react"
+import Link from "next/link";
+import { siteConfig } from "@/config";
+import { Check, Mail, X } from "lucide-react";
 
 import {
   articleSlugToTitle,
   cn,
   formatTimeToNow,
   getInitials,
-} from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { trpc } from "@/app/_trpc/client"
+} from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { trpc } from "@/app/_trpc/client";
 
 export const CommentsData = () => {
   const { data: commentsData, refetch: revalidateInboxComments } =
@@ -21,18 +21,18 @@ export const CommentsData = () => {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-    })
+    });
   const { mutate: resolveComment } = trpc.blogRouter.resolveComment.useMutation(
     {
       onSuccess: () => {
-        revalidateInboxComments()
+        revalidateInboxComments();
       },
-    }
-  )
+    },
+  );
 
   return (
     <div>
-      <div className="text-primary md:text-center md:text-4xl text-xl font-bold pb-2">
+      <div className="pb-2 text-xl font-bold text-primary md:text-center md:text-4xl">
         Comments
       </div>
       <div className="space-y-2">
@@ -42,7 +42,7 @@ export const CommentsData = () => {
               <Link
                 className={cn(
                   buttonVariants(),
-                  "w-full h-full col-span-1 rounded-r-none"
+                  "col-span-1 h-full w-full rounded-r-none",
                 )}
                 href={`mailto:${comment.author.email}`}
                 target="_blank"
@@ -56,7 +56,7 @@ export const CommentsData = () => {
                 rel="noopener noreferrer"
                 className="col-span-10"
               >
-                <Card className="flex items-center space-x-2 p-4 rounded-none">
+                <Card className="flex items-center space-x-2 rounded-none p-4">
                   <Avatar>
                     <AvatarImage src={comment.author.image!} />
                     <AvatarFallback>
@@ -64,7 +64,7 @@ export const CommentsData = () => {
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <div className="text-muted-foreground text-xs">
+                    <div className="text-xs text-muted-foreground">
                       {formatTimeToNow(new Date(comment.updatedAt!))}
                     </div>
                     <div>
@@ -73,7 +73,7 @@ export const CommentsData = () => {
                       </span>{" "}
                       Has commented on your article.
                     </div>
-                    <div className="italic text-lg bg-muted/50 rounded p-2">
+                    <div className="rounded bg-muted/50 p-2 text-lg italic">
                       {comment.body}
                     </div>
                     <div className="text-blue-500 underline">
@@ -90,15 +90,15 @@ export const CommentsData = () => {
                     resolved: comment.resolved!,
                   })
                 }
-                className="w-full h-full col-span-1 rounded-l-none"
+                className="col-span-1 h-full w-full rounded-l-none"
                 variant={`${comment.resolved ? "destructive" : "default"}`}
               >
                 {comment.resolved ? <X /> : <Check />}
               </Button>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,7 +1,7 @@
-import type { WebPage, WithContext } from "schema-dts"
+import type { WebPage, WithContext } from "schema-dts";
 
-import { danielConfig, siteConfig } from "."
-import { baseMetadata } from "./metadata"
+import { danielConfig, siteConfig } from ".";
+import { baseMetadata } from "./metadata";
 
 export const baseStructuredData: WithContext<WebPage> = {
   "@context": "https://schema.org",
@@ -60,7 +60,7 @@ export const baseStructuredData: WithContext<WebPage> = {
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
   },
-}
+};
 
 export const staticStructuredData = {
   projects: {
@@ -112,5 +112,5 @@ export const staticStructuredData = {
     },
   },
 } satisfies {
-  [key: string]: WithContext<WebPage>
-}
+  [key: string]: WithContext<WebPage>;
+};

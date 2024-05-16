@@ -1,5 +1,5 @@
-import { Metadata, Viewport } from "next"
-import { blogConfig, danielConfig, eBookConfig, siteConfig } from "@/config"
+import { Metadata, Viewport } from "next";
+import { blogConfig, danielConfig, eBookConfig, siteConfig } from "@/config";
 
 export const baseMetadata: Metadata = {
   title: {
@@ -71,7 +71,7 @@ export const baseMetadata: Metadata = {
   alternates: {
     canonical: "./",
   },
-}
+};
 export const staticMetadata = {
   ...baseMetadata,
   blog: {
@@ -179,7 +179,7 @@ export const staticMetadata = {
       description: siteConfig.contactMe.join(" "),
     },
   } satisfies Metadata,
-}
+};
 export const baseViewport: Viewport = {
   themeColor: [
     {
@@ -192,4 +192,4 @@ export const baseViewport: Viewport = {
     },
   ],
   colorScheme: "dark light",
-}
+};

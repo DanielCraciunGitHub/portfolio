@@ -1,13 +1,13 @@
-import { groq } from "next-sanity"
+import { groq } from "next-sanity";
 
-import { Article, BlogCard } from "@/types/blog"
+import { Article, BlogCard } from "@/types/blog";
 
-import { client } from "../../sanity/lib/client"
+import { client } from "../../sanity/lib/client";
 
 export async function getInfiniteBlogs(
   cursor: string,
   limit: number,
-  category?: string
+  category?: string,
 ) {
   const query = groq`*[_type == "blog" && _createdAt < $cursor${category ? ` && category == $category` : ""}] | order(_createdAt desc) [${0}...${limit}]{
             _id,
@@ -18,14 +18,14 @@ export async function getInfiniteBlogs(
             category,
             "currentSlug": slug.current,
             image,
-          }`
+          }`;
 
   const blogs = await client.fetch<BlogCard[]>(query, {
     cursor,
     category: category ?? "",
-  })
+  });
 
-  return blogs
+  return blogs;
 }
 
 export async function getBlogs() {
@@ -38,11 +38,11 @@ export async function getBlogs() {
             category,
             "currentSlug": slug.current,
             image,
-          }`
+          }`;
 
-  const blogs = await client.fetch<BlogCard[]>(query)
+  const blogs = await client.fetch<BlogCard[]>(query);
 
-  return blogs
+  return blogs;
 }
 
 export async function getCurrentArticle(slug: string) {
@@ -58,10 +58,10 @@ export async function getCurrentArticle(slug: string) {
     content,
     canonical
 }[0]
-`
-  const article = await client.fetch<Article>(query, { slug })
+`;
+  const article = await client.fetch<Article>(query, { slug });
 
-  return article
+  return article;
 }
 export async function getArticleMetadata(slug: string) {
   const query = groq`*[_type == "blog" && slug.current == $slug] {
@@ -73,10 +73,10 @@ export async function getArticleMetadata(slug: string) {
     image,
     canonical
 }[0]
-`
+`;
   const article = await client.fetch<
     Omit<Article, "_id" | "content" | "_createdAt">
-  >(query, { slug })
+  >(query, { slug });
 
-  return article
+  return article;
 }

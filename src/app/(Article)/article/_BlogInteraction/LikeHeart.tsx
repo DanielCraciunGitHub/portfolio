@@ -1,7 +1,7 @@
-import { Heart } from "lucide-react"
+import { Heart } from "lucide-react";
 
 interface LikeHeartProps {
-  isLiked?: boolean
+  isLiked?: boolean;
 }
 
 export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
@@ -9,9 +9,9 @@ export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
     <Heart
       className={
         isLiked
-          ? "fill-red-600  transition transform duration-300 ease-out scale-125 opacity-100"
-          : "transition transform duration-300 ease-out scale-100 opacity-50"
+          ? "scale-125  transform fill-red-600 opacity-100 transition duration-300 ease-out"
+          : "scale-100 transform opacity-50 transition duration-300 ease-out"
       }
     />
-  )
-}
+  );
+};

@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import React from "react"
-import Link from "next/link"
-import { useSelectedLayoutSegment } from "next/navigation"
+import React from "react";
+import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 interface NavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  page: string
-  text?: string
-  icon?: React.ReactNode
+  page: string;
+  text?: string;
+  icon?: React.ReactNode;
 }
 
 export function NavItem(props: NavItemProps) {
-  const segment = useSelectedLayoutSegment()
+  const segment = useSelectedLayoutSegment();
 
-  const { page, text, icon, className, ...restProps } = props
+  const { page, text, icon, className, ...restProps } = props;
   return (
     <Link
       href={page}
@@ -24,11 +24,11 @@ export function NavItem(props: NavItemProps) {
         buttonVariants({ variant: "ghost" }),
         "rounded text-muted-foreground hover:text-primary hover:transition hover:ease-linear dark:hover:text-primary",
         page.includes(`/${segment}`) ? "text-primary dark:text-primary" : "",
-        className
+        className,
       )}
       {...restProps}
     >
       {text ?? icon}
     </Link>
-  )
+  );
 }

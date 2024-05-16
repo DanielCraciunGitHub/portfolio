@@ -1,19 +1,19 @@
-import Link from "next/link"
-import { siteConfig } from "@/config"
+import Link from "next/link";
+import { siteConfig } from "@/config";
 
-import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card } from "@/components/ui/card"
-import { serverClient } from "@/app/_trpc/serverClient"
+import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
+import { serverClient } from "@/app/_trpc/serverClient";
 
 interface LikesDataProps {}
 
 export const LikesData = async ({}: LikesDataProps) => {
-  const likesData = await serverClient.blogRouter.fetchInboxLikes()
+  const likesData = await serverClient.blogRouter.fetchInboxLikes();
 
   return (
     <div>
-      <div className="md:text-center md:text-4xl text-xl font-bold pb-2">
+      <div className="pb-2 text-xl font-bold md:text-center md:text-4xl">
         Article Likes
       </div>
       <div className="space-y-2">
@@ -32,7 +32,7 @@ export const LikesData = async ({}: LikesDataProps) => {
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <div className="text-muted-foreground text-xs">
+                    <div className="text-xs text-muted-foreground">
                       {formatTimeToNow(new Date(like.createdAt!))}
                     </div>
                     <div>
@@ -46,9 +46,9 @@ export const LikesData = async ({}: LikesDataProps) => {
                 </Card>
               </Link>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
-import { type SchemaTypeDefinition } from "sanity"
+import { type SchemaTypeDefinition } from "sanity";
 
-import { blogConfig } from "../src/config"
+import { blogConfig } from "../src/config";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -141,4 +141,4 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       ],
     },
   ],
-}
+};

@@ -1,37 +1,37 @@
-import Link from "next/link"
-import { clsx, type ClassValue } from "clsx"
-import { formatDistanceToNowStrict } from "date-fns"
-import locale from "date-fns/locale/en-GB"
-import { twMerge } from "tailwind-merge"
+import Link from "next/link";
+import { clsx, type ClassValue } from "clsx";
+import { formatDistanceToNowStrict } from "date-fns";
+import locale from "date-fns/locale/en-GB";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 export function nameToPath(name: string): string {
-  return `/${name.toLowerCase().replaceAll(" ", "_")}`
+  return `/${name.toLowerCase().replaceAll(" ", "_")}`;
 }
 
 export function pathToName(path: string | undefined): string | undefined {
-  const cleanedPath = path?.replace(/^\//, "")
+  const cleanedPath = path?.replace(/^\//, "");
 
-  const nameWithSpaces = cleanedPath?.replace(/_/g, " ")
+  const nameWithSpaces = cleanedPath?.replace(/_/g, " ");
 
-  const words = nameWithSpaces?.split(" ")
+  const words = nameWithSpaces?.split(" ");
   const capitalizedWords = words?.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
-  )
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
+  );
 
-  return capitalizedWords?.join(" ")
+  return capitalizedWords?.join(" ");
 }
 
 export function getInitials(name?: string | null): string | undefined {
   // Split the name into words
-  const words = name?.trim().split(/\s+/)
+  const words = name?.trim().split(/\s+/);
 
   // Get the first letter of each word and capitalize it
-  const initials = words?.map((word) => word.charAt(0).toUpperCase()).join("")
+  const initials = words?.map((word) => word.charAt(0).toUpperCase()).join("");
 
-  return initials
+  return initials;
 }
 
 const formatDistanceLocale = {
@@ -51,25 +51,25 @@ const formatDistanceLocale = {
   xYears: "{{count}}y",
   overXYears: "{{count}}y",
   almostXYears: "{{count}}y",
-}
+};
 
 function formatDistance(token: string, count: number, options?: any): string {
-  options = options || {}
+  options = options || {};
 
   const result = formatDistanceLocale[
     token as keyof typeof formatDistanceLocale
-  ].replace("{{count}}", count.toString())
+  ].replace("{{count}}", count.toString());
 
   if (options.addSuffix) {
     if (options.comparison > 0) {
-      return "in " + result
+      return "in " + result;
     } else {
-      if (result === "just now") return result
-      return result + " ago"
+      if (result === "just now") return result;
+      return result + " ago";
     }
   }
 
-  return result
+  return result;
 }
 
 export function formatTimeToNow(date: Date): string {
@@ -79,30 +79,33 @@ export function formatTimeToNow(date: Date): string {
       ...locale,
       formatDistance,
     },
-  })
+  });
 }
 export function sqliteTimestampNow(): string {
   // Get the current date
-  const currentDate = new Date()
+  const currentDate = new Date();
 
   // Format the date as "YYYY-MM-DD HH:MM:SS"
-  const formattedDate = currentDate.toISOString().slice(0, 19).replace("T", " ")
+  const formattedDate = currentDate
+    .toISOString()
+    .slice(0, 19)
+    .replace("T", " ");
 
-  return formattedDate
+  return formattedDate;
 }
 export function articleSlugToTitle(slug: string): string {
   // Split the slug by hyphens
-  const words = slug.split("-")
+  const words = slug.split("-");
 
   // Capitalize the first letter of each word
   const titleWords = words.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
-  )
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
+  );
 
   // Join the title words with spaces
-  const title = titleWords.join(" ")
+  const title = titleWords.join(" ");
 
-  return title
+  return title;
 }
 
 // Format:
@@ -124,13 +127,13 @@ export function articleSlugToTitle(slug: string): string {
 // omit case 3, because this will require use of dangerous html
 export function CaptionSource({ caption }: { caption: string | undefined }) {
   if (caption) {
-    const words = caption.split(" ")
-    const source = words[words.length - 1]
+    const words = caption.split(" ");
+    const source = words[words.length - 1];
 
-    const captionWithoutSource = caption.replace(source, "")
+    const captionWithoutSource = caption.replace(source, "");
 
     return source.startsWith("https://") ? (
-      <figcaption className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+      <figcaption className="block text-sm leading-8 tracking-tight text-muted-foreground sm:text-base">
         {captionWithoutSource}
         {source ? (
           <Link
@@ -144,11 +147,11 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
         ) : null}
       </figcaption>
     ) : (
-      <figcaption className="block text-sm sm:text-base leading-8 tracking-tight text-muted-foreground">
+      <figcaption className="block text-sm leading-8 tracking-tight text-muted-foreground sm:text-base">
         {caption}
       </figcaption>
-    )
+    );
   } else {
-    return null
+    return null;
   }
 }

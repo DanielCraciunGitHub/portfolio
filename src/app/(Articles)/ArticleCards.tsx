@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useInView } from "react-intersection-observer"
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
-import { BlogCard } from "@/types/blog"
-import { Button } from "@/components/ui/button"
+import { BlogCard } from "@/types/blog";
+import { Button } from "@/components/ui/button";
 
-import { trpc } from "../_trpc/client"
-import ArticleCard from "./ArticleCard"
-import { ArticleCardsShell } from "./ArticleCardShell"
+import { trpc } from "../_trpc/client";
+import ArticleCard from "./ArticleCard";
+import { ArticleCardsShell } from "./ArticleCardShell";
 
-const articlesPerPage = 6
+const articlesPerPage = 6;
 
 interface ArticleCardProps {
-  category?: BlogCard["category"] | string | undefined
+  category?: BlogCard["category"] | string | undefined;
 }
 
 export default function ArticleCards({ category }: ArticleCardProps) {
-  const { ref, inView } = useInView()
+  const { ref, inView } = useInView();
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
@@ -30,20 +30,20 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-      }
-    )
+      },
+    );
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      fetchNextPage()
+      fetchNextPage();
     }
-  }, [fetchNextPage, inView, hasNextPage])
-  const blogs = data?.pages.flatMap((page) => page.blogs)
+  }, [fetchNextPage, inView, hasNextPage]);
+  const blogs = data?.pages.flatMap((page) => page.blogs);
 
   return (
     <div>
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 place-items-center ${isFetching && !isFetchingNextPage ? "gap-x-40 gap-y-24" : "gap-y-20"}`}
+        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-40 gap-y-24" : "gap-y-20"}`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />
@@ -55,5 +55,5 @@ export default function ArticleCards({ category }: ArticleCardProps) {
       </div>
       <Button variant={"ghost"} ref={ref}></Button>
     </div>
-  )
+  );
 }

@@ -1,19 +1,19 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import Script from "next/script"
-import { danielConfig } from "@/config"
+import { Metadata } from "next";
+import Image from "next/image";
+import Script from "next/script";
+import { danielConfig } from "@/config";
 
-import { staticMetadata } from "@/config/metadata"
-import { staticStructuredData } from "@/config/structuredData"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { staticMetadata } from "@/config/metadata";
+import { staticStructuredData } from "@/config/structuredData";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const metadata: Metadata = {
   ...staticMetadata.about,
-}
+};
 
 export default function page() {
   return (
-    <div className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-32 lg:py-16 lg:grid-cols-12 lg:space-y-0 space-y-10 z-10">
+    <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
       <div className=" lg:col-span-6">
         <Image
           src="/images/about.png"
@@ -25,10 +25,10 @@ export default function page() {
         />
       </div>
       <div className="lg:col-span-6">
-        <h1 className="max-w-3xl text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl mb-4">
+        <h1 className="mb-4 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl">
           About Me
         </h1>
-        <div className="max-w-2xl mb-6 lg:mb-8 md:text-lg lg:text-xl text-muted-foreground space-y-4">
+        <div className="mb-6 max-w-2xl space-y-4 text-muted-foreground md:text-lg lg:mb-8 lg:text-xl">
           {danielConfig.aboutMe.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
@@ -64,5 +64,5 @@ export default function page() {
         }}
       />
     </div>
-  )
+  );
 }

@@ -1,17 +1,17 @@
-import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton";
 
 export const Footer = () => (
-  <footer className="p-4 z-20">
+  <footer className="z-20 p-4">
     <div className="sm:flex sm:items-center sm:justify-between">
       <div className="flex w-full flex-col space-y-3">
         <div className="flex justify-end">
           <DarkModeButton />
         </div>
 
-        <span className="text-sm text-foreground/50 text-end">
+        <span className="text-end text-sm text-foreground/50">
           © 2024 Daniel Craciun. All Rights Reserved
         </span>
       </div>
     </div>
   </footer>
-)
+);

@@ -1,9 +1,9 @@
-import { siteConfig } from "@/config"
-import { env } from "@/env.mjs"
+import { siteConfig } from "@/config";
+import { env } from "@/env.mjs";
 
-import { stripe } from "@/lib/stripe"
+import { stripe } from "@/lib/stripe";
 
-import { publicProcedure, router } from "../trpc"
+import { publicProcedure, router } from "../trpc";
 
 export const paymentRouter = router({
   getStripeUrl: publicProcedure.query(async () => {
@@ -20,20 +20,20 @@ export const paymentRouter = router({
             quantity: 1,
           },
         ],
-      })
-      return stripeSession.url!
+      });
+      return stripeSession.url!;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }),
   getEbookPrice: publicProcedure.query(async () => {
     try {
-      const priceId = env.EBOOK_PRODUCT_ID // Replace with your actual price ID
-      const price = await stripe.prices.retrieve(priceId)
+      const priceId = env.EBOOK_PRODUCT_ID; // Replace with your actual price ID
+      const price = await stripe.prices.retrieve(priceId);
 
-      return (price.unit_amount! / 100).toString()
+      return (price.unit_amount! / 100).toString();
     } catch (error: any) {
-      console.error("Error fetching price:", error.message)
+      console.error("Error fetching price:", error.message);
     }
   }),
-})
+});
