@@ -10,6 +10,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       title: "Blog",
       fields: [
         {
+          title: "Canonical URL",
+          name: "canonical",
+          type: "string",
+        },
+        {
           title: "Category",
           name: "category",
           type: "string",

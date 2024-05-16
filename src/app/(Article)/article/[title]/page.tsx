@@ -25,6 +25,10 @@ export async function generateMetadata({
       name: article.author?.name ?? "Daniel Craciun",
       url: siteConfig.url,
     },
+    alternates: {
+      canonical:
+        article.canonical ?? `${siteConfig.url}/article/${article.currentSlug}`,
+    },
     creator: article.author?.name ?? "Daniel Craciun",
     description: `${article.category}: ${article.title} | ${article.subtitle}`,
     keywords: [

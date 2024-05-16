@@ -55,7 +55,8 @@ export async function getCurrentArticle(slug: string) {
     subtitle,
     category,
     image,
-    content
+    content,
+    canonical
 }[0]
 `
   const article = await client.fetch<Article>(query, { slug })
@@ -69,7 +70,8 @@ export async function getArticleMetadata(slug: string) {
     title,
     subtitle,
     category,
-    image
+    image,
+    canonical
 }[0]
 `
   const article = await client.fetch<

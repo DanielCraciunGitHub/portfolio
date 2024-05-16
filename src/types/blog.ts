@@ -24,6 +24,7 @@ export interface Article {
   content: TypedObject[]
   image: Image
   currentSlug: string
+  canonical?: string
 }
 export type LikeData = { likes: number; isLiked: boolean }
 

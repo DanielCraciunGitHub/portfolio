@@ -172,5 +172,9 @@ export const blogConfig = {
       name: "Self Development",
       href: nameToPath("Self Development"),
     },
+    {
+      name: "Writing",
+      href: nameToPath("Writing"),
+    },
   ] satisfies NavItem[],
 }
