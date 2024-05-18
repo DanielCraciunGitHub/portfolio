@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 
-import { WriteForUs } from "../(Articles)/blog/WriteForUs";
+import { WriteForUs } from "../(Writers)/write_for_us/WriteForUs";
 import { ArticleNavbar } from "./article/ArticleNavbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <ArticleNavbar />
 
-      <WriteForUs />
+      {/* <WriteForUs /> */}
 
       <main className="container">{children}</main>
       <Toaster />

@@ -4,6 +4,7 @@ import { ArticleNavbar } from "@/app/(Article)/article/ArticleNavbar";
 
 import BenefitCard from "./BenefitCard";
 import { WriteForUsForm } from "./WriteForUsForm";
+import { Check, PersonStanding } from "lucide-react";
 
 export const metadata: Metadata = {};
 
@@ -27,6 +28,7 @@ const page = ({}: pageProps) => {
         <BenefitCard
           key="Benefits"
           title="Benefits"
+          icon={<Check className="text-yellow-400" />}
           features={[
             "Free Article Review",
             "Unlimited Free Traction",
@@ -41,6 +43,7 @@ const page = ({}: pageProps) => {
         <BenefitCard
           key="What You Need To Do"
           title="What You Need To Do"
+          icon={<PersonStanding className="text-yellow-400" />}
           features={[
             "Send a Link to Your Article",
             "Add some Optional Details",

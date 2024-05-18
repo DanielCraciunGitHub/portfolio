@@ -25,3 +25,29 @@ export const articleCommentSchema = z.object({
     .min(4, { message: "Message must contain at least 4 characters" })
     .max(300, { message: "Message must not exceed 300 characters." }),
 });
+
+export const writeForUsFormSchema = z.object({
+  email: z
+    .string()
+    .email({ message: "Invalid Email" })
+    .max(320, { message: "Invalid Email" }),
+  articleLink: z
+    .string()
+    .url({ message: "Please enter a valid URL" })
+    .startsWith("https://", { message: "Must start with https" }),
+  extraLinks: z
+    .array(
+      z
+        .string()
+        .url({ message: "Please enter a valid URL" })
+        .startsWith("https://", { message: "Must start with https" }),
+    )
+    .optional(),
+  otherDetails: z
+    .string()
+    .min(4, { message: "Message must contain at least 4 characters" })
+    .max(300, { message: "Message must not exceed 300 characters." })
+    .optional(),
+  profilePicturePermission: z.boolean(),
+  namePermission: z.boolean(),
+});

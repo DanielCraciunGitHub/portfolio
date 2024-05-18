@@ -5,7 +5,7 @@ import { blogConfig } from "@/config";
 import { staticStructuredData } from "@/config/structuredData";
 import { NavItem } from "@/components/Navbar/NavItem";
 
-import { WriteForUs } from "./WriteForUs";
+import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs";
 
 export const revalidate = 60;
 
@@ -16,15 +16,14 @@ export default async function Layout({
 }) {
   return (
     <>
-      <WriteForUs />
+      {/* <WriteForUs /> */}
       <section className="mt-4 flex flex-col items-center space-y-4">
-        <div className="w-full space-y-2 p-2">
+        <div className="w-full space-y-6 p-2">
           <Link href="/blog">
             <h1 className="text-center text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl">
               Info <span className="text-primary">Library</span>
             </h1>
           </Link>
-          <div className="text-center italic">Free Information Forever</div>
           <CategoryNavbar />
         </div>
         {/* <div>Search</div> */}
