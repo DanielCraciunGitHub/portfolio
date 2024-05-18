@@ -8,6 +8,7 @@ export interface BlogCard {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
+  author?: { name: string; avatar: Image };
   title: string;
   subtitle?: string;
   category: Category;

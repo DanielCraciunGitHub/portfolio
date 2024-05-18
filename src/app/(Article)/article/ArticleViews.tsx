@@ -7,7 +7,7 @@ interface ArticleViewsProps {
 }
 
 const ArticleViews = async ({ title }: ArticleViewsProps) => {
-  const views = await serverClient.blogRouter.getArticleViews(title);
+  const views = await serverClient.blogRouter.getArticleViews({ slug: title });
   await serverClient.blogRouter.addArticleView(title);
 
   return (

@@ -14,7 +14,7 @@ import { LikeData } from "@/types/blog";
 import { auth } from "@/lib/auth";
 import { getInfiniteBlogs } from "@/lib/blogs";
 import { sqliteTimestampNow } from "@/lib/utils";
-import { sendCheckComments } from "@/app/_actions/discord";
+import { sendInbox, sendPublishedPost } from "@/app/_actions/discord";
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment";
 
 import { publicProcedure, router } from "../trpc";
@@ -166,7 +166,7 @@ export const blogRouter = router({
         })
         .returning();
 
-      await sendCheckComments({
+      await sendInbox({
         body: input.body,
         slug: input.slug,
         commentId: id,
@@ -233,12 +233,19 @@ export const blogRouter = router({
     }),
 
   getArticleViews: publicProcedure
-    .input(z.string())
+    .input(z.object({ slug: z.string(), author: z.string().optional() }))
     .query(async ({ input }) => {
       const [views] = await db
         .select({ value: count() })
         .from(articleViews)
-        .where(eq(articleViews.articleSlug, input));
+        .where(eq(articleViews.articleSlug, input.slug));
+
+      if (views.value === 0) {
+        await db.insert(articleViews).values({ articleSlug: input.slug });
+
+        await sendPublishedPost({ slug: input.slug, author: input.author });
+        return 0;
+      }
 
       return views.value;
     }),

@@ -13,6 +13,7 @@ export async function getInfiniteBlogs(
             _id,
             _createdAt,
             _updatedAt,
+            author,
             title,
             subtitle,
             category,

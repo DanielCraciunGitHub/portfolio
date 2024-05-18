@@ -31,6 +31,7 @@ export const writeForUsFormSchema = z.object({
     .string()
     .email({ message: "Invalid Email" })
     .max(320, { message: "Invalid Email" }),
+  discord: z.string().optional(),
   articleLink: z
     .string()
     .url({ message: "Please enter a valid URL" })
@@ -43,11 +44,7 @@ export const writeForUsFormSchema = z.object({
         .startsWith("https://", { message: "Must start with https" }),
     )
     .optional(),
-  otherDetails: z
-    .string()
-    .min(4, { message: "Message must contain at least 4 characters" })
-    .max(300, { message: "Message must not exceed 300 characters." })
-    .optional(),
+  otherDetails: z.string().optional(),
   profilePicturePermission: z.boolean(),
   namePermission: z.boolean(),
 });

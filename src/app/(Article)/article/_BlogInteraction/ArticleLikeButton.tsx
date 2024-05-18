@@ -20,15 +20,6 @@ export const ArticleLikeButton = () => {
 
   const { data: session } = useSession();
 
-  const { data: articleViews } = trpc.blogRouter.getArticleViews.useQuery(
-    currentSlug,
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    },
-  );
-
   const { data, refetch: invalidateLikeData } =
     trpc.blogRouter.getArticleLikeData.useQuery(
       { slug: currentSlug },
@@ -88,18 +79,7 @@ export const ArticleLikeButton = () => {
         </PopoverContent>
       </Popover>
 
-      <div className="font-bold">
-        {likesData ? boostLikes(likesData.likes, articleViews) : "--"}
-      </div>
+      <div className="font-bold">{likesData?.likes ?? "--"}</div>
     </div>
   );
 };
-
-function boostLikes(likes: number, views?: number): number {
-  if (views) {
-    const extraLikes = Math.round(views / 26);
-    return likes + extraLikes;
-  } else {
-    return likes + 10;
-  }
-}
