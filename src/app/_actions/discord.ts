@@ -63,12 +63,14 @@ export const sendWriterSubmission = async (writerSubmission: WriterPayload) => {
             title: "Submission Received ✅",
             fields: [
               {
-                name: "Email",
-                value: `mailto:${writerSubmission.email}`,
+                name: "Discord",
+                value: `@${writerSubmission.discord}`,
+                inline: true,
               },
               {
-                name: "Discord",
-                value: writerSubmission.discord ?? "N/A",
+                name: "Email",
+                value: `${writerSubmission.email ? `mailto:${writerSubmission.email}` : "N/A"}`,
+                inline: true,
               },
               {
                 name: "Article Link",

@@ -27,24 +27,21 @@ export const articleCommentSchema = z.object({
 });
 
 export const writeForUsFormSchema = z.object({
-  email: z
-    .string()
-    .email({ message: "Invalid Email" })
-    .max(320, { message: "Invalid Email" }),
-  discord: z.string().optional(),
+  email: z.string().optional(),
+  discord: z.string().min(1, { message: "Please enter your discord username" }),
   articleLink: z
     .string()
     .url({ message: "Please enter a valid URL" })
     .startsWith("https://", { message: "Must start with https" }),
-  extraLinks: z
-    .array(
-      z
-        .string()
-        .url({ message: "Please enter a valid URL" })
-        .startsWith("https://", { message: "Must start with https" }),
-    )
-    .optional(),
-  otherDetails: z.string().optional(),
+  // extraLinks: z
+  //   .array(
+  //     z
+  //       .string()
+  //       .url({ message: "Please enter a valid URL" })
+  //       .startsWith("https://", { message: "Must start with https" }),
+  //   )
+  //   .optional(),
   profilePicturePermission: z.boolean(),
   namePermission: z.boolean(),
+  otherDetails: z.string().optional(),
 });

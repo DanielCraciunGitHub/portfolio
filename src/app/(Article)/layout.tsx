@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <ArticleNavbar />
 
-      {/* <WriteForUs /> */}
+      <WriteForUs />
 
       <main className="container">{children}</main>
       <Toaster />

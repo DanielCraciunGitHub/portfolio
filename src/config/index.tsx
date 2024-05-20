@@ -23,10 +23,10 @@ export const siteConfig = {
       name: "Blog",
       href: "/blog",
     },
-    {
-      name: "eBook",
-      href: "/ebook",
-    },
+    // {
+    //   name: "eBook",
+    //   href: "/ebook",
+    // },
     {
       name: "About",
       href: "/about",
@@ -83,7 +83,7 @@ export const danielConfig = {
 
   heroStats: [
     { "5+": "Large-Scale Projects Completed 🎯" },
-    { "3,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
+    { "5,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
     { "30,000+": "Monthly Blog Readers 📖" },
     { "100+": "Blog Posts Written 📝" },
   ] satisfies HeroStat[],

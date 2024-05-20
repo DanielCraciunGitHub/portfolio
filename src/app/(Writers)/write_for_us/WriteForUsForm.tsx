@@ -32,6 +32,7 @@ export const WriteForUsForm = ({}: WriteForUsFormProps) => {
     defaultValues: {
       email: "",
       articleLink: "",
+      discord: "",
       profilePicturePermission: false,
       namePermission: true,
       otherDetails: "",
@@ -75,16 +76,16 @@ export const WriteForUsForm = ({}: WriteForUsFormProps) => {
 
           <div className="flex flex-col justify-between space-y-2 md:flex-row md:space-x-3 md:space-y-0">
             <InputField
-              name="email"
-              label="Email*"
-              placeholder="johndoe@gmail.com"
+              name="discord"
+              label="Discord*"
+              placeholder="johndoe_21"
               control={form.control}
               className="w-full"
             />
             <InputField
-              name="discord"
-              label="Discord"
-              placeholder="johndoe_21"
+              name="email"
+              label="Email"
+              placeholder="johndoe@gmail.com"
               control={form.control}
               className="w-full"
             />

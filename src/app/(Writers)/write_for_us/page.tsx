@@ -32,10 +32,9 @@ const page = ({}: pageProps) => {
               "Free Article Review",
               "Unlimited Free Traction",
               "Unlimited Free Advertisement",
-              "Free Backlinks to the Original Article",
+              "No Login Required",
               "Loose Content Restriction Policy",
-              "Dashboard to Manage your Articles",
-              "Moderator in our InfoLibrary Discord",
+              "InfoLibrary Discord Writer Role",
               "100% Content Ownership",
             ]}
           />
@@ -44,8 +43,9 @@ const page = ({}: pageProps) => {
             title="What You Need To Do"
             icon={<PersonStanding className="text-yellow-400" />}
             features={[
-              "Send a Link to Your Article",
-              "Add some Optional Details",
+              "Link your Article",
+              "Enter your Discord Username",
+              "Enter some Optional Details",
               "That's it!",
             ]}
           />

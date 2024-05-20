@@ -16,7 +16,7 @@ export default async function Layout({
 }) {
   return (
     <>
-      {/* <WriteForUs /> */}
+      <WriteForUs />
       <section className="mt-4 flex flex-col items-center space-y-4">
         <div className="w-full space-y-6 p-2">
           <Link href="/blog">

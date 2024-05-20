@@ -79,10 +79,10 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         image: {
           "@type": "ImageObject",
           "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
-          url: article.author
+          url: article.author?.avatar
             ? urlForImage(article.author.avatar)
             : `${siteConfig.url}/icon.png`,
-          contentUrl: article.author
+          contentUrl: article.author?.avatar
             ? urlForImage(article.author.avatar)
             : `${siteConfig.url}/icon.png`,
           caption: article.author?.name ?? danielConfig.name,
@@ -137,7 +137,11 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         <div>
           {article.author ? (
             <AuthorAvatar
-              avatar={urlForImage(article.author.avatar)}
+              avatar={
+                article.author.avatar
+                  ? urlForImage(article.author.avatar)
+                  : undefined
+              }
               name={article.author.name}
             />
           ) : (

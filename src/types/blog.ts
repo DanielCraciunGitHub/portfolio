@@ -4,11 +4,17 @@ import { Image, TypedObject } from "sanity";
 
 type Category = "Web Development" | "Organisation" | "Self Development";
 
+interface Author {
+  name: string;
+  avatar?: Image;
+  discord?: string;
+}
+
 export interface BlogCard {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
-  author?: { name: string; avatar: Image };
+  author?: Author;
   title: string;
   subtitle?: string;
   category: Category;
@@ -18,7 +24,7 @@ export interface BlogCard {
 export interface Article {
   _id: string;
   _createdAt: string;
-  author?: { name: string; avatar: Image };
+  author?: Author;
   title: string;
   subtitle?: string;
   category: Category;

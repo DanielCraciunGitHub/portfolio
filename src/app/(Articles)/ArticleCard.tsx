@@ -64,7 +64,7 @@ export default function ArticleCard({
           <div>
             {author ? (
               <AuthorAvatar
-                avatar={urlForImage(author.avatar)}
+                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
                 name={author.name}
               />
             ) : (
