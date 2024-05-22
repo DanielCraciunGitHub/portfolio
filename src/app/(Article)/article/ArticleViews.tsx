@@ -9,7 +9,10 @@ interface ArticleViewsProps {
 
 const ArticleViews = async ({ title }: ArticleViewsProps) => {
   const views = await serverClient.blogRouter.getArticleViews({ slug: title });
-  await serverClient.blogRouter.addArticleView(title);
+  await serverClient.blogRouter.addArticleView({
+    slug: title,
+    views: views ?? 0,
+  });
 
   return (
     <div className="flex space-x-1">

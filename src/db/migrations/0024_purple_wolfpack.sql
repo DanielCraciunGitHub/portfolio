@@ -1,0 +1,1 @@
+ALTER TABLE `newArticleViews` RENAME TO `articleViews`;

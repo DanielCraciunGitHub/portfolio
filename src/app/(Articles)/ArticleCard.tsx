@@ -33,6 +33,7 @@ export default function ArticleCard({
       refetchOnWindowFocus: false,
     },
   );
+
   return (
     <Link href={`/article/${currentSlug}`} className="w-5/6 md:w-2/3">
       <Card className="border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">

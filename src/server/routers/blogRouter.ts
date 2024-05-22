@@ -235,24 +235,27 @@ export const blogRouter = router({
   getArticleViews: publicProcedure
     .input(z.object({ slug: z.string(), author: z.string().optional() }))
     .query(async ({ input }) => {
-      const [views] = await db
-        .select({ value: count() })
+      const [{ views }] = await db
+        .select({ views: articleViews.views })
         .from(articleViews)
         .where(eq(articleViews.articleSlug, input.slug));
 
-      if (views.value === 0) {
+      if (views === 0) {
         await db.insert(articleViews).values({ articleSlug: input.slug });
 
         await sendPublishedPost({ slug: input.slug, author: input.author });
         return 0;
       }
 
-      return views.value;
+      return views;
     }),
 
   addArticleView: publicProcedure
-    .input(z.string())
+    .input(z.object({ views: z.number(), slug: z.string() }))
     .mutation(async ({ input }) => {
-      await db.insert(articleViews).values({ articleSlug: input });
+      await db
+        .update(articleViews)
+        .set({ views: input.views + 1 })
+        .where(eq(articleViews.articleSlug, input.slug));
     }),
 });

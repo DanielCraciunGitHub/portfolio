@@ -43,7 +43,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
   return (
     <div>
       <div
-        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-40 gap-y-24" : "gap-y-20"}`}
+        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-60 gap-y-40" : "gap-x-10 gap-y-20"}`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />
@@ -53,7 +53,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
           ))
         )}
       </div>
-      <Button variant={"ghost"} ref={ref}></Button>
+      <Button variant="ghost" ref={ref}></Button>
     </div>
   );
 }

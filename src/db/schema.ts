@@ -61,11 +61,10 @@ export const verificationTokens = sqliteTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   }),
 );
+
 export const articleViews = sqliteTable("articleViews", {
-  id: integer("id", { mode: "number" })
-    .notNull()
-    .primaryKey({ autoIncrement: true }),
-  articleSlug: text("articleSlug", { length: 255 }).notNull(),
+  articleSlug: text("articleSlug", { length: 255 }).notNull().primaryKey(),
+  views: integer("views", { mode: "number" }).default(0),
 });
 
 export const articleLikes = sqliteTable("articleLikes", {
