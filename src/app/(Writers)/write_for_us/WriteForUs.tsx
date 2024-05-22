@@ -14,13 +14,13 @@ export const WriteForUs = ({}: WriteForUsProps) => {
   }, []);
 
   return show ? (
-    <div className="relative flex flex-col items-center justify-center bg-black p-1 text-sm italic md:flex-row">
+    <div className="relative flex flex-col items-center justify-center bg-black p-1 italic text-white dark:bg-gray-800 md:flex-row">
       <div
         onClick={() => {
           setShow(false);
           localStorage.setItem("writeForUs", "true");
         }}
-        className="absolute right-2 cursor-pointer"
+        className="absolute right-2 cursor-pointer opacity-50"
       >
         <X />
       </div>

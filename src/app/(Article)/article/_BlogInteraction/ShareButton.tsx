@@ -18,7 +18,7 @@ export const ShareButton = () => {
         });
       }}
     >
-      <Button variant="ghost">
+      <Button variant="ghost" className="hover:bg-inherit hover:text-inherit">
         <Share />
       </Button>
     </CopyToClipboard>

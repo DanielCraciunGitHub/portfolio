@@ -41,9 +41,15 @@ export default async function Layout({
 }
 const CategoryNavbar = () => {
   return (
-    <nav className="flex flex-col space-x-2 rounded border border-muted md:flex-row md:justify-center md:p-2">
+    <nav className="flex flex-col divide-y-2 divide-primary rounded bg-muted md:flex-row md:justify-center md:divide-x-2 md:divide-y-0 md:p-2">
       {blogConfig.categoryLinks.map((link) => (
-        <NavItem key={link.name} page={`/blog${link.href}`} text={link.name} />
+        <div key={link.name}>
+          <NavItem
+            page={`/blog${link.href}`}
+            text={link.name}
+            className="ml-2 mr-2 flex self-center"
+          />
+        </div>
       ))}
     </nav>
   );

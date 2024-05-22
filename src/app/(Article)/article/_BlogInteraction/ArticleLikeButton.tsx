@@ -50,11 +50,12 @@ export const ArticleLikeButton = () => {
     });
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center text-white">
       <Popover>
         {session ? (
           <Button
             variant="ghost"
+            className="hover:bg-inherit hover:text-inherit"
             size="icon"
             onClick={debounce(async () => {
               // 250ms debounced used to prevent API overload
@@ -68,7 +69,11 @@ export const ArticleLikeButton = () => {
           </Button>
         ) : (
           <PopoverTrigger asChild>
-            <Button variant="ghost" size="icon">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-inherit hover:text-inherit"
+            >
               <LikeHeart isLiked={likesData?.isLiked} />
             </Button>
           </PopoverTrigger>
