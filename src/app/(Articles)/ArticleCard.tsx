@@ -3,14 +3,13 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 
 import { BlogCard } from "@/types/blog";
-import { formatTimeToNow } from "@/lib/utils";
+import { formatArticleViews, formatTimeToNow } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 import { trpc } from "../_trpc/client";
@@ -35,7 +34,7 @@ export default function ArticleCard({
     },
   );
   return (
-    <Link href={`/article/${currentSlug}`} className="w-2/3">
+    <Link href={`/article/${currentSlug}`} className="w-5/6 md:w-2/3">
       <Card className="border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
         <Image
           src={urlFor(image).size(1200, 600).url()}
@@ -46,12 +45,12 @@ export default function ArticleCard({
           className="rounded-t-lg"
         />
         <CardHeader>
-          <CardTitle className="line-clamp-3 text-base font-bold sm:text-lg lg:text-xl xl:text-2xl">
+          <span className="text-base font-bold sm:text-lg lg:text-xl xl:text-2xl">
             {title}
-          </CardTitle>
+          </span>
           <CardDescription className="truncate">{subtitle}</CardDescription>
         </CardHeader>
-        <CardFooter className="flex flex-col space-y-2 pb-3 md:flex-row md:justify-between md:space-y-0">
+        <CardFooter className="flex justify-between pb-3">
           <Badge variant="secondary" className="inline-flex">
             {category}
           </Badge>
@@ -60,7 +59,7 @@ export default function ArticleCard({
             {formatTimeToNow(new Date(_createdAt))}
           </div>
         </CardFooter>
-        <CardFooter className="flex flex-col justify-center space-y-2 font-semibold md:flex-row md:justify-between md:space-y-0">
+        <CardFooter className="flex justify-between pt-2 font-semibold">
           <div>
             {author ? (
               <AuthorAvatar
@@ -72,8 +71,12 @@ export default function ArticleCard({
             )}
           </div>
           <div className="flex items-center space-x-2 text-primary">
-            <Eye className="size-5" />
-            <div>{views}</div>
+            <Eye
+              className={`size-5 ${views && views > 500 ? "text-yellow-500" : ""}`}
+            />
+            <div className={`${views && views > 500 ? "text-yellow-500" : ""}`}>
+              {formatArticleViews(views ?? 0)}
+            </div>
           </div>
         </CardFooter>
       </Card>

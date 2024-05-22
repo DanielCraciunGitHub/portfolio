@@ -1,5 +1,11 @@
 import { Metadata, Viewport } from "next";
-import { blogConfig, danielConfig, eBookConfig, siteConfig } from "@/config";
+import {
+  blogConfig,
+  danielConfig,
+  eBookConfig,
+  siteConfig,
+  writeForUsConfig,
+} from "@/config";
 
 export const baseMetadata: Metadata = {
   title: {
@@ -74,6 +80,43 @@ export const baseMetadata: Metadata = {
 };
 export const staticMetadata = {
   ...baseMetadata,
+  write_for_us: {
+    title: { absolute: writeForUsConfig.title },
+    description: writeForUsConfig.description,
+    icons: {
+      icon: writeForUsConfig.image,
+    },
+    keywords: [...writeForUsConfig.benefits, "Article", "Publish"],
+    openGraph: {
+      ...baseMetadata.openGraph,
+      title: writeForUsConfig.title,
+      description: writeForUsConfig.description,
+      images: [
+        {
+          url: `${siteConfig.url + writeForUsConfig.image}`,
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: blogConfig.title,
+        },
+      ],
+      url: "/write_for_us",
+    },
+    twitter: {
+      ...baseMetadata.twitter,
+      title: writeForUsConfig.title,
+      description: writeForUsConfig.description,
+      images: [
+        {
+          url: `${siteConfig.url + writeForUsConfig.image}`,
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: blogConfig.title,
+        },
+      ],
+    },
+  } satisfies Metadata,
   blog: {
     title: blogConfig.title,
     description: blogConfig.description,

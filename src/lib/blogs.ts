@@ -29,19 +29,14 @@ export async function getInfiniteBlogs(
   return blogs;
 }
 
-export async function getBlogs() {
+export async function getSitemapBlogData() {
   const query = groq`*[_type == "blog"] | order(_createdAt desc) {
-            _id,
-            _createdAt,
             _updatedAt,
-            title,
-            subtitle,
-            category,
             "currentSlug": slug.current,
-            image,
           }`;
 
-  const blogs = await client.fetch<BlogCard[]>(query);
+  const blogs =
+    await client.fetch<Pick<BlogCard, "currentSlug" | "_updatedAt">[]>(query);
 
   return blogs;
 }

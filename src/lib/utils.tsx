@@ -108,6 +108,14 @@ export function articleSlugToTitle(slug: string): string {
   return title;
 }
 
+export function formatArticleViews(views: number): string {
+  if (views >= 1000) {
+    return `${(views / 1000).toFixed(1)}k`;
+  } else {
+    return String(views);
+  }
+}
+
 // Format:
 
 // This is a nice image: https://...

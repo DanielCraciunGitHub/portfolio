@@ -6,12 +6,14 @@ import BenefitCard from "./BenefitCard";
 import { WriteForUsForm } from "./WriteForUsForm";
 import { Check, ChevronDown, PersonStanding } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
+import { staticMetadata } from "@/config/metadata";
+import { writeForUsConfig } from "@/config";
 
-export const metadata: Metadata = {};
+export const metadata: Metadata = {
+  ...staticMetadata.write_for_us,
+};
 
-interface pageProps {}
-
-const page = ({}: pageProps) => {
+const page = () => {
   return (
     <>
       <ArticleNavbar />
@@ -28,26 +30,13 @@ const page = ({}: pageProps) => {
             key="Benefits"
             title="Benefits"
             icon={<Check className="text-yellow-400" />}
-            features={[
-              "Free Article Review",
-              "Unlimited Free Traction",
-              "Unlimited Free Advertisement",
-              "No Login Required",
-              "Loose Content Restriction Policy",
-              "InfoLibrary Discord Writer Role",
-              "100% Content Ownership",
-            ]}
+            features={writeForUsConfig.benefits}
           />
           <BenefitCard
             key="What You Need To Do"
             title="What You Need To Do"
             icon={<PersonStanding className="text-yellow-400" />}
-            features={[
-              "Link your Article",
-              "Enter your Discord Username",
-              "Enter some Optional Details",
-              "That's it!",
-            ]}
+            features={writeForUsConfig.requirements}
           />
         </div>
         <div className="flex justify-center">

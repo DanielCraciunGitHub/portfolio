@@ -179,4 +179,24 @@ export const blogConfig = {
   ] satisfies NavItem[],
 };
 
-export const writeForUsConfig = {};
+export const writeForUsConfig = {
+  title: "Write For Us",
+  image: "/images/info-library.png",
+  description:
+    "Unlock your Potential, Inspire the World. Submit Your Articles Today, And We Will Take Care of The Rest.",
+  benefits: [
+    "Free Article Review",
+    "Unlimited Free Traction",
+    "Unlimited Free Advertisement",
+    "No Login Required",
+    "Loose Content Restriction Policy",
+    "InfoLibrary Discord Writer Role",
+    "100% Content Ownership",
+  ],
+  requirements: [
+    "Link your Article",
+    "Enter your Discord Username",
+    "Enter some Optional Details",
+    "That's it!",
+  ],
+};
