@@ -26,7 +26,6 @@ export default async function Layout({
           </Link>
           <CategoryNavbar />
         </div>
-        {/* <div>Search</div> */}
         <main className="flex flex-1 justify-center">{children}</main>
       </section>
       <Script

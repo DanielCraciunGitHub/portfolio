@@ -1,13 +1,12 @@
 import { Metadata } from "next";
 
-import { ArticleNavbar } from "@/app/(Article)/article/ArticleNavbar";
-
 import BenefitCard from "./BenefitCard";
 import { WriteForUsForm } from "./WriteForUsForm";
 import { Check, ChevronDown, PersonStanding } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { staticMetadata } from "@/config/metadata";
 import { writeForUsConfig } from "@/config";
+import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar";
 
 export const metadata: Metadata = {
   ...staticMetadata.write_for_us,
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <ArticleNavbar />
+      <BlogArticleNavbar returnTo="/blog" />
 
       <main className="mb-6 mt-24 flex flex-col items-center space-y-4">
         <h1 className="max-w-3xl text-center text-4xl font-bold tracking-tight md:text-5xl xl:text-6xl">

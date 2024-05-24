@@ -8,8 +8,9 @@ export async function getInfiniteBlogs(
   cursor: string,
   limit: number,
   category?: string,
+  title?: string,
 ) {
-  const query = groq`*[_type == "blog" && _createdAt < $cursor${category ? ` && category == $category` : ""}] | order(_createdAt desc) [${0}...${limit}]{
+  const query = groq`*[_type == "blog" ${title && title.length ? `&& title match "${title}*"` : ""} && _createdAt < $cursor${category ? ` && category == $category` : ""}] | order(_createdAt desc) [${0}...${limit}]{
             _id,
             _createdAt,
             _updatedAt,

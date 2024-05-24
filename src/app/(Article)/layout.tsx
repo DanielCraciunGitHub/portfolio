@@ -1,12 +1,13 @@
 import { Toaster } from "@/components/ui/toaster";
 
 import { WriteForUs } from "../(Writers)/write_for_us/WriteForUs";
-import { ArticleNavbar } from "./article/ArticleNavbar";
+
+import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ArticleNavbar />
+      <BlogArticleNavbar returnTo="/blog" />
 
       <WriteForUs />
 

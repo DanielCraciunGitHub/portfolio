@@ -5,8 +5,8 @@ import { siteConfig } from "@/config";
 import { staticMetadata } from "@/config/metadata";
 import { staticStructuredData } from "@/config/structuredData";
 
-import SocialLink from "../../../components/SocialLink";
 import ContactForm from "./ContactForm";
+import { SocialLinksArray } from "@/components/SocialLinksArray";
 
 export const metadata: Metadata = {
   ...staticMetadata.contact,
@@ -25,9 +25,15 @@ export default function page() {
             ))}
           </div>
           <div className="space-x-4">
-            {siteConfig.socialLinks.map(({ href, icon, name }) => (
-              <SocialLink key={href} href={href} name={name} icon={icon} />
-            ))}
+            <SocialLinksArray
+              socialLinks={[
+                "Discord.gg",
+                "X.com",
+                "Linkedin.com",
+                "Medium.com",
+                "Github.com",
+              ]}
+            />
           </div>
         </div>
         <div className="flex flex-col items-center lg:col-span-7">

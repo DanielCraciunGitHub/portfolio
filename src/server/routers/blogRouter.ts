@@ -7,7 +7,7 @@ import {
   users,
 } from "@/db/schema";
 import { env } from "@/env.mjs";
-import { and, asc, count, eq, isNull, or } from "drizzle-orm";
+import { and, asc, eq, isNull, or } from "drizzle-orm";
 import { z } from "zod";
 
 import { LikeData } from "@/types/blog";
@@ -26,6 +26,7 @@ export const blogRouter = router({
         limit: z.number().min(1).max(6),
         cursor: z.string().nullish(),
         category: z.string().optional(),
+        title: z.string().optional(),
       }),
     )
     .query(async ({ input }) => {
@@ -33,6 +34,7 @@ export const blogRouter = router({
         input.cursor ?? Date.toString(),
         input.limit,
         input.category,
+        input.title,
       );
 
       let nextId;

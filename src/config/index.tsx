@@ -62,11 +62,11 @@ export const siteConfig = {
       icon: <BsLinkedin />,
     },
     {
-      href: "https://twitter.com/craciun_07",
+      href: "https://x.com/craciun_07",
       name: "X.com",
       icon: <BsTwitterX />,
     },
-  ] satisfies SocialLink[],
+  ] as const satisfies SocialLink[],
   contactMe: [
     `Connect with me today through social media or by filling in the contact form.`,
     `Thank you.`,
