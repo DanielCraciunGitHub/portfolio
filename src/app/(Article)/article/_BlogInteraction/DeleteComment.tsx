@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 interface DeleteCommentProps {
   comment: TopComment | Reply;

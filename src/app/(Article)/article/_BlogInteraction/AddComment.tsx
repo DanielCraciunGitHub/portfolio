@@ -13,7 +13,7 @@ import { Form } from "@/components/ui/form";
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
 import InputField from "@/components/InputField";
 import { UserAvatar } from "@/components/UserAvatar";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 type Inputs = z.infer<typeof articleCommentSchema>;
 

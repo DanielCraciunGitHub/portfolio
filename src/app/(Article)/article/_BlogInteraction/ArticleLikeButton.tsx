@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import AuthButton from "@/components/Buttons/AuthButton";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 import { LikeHeart } from "./LikeHeart";
 

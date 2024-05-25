@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import AuthButton from "@/components/Buttons/AuthButton";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 import { AddComment } from "./AddComment";
 import { Comment } from "./Comment";

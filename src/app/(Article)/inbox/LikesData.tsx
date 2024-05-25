@@ -4,7 +4,7 @@ import { siteConfig } from "@/config";
 import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { serverClient } from "@/app/_trpc/serverClient";
+import { serverClient } from "@/server/serverClient";
 
 interface LikesDataProps {}
 

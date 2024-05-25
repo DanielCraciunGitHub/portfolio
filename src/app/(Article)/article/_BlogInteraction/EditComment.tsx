@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 interface EditCommentProps {
   defaultValue: string;

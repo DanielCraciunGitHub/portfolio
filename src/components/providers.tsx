@@ -11,7 +11,7 @@ import { type ThemeProviderProps } from "next-themes/dist/types";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import superjson from "superjson";
 
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;

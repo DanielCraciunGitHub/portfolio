@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { serverClient } from "@/app/_trpc/serverClient";
+import { serverClient } from "@/server/serverClient";
 
 interface WelcomeAdminProps {}
 

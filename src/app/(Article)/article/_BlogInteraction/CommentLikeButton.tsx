@@ -3,7 +3,7 @@ import { debounce } from "lodash";
 import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 import { CommentProps } from "./Comment";
 import { LikeHeart } from "./LikeHeart";

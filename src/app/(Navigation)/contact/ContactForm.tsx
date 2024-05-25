@@ -9,7 +9,7 @@ import { contactFormSchema } from "@/lib/validations/form";
 import { Form } from "@/components/ui/form";
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
 import InputField from "@/components/InputField";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 type Inputs = z.infer<typeof contactFormSchema>;
 

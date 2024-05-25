@@ -1,5 +1,5 @@
 import { getInitials } from "@/lib/utils";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 

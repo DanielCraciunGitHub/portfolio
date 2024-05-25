@@ -12,7 +12,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 
-import { trpc } from "../_trpc/client";
+import { trpc } from "../../server/client";
 import { urlFor, urlForImage } from "../../../sanity/lib/image";
 import { AuthorAvatar } from "@/components/AuthorAvatar";
 

@@ -3,6 +3,7 @@ import { StaticImageData } from "next/image";
 
 export type NavItem = {
   href: string;
+  emoji?: string;
 } & (
   | {
       name: string;

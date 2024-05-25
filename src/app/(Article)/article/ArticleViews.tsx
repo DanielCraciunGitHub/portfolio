@@ -1,6 +1,6 @@
 import { Eye } from "lucide-react";
 
-import { serverClient } from "@/app/_trpc/serverClient";
+import { serverClient } from "@/server/serverClient";
 import { formatArticleViews } from "@/lib/utils";
 
 interface ArticleViewsProps {

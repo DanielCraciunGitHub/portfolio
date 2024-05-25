@@ -5,7 +5,7 @@ import { eBookConfig } from "@/config";
 
 import { staticMetadata } from "@/config/metadata";
 import { staticStructuredData } from "@/config/structuredData";
-import { serverClient } from "@/app/_trpc/serverClient";
+import { serverClient } from "@/server/serverClient";
 
 import StripeButton from "./StripeButton";
 

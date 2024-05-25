@@ -158,22 +158,27 @@ export const blogConfig = {
   categoryLinks: [
     {
       name: "Web Development",
+      emoji: "🌐",
       href: nameToPath("Web Development"),
     },
     {
       name: "Organisation",
+      emoji: "📦",
       href: nameToPath("Organisation"),
     },
     {
       name: "Meal Prep",
+      emoji: "🍒",
       href: nameToPath("Meal Prep"),
     },
     {
       name: "Self Development",
+      emoji: "🧑",
       href: nameToPath("Self Development"),
     },
     {
       name: "Writing",
+      emoji: "📝",
       href: nameToPath("Writing"),
     },
   ] satisfies NavItem[],

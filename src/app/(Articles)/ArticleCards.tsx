@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { BlogCard } from "@/types/blog";
 import { Button } from "@/components/ui/button";
 
-import { trpc } from "../_trpc/client";
+import { trpc } from "../../server/client";
 import ArticleCard from "./ArticleCard";
 import { ArticleCardsShell } from "./ArticleCardShell";
 import { SearchBar } from "./SearchBar";

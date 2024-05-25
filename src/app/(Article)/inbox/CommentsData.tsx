@@ -13,7 +13,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { trpc } from "@/app/_trpc/client";
+import { trpc } from "@/server/client";
 
 export const CommentsData = () => {
   const { data: commentsData, refetch: revalidateInboxComments } =
