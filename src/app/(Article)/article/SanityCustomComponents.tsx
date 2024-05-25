@@ -14,7 +14,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     link: ({ value, children }) => (
       <Link
         className="text-blue-500"
-        href={value.href}
+        href={`${value.href}`}
         target="_blank"
         rel="noopener noreferrer"
       >

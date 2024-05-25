@@ -146,7 +146,7 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
         {source ? (
           <Link
             className="text-blue-500"
-            href={source}
+            href={`${source}`}
             target="_blank"
             rel="noopener noreferrer"
           >

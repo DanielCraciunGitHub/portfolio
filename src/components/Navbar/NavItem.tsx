@@ -19,7 +19,7 @@ export function NavItem(props: NavItemProps) {
   const { page, text, icon, className, ...restProps } = props;
   return (
     <Link
-      href={page}
+      href={`${page}`}
       className={cn(
         buttonVariants({ variant: "ghost" }),
         "rounded text-muted-foreground hover:text-primary hover:transition hover:ease-linear dark:hover:text-primary",

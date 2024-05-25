@@ -237,19 +237,19 @@ export const blogRouter = router({
   getArticleViews: publicProcedure
     .input(z.object({ slug: z.string(), author: z.string().optional() }))
     .query(async ({ input }) => {
-      const [{ views }] = await db
+      const [data] = await db
         .select({ views: articleViews.views })
         .from(articleViews)
         .where(eq(articleViews.articleSlug, input.slug));
 
-      if (views === 0) {
+      if (!data) {
         await db.insert(articleViews).values({ articleSlug: input.slug });
 
         await sendPublishedPost({ slug: input.slug, author: input.author });
         return 0;
       }
 
-      return views;
+      return data.views;
     }),
 
   addArticleView: publicProcedure

@@ -24,7 +24,7 @@ export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
         <div className="flex w-full justify-around">
           <div>
             <Link
-              href={returnTo}
+              href={`${returnTo}`}
               className={cn(buttonVariants({ variant: "outline" }))}
             >
               <FaChevronLeft />

@@ -16,7 +16,7 @@ export default function SocialLink({
 }: SocialLinkProps) {
   return (
     <Link
-      href={href}
+      href={`${href}`}
       rel="noopener noreferrer"
       target="_blank"
       className={cn(
