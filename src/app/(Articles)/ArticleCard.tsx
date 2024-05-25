@@ -35,8 +35,11 @@ export default function ArticleCard({
   );
 
   return (
-    <Link href={`/article/${currentSlug}`} className="w-5/6 md:w-2/3">
-      <Card className="border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
+    <Link
+      href={`/article/${currentSlug}`}
+      className="flex w-[350px] self-stretch md:w-[400px] xl:w-[450px]"
+    >
+      <Card className="flex flex-col border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
         <Image
           src={urlFor(image).size(1200, 600).url()}
           priority
@@ -45,41 +48,53 @@ export default function ArticleCard({
           height={500}
           className="rounded-t-lg"
         />
-        <CardHeader>
-          <span className="text-base font-bold sm:text-lg lg:text-xl xl:text-2xl">
-            {title}
-          </span>
-          <CardDescription className="truncate">{subtitle}</CardDescription>
-        </CardHeader>
-        <CardFooter className="flex justify-between pb-3">
-          <Badge variant="secondary" className="inline-flex">
-            {category}
-          </Badge>
+        <div className="flex h-full flex-col justify-between">
+          <CardHeader className="text-wrap break-words">
+            <span className="flex grow text-base font-bold sm:text-lg lg:text-xl xl:text-2xl">
+              {title}
+            </span>
+            <CardDescription>{subtitle}</CardDescription>
+          </CardHeader>
 
-          <div className="text-sm font-semibold text-muted-foreground">
-            {formatTimeToNow(new Date(_createdAt))}
+          <div className="flex flex-col">
+            <CardFooter className="flex justify-between pb-3">
+              <Badge variant="secondary" className="inline-flex">
+                {category}
+              </Badge>
+
+              <div className="text-sm font-semibold text-muted-foreground">
+                {formatTimeToNow(new Date(_createdAt))}
+              </div>
+            </CardFooter>
+            <CardFooter className="flex justify-between pt-2 font-semibold">
+              <div>
+                {author ? (
+                  <AuthorAvatar
+                    avatar={
+                      author.avatar ? urlForImage(author.avatar) : undefined
+                    }
+                    name={author.name}
+                  />
+                ) : (
+                  <AuthorAvatar
+                    avatar="/images/daniel.png"
+                    name="Daniel Craciun"
+                  />
+                )}
+              </div>
+              <div className="flex items-center space-x-2 text-primary">
+                <Eye
+                  className={`size-5 ${views && views > 500 ? "text-yellow-500" : ""}`}
+                />
+                <div
+                  className={`${views && views > 500 ? "text-yellow-500" : ""}`}
+                >
+                  {formatArticleViews(views ?? 0)}
+                </div>
+              </div>
+            </CardFooter>
           </div>
-        </CardFooter>
-        <CardFooter className="flex justify-between pt-2 font-semibold">
-          <div>
-            {author ? (
-              <AuthorAvatar
-                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
-                name={author.name}
-              />
-            ) : (
-              <AuthorAvatar avatar="/images/daniel.png" name="Daniel Craciun" />
-            )}
-          </div>
-          <div className="flex items-center space-x-2 text-primary">
-            <Eye
-              className={`size-5 ${views && views > 500 ? "text-yellow-500" : ""}`}
-            />
-            <div className={`${views && views > 500 ? "text-yellow-500" : ""}`}>
-              {formatArticleViews(views ?? 0)}
-            </div>
-          </div>
-        </CardFooter>
+        </div>
       </Card>
     </Link>
   );

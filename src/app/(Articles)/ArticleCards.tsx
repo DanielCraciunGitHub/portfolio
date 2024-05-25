@@ -51,7 +51,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
     <div className="flex flex-col items-center">
       <SearchBar updateSearchTitle={updateSearchTitle} />
       <div
-        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-60 gap-y-40" : "gap-x-10 gap-y-20"}`}
+        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 2xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-60 gap-y-40" : "gap-24 gap-x-36"}`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />
