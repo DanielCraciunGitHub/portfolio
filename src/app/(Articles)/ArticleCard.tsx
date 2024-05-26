@@ -37,7 +37,8 @@ export default function ArticleCard({
   return (
     <Link
       href={`/article/${currentSlug}`}
-      className="flex w-[350px] self-stretch md:w-[400px] xl:w-[450px]"
+      className="flex w-[350px] self-stretch rounded-lg ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:w-[400px] xl:w-[450px]"
+      tabIndex={0}
     >
       <Card className="flex flex-col border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
         <Image

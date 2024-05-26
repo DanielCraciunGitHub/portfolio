@@ -39,10 +39,15 @@ export default async function Home() {
             {danielConfig.description}
           </p>
           <div className="flex space-x-5">
-            <Button className="dark:text-foreground" asChild>
+            <Button className="dark:text-foreground" asChild tabIndex={0}>
               <Link href="/contact">Connect With Me</Link>
             </Button>
-            <Button className="text-foreground" variant="link" asChild>
+            <Button
+              className="text-foreground"
+              variant="link"
+              asChild
+              tabIndex={0}
+            >
               <a download href="/CV.pdf">
                 Download CV
               </a>

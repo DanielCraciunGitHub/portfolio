@@ -23,7 +23,7 @@ export const SocialLinksArray = ({ socialLinks }: SocialLinksArrayProps) => {
   )!;
 
   return (
-    <div className="space-x-2">
+    <div className="flex space-x-2">
       {socialLinks.includes("Discord.gg") ? (
         <SocialLink
           key={discord.href}

@@ -61,7 +61,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
           ))
         )}
       </div>
-      <Button variant="ghost" ref={ref}></Button>
+      <Button variant="ghost" ref={ref} tabIndex={-1}></Button>
     </div>
   );
 }

@@ -24,6 +24,7 @@ export default async function Layout({
               Info <span className="text-primary">Library</span>
             </h1>
           </Link>
+
           <CategoryNavbar />
         </div>
         <main className="flex flex-1 justify-center">{children}</main>
@@ -47,6 +48,7 @@ const CategoryNavbar = () => {
             page={`/blog${link.href}`}
             text={`${link.name} ${link.emoji ? link.emoji : ""}`}
             className="ml-2 mr-2 flex self-center"
+            tabIndex={0}
           />
         </div>
       ))}

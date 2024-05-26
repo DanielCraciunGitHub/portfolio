@@ -4,8 +4,11 @@ import type { SocialLink } from "@/types";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-interface SocialLinkProps extends SocialLink {
+interface SocialLinkProps
+  extends SocialLink,
+    React.AnchorHTMLAttributes<HTMLDivElement> {
   className?: string;
+  href: string;
 }
 
 export default function SocialLink({
@@ -23,6 +26,7 @@ export default function SocialLink({
         buttonVariants({ size: "icon", variant: "outline" }),
         className,
       )}
+      tabIndex={0}
     >
       {icon}
       <span className="sr-only">{name}</span>

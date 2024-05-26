@@ -22,14 +22,14 @@ export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
     >
       <div className="flex justify-center p-6">
         <div className="flex w-full justify-around">
-          <div>
-            <Link
-              href={`${returnTo}`}
-              className={cn(buttonVariants({ variant: "outline" }))}
-            >
-              <FaChevronLeft />
-            </Link>
-          </div>
+          <Link
+            href={`${returnTo}`}
+            className={cn(buttonVariants({ variant: "outline" }))}
+            tabIndex={0}
+          >
+            <FaChevronLeft />
+          </Link>
+
           <div className="space-x-2">
             <SocialLinksArray
               socialLinks={[
