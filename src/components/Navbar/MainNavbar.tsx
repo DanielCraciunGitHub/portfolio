@@ -16,9 +16,15 @@ export const MainNavbar = () => {
             className="text-4xl"
           />
         </div>
-        <div>
+        <div className="flex divide-x-2 divide-primary">
           {restLinks.map((item) => (
-            <NavItem key={item.name} page={item.href} text={item.name} />
+            <div key={item.name}>
+              <NavItem
+                page={item.href}
+                text={item.name}
+                className="ml-2 mr-2"
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -50,15 +50,17 @@ export default function ArticleCard({
         />
         <div className="flex h-full flex-col justify-between">
           <CardHeader className="text-wrap break-words">
-            <span className="flex grow text-base font-bold sm:text-lg lg:text-xl xl:text-2xl">
+            <span className="lg:text-2x flex grow text-lg font-bold sm:text-xl xl:text-3xl">
               {title}
             </span>
-            <CardDescription>{subtitle}</CardDescription>
+            <CardDescription className="text-base tracking-tight md:text-lg">
+              {subtitle}
+            </CardDescription>
           </CardHeader>
 
           <div className="flex flex-col">
             <CardFooter className="flex justify-between pb-3">
-              <Badge variant="secondary" className="inline-flex">
+              <Badge variant="default" className="inline-flex font-bold">
                 {category}
               </Badge>
 

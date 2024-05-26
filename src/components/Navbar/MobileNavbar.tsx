@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config";
-import { PanelRight } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import {
   Sheet,
@@ -24,16 +24,24 @@ export function MobileNavbar() {
       <Sheet>
         <div className="flex w-full justify-end">
           <SheetTrigger className="p-2">
-            <PanelRight />
+            <Menu />
             <span className="sr-only">Open Mobile Menu</span>
           </SheetTrigger>
         </div>
         <SheetContent className="flex flex-col items-center" side="right">
-          {navItems.map((item) => (
-            <SheetClose asChild key={item.name}>
-              <NavItem page={item.href} text={item.name} />
-            </SheetClose>
-          ))}
+          <div className="flex w-full flex-col items-center divide-y-2 divide-primary">
+            {navItems.map((item) => (
+              <div key={item.name} className="w-full">
+                <SheetClose asChild>
+                  <NavItem
+                    page={item.href}
+                    text={item.name}
+                    className="mb-2 mt-2 flex self-center"
+                  />
+                </SheetClose>
+              </div>
+            ))}
+          </div>
         </SheetContent>
       </Sheet>
     </div>

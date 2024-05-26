@@ -11,7 +11,7 @@ export const SearchBar = ({ updateSearchTitle }: SearchBarProps) => {
   const debouncedUpdateSearchTitle = debounce(updateSearchTitle, 600);
   return (
     <Input
-      className="w-fit"
+      className="w-fit bg-muted text-center outline outline-muted-foreground/50"
       placeholder="Search 🔍"
       onChange={(e) => debouncedUpdateSearchTitle(e.target.value)}
     />
