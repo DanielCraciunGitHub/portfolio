@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -11,6 +11,8 @@ import { trpc } from "@/server/client";
 
 import { AddComment } from "./AddComment";
 import { Comment } from "./Comment";
+import { useKeybind } from "@/hooks/useKeybind";
+import { buttonVariants } from "@/components/ui/button";
 
 export const CommentSection = () => {
   const { title: currentSlug }: { title: string } = useParams();
@@ -20,6 +22,10 @@ export const CommentSection = () => {
 
   const { data: session } = useSession();
   const searchParams = useSearchParams();
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useKeybind(buttonRef, { key: "m", ctrlKey: true }, () => setOpen(!open));
 
   useEffect(() => {
     if (searchParams.get("id") != null) {
@@ -49,7 +55,7 @@ export const CommentSection = () => {
       }}
       open={open}
     >
-      <SheetTrigger>
+      <SheetTrigger className={buttonVariants({ variant: "ghost" })}>
         <MessageCircle />
         <span className="sr-only">Open Comment Menu</span>
       </SheetTrigger>

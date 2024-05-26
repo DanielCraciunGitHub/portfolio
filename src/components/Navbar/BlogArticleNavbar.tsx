@@ -8,6 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { DarkModeButton } from "@/components/Buttons/DarkModeButton";
 import { SocialLinksArray } from "@/components/SocialLinksArray";
 import { useScrollUp } from "@/hooks/useScrollUp";
+import { useRef } from "react";
+import { useKeybind } from "@/hooks/useKeybind";
 
 interface BlogArticleNavbarProps {
   returnTo: "/blog" | "/";
@@ -15,6 +17,10 @@ interface BlogArticleNavbarProps {
 
 export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
   const { scrollY, scrollingUp } = useScrollUp();
+
+  const anchorRef = useRef<HTMLAnchorElement>(null);
+
+  useKeybind(anchorRef, { key: "ArrowLeft" }, () => anchorRef.current?.click());
 
   return (
     <nav
@@ -26,6 +32,7 @@ export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
             href={`${returnTo}`}
             className={cn(buttonVariants({ variant: "outline" }))}
             tabIndex={0}
+            ref={anchorRef}
           >
             <FaChevronLeft />
           </Link>

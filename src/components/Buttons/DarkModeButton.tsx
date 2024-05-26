@@ -4,14 +4,23 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { useRef } from "react";
+import { useKeybind } from "@/hooks/useKeybind";
 
 export function DarkModeButton() {
   const { theme, setTheme } = useTheme();
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useKeybind(buttonRef, { key: "l", ctrlKey: true, shiftKey: true }, () =>
+    buttonRef.current?.click(),
+  );
 
   return (
     <Button
       variant="outline"
       size="icon"
+      ref={buttonRef}
       onClick={() => (theme === "light" ? setTheme("dark") : setTheme("light"))}
     >
       <span className="sr-only">Toggle Dark Mode</span>

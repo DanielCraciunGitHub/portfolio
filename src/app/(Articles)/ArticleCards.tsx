@@ -10,6 +10,7 @@ import { trpc } from "../../server/client";
 import ArticleCard from "./ArticleCard";
 import { ArticleCardsShell } from "./ArticleCardShell";
 import { SearchBar } from "./SearchBar";
+import { KeybindsModal } from "./KeybindsModal";
 
 const articlesPerPage = 6;
 
@@ -49,7 +50,10 @@ export default function ArticleCards({ category }: ArticleCardProps) {
 
   return (
     <div className="flex flex-col items-center">
-      <SearchBar updateSearchTitle={updateSearchTitle} />
+      <div className="flex">
+        <SearchBar updateSearchTitle={updateSearchTitle} />
+        <KeybindsModal />
+      </div>
       <div
         className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 2xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-60 gap-y-40" : "gap-24 gap-x-36"}`}
       >
