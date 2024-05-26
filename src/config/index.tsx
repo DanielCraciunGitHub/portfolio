@@ -23,6 +23,10 @@ export const siteConfig = {
       name: "Blog",
       href: "/blog",
     },
+    {
+      name: "Write for Us",
+      href: "/write_for_us",
+    },
     // {
     //   name: "eBook",
     //   href: "/ebook",

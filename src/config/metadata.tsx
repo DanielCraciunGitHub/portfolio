@@ -15,9 +15,6 @@ export const baseMetadata: Metadata = {
   publisher: danielConfig.name,
   creator: danielConfig.name,
   description: danielConfig.description,
-  icons: {
-    icon: "/icon.png",
-  },
   keywords: [
     ...danielConfig.skills,
     ...danielConfig.education,
@@ -83,9 +80,6 @@ export const staticMetadata = {
   write_for_us: {
     title: { absolute: writeForUsConfig.title },
     description: writeForUsConfig.description,
-    icons: {
-      icon: writeForUsConfig.image,
-    },
     keywords: [...writeForUsConfig.benefits, "Article", "Publish"],
     openGraph: {
       ...baseMetadata.openGraph,
@@ -130,12 +124,30 @@ export const staticMetadata = {
       ...baseMetadata.openGraph,
       title: blogConfig.title,
       description: blogConfig.description,
+      images: [
+        {
+          url: `${siteConfig.url + writeForUsConfig.image}`,
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: blogConfig.title,
+        },
+      ],
       url: "/blog",
     },
     twitter: {
       ...baseMetadata.twitter,
       title: blogConfig.title,
       description: blogConfig.description,
+      images: [
+        {
+          url: `${siteConfig.url + writeForUsConfig.image}`,
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          alt: blogConfig.title,
+        },
+      ],
     },
   } satisfies Metadata,
   eBook: {

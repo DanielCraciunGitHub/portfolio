@@ -1,14 +1,15 @@
 import type { WebPage, WithContext } from "schema-dts";
 
-import { danielConfig, siteConfig } from ".";
+import { danielConfig, siteConfig, writeForUsConfig } from ".";
 import { baseMetadata } from "./metadata";
 
 export const baseStructuredData: WithContext<WebPage> = {
   "@context": "https://schema.org",
+  "@id": `${siteConfig.url}/#root`,
   "@type": "WebPage",
   name: "DanielFullStack",
   url: siteConfig.url,
-  thumbnailUrl: `${siteConfig.url}/icon.png`,
+  thumbnailUrl: `${siteConfig.url}/favicon.ico`,
   inLanguage: "en-GB",
   author: {
     "@type": "Person",
@@ -24,7 +25,7 @@ export const baseStructuredData: WithContext<WebPage> = {
   },
   mainEntity: {
     "@type": "Person",
-    "@id": siteConfig.url,
+    "@id": `${siteConfig.url}/#entity`,
     name: danielConfig.name,
     homeLocation: {
       "@type": "Country",
@@ -63,6 +64,36 @@ export const baseStructuredData: WithContext<WebPage> = {
 };
 
 export const staticStructuredData = {
+  write_for_us: {
+    ...baseStructuredData,
+    "@id": `${siteConfig.url}/write_for_us`,
+    url: `${siteConfig.url}/write_for_us`,
+    thumbnailUrl: `${siteConfig.url}${writeForUsConfig.image}`,
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      "@id": `${siteConfig.url}/write_for_us/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "DanielFullStack",
+          item: `${siteConfig.url}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Info Library",
+          item: `${siteConfig.url}/blog`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Write for Us",
+          item: `${siteConfig.url}/write_for_us`,
+        },
+      ],
+    },
+  },
   projects: {
     ...baseStructuredData,
     "@id": `${siteConfig.url}/projects`,
@@ -91,6 +122,7 @@ export const staticStructuredData = {
     ...baseStructuredData,
     "@id": `${siteConfig.url}/blog`,
     url: `${siteConfig.url}/blog`,
+    thumbnailUrl: `${siteConfig.url}${writeForUsConfig.image}`,
     name: "Info Library",
     breadcrumb: {
       "@type": "BreadcrumbList",
@@ -107,6 +139,12 @@ export const staticStructuredData = {
           position: 2,
           name: "Info Library",
           item: `${siteConfig.url}/blog`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Write for Us",
+          item: `${siteConfig.url}/write_for_us`,
         },
       ],
     },

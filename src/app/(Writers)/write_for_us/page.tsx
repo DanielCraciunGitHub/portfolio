@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { staticMetadata } from "@/config/metadata";
 import { writeForUsConfig } from "@/config";
 import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar";
+import Script from "next/script";
+import { staticStructuredData } from "@/config/structuredData";
 
 export const metadata: Metadata = {
   ...staticMetadata.write_for_us,
@@ -44,6 +46,13 @@ const page = () => {
         <WriteForUsForm />
       </main>
       <Toaster />
+      <Script
+        id="WebSite Structured Data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(staticStructuredData.write_for_us),
+        }}
+      />
     </>
   );
 };

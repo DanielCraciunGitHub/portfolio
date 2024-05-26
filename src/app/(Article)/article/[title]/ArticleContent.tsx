@@ -81,10 +81,10 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
           url: article.author?.avatar
             ? urlForImage(article.author.avatar)
-            : `${siteConfig.url}/icon.png`,
+            : `${siteConfig.url}/favicon.ico`,
           contentUrl: article.author?.avatar
             ? urlForImage(article.author.avatar)
-            : `${siteConfig.url}/icon.png`,
+            : `${siteConfig.url}/favicon.ico`,
           caption: article.author?.name ?? danielConfig.name,
         },
       },
