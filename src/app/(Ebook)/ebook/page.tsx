@@ -7,8 +7,6 @@ import { staticMetadata } from "@/config/metadata";
 import { staticStructuredData } from "@/config/structuredData";
 import { serverClient } from "@/server/serverClient";
 
-import StripeButton from "./StripeButton";
-
 export const metadata: Metadata = {
   ...staticMetadata.eBook,
 };

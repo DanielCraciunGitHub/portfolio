@@ -166,6 +166,11 @@ export const blogConfig = {
       href: nameToPath("Web Development"),
     },
     {
+      name: "SEO",
+      emoji: "🎯",
+      href: nameToPath("SEO"),
+    },
+    {
       name: "Organisation",
       emoji: "📦",
       href: nameToPath("Organisation"),

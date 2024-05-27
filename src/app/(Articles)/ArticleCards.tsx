@@ -55,7 +55,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         <KeybindsModal />
       </div>
       <div
-        className={`mt-6 grid grid-cols-1 place-items-center gap-20 gap-x-36 lg:grid-cols-2 2xl:grid-cols-3`}
+        className={`mt-6 grid grid-cols-1 place-items-center gap-20 lg:grid-cols-2 2xl:grid-cols-3`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />
