@@ -17,6 +17,19 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "s-maxage=60",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
