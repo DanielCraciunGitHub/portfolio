@@ -49,13 +49,13 @@ export default function ArticleCards({ category }: ArticleCardProps) {
   const blogs = data?.pages.flatMap((page) => page.blogs);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="relative flex flex-col items-center">
       <div className="flex">
         <SearchBar updateSearchTitle={updateSearchTitle} />
         <KeybindsModal />
       </div>
       <div
-        className={`mt-6 grid grid-cols-1 place-items-center lg:grid-cols-2 2xl:grid-cols-3 ${isFetching && !isFetchingNextPage ? "gap-x-60 gap-y-40" : "gap-24 gap-x-36"}`}
+        className={`mt-6 grid grid-cols-1 place-items-center gap-20 gap-x-36 lg:grid-cols-2 2xl:grid-cols-3`}
       >
         {isFetching && !isFetchingNextPage ? (
           <ArticleCardsShell />
@@ -65,7 +65,12 @@ export default function ArticleCards({ category }: ArticleCardProps) {
           ))
         )}
       </div>
-      <Button variant="ghost" ref={ref} tabIndex={-1}></Button>
+      <Button
+        className="absolute bottom-64"
+        variant="ghost"
+        ref={ref}
+        tabIndex={-1}
+      ></Button>
     </div>
   );
 }

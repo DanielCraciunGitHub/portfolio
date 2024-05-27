@@ -16,7 +16,6 @@ import { AuthorAvatar } from "@/components/AuthorAvatar";
 import { urlForImage } from "../../../../../sanity/lib/image";
 import ArticleViews from "../ArticleViews";
 import { myPortableTextComponents } from "../SanityCustomComponents";
-import { TopAdBanner } from "@/components/AdBanner";
 
 const BlogInteractor = dynamic(
   () =>
@@ -171,8 +170,6 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         {/* @ts-expect-error - unkown caption type from sanity */}
         <CaptionSource caption={article.image.caption} />
       </div>
-
-      <TopAdBanner />
 
       <div className="prose prose-xl mb-10 mt-10 break-words dark:prose-invert prose-img:m-0 prose-img:mt-2">
         <PortableText

@@ -95,10 +95,10 @@ export const CommentSection = () => {
             </div>
           </div>
         ) : (
-          <>
+          <div className="flex h-full w-full flex-col items-center justify-center space-y-2">
             <Label className="mt-4">Login to comment on this article ❤️</Label>
             <AuthButton session={session} />
-          </>
+          </div>
         )}
       </SheetContent>
     </Sheet>

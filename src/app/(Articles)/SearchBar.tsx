@@ -19,9 +19,9 @@ export const SearchBar = ({ updateSearchTitle }: SearchBarProps) => {
   return (
     <div className="flex">
       <Input
-        className="w-fit rounded rounded-l-lg rounded-r-none border border-muted-foreground/50 bg-muted text-center"
+        className="w-fit border border-muted-foreground/50 bg-muted text-center sm:rounded sm:rounded-l-lg sm:rounded-r-none"
         ref={inputRef}
-        placeholder={`Search [ / ]  🔍`}
+        placeholder={`Search 🔍`}
         onChange={(e) => debouncedUpdateSearchTitle(e.target.value)}
       />
     </div>

@@ -10,14 +10,14 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="rounded rounded-l-none rounded-r-lg border border-muted-foreground/50 bg-primary text-white"
+          className="hidden rounded rounded-l-none rounded-r-lg border border-muted-foreground/50 bg-primary text-white sm:block"
         >
           <Command />
         </Button>
       </DialogTrigger>
       <DialogContent className="flex flex-col items-center border-muted">
         <h1 className="border-b border-muted-foreground text-4xl font-extrabold">
-          Keybinds
+          Shortcuts
         </h1>
         <ul className="list-disc">
           <li className="p-2">

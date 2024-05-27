@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-export function TopAdBanner(): JSX.Element {
+export function AdsterraAdBanner(): JSX.Element {
   const banner = useRef<HTMLDivElement>(null);
 
   const atOptions = {
