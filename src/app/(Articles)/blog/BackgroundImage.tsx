@@ -1,9 +1,12 @@
 import Image from "next/image";
 import InfoLibrary from "@/../public/images/info-library.png";
+import { cn } from "@/lib/utils";
 
-interface BackgroundImageProps {}
+interface BackgroundImageProps {
+  className: string;
+}
 
-export const BackgroundImage = ({}: BackgroundImageProps) => {
+export const BackgroundImage = ({ className }: BackgroundImageProps) => {
   return (
     <Image
       alt="Background"
@@ -12,7 +15,7 @@ export const BackgroundImage = ({}: BackgroundImageProps) => {
       quality={100}
       fill
       sizes="100vw"
-      className="-z-50 object-cover"
+      className={cn("-z-50 object-cover", className)}
     />
   );
 };

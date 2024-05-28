@@ -1,6 +1,7 @@
 import { type SchemaTypeDefinition } from "sanity";
 
 import { blogConfig } from "../src/config";
+import { CustomInput } from "./lib/HotKeys";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -8,6 +9,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       name: "blog",
       type: "document",
       title: "Blog",
+
       fields: [
         {
           title: "Canonical URL",
@@ -88,6 +90,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           name: "content",
           type: "array",
           title: "Content",
+          components: {
+            input: CustomInput,
+          },
           of: [
             {
               type: "block",

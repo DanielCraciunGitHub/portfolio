@@ -20,11 +20,12 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        source:
+          "/api/trpc/(blogRouter.getInfinitePosts.*|blogRouter.getArticleViews.*)",
         headers: [
           {
             key: "Cache-Control",
-            value: "s-maxage=60",
+            value: "s-maxage=1, stale-while-revalidate=59",
           },
         ],
       },

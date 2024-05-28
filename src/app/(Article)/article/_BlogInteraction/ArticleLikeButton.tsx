@@ -15,6 +15,7 @@ import { trpc } from "@/server/client";
 
 import { LikeHeart } from "./LikeHeart";
 import { useKeybind } from "@/hooks/useKeybind";
+import { LoginModal } from "@/components/LoginModal";
 
 export const ArticleLikeButton = () => {
   const { title: currentSlug }: { title: string } = useParams();
@@ -84,15 +85,17 @@ export const ArticleLikeButton = () => {
             <LikeHeart isLiked={likesData?.isLiked} />
           </Button>
         ) : (
-          <PopoverTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-inherit hover:text-inherit"
-            >
-              <LikeHeart isLiked={likesData?.isLiked} />
-            </Button>
-          </PopoverTrigger>
+          <LoginModal
+            buttonNode={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:bg-inherit hover:text-inherit"
+              >
+                <LikeHeart isLiked={likesData?.isLiked} />
+              </Button>
+            }
+          />
         )}
         <PopoverContent className="flex flex-col space-y-4 border-muted-foreground/50 text-center">
           <Label>Login to like this article ❤️</Label>
