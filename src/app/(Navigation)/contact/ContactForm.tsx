@@ -9,19 +9,14 @@ import { contactFormSchema } from "@/lib/validations/form";
 import { Form } from "@/components/ui/form";
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
 import InputField from "@/components/InputField";
-import { trpc } from "@/server/client";
+import { receiveEmail } from "@/app/_actions/contact_us";
+import { useState } from "react";
 
 type Inputs = z.infer<typeof contactFormSchema>;
 
 const ContactForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
-
-  const {
-    mutateAsync: receiveEmail,
-    isError,
-    error,
-    isLoading,
-  } = trpc.contactRouter.receiveEmail.useMutation({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<Inputs>({
     resolver: zodResolver(contactFormSchema),
@@ -31,34 +26,35 @@ const ContactForm = () => {
     },
   });
 
-  async function onSubmit(values: Inputs) {
+  async function onSubmit(contactDetails: Inputs) {
+    setIsLoading(true);
     if (!executeRecaptcha) {
       return;
     }
 
     const { toast } = await import("@/components/ui/use-toast");
 
-    try {
-      await receiveEmail({ ...values, token: await executeRecaptcha() });
+    const success = await receiveEmail({
+      contactDetails,
+      token: await executeRecaptcha(),
+    });
 
-      if (isError) {
-        throw new Error(error.message);
-      }
-
+    if (!success) {
+      toast({
+        title: "Error",
+        description: "Try again later",
+        variant: "destructive",
+      });
+    } else {
       toast({
         title: "Success",
         description:
           "Thank you for contacting me. I will get back to you shortly.",
       });
-    } catch (err: any) {
-      toast({
-        title: "Error",
-        description: err.message,
-        variant: "destructive",
-      });
-    } finally {
-      form.reset();
     }
+
+    setIsLoading(false);
+    form.reset();
   }
   return (
     <Form {...form}>

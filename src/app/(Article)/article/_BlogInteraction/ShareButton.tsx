@@ -21,7 +21,7 @@ export const ShareButton = () => {
 
   return (
     <CopyToClipboard
-      text={`${siteConfig.url}/article/${currentSlug}`}
+      text={`${siteConfig.blogUrl}/article/${currentSlug}`}
       onCopy={() => {
         toast({
           title: "✅ Article Link Copied!",
