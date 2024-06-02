@@ -11,11 +11,11 @@ import { HeroStat, NavItem, Project, SocialLink } from "../types";
 
 export const siteConfig = {
   url:
-    process.env.NEXT_PUBLIC_VERCEL_ENV === "development"
+    process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : `https://www.danielfullstack.com`,
   blogUrl:
-    process.env.NEXT_PUBLIC_VERCEL_ENV === "development"
+    process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : `https://blog.danielfullstack.com`,
   navLinks: [

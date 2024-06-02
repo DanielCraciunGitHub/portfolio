@@ -3,7 +3,7 @@ import InfoLibrary from "@/../public/images/info-library.png";
 import { cn } from "@/lib/utils";
 
 interface BackgroundImageProps {
-  className: string;
+  className?: string;
 }
 
 export const BackgroundImage = ({ className }: BackgroundImageProps) => {

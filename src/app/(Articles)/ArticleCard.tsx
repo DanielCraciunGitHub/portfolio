@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 
 import { BlogCard } from "@/types/blog";
-import { formatArticleViews, formatTimeToNow } from "@/lib/utils";
+import { formatArticleViews, formatTimeToNow, nameToPath } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -40,7 +40,7 @@ export default function ArticleCard({
       className="flex w-[350px] self-stretch rounded-lg ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:w-[400px] xl:w-[450px]"
       tabIndex={0}
     >
-      <Card className="flex flex-col border-muted-foreground ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
+      <Card className="flex flex-col border-muted-foreground bg-muted ring-1 ring-muted-foreground dark:border-muted dark:ring-muted">
         <Image
           src={urlFor(image).size(1200, 600).url()}
           priority
@@ -61,9 +61,11 @@ export default function ArticleCard({
 
           <div className="flex flex-col">
             <CardFooter className="flex justify-between pb-3">
-              <Badge variant="default" className="inline-flex font-bold">
-                {category}
-              </Badge>
+              <Link href={`/blog${nameToPath(category)}`}>
+                <Badge className="inline-flex bg-muted-foreground font-bold">
+                  {category}
+                </Badge>
+              </Link>
 
               <div className="text-sm font-semibold text-muted-foreground">
                 {formatTimeToNow(new Date(_createdAt))}
