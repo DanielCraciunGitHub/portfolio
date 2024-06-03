@@ -10,6 +10,7 @@ import { nameToPath } from "../lib/utils";
 import { HeroStat, NavItem, Project, SocialLink } from "../types";
 
 export const siteConfig = {
+  email: "danielcracbusiness@gmail.com",
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
@@ -91,7 +92,7 @@ export const danielConfig = {
 
   heroStats: [
     { "5+": "Large-Scale Projects Completed 🎯" },
-    { "6,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
+    { "7,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
     { "40,000+": "Monthly Blog Reads 📖" },
     { "100+": "Blog Posts Written 📝" },
   ] satisfies HeroStat[],

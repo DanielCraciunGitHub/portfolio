@@ -8,11 +8,20 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (pathname === "/" && subdomain?.startsWith("blog")) {
-    return NextResponse.rewrite("https://blog.danielfullstack.com/blog");
+    return NextResponse.rewrite("https://blog.danielfullstack.com/blog", {
+      status: 308,
+    });
   } else if (pathname === "/blog" && subdomain?.startsWith("www")) {
-    return NextResponse.redirect("https://blog.danielfullstack.com");
+    return NextResponse.redirect("https://blog.danielfullstack.com", {
+      status: 308,
+    });
   } else if (pathname.startsWith("/article") && subdomain?.startsWith("www")) {
-    return NextResponse.redirect(`https://blog.danielfullstack.com${pathname}`);
+    return NextResponse.redirect(
+      `https://blog.danielfullstack.com${pathname}`,
+      {
+        status: 308,
+      },
+    );
   } else {
     return NextResponse.next();
   }

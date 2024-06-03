@@ -36,7 +36,7 @@ export const baseStructuredData: WithContext<WebPage> = {
       name: "United Kingdom",
     },
 
-    email: "danielcracbusiness@gmail.com",
+    email: siteConfig.email,
     telephone: "+44 738-425-0367",
     jobTitle: "Full-Stack Web Developer",
     disambiguatingDescription: danielConfig.description,

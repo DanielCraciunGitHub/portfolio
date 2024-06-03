@@ -1,3 +1,5 @@
+import { sendWelcome } from "@/app/_actions/discord";
+import { sendWelcomeEmail } from "@/app/_actions/email";
 import { db } from "@/db";
 import { env } from "@/env.mjs";
 import Google from "@auth/core/providers/google";
@@ -41,6 +43,18 @@ export const {
       }
 
       return session;
+    },
+  },
+  events: {
+    async createUser({ user }) {
+      const { name, email } = user;
+
+      if (name && email) {
+        const res = await sendWelcomeEmail({ name, email });
+        console.log(res);
+
+        await sendWelcome({ name, email });
+      }
     },
   },
   secret: env.AUTH_SECRET,

@@ -20,6 +20,11 @@ interface PublishedPayload {
   author?: string;
 }
 
+interface WelcomePayload {
+  name: string;
+  email: string;
+}
+
 export const sendInbox = async ({ body, slug, commentId }: InboxPayload) => {
   try {
     await fetch(env.DISCORD_WEBHOOK_URL_INBOX, {
@@ -40,6 +45,37 @@ export const sendInbox = async ({ body, slug, commentId }: InboxPayload) => {
               {
                 name: "Message",
                 value: body,
+              },
+            ],
+          },
+        ],
+      }),
+    });
+  } catch (error: any) {
+    console.log(error.message);
+  }
+};
+export const sendWelcome = async ({ name, email }: WelcomePayload) => {
+  try {
+    await fetch(env.DISCORD_WEBHOOK_URL_INBOX, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        embeds: [
+          {
+            title: "NEW USER Alert 🚨",
+            fields: [
+              {
+                name: "Name",
+                value: `${name}`,
+                inline: true,
+              },
+              {
+                name: "email",
+                value: `mailto:${email}`,
+                inline: true,
               },
             ],
           },

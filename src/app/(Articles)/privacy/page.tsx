@@ -1,6 +1,6 @@
-interface pageProps {}
+import { siteConfig } from "@/config";
 
-const page = ({}: pageProps) => {
+const page = async () => {
   return (
     <div className="mx-auto my-4 flex max-w-2xl flex-col space-y-2">
       <h1 className="text-center text-4xl font-extrabold">Privacy Policy</h1>
@@ -532,9 +532,9 @@ const page = ({}: pageProps) => {
           By email:{" "}
           <a
             className="text-blue-600 underline"
-            href="mailto:danielcracbusiness@gmail.com"
+            href={`mailto:${siteConfig.email}`}
           >
-            danielcracbusiness@gmail.com
+            {siteConfig.email}
           </a>
         </li>
       </ul>
