@@ -168,6 +168,8 @@ export const blogRouter = router({
         slug: input.slug,
         commentId: id,
       })
+
+      return { newCommentId: id }
     }),
   deleteComment: publicProcedure
     .input(z.custom<CommentProps>())

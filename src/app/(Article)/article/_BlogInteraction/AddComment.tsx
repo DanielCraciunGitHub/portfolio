@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction } from "react"
 import { useParams } from "next/navigation"
+import { siteConfig } from "@/config"
 import { trpc } from "@/server/client"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -14,6 +16,7 @@ import { Form } from "@/components/ui/form"
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
 import InputField from "@/components/InputField"
 import { UserAvatar } from "@/components/UserAvatar"
+import { sendReplyEmail } from "@/app/_actions/email"
 
 type Inputs = z.infer<typeof articleCommentSchema>
 
@@ -26,6 +29,7 @@ interface AddCommentProps {
 
 export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
   const { title: slug }: { title: string } = useParams()
+  const { data: session } = useSession()
 
   const form = useForm<Inputs>({
     resolver: zodResolver(articleCommentSchema),
@@ -55,17 +59,34 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
     })
   async function onSubmit({ body }: Inputs) {
     form.reset({ body: "" })
+    let res
 
     // If the reply is for a top-level comment
     if (replyingTo && Object.hasOwn(replyingTo as object, "replies")) {
-      await addComment({ body, slug, replyingToId: replyingTo.id })
+      const { newCommentId } = await addComment({
+        body,
+        slug,
+        replyingToId: replyingTo.id,
+      })
+      res = await sendReplyEmail({
+        body,
+        commentLink: `${siteConfig.url}/article/${slug}?id=${newCommentId}`,
+        senderName: session ? session.user.name! : "Anonymous",
+        receiverEmail: replyingTo.author.email,
+      })
     } else if (replyingTo) {
       // If the reply is a sub-reply
-      await addComment({
+      const { newCommentId } = await addComment({
         body,
         slug,
         replyingToId: replyingTo.parentId!,
         replyingTo: replyingTo.author.name!,
+      })
+      res = await sendReplyEmail({
+        body,
+        commentLink: `${siteConfig.url}/article/${slug}?id=${newCommentId}`,
+        senderName: session ? session.user.name! : "Anonymous",
+        receiverEmail: replyingTo.author.email,
       })
     } else {
       // If this is a top level comment and not a reply
