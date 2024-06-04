@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <BlogArticleNavbar returnTo="/" />
+      <BlogArticleNavbar returnTo="/blog" />
 
       <main className="mb-6 mt-24 flex flex-col items-center space-y-4">
         <h1 className="max-w-3xl text-center text-4xl font-bold tracking-tight md:text-5xl xl:text-6xl">

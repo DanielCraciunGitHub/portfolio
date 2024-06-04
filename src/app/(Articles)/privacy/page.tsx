@@ -1,8 +1,14 @@
 import { siteConfig } from "@/config";
+import { staticMetadata } from "@/config/metadata";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  ...staticMetadata.privacy,
+};
 
 const page = async () => {
   return (
-    <div className="mx-auto my-4 flex max-w-2xl flex-col space-y-2">
+    <div className="container mx-auto my-4 flex max-w-2xl flex-col space-y-2">
       <h1 className="text-center text-4xl font-extrabold">Privacy Policy</h1>
       <p className="text-center text-muted-foreground">
         Last updated: June 02, 2024

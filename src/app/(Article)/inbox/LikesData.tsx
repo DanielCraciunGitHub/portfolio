@@ -21,7 +21,7 @@ export const LikesData = async ({}: LikesDataProps) => {
           return (
             <div key={like.id} className="grid grid-cols-12 grid-rows-1">
               <Link
-                href={`${siteConfig.blogUrl}/article/${like.articleSlug}`}
+                href={`${siteConfig.url}/article/${like.articleSlug}`}
                 className="col-span-full"
               >
                 <Card className="flex items-center space-x-2 p-4">

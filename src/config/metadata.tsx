@@ -77,6 +77,11 @@ export const baseMetadata: Metadata = {
 };
 export const staticMetadata = {
   ...baseMetadata,
+  privacy: {
+    title: "Privacy",
+    description:
+      "The Privacy Policy Related to Info Library and this website as a whole.",
+  } satisfies Metadata,
   write_for_us: {
     title: { absolute: writeForUsConfig.title },
     description: writeForUsConfig.description,

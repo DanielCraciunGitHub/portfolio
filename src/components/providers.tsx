@@ -25,7 +25,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `${siteConfig.blogUrl}/api/trpc`,
+          url: `${siteConfig.url}/api/trpc`,
         }),
       ],
     }),

@@ -15,10 +15,6 @@ export const siteConfig = {
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : `https://www.danielfullstack.com`,
-  blogUrl:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : `https://blog.danielfullstack.com`,
   navLinks: [
     {
       name: "DC",
@@ -47,6 +43,10 @@ export const siteConfig = {
     {
       name: "Contact",
       href: "/contact",
+    },
+    {
+      name: "Privacy",
+      href: "/privacy",
     },
   ] satisfies NavItem[],
   socialLinks: [

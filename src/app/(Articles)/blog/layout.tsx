@@ -19,7 +19,7 @@ export default async function Layout({
       <WriteForUs />
       <section className="mt-4 flex flex-col items-center space-y-4">
         <div className="w-full space-y-6 p-2">
-          <Link href={`/`}>
+          <Link href={`/blog`}>
             <h1 className="text-center text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl">
               Info <span className="text-primary">Library</span>
             </h1>

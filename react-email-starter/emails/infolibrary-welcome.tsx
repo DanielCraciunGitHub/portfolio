@@ -32,7 +32,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
             {/* Image */}
             <Section className="mt-24">
               <Img
-                src={`${siteConfig.blogUrl}/images/info-library.png`}
+                src={`${siteConfig.url}/images/info-library.png`}
                 width="80"
                 height="80"
                 alt="Info Library"
@@ -41,7 +41,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
             </Section>
             {/* Title/Slogan */}
             <Section>
-              <Link href={siteConfig.blogUrl} className="text-black">
+              <Link href={siteConfig.url} className="text-black">
                 <Heading className="text-center font-extrabold">
                   Info <span className="text-green-500">Library</span>
                 </Heading>
@@ -81,7 +81,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
               </Text>
               <Text>
                 If you are interested, please{" "}
-                <Link href={`${siteConfig.blogUrl}/write_for_us`}>
+                <Link href={`${siteConfig.url}/write_for_us`}>
                   visit our dedicated page
                 </Link>{" "}
                 for writers.

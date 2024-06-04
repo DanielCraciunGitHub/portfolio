@@ -51,7 +51,7 @@ export const CommentsData = () => {
                 <Mail />
               </Link>
               <Link
-                href={`${siteConfig.blogUrl}/article/${comment.articleSlug}?id=${comment.id}`}
+                href={`${siteConfig.url}/article/${comment.articleSlug}?id=${comment.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="col-span-10"
