@@ -1,10 +1,11 @@
-import { siteConfig } from "@/config";
-import { staticMetadata } from "@/config/metadata";
-import { Metadata } from "next";
+import { Metadata } from "next"
+import { siteConfig } from "@/config"
+
+import { staticMetadata } from "@/config/metadata"
 
 export const metadata: Metadata = {
   ...staticMetadata.privacy,
-};
+}
 
 const page = async () => {
   return (
@@ -545,6 +546,6 @@ const page = async () => {
         </li>
       </ul>
     </div>
-  );
-};
-export default page;
+  )
+}
+export default page

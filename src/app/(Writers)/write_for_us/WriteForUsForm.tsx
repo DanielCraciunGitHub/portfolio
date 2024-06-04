@@ -1,5 +1,12 @@
-"use client";
+"use client"
 
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { writeForUsFormSchema } from "@/lib/validations/form"
+import { Card } from "@/components/ui/card"
 import {
   Form,
   FormControl,
@@ -7,25 +14,19 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
-import { writeForUsFormSchema } from "@/lib/validations/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import InputField from "@/components/InputField";
-import { Card } from "@/components/ui/card";
-import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
-import { Switch } from "@/components/ui/switch";
-import { sendWriterSubmission } from "@/app/_actions/discord";
-import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+} from "@/components/ui/form"
+import { Switch } from "@/components/ui/switch"
+import { toast } from "@/components/ui/use-toast"
+import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
+import InputField from "@/components/InputField"
+import { sendWriterSubmission } from "@/app/_actions/discord"
 
-type Inputs = z.infer<typeof writeForUsFormSchema>;
+type Inputs = z.infer<typeof writeForUsFormSchema>
 
 interface WriteForUsFormProps {}
 
 export const WriteForUsForm = ({}: WriteForUsFormProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const form = useForm<Inputs>({
     resolver: zodResolver(writeForUsFormSchema),
@@ -37,26 +38,26 @@ export const WriteForUsForm = ({}: WriteForUsFormProps) => {
       namePermission: true,
       otherDetails: "",
     },
-  });
+  })
 
   async function onSubmit(values: Inputs) {
     try {
-      setIsLoading(true);
-      await sendWriterSubmission(values);
+      setIsLoading(true)
+      await sendWriterSubmission(values)
       toast({
         title: "Success",
         description:
           "Thank you for contacting me. I will get back to you shortly.",
-      });
+      })
     } catch (err: any) {
       toast({
         title: "Error",
         description: err.message,
         variant: "destructive",
-      });
+      })
     } finally {
-      form.reset();
-      setIsLoading(false);
+      form.reset()
+      setIsLoading(false)
     }
   }
 
@@ -153,5 +154,5 @@ export const WriteForUsForm = ({}: WriteForUsFormProps) => {
         </form>
       </Form>
     </Card>
-  );
-};
+  )
+}

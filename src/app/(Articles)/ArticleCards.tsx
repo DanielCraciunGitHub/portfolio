@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { siteConfig } from "@/config"
+import { useInView } from "react-intersection-observer"
 
-import { BlogCard } from "@/types/blog";
-import { Button } from "@/components/ui/button";
+import { BlogCard } from "@/types/blog"
+import { Button } from "@/components/ui/button"
 
-import { trpc } from "../../server/client";
-import ArticleCard from "./ArticleCard";
-import { ArticleCardsShell } from "./ArticleCardShell";
-import { SearchBar } from "./SearchBar";
-import { KeybindsModal } from "./KeybindsModal";
-import { siteConfig } from "@/config";
-import Link from "next/link";
+import { trpc } from "../../server/client"
+import ArticleCard from "./ArticleCard"
+import { ArticleCardsShell } from "./ArticleCardShell"
+import { KeybindsModal } from "./KeybindsModal"
+import { SearchBar } from "./SearchBar"
 
-const articlesPerPage = 6;
+const articlesPerPage = 6
 
 interface ArticleCardProps {
-  category?: BlogCard["category"] | string | undefined;
+  category?: BlogCard["category"] | string | undefined
 }
 
 export default function ArticleCards({ category }: ArticleCardProps) {
-  const { ref, inView } = useInView();
-  const [searchTitle, setSearchTitle] = useState<string | undefined>();
+  const { ref, inView } = useInView()
+  const [searchTitle, setSearchTitle] = useState<string | undefined>()
 
   const updateSearchTitle = (title: string) => {
-    setSearchTitle(title);
-  };
+    setSearchTitle(title)
+  }
 
   const {
     data,
@@ -46,15 +46,15 @@ export default function ArticleCards({ category }: ArticleCardProps) {
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
-    },
-  );
+    }
+  )
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      fetchNextPage();
+      fetchNextPage()
     }
-  }, [fetchNextPage, inView, hasNextPage]);
-  const blogs = data?.pages.flatMap((page) => page.blogs);
+  }, [fetchNextPage, inView, hasNextPage])
+  const blogs = data?.pages.flatMap((page) => page.blogs)
 
   return (
     <div className="relative flex flex-col items-center">
@@ -96,5 +96,5 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         tabIndex={-1}
       ></Button>
     </div>
-  );
+  )
 }

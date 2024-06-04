@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
-import { debounce } from "lodash";
-import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react"
+import { useParams } from "next/navigation"
+import { trpc } from "@/server/client"
+import { debounce } from "lodash"
+import { useSession } from "next-auth/react"
 
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { useKeybind } from "@/hooks/useKeybind"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import AuthButton from "@/components/Buttons/AuthButton";
-import { trpc } from "@/server/client";
+} from "@/components/ui/popover"
+import AuthButton from "@/components/Buttons/AuthButton"
+import { LoginModal } from "@/components/LoginModal"
 
-import { LikeHeart } from "./LikeHeart";
-import { useKeybind } from "@/hooks/useKeybind";
-import { LoginModal } from "@/components/LoginModal";
+import { LikeHeart } from "./LikeHeart"
 
 export const ArticleLikeButton = () => {
-  const { title: currentSlug }: { title: string } = useParams();
+  const { title: currentSlug }: { title: string } = useParams()
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useKeybind(
     buttonRef,
@@ -30,11 +30,11 @@ export const ArticleLikeButton = () => {
       await updateLikeCount({
         slug: currentSlug,
         isLiked: likesData!.isLiked,
-      });
-    }, 250),
-  );
+      })
+    }, 250)
+  )
 
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
   const { data, refetch: invalidateLikeData } =
     trpc.blogRouter.getArticleLikeData.useQuery(
@@ -43,27 +43,27 @@ export const ArticleLikeButton = () => {
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
-      },
-    );
-  const [likesData, setLikesData] = useState(data);
+      }
+    )
+  const [likesData, setLikesData] = useState(data)
   useEffect(() => {
-    setLikesData(data);
-  }, [data]);
+    setLikesData(data)
+  }, [data])
 
   const { mutateAsync: updateLikeCount } =
     trpc.blogRouter.updateArticleLikes.useMutation({
       onMutate: () => {
         // optimistic update of like count
         if (likesData!.isLiked) {
-          setLikesData((prev) => ({ isLiked: false, likes: prev!.likes - 1 }));
+          setLikesData((prev) => ({ isLiked: false, likes: prev!.likes - 1 }))
         } else {
-          setLikesData((prev) => ({ isLiked: true, likes: prev!.likes + 1 }));
+          setLikesData((prev) => ({ isLiked: true, likes: prev!.likes + 1 }))
         }
       },
       onSuccess: () => {
-        invalidateLikeData();
+        invalidateLikeData()
       },
-    });
+    })
 
   return (
     <div className="flex items-center text-white">
@@ -79,7 +79,7 @@ export const ArticleLikeButton = () => {
               await updateLikeCount({
                 slug: currentSlug,
                 isLiked: likesData!.isLiked,
-              });
+              })
             }, 250)}
           >
             <LikeHeart isLiked={likesData?.isLiked} />
@@ -105,5 +105,5 @@ export const ArticleLikeButton = () => {
 
       <div className="font-bold">{likesData?.likes ?? "--"}</div>
     </div>
-  );
-};
+  )
+}

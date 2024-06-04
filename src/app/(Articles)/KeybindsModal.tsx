@@ -1,9 +1,12 @@
-"use client";
+"use client"
+
+import { Command } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 interface KeybindsModalProps {}
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Command } from "lucide-react";
+
 export const KeybindsModal = ({}: KeybindsModalProps) => {
   return (
     <Dialog>
@@ -41,5 +44,5 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
         </ul>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

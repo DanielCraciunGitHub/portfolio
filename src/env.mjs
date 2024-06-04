@@ -1,8 +1,8 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import dotenv from "dotenv";
-import { z } from "zod";
+import { createEnv } from "@t3-oss/env-nextjs"
+import dotenv from "dotenv"
+import { z } from "zod"
 
-dotenv.config({ path: ".env.local" });
+dotenv.config({ path: ".env.local" })
 
 export const env = createEnv({
   client: {
@@ -37,4 +37,4 @@ export const env = createEnv({
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   },
-});
+})

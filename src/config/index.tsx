@@ -4,10 +4,10 @@ import {
   BsLinkedin,
   BsMedium,
   BsTwitterX,
-} from "react-icons/bs";
+} from "react-icons/bs"
 
-import { nameToPath } from "../lib/utils";
-import { HeroStat, NavItem, Project, SocialLink } from "../types";
+import { nameToPath } from "../lib/utils"
+import { HeroStat, NavItem, Project, SocialLink } from "../types"
 
 export const siteConfig = {
   email: "danielcracbusiness@gmail.com",
@@ -80,7 +80,7 @@ export const siteConfig = {
     `Connect with me today through social media or by filling in the contact form.`,
     `Thank you.`,
   ],
-} as const;
+} as const
 
 export const danielConfig = {
   name: "Daniel Craciun",
@@ -153,12 +153,12 @@ export const danielConfig = {
   ],
   education: ["University of Southampton", "Lampton Academy"],
   certification: ["CS50x"],
-} as const;
+} as const
 
 export const eBookConfig = {
   title: "The Ultimate Guide to Next.js",
   description: "Coming Soon...",
-} as const;
+} as const
 
 export const blogConfig = {
   title: "Info Library",
@@ -196,7 +196,7 @@ export const blogConfig = {
       href: nameToPath("Writing"),
     },
   ] satisfies NavItem[],
-};
+}
 
 export const writeForUsConfig = {
   title: "Write For Us",
@@ -218,4 +218,4 @@ export const writeForUsConfig = {
     "Enter some Optional Details",
     "That's it!",
   ],
-};
+}

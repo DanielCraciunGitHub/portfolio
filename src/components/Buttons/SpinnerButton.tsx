@@ -1,10 +1,10 @@
-import { Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react"
 
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button"
 
 interface SpinnerButtonProps extends ButtonProps {
-  state: boolean;
-  name: string;
+  state: boolean
+  name: string
 }
 
 export const SpinnerButton = ({
@@ -20,5 +20,5 @@ export const SpinnerButton = ({
         <span>{name}</span>
       )}
     </Button>
-  );
-};
+  )
+}

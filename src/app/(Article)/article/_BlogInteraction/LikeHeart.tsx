@@ -1,7 +1,7 @@
-import { Heart } from "lucide-react";
+import { Heart } from "lucide-react"
 
 interface LikeHeartProps {
-  isLiked?: boolean;
+  isLiked?: boolean
 }
 
 export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
@@ -15,5 +15,5 @@ export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
         }
         `}
     />
-  );
-};
+  )
+}

@@ -1,4 +1,6 @@
-"use client";
+"use client"
+
+import { ReactNode } from "react"
 
 import {
   Dialog,
@@ -7,16 +9,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { ReactNode } from "react";
-import { Button } from "./ui/button";
-import { Google } from "./SVG/Google";
-import { Separator } from "./ui/separator";
-import { BackgroundImage } from "@/app/(Articles)/blog/BackgroundImage";
-import { authenticate } from "@/app/_actions/authenticate";
+} from "@/components/ui/dialog"
+import { authenticate } from "@/app/_actions/authenticate"
+import { BackgroundImage } from "@/app/(Articles)/blog/BackgroundImage"
+
+import { Google } from "./SVG/Google"
+import { Button } from "./ui/button"
+import { Separator } from "./ui/separator"
 
 interface LoginModalProps {
-  buttonNode: ReactNode;
+  buttonNode: ReactNode
 }
 
 export const LoginModal = ({ buttonNode }: LoginModalProps) => {
@@ -42,5 +44,5 @@ export const LoginModal = ({ buttonNode }: LoginModalProps) => {
         </Button>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

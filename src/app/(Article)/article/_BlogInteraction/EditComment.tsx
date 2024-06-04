@@ -1,34 +1,34 @@
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { useState } from "react"
+import { trpc } from "@/server/client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Reply, TopComment } from "@/types/blog";
-import { articleCommentSchema } from "@/lib/validations/form";
+import { Reply, TopComment } from "@/types/blog"
+import { articleCommentSchema } from "@/lib/validations/form"
 import {
   AlertDialog,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
-import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
-import { trpc } from "@/server/client";
+} from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
+import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
 
 interface EditCommentProps {
-  defaultValue: string;
-  comment: TopComment | Reply;
+  defaultValue: string
+  comment: TopComment | Reply
 }
-type Inputs = z.infer<typeof articleCommentSchema>;
+type Inputs = z.infer<typeof articleCommentSchema>
 
 //const textareaRef = useRef<ElementRef<"textarea">>(null)
 
@@ -41,14 +41,14 @@ type Inputs = z.infer<typeof articleCommentSchema>;
 //     }
 // }
 export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const form = useForm<Inputs>({
     resolver: zodResolver(articleCommentSchema),
     defaultValues: {
       body: defaultValue,
     },
-  });
+  })
 
   const { refetch: invalidateCommentsData } =
     trpc.blogRouter.getCommentsData.useQuery(
@@ -57,18 +57,18 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
-      },
-    );
+      }
+    )
   const { mutateAsync: editComment, isLoading } =
     trpc.blogRouter.editComment.useMutation({
       onSuccess: async () => {
-        await invalidateCommentsData();
-        setOpen(false);
+        await invalidateCommentsData()
+        setOpen(false)
       },
-    });
+    })
 
   async function onSubmit({ body }: Inputs) {
-    await editComment({ body, comment });
+    await editComment({ body, comment })
   }
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -91,8 +91,8 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
                       autoFocus
                       onKeyDown={async (event) => {
                         if (event.key === "Enter" && event.ctrlKey) {
-                          event.preventDefault();
-                          await onSubmit({ body: field.value });
+                          event.preventDefault()
+                          await onSubmit({ body: field.value })
                         }
                       }}
                       {...field}
@@ -112,5 +112,5 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
         </Form>
       </AlertDialogContent>
     </AlertDialog>
-  );
-};
+  )
+}

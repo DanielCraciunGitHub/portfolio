@@ -1,4 +1,4 @@
-import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar";
+import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,5 +6,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <BlogArticleNavbar returnTo="/" />
       <main>{children}</main>
     </>
-  );
+  )
 }

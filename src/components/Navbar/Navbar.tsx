@@ -1,5 +1,5 @@
-import { MainNavbar } from "./MainNavbar";
-import { MobileNavbar } from "./MobileNavbar";
+import { MainNavbar } from "./MainNavbar"
+import { MobileNavbar } from "./MobileNavbar"
 
 export default function NavBar() {
   return (
@@ -7,5 +7,5 @@ export default function NavBar() {
       <MainNavbar />
       <MobileNavbar />
     </nav>
-  );
+  )
 }

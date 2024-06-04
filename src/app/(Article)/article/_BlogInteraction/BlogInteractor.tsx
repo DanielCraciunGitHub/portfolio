@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useScrollUp } from "@/hooks/useScrollUp";
-import { Card } from "@/components/ui/card";
+import { useScrollUp } from "@/hooks/useScrollUp"
+import { Card } from "@/components/ui/card"
 
-import { ArticleLikeButton } from "./ArticleLikeButton";
-import { CommentSection } from "./CommentSection";
-import { ShareButton } from "./ShareButton";
+import { ArticleLikeButton } from "./ArticleLikeButton"
+import { CommentSection } from "./CommentSection"
+import { ShareButton } from "./ShareButton"
 
 export const BlogInteractor = () => {
-  const { scrollY, scrollingUp } = useScrollUp();
+  const { scrollY, scrollingUp } = useScrollUp()
 
   // When (100-scrollThreshold)% from the bottom of the screen, show the interactor
-  const scrollThreshold = 0.85;
+  const scrollThreshold = 0.85
 
   return (
     <Card
@@ -21,5 +21,5 @@ export const BlogInteractor = () => {
       <CommentSection />
       <ShareButton />
     </Card>
-  );
-};
+  )
+}

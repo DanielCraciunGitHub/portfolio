@@ -1,15 +1,15 @@
-import { Metadata } from "next";
-import Script from "next/script";
-import { danielConfig } from "@/config";
+import { Metadata } from "next"
+import Script from "next/script"
+import { danielConfig } from "@/config"
 
-import { staticMetadata } from "@/config/metadata";
-import { staticStructuredData } from "@/config/structuredData";
+import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
 
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./ProjectCard"
 
 export const metadata: Metadata = {
   ...staticMetadata.projects,
-};
+}
 
 export default function page() {
   return (
@@ -27,5 +27,5 @@ export default function page() {
         />
       </div>
     </div>
-  );
+  )
 }

@@ -1,26 +1,26 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { FaChevronLeft } from "react-icons/fa";
+import { useRef } from "react"
+import Link from "next/link"
+import { FaChevronLeft } from "react-icons/fa"
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { DarkModeButton } from "@/components/Buttons/DarkModeButton";
-import { SocialLinksArray } from "@/components/SocialLinksArray";
-import { useScrollUp } from "@/hooks/useScrollUp";
-import { useRef } from "react";
-import { useKeybind } from "@/hooks/useKeybind";
+import { cn } from "@/lib/utils"
+import { useKeybind } from "@/hooks/useKeybind"
+import { useScrollUp } from "@/hooks/useScrollUp"
+import { buttonVariants } from "@/components/ui/button"
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
+import { SocialLinksArray } from "@/components/SocialLinksArray"
 
 interface BlogArticleNavbarProps {
-  returnTo: "/blog" | "/";
+  returnTo: "/blog" | "/"
 }
 
 export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
-  const { scrollY, scrollingUp } = useScrollUp();
+  const { scrollY, scrollingUp } = useScrollUp()
 
-  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const anchorRef = useRef<HTMLAnchorElement>(null)
 
-  useKeybind(anchorRef, { key: "ArrowLeft" }, () => anchorRef.current?.click());
+  useKeybind(anchorRef, { key: "ArrowLeft" }, () => anchorRef.current?.click())
 
   return (
     <nav
@@ -53,5 +53,5 @@ export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}

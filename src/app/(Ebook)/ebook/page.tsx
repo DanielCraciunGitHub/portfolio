@@ -1,22 +1,22 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import Script from "next/script";
-import { eBookConfig } from "@/config";
+import { Metadata } from "next"
+import Image from "next/image"
+import Script from "next/script"
+import { eBookConfig } from "@/config"
+import { serverClient } from "@/server/serverClient"
 
-import { staticMetadata } from "@/config/metadata";
-import { staticStructuredData } from "@/config/structuredData";
-import { serverClient } from "@/server/serverClient";
+import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
 
 export const metadata: Metadata = {
   ...staticMetadata.eBook,
-};
+}
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 export default async function page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined }
 }) {
   return searchParams?.purchase === "success" ? (
     <section className="container mx-auto flex flex-col justify-center space-y-6">
@@ -62,10 +62,10 @@ export default async function page({
         }}
       />
     </section>
-  );
+  )
 }
 async function EbookPrice() {
-  const eBookPrice = await serverClient.paymentRouter.getEbookPrice();
+  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
   return (
     <div className="flex flex-col">
       <span className="text-center text-4xl text-red-500 line-through">
@@ -73,5 +73,5 @@ async function EbookPrice() {
       </span>
       <span className="text-center text-4xl text-primary">${eBookPrice}</span>
     </div>
-  );
+  )
 }

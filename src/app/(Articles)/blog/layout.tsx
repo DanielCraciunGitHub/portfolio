@@ -1,18 +1,18 @@
-import Link from "next/link";
-import Script from "next/script";
-import { blogConfig } from "@/config";
+import Link from "next/link"
+import Script from "next/script"
+import { blogConfig } from "@/config"
 
-import { staticStructuredData } from "@/config/structuredData";
-import { NavItem } from "@/components/Navbar/NavItem";
+import { staticStructuredData } from "@/config/structuredData"
+import { NavItem } from "@/components/Navbar/NavItem"
 
-import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs";
+import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs"
 
-export const revalidate = 60;
+export const revalidate = 60
 
 export default async function Layout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
@@ -37,7 +37,7 @@ export default async function Layout({
         }}
       />
     </>
-  );
+  )
 }
 const CategoryNavbar = () => {
   return (
@@ -53,5 +53,5 @@ const CategoryNavbar = () => {
         </div>
       ))}
     </nav>
-  );
-};
+  )
+}

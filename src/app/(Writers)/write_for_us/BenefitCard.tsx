@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface BenefitCardProps {
-  title: string;
-  features: string[];
-  icon: React.ReactNode;
+  title: string
+  features: string[]
+  icon: React.ReactNode
 }
 
 const BenefitCard = ({ title, features, icon }: BenefitCardProps) => {
@@ -28,6 +28,6 @@ const BenefitCard = ({ title, features, icon }: BenefitCardProps) => {
         ))}
       </CardContent>
     </Card>
-  );
-};
-export default BenefitCard;
+  )
+}
+export default BenefitCard

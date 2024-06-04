@@ -1,14 +1,15 @@
-"use server";
+"use server"
 
-import { Resend } from "resend";
-import InfoLibraryWelcome from "../../../react-email-starter/emails/infolibrary-welcome";
-import { env } from "@/env.mjs";
+import { env } from "@/env.mjs"
+import { Resend } from "resend"
 
-const resend = new Resend(env.RESEND_API_KEY);
+import InfoLibraryWelcome from "../../../react-email-starter/emails/infolibrary-welcome"
+
+const resend = new Resend(env.RESEND_API_KEY)
 
 interface WelcomePayload {
-  name: string;
-  email: string;
+  name: string
+  email: string
 }
 
 export const sendWelcomeEmail = async ({ name, email }: WelcomePayload) => {
@@ -17,11 +18,11 @@ export const sendWelcomeEmail = async ({ name, email }: WelcomePayload) => {
     to: [email],
     subject: "Info Library",
     react: InfoLibraryWelcome({ firstName: name.split(" ")[0] }),
-  });
+  })
 
   if (error) {
-    return { ok: false, error };
+    return { ok: false, error }
   }
 
-  return { ok: true, data };
-};
+  return { ok: true, data }
+}

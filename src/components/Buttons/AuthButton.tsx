@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { Session } from "@auth/core/types";
-import { LogInIcon, LogOutIcon } from "lucide-react";
+import { Session } from "@auth/core/types"
+import { LogInIcon, LogOutIcon } from "lucide-react"
 
-import { authenticate } from "@/app/_actions/authenticate";
+import { authenticate } from "@/app/_actions/authenticate"
 
-import { Button } from "../ui/button";
+import { Button } from "../ui/button"
 
 interface AuthSession {
-  session?: Session | null;
+  session?: Session | null
 }
 
 export default function AuthButton({ session }: AuthSession) {
@@ -23,5 +23,5 @@ export default function AuthButton({ session }: AuthSession) {
     <Button onClick={() => authenticate()}>
       <LogInIcon />
     </Button>
-  );
+  )
 }

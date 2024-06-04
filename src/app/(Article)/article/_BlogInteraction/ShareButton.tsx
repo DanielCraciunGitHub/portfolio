@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { useParams } from "next/navigation";
-import { siteConfig } from "@/config";
-import { Share } from "lucide-react";
-import CopyToClipboard from "react-copy-to-clipboard";
+import { useRef } from "react"
+import { useParams } from "next/navigation"
+import { siteConfig } from "@/config"
+import { Share } from "lucide-react"
+import CopyToClipboard from "react-copy-to-clipboard"
 
-import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
-import { useKeybind } from "@/hooks/useKeybind";
-import { useRef } from "react";
+import { useKeybind } from "@/hooks/useKeybind"
+import { Button } from "@/components/ui/button"
+import { toast } from "@/components/ui/use-toast"
 
 export const ShareButton = () => {
-  const { title: currentSlug }: { title: string } = useParams();
+  const { title: currentSlug }: { title: string } = useParams()
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useKeybind(buttonRef, { key: "s", ctrlKey: true }, () =>
-    buttonRef.current?.click(),
-  );
+    buttonRef.current?.click()
+  )
 
   return (
     <CopyToClipboard
@@ -25,7 +25,7 @@ export const ShareButton = () => {
       onCopy={() => {
         toast({
           title: "✅ Article Link Copied!",
-        });
+        })
       }}
     >
       <Button
@@ -36,5 +36,5 @@ export const ShareButton = () => {
         <Share />
       </Button>
     </CopyToClipboard>
-  );
-};
+  )
+}

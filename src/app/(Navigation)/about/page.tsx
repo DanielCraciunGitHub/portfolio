@@ -1,15 +1,15 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import Script from "next/script";
-import { danielConfig } from "@/config";
+import { Metadata } from "next"
+import Image from "next/image"
+import Script from "next/script"
+import { danielConfig } from "@/config"
 
-import { staticMetadata } from "@/config/metadata";
-import { staticStructuredData } from "@/config/structuredData";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { staticMetadata } from "@/config/metadata"
+import { staticStructuredData } from "@/config/structuredData"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const metadata: Metadata = {
   ...staticMetadata.about,
-};
+}
 
 export default function page() {
   return (
@@ -64,5 +64,5 @@ export default function page() {
         }}
       />
     </div>
-  );
+  )
 }

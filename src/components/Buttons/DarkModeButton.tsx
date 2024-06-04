@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useRef } from "react"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 
-import { Button } from "@/components/ui/button";
-import { useRef } from "react";
-import { useKeybind } from "@/hooks/useKeybind";
+import { useKeybind } from "@/hooks/useKeybind"
+import { Button } from "@/components/ui/button"
 
 export function DarkModeButton() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useKeybind(buttonRef, { key: "l", ctrlKey: true, shiftKey: true }, () =>
-    buttonRef.current?.click(),
-  );
+    buttonRef.current?.click()
+  )
 
   return (
     <Button
@@ -27,5 +27,5 @@ export function DarkModeButton() {
       <Sun className="transition-all dark:-rotate-90 dark:scale-0" />
       <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
     </Button>
-  );
+  )
 }

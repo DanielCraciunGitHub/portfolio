@@ -1,17 +1,17 @@
-import { siteConfig } from "@/config";
-import { Menu } from "lucide-react";
+import { siteConfig } from "@/config"
+import { Menu } from "lucide-react"
 
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 
-import { NavItem } from "./NavItem";
+import { NavItem } from "./NavItem"
 
 export function MobileNavbar() {
-  const [mainItem, ...navItems] = siteConfig.navLinks;
+  const [mainItem, ...navItems] = siteConfig.navLinks
 
   return (
     <div className="flex flex-col items-center py-2 md:hidden">
@@ -45,5 +45,5 @@ export function MobileNavbar() {
         </SheetContent>
       </Sheet>
     </div>
-  );
+  )
 }

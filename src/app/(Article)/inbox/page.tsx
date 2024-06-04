@@ -1,6 +1,6 @@
-import { CommentsData } from "./CommentsData";
-import { LikesData } from "./LikesData";
-import { WelcomeAdmin } from "./WelcomeAdmin";
+import { CommentsData } from "./CommentsData"
+import { LikesData } from "./LikesData"
+import { WelcomeAdmin } from "./WelcomeAdmin"
 
 interface pageProps {}
 
@@ -13,6 +13,6 @@ const page = ({}: pageProps) => {
         <LikesData />
       </div>
     </>
-  );
-};
-export default page;
+  )
+}
+export default page

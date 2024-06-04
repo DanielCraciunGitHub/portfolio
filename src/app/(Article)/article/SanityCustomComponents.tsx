@@ -1,13 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
-import { PortableTextComponents } from "@portabletext/react";
-import { CodeInputValue } from "@sanity/code-input";
-import { SanityImageAssetDocument } from "next-sanity";
+import Image from "next/image"
+import Link from "next/link"
+import { PortableTextComponents } from "@portabletext/react"
+import { CodeInputValue } from "@sanity/code-input"
+import { SanityImageAssetDocument } from "next-sanity"
 
-import { CaptionSource } from "@/lib/utils";
+import { CaptionSource } from "@/lib/utils"
 
-import { urlForImage } from "../../../../sanity/lib/image";
-import { CodeBlock } from "./SanityCodeBlock";
+import { urlForImage } from "../../../../sanity/lib/image"
+import { CodeBlock } from "./SanityCodeBlock"
 
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {
@@ -56,11 +56,11 @@ export const myPortableTextComponents: PortableTextComponents = {
       </div>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {
-      return <CodeBlock value={value} />;
+      return <CodeBlock value={value} />
     },
     Divider: () => <hr className="my-4 border-muted-foreground/50" />,
     Table: () => {
-      return null;
+      return null
     },
   },
-};
+}

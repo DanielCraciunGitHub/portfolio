@@ -1,4 +1,5 @@
-import { siteConfig } from "@/config";
+import * as React from "react"
+import { siteConfig } from "@/config"
 import {
   Body,
   Container,
@@ -12,15 +13,14 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components";
-import * as React from "react";
+} from "@react-email/components"
 
 interface InfoLibraryWelcomeProps {
-  firstName: string;
+  firstName: string
 }
 
 export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
-  const previewText = `Welcome ${firstName ?? "<FIRSTNAME>"}!`;
+  const previewText = `Welcome ${firstName ?? "<FIRSTNAME>"}!`
 
   return (
     <Html>
@@ -109,7 +109,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
         </Body>
       </Tailwind>
     </Html>
-  );
-};
+  )
+}
 
-export default InfoLibraryWelcome;
+export default InfoLibraryWelcome

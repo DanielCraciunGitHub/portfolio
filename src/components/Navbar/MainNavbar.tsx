@@ -1,9 +1,9 @@
-import { siteConfig } from "@/config";
+import { siteConfig } from "@/config"
 
-import { NavItem } from "./NavItem";
+import { NavItem } from "./NavItem"
 
 export const MainNavbar = () => {
-  const [firstLink, ...restLinks] = siteConfig.navLinks;
+  const [firstLink, ...restLinks] = siteConfig.navLinks
 
   return (
     <div className="hidden md:flex md:justify-center md:p-6">
@@ -31,5 +31,5 @@ export const MainNavbar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

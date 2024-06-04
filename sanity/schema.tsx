@@ -1,7 +1,7 @@
-import { type SchemaTypeDefinition } from "sanity";
+import { type SchemaTypeDefinition } from "sanity"
 
-import { blogConfig } from "../src/config";
-import { CustomInput } from "./lib/HotKeys";
+import { blogConfig } from "../src/config"
+import { CustomInput } from "./lib/HotKeys"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -157,4 +157,4 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       ],
     },
   ],
-};
+}

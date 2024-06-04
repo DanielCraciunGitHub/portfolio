@@ -1,36 +1,36 @@
-import { useEffect, useRef, useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
-import { MessageCircle } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useEffect, useRef, useState } from "react"
+import { useParams, useSearchParams } from "next/navigation"
+import { trpc } from "@/server/client"
+import { MessageCircle } from "lucide-react"
+import { useSession } from "next-auth/react"
 
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { trpc } from "@/server/client";
+import { useKeybind } from "@/hooks/useKeybind"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { LoginModal } from "@/components/LoginModal"
 
-import { AddComment } from "./AddComment";
-import { Comment } from "./Comment";
-import { useKeybind } from "@/hooks/useKeybind";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { LoginModal } from "@/components/LoginModal";
+import { AddComment } from "./AddComment"
+import { Comment } from "./Comment"
 
 export const CommentSection = () => {
-  const { title: currentSlug }: { title: string } = useParams();
+  const { title: currentSlug }: { title: string } = useParams()
 
-  const [open, setOpen] = useState(false);
-  const [openedOnce, setOpenedOnce] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [openedOnce, setOpenedOnce] = useState(false)
 
-  const { data: session } = useSession();
-  const searchParams = useSearchParams();
+  const { data: session } = useSession()
+  const searchParams = useSearchParams()
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
-  useKeybind(buttonRef, { key: "m", ctrlKey: true }, () => setOpen(!open));
+  useKeybind(buttonRef, { key: "m", ctrlKey: true }, () => setOpen(!open))
 
   useEffect(() => {
     if (searchParams.get("id") != null) {
-      setOpen(true);
+      setOpen(true)
     }
-  }, [searchParams]);
+  }, [searchParams])
 
   const { data: comments } = trpc.blogRouter.getCommentsData.useQuery(
     { slug: currentSlug },
@@ -39,18 +39,18 @@ export const CommentSection = () => {
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
       enabled: openedOnce,
-    },
-  );
+    }
+  )
 
   const topLevelComments = comments?.filter(
-    (comment) => comment.parentId === null,
-  );
+    (comment) => comment.parentId === null
+  )
 
   return (
     <Sheet
       onOpenChange={() => {
-        !openedOnce ? setOpenedOnce(true) : null;
-        setOpen(!open);
+        !openedOnce ? setOpenedOnce(true) : null
+        setOpen(!open)
       }}
       open={open}
     >
@@ -109,5 +109,5 @@ export const CommentSection = () => {
         </div>
       </SheetContent>
     </Sheet>
-  );
-};
+  )
+}

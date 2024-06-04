@@ -1,59 +1,59 @@
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Script from "next/script";
-import { danielConfig, siteConfig } from "@/config";
-import { PortableText } from "@portabletext/react";
-import readingDuration from "reading-duration";
-import { WebPage, WithContext } from "schema-dts";
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import Script from "next/script"
+import { danielConfig, siteConfig } from "@/config"
+import { PortableText } from "@portabletext/react"
+import readingDuration from "reading-duration"
+import { WebPage, WithContext } from "schema-dts"
 
-import { Article as BlogArticle } from "@/types/blog";
-import { baseStructuredData } from "@/config/structuredData";
-import { getCurrentArticle } from "@/lib/blogs";
-import { CaptionSource, formatTimeToNow } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { AuthorAvatar } from "@/components/AuthorAvatar";
+import { Article as BlogArticle } from "@/types/blog"
+import { baseStructuredData } from "@/config/structuredData"
+import { getCurrentArticle } from "@/lib/blogs"
+import { CaptionSource, formatTimeToNow } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-import { urlForImage } from "../../../../../sanity/lib/image";
-import ArticleViews from "../ArticleViews";
-import { myPortableTextComponents } from "../SanityCustomComponents";
+import { urlForImage } from "../../../../../sanity/lib/image"
+import ArticleViews from "../ArticleViews"
+import { myPortableTextComponents } from "../SanityCustomComponents"
 
 const BlogInteractor = dynamic(
   () =>
     import("../_BlogInteraction/BlogInteractor").then(
-      (mod) => mod.BlogInteractor,
+      (mod) => mod.BlogInteractor
     ),
-  { ssr: false },
-);
+  { ssr: false }
+)
 
 interface ArticleContentProps {
-  title: string;
+  title: string
 }
 
 export const ArticleContent = async ({ title }: ArticleContentProps) => {
-  const article = await getCurrentArticle(title);
+  const article = await getCurrentArticle(title)
 
   function ReadingDuration() {
     const articleBlockText = article?.content
       ?.flatMap((content) => content?.children)
       // @ts-ignore
       .map((block) => block?.text)
-      .join(" ");
+      .join(" ")
 
     const articleCode = article?.content
       ?.filter((content) => content?.code)
       .map((content) => content?.code)
-      .join(" ");
+      .join(" ")
 
-    const rawArticleContent = `${articleBlockText}\n\n${articleCode} `;
+    const rawArticleContent = `${articleBlockText}\n\n${articleCode} `
 
     return readingDuration(rawArticleContent, {
       emoji: false,
       wordsPerMinute: 150,
-    });
+    })
   }
 
   function ArticleStructuredData(article: BlogArticle) {
-    const featuredImage = urlForImage(article.image);
+    const featuredImage = urlForImage(article.image)
 
     const structuredData: WithContext<WebPage> = {
       ...baseStructuredData,
@@ -105,7 +105,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           },
         ],
       },
-    };
+    }
 
     return (
       <Script
@@ -115,7 +115,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           __html: JSON.stringify(structuredData),
         }}
       />
-    );
+    )
   }
 
   return (
@@ -180,5 +180,5 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
       <BlogInteractor />
       <ArticleStructuredData {...article} />
     </div>
-  );
-};
+  )
+}

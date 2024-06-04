@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { siteConfig } from "@/config";
+import Link from "next/link"
+import { siteConfig } from "@/config"
+import { serverClient } from "@/server/serverClient"
 
-import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
-import { serverClient } from "@/server/serverClient";
+import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card } from "@/components/ui/card"
 
 interface LikesDataProps {}
 
 export const LikesData = async ({}: LikesDataProps) => {
-  const likesData = await serverClient.blogRouter.fetchInboxLikes();
+  const likesData = await serverClient.blogRouter.fetchInboxLikes()
 
   return (
     <div>
@@ -46,9 +46,9 @@ export const LikesData = async ({}: LikesDataProps) => {
                 </Card>
               </Link>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,14 +1,14 @@
-import Link from "next/link";
-import type { SocialLink } from "@/types";
+import Link from "next/link"
+import type { SocialLink } from "@/types"
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 
 interface SocialLinkProps
   extends SocialLink,
     React.AnchorHTMLAttributes<HTMLDivElement> {
-  className?: string;
-  href: string;
+  className?: string
+  href: string
 }
 
 export default function SocialLink({
@@ -24,12 +24,12 @@ export default function SocialLink({
       target="_blank"
       className={cn(
         buttonVariants({ size: "icon", variant: "outline" }),
-        className,
+        className
       )}
       tabIndex={0}
     >
       {icon}
       <span className="sr-only">{name}</span>
     </Link>
-  );
+  )
 }

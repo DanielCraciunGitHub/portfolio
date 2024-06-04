@@ -1,4 +1,4 @@
-import { DarkModeButton } from "@/components/Buttons/DarkModeButton";
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
 
 export const Footer = () => (
   <footer className="z-20 p-4">
@@ -14,4 +14,4 @@ export const Footer = () => (
       </div>
     </div>
   </footer>
-);
+)

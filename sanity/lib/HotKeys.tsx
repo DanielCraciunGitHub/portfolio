@@ -1,11 +1,10 @@
-import { useMemo } from "react";
-import { PortableTextInput, PortableTextInputProps } from "sanity";
-
-import { PortableTextEditor } from "@sanity/portable-text-editor";
+import { useMemo } from "react"
+import { PortableTextEditor } from "@sanity/portable-text-editor"
+import { PortableTextInput, PortableTextInputProps } from "sanity"
 
 // The custom input with two custom hotkeys
 export const CustomInput = (props: PortableTextInputProps) => {
-  const { path, onItemOpen, onPathFocus } = props;
+  const { path, onItemOpen, onPathFocus } = props
   // Define the hotkey mapping
   const hotkeys: PortableTextInputProps["hotkeys"] = useMemo(
     () => ({
@@ -25,54 +24,54 @@ export const CustomInput = (props: PortableTextInputProps) => {
       custom: {
         "Ctrl+k": (event, portableTextEditor) => {
           const linkType = portableTextEditor.schemaTypes.annotations.find(
-            (a) => a.name === "link",
-          );
+            (a) => a.name === "link"
+          )
           if (linkType) {
-            event.preventDefault();
-            event.stopPropagation();
+            event.preventDefault()
+            event.stopPropagation()
             const activeAnnotations =
-              PortableTextEditor.activeAnnotations(portableTextEditor);
+              PortableTextEditor.activeAnnotations(portableTextEditor)
             const isLinkActive = activeAnnotations.some(
-              (a) => a._type === "link",
-            );
+              (a) => a._type === "link"
+            )
             if (isLinkActive) {
-              PortableTextEditor.removeAnnotation(portableTextEditor, linkType);
+              PortableTextEditor.removeAnnotation(portableTextEditor, linkType)
             } else {
               const result = PortableTextEditor.addAnnotation(
                 portableTextEditor,
-                linkType,
-              );
+                linkType
+              )
               if (result?.markDefPath) {
                 // Open the form member
-                onItemOpen(path.concat(result.markDefPath));
+                onItemOpen(path.concat(result.markDefPath))
                 // Move the focus to the 'href' field in the next tick
                 setTimeout(() => {
-                  onPathFocus(result.markDefPath.concat("href"));
-                });
+                  onPathFocus(result.markDefPath.concat("href"))
+                })
               }
             }
           }
         },
         "Ctrl+.": (event, portableTextEditor) => {
-          event.preventDefault();
-          event.stopPropagation();
-          const block = PortableTextEditor.getSelection(portableTextEditor);
+          event.preventDefault()
+          event.stopPropagation()
+          const block = PortableTextEditor.getSelection(portableTextEditor)
           if (block) {
-            PortableTextEditor.toggleList(portableTextEditor, "bullet");
+            PortableTextEditor.toggleList(portableTextEditor, "bullet")
           }
         },
         "Ctrl+/": (event, portableTextEditor) => {
-          event.preventDefault();
-          event.stopPropagation();
-          const block = PortableTextEditor.getSelection(portableTextEditor);
+          event.preventDefault()
+          event.stopPropagation()
+          const block = PortableTextEditor.getSelection(portableTextEditor)
           if (block) {
-            PortableTextEditor.toggleList(portableTextEditor, "number");
+            PortableTextEditor.toggleList(portableTextEditor, "number")
           }
         },
       },
     }),
-    [onPathFocus, onItemOpen, path],
-  );
+    [onPathFocus, onItemOpen, path]
+  )
 
-  return <PortableTextInput {...props} hotkeys={hotkeys} />;
-};
+  return <PortableTextInput {...props} hotkeys={hotkeys} />
+}

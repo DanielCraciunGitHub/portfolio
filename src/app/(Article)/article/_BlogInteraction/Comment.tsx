@@ -1,34 +1,34 @@
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { EllipsisVertical } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { EllipsisVertical } from "lucide-react"
+import { useSession } from "next-auth/react"
 
-import { Reply, TopComment } from "@/types/blog";
-import { formatTimeToNow, getInitials } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Reply, TopComment } from "@/types/blog"
+import { formatTimeToNow, getInitials } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/components/ui/popover"
+import { Textarea } from "@/components/ui/textarea"
 
-import { AddComment } from "./AddComment";
-import { CommentLikeButton } from "./CommentLikeButton";
-import { DeleteComment } from "./DeleteComment";
-import { EditComment } from "./EditComment";
+import { AddComment } from "./AddComment"
+import { CommentLikeButton } from "./CommentLikeButton"
+import { DeleteComment } from "./DeleteComment"
+import { EditComment } from "./EditComment"
 
 export interface CommentProps {
-  comment: TopComment | Reply;
+  comment: TopComment | Reply
 }
 
 export const Comment = ({ comment }: CommentProps) => {
-  const searchParams = useSearchParams();
-  const [isReplying, setIsReplying] = useState(false);
+  const searchParams = useSearchParams()
+  const [isReplying, setIsReplying] = useState(false)
 
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
   return (
     <Card
@@ -85,7 +85,7 @@ export const Comment = ({ comment }: CommentProps) => {
         <CommentLikeButton comment={comment} />
         <Button
           onClick={() => {
-            setIsReplying(true);
+            setIsReplying(true)
           }}
         >
           Reply
@@ -95,5 +95,5 @@ export const Comment = ({ comment }: CommentProps) => {
         <AddComment setIsReplying={setIsReplying} replyingTo={comment} />
       ) : null}
     </Card>
-  );
-};
+  )
+}

@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { siteConfig } from "@/config";
-import { Check, Mail, X } from "lucide-react";
+import Link from "next/link"
+import { siteConfig } from "@/config"
+import { trpc } from "@/server/client"
+import { Check, Mail, X } from "lucide-react"
 
 import {
   articleSlugToTitle,
   cn,
   formatTimeToNow,
   getInitials,
-} from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { trpc } from "@/server/client";
+} from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
 export const CommentsData = () => {
   const { data: commentsData, refetch: revalidateInboxComments } =
@@ -21,14 +21,14 @@ export const CommentsData = () => {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-    });
+    })
   const { mutate: resolveComment } = trpc.blogRouter.resolveComment.useMutation(
     {
       onSuccess: () => {
-        revalidateInboxComments();
+        revalidateInboxComments()
       },
-    },
-  );
+    }
+  )
 
   return (
     <div>
@@ -42,7 +42,7 @@ export const CommentsData = () => {
               <Link
                 className={cn(
                   buttonVariants(),
-                  "col-span-1 h-full w-full rounded-r-none",
+                  "col-span-1 h-full w-full rounded-r-none"
                 )}
                 href={`mailto:${comment.author.email}`}
                 target="_blank"
@@ -96,9 +96,9 @@ export const CommentsData = () => {
                 {comment.resolved ? <X /> : <Check />}
               </Button>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}

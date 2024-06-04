@@ -1,18 +1,18 @@
 // useLazyLoad.ts
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-type ImportFunction = () => Promise<any>;
+type ImportFunction = () => Promise<any>
 
 function useLazyLoad(importFunction: ImportFunction): boolean {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     importFunction().then(() => {
-      setLoaded(true);
-    });
-  }, [importFunction]);
+      setLoaded(true)
+    })
+  }, [importFunction])
 
-  return loaded;
+  return loaded
 }
 
-export default useLazyLoad;
+export default useLazyLoad

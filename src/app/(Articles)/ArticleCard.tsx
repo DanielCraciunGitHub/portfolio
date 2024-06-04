@@ -1,20 +1,20 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Eye } from "lucide-react";
+import Image from "next/image"
+import Link from "next/link"
+import { Eye } from "lucide-react"
 
-import { BlogCard } from "@/types/blog";
-import { formatArticleViews, formatTimeToNow, nameToPath } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import { BlogCard } from "@/types/blog"
+import { formatArticleViews, formatTimeToNow, nameToPath } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
+import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-import { trpc } from "../../server/client";
-import { urlFor, urlForImage } from "../../../sanity/lib/image";
-import { AuthorAvatar } from "@/components/AuthorAvatar";
+import { urlFor, urlForImage } from "../../../sanity/lib/image"
+import { trpc } from "../../server/client"
 
 export default function ArticleCard({
   title,
@@ -31,8 +31,8 @@ export default function ArticleCard({
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-    },
-  );
+    }
+  )
 
   return (
     <Link
@@ -102,5 +102,5 @@ export default function ArticleCard({
         </div>
       </Card>
     </Link>
-  );
+  )
 }

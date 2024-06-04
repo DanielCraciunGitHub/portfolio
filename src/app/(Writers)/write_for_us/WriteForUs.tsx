@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { X } from "lucide-react";
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { X } from "lucide-react"
 
 interface WriteForUsProps {}
 
 export const WriteForUs = ({}: WriteForUsProps) => {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false)
 
   useEffect(() => {
-    setShow(!!!localStorage.getItem("writeForUs"));
-  }, []);
+    setShow(!!!localStorage.getItem("writeForUs"))
+  }, [])
 
   return show ? (
     <div className="relative flex flex-col items-center justify-center bg-black p-1 italic text-white dark:bg-gray-800 md:flex-row">
       <div
         onClick={() => {
-          setShow(false);
-          localStorage.setItem("writeForUs", "true");
+          setShow(false)
+          localStorage.setItem("writeForUs", "true")
         }}
         className="absolute right-2 cursor-pointer opacity-50"
       >
@@ -32,5 +32,5 @@ export const WriteForUs = ({}: WriteForUsProps) => {
         &nbsp;today!
       </div>
     </div>
-  ) : null;
-};
+  ) : null
+}
