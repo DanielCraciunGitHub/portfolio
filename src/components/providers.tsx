@@ -36,7 +36,9 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
           <GoogleReCaptchaProvider
             reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           >
-            <SessionProvider>{children}</SessionProvider>
+            <SessionProvider refetchOnWindowFocus={false}>
+              {children}
+            </SessionProvider>
           </GoogleReCaptchaProvider>
         </NextThemesProvider>
       </QueryClientProvider>

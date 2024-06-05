@@ -1,8 +1,8 @@
-import { randomUUID } from "crypto"
 import { db } from "@/db"
 import { articleComments, articleLikes, articleViews, users } from "@/db/schema"
 import { env } from "@/env.mjs"
 import { and, asc, eq, isNull, or } from "drizzle-orm"
+import { ulid } from "ulid"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
@@ -154,7 +154,7 @@ export const blogRouter = router({
       const [{ id }] = await db
         .insert(articleComments)
         .values({
-          id: randomUUID(),
+          id: ulid(),
           articleSlug: input.slug,
           userId: session?.user.id!,
           body: input.body,

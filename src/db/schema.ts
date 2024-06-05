@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto"
 import type { AdapterAccount } from "@auth/core/adapters"
 import { relations, sql } from "drizzle-orm"
 import {
@@ -8,6 +7,7 @@ import {
   sqliteTable,
   text,
 } from "drizzle-orm/sqlite-core"
+import { ulid } from "ulid"
 
 export const users = sqliteTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -71,7 +71,7 @@ export const articleLikes = sqliteTable("articleLikes", {
   id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
-    .$defaultFn(() => randomUUID()),
+    .$defaultFn(() => ulid()),
   userId: text("userId", { length: 255 })
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -86,7 +86,7 @@ export const articleComments = sqliteTable("articleComments", {
   id: text("id", { length: 255 })
     .notNull()
     .primaryKey()
-    .$defaultFn(() => randomUUID()),
+    .$defaultFn(() => ulid()),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
   userId: text("userId", { length: 255 })
     .notNull()
