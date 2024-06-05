@@ -12,7 +12,7 @@ const page = async () => {
     <div className="container mx-auto my-4 flex max-w-2xl flex-col space-y-2">
       <h1 className="text-center text-4xl font-extrabold">Privacy Policy</h1>
       <p className="text-center text-muted-foreground">
-        Last updated: June 02, 2024
+        Last updated: June 05, 2024
       </p>
       <p className="pt-2">
         This Privacy Policy describes Our policies and procedures on the
@@ -119,11 +119,11 @@ const page = async () => {
             <strong>Website</strong> refers to Info Library, accessible from{" "}
             <a
               className="text-blue-600 underline"
-              href="blog.danielfullstack.com"
+              href="https://www.danielfullstack.com/blog"
               rel="external nofollow noopener"
               target="_blank"
             >
-              blog.danielfullstack.com
+              www.danielfullstack.com/blog
             </a>
           </p>
         </li>

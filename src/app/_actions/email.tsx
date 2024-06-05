@@ -32,7 +32,7 @@ interface ReplyPayload {
 
 export const sendWelcomeEmail = async ({ name, email }: WelcomePayload) => {
   const { data, error } = await resend.emails.send({
-    from: "Daniel C. <noreply@blog.danielfullstack.com>",
+    from: "Daniel C. <noreply@danielfullstack.com>",
     to: [email],
     subject: "Info Library",
     react: InfoLibraryWelcome({ firstName: name.split(" ")[0] }),
@@ -64,7 +64,7 @@ export const sendReplyEmail = async ({
   }
 
   const { data, error } = await resend.emails.send({
-    from: `Info Library <noreply@blog.danielfullstack.com>`,
+    from: `Info Library <noreply@danielfullstack.com>`,
     to: [receiverEmail],
     subject: "Your comment has a reply!",
     react: InfoLibraryCommentReply({
