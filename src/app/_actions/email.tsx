@@ -6,8 +6,8 @@ import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 import { Resend } from "resend"
 
-import InfoLibraryCommentReply from "../../../react-email-starter/emails/infolibrary-comment-reply"
-import InfoLibraryWelcome from "../../../react-email-starter/emails/infolibrary-welcome"
+import InfoLibraryCommentReply from "../../components/Emails/infolibrary-comment-reply"
+import InfoLibraryWelcome from "../../components/Emails/infolibrary-welcome"
 
 const resend = new Resend(env.RESEND_API_KEY)
 

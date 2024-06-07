@@ -41,3 +41,9 @@ dist
 
 # react-email
 react-email-starter/node_modules
+
+# sst
+.sst
+
+# open-next
+.open-next

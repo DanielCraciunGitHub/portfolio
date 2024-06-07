@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useMemo } from "react"
 import { PortableTextEditor } from "@sanity/portable-text-editor"
 import { PortableTextInput, PortableTextInputProps } from "sanity"

@@ -33,6 +33,14 @@ export const env = createEnv({
 
     TURSO_AUTH_TOKEN: z.string().min(1),
     TURSO_DATABASE_URL: z.string().min(1),
+
+    AWS_SECRET_ACCESS_KEY: z.string().min(1),
+    AWS_ACCESS_KEY_ID: z.string().min(1),
+
+    NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID: z.string().min(1),
+    NEXT_PUBLIC_SANITY_STUDIO_DATASET: z.string().min(1),
+    SANITY_STUDIO_PROJECT_ID: z.string().min(1),
+    SANITY_STUDIO_DATASET: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
