@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -19,12 +19,35 @@ jobs:
           node-version: "20"
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v4.0.0
         with:
           version: "8.15.1"
 
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
+
+      - name: Cache build output
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pnpm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
       - name: Deploy
         env:
@@ -53,5 +76,6 @@ jobs:
           NEXT_PUBLIC_SANITY_STUDIO_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_STUDIO_DATASET}}
           SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID}}
           SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET}}
+          AWS_ARN_CERTIFICATE: ${{ secrets.AWS_ARN_CERTIFICATE }}
         run: |
           npx sst deploy --stage prod

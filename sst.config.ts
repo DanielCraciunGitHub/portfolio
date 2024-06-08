@@ -1,3 +1,4 @@
+import { Certificate } from "aws-cdk-lib/aws-certificatemanager"
 import { SSTConfig } from "sst"
 import { NextjsSite } from "sst/constructs"
 
@@ -47,6 +48,19 @@ export default {
 
           SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID!,
           SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET!,
+
+          AWS_ARN_CERTIFICATE: process.env.AWS_ARN_CERTIFICATE!,
+        },
+        customDomain: {
+          domainName: "www.danielfullstack.com",
+          isExternalDomain: true,
+          cdk: {
+            certificate: Certificate.fromCertificateArn(
+              stack,
+              "MyCert",
+              process.env.AWS_ARN_CERTIFICATE!
+            ),
+          },
         },
       })
 
