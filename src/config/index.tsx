@@ -91,9 +91,9 @@ export const danielConfig = {
   ],
 
   heroStats: [
-    { "5+": "Large-Scale Projects Completed 🎯" },
+    { "6+": "Large-Scale Projects Completed 🎯" },
     { "9,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
-    { "40,000+": "Monthly Blog Reads 📖" },
+    { "50,000+": "Monthly Blog Reads 📖" },
     { "100+": "Blog Posts Written 📝" },
   ] satisfies HeroStat[],
   projects: [
@@ -112,6 +112,22 @@ export const danielConfig = {
         "A hub of many unique educational features serving a common purpose, and that is to help students excel in their studies.",
       href: "https://github.com/DanielCraciunGitHub/emm",
       imageHref: "/images/emm.png",
+    },
+    {
+      name: "Ultimate Next.js Boilerplate",
+      type: "Template Repo",
+      description:
+        "A production-ready Next.js starter template using: Auth.js, Drizzle ORM + PlanetScale, tRPC, shadcn/ui, and so much more.",
+      href: "https://github.com/DanielCraciunGitHub/nextjs-template",
+      imageHref: "/images/nextjs-template.png",
+    },
+    {
+      name: "Workout Volume Tracker",
+      type: "Website",
+      description:
+        "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
+      href: "https://github.com/DanielCraciunGitHub/workout-app",
+      imageHref: "/images/volume-tracker.png",
     },
     {
       name: "create-ndpt-app",
