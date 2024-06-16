@@ -5,6 +5,8 @@ import { CodeInputValue } from "@sanity/code-input"
 import { SanityImageAssetDocument } from "next-sanity"
 
 import { CaptionSource } from "@/lib/utils"
+import { TweetEmbed } from "@/components/TweetEmbed"
+import { YoutubeEmbed } from "@/components/YoutubeEmbed"
 
 import { urlForImage } from "../../../../sanity/lib/image"
 import { CodeBlock } from "./SanityCodeBlock"
@@ -61,6 +63,12 @@ export const myPortableTextComponents: PortableTextComponents = {
     Divider: () => <hr className="my-4 border-muted-foreground/50" />,
     Table: () => {
       return null
+    },
+    Tweet: ({ value }: any) => {
+      return <TweetEmbed tweetId={value.tweetId} />
+    },
+    Youtube: ({ value }: any) => {
+      return <YoutubeEmbed videoid={value.videoId} />
     },
   },
 }

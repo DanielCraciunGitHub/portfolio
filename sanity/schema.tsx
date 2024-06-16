@@ -1,5 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity"
 
+import { YoutubeEmbed } from "../src/components/YoutubeEmbed"
 import { blogConfig } from "../src/config"
 import { CustomInput } from "./lib/HotKeys"
 
@@ -150,6 +151,26 @@ export const schema: { types: SchemaTypeDefinition[] } = {
               fields: [{ type: "string", name: "divider" }],
               components: {
                 preview: () => <hr />,
+              },
+            },
+            {
+              name: "Youtube",
+              type: "object",
+              title: "Youtube Embed",
+              fields: [{ type: "string", name: "videoId" }],
+              components: {
+                preview: (props: any) => {
+                  return <YoutubeEmbed videoid={props.title} />
+                },
+              },
+            },
+            {
+              name: "Tweet",
+              type: "object",
+              title: "X Embed",
+              fields: [{ type: "string", name: "tweetId" }],
+              components: {
+                preview: (props: any) => `Tweet Id: ${props.title}`,
               },
             },
           ],
