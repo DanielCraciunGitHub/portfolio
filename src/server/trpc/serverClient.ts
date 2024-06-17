@@ -17,6 +17,4 @@ const createContext = cache(() => {
     headers: heads,
   })
 })
-
-// @ts-ignore
 export const api = createCaller(createContext)

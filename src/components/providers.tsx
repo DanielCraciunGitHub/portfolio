@@ -20,6 +20,7 @@ import SuperJSON from "superjson"
 const createQueryClient = () => new QueryClient()
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined
+
 const getQueryClient = () => {
   if (typeof window === "undefined") {
     // Server: always make a new query client
@@ -50,7 +51,6 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
         httpBatchStreamLink({
           transformer: SuperJSON,
           url: siteConfig.url + "/api/trpc",
-          // @ts-ignore
           headers(opts) {
             const headers = new Headers()
             headers.set("x-trpc-source", "nextjs-react")
@@ -58,21 +58,20 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
           },
         }),
       ],
-      transformer: SuperJSON,
     })
   )
   return (
     <QueryClientProvider client={queryClient}>
       <api.Provider client={trpcClient} queryClient={queryClient}>
-        <NextThemesProvider {...props}>
-          <GoogleReCaptchaProvider
-            reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-          >
-            <SessionProvider refetchOnWindowFocus={false}>
+        <SessionProvider refetchOnWindowFocus={false}>
+          <NextThemesProvider {...props}>
+            <GoogleReCaptchaProvider
+              reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            >
               {children}
-            </SessionProvider>
-          </GoogleReCaptchaProvider>
-        </NextThemesProvider>
+            </GoogleReCaptchaProvider>
+          </NextThemesProvider>
+        </SessionProvider>
       </api.Provider>
     </QueryClientProvider>
   )

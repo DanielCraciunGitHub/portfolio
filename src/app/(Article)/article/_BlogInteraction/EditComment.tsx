@@ -59,7 +59,7 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
         refetchOnWindowFocus: false,
       }
     )
-  const { mutateAsync: editComment, isLoading } =
+  const { mutateAsync: editComment, isPending } =
     api.blogRouter.editComment.useMutation({
       onSuccess: async () => {
         await invalidateCommentsData()
@@ -106,7 +106,7 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-              <SpinnerButton name="Confirm" state={isLoading} type="submit" />
+              <SpinnerButton name="Confirm" state={isPending} type="submit" />
             </AlertDialogFooter>
           </form>
         </Form>

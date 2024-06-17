@@ -1,4 +1,3 @@
-import { db } from "@/db"
 import { articleComments, articleLikes, articleViews, users } from "@/db/schema"
 import { env } from "@/env.mjs"
 import { and, asc, eq, isNull, or } from "drizzle-orm"
@@ -6,13 +5,12 @@ import { ulid } from "ulid"
 import { z } from "zod"
 
 import { LikeData } from "@/types/blog"
-import { auth } from "@/lib/auth"
 import { getInfiniteBlogs } from "@/lib/blogs"
 import { sqliteTimestampNow } from "@/lib/utils"
 import { sendInbox, sendPublishedPost } from "@/app/_actions/discord"
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
-import { createTRPCRouter, publicProcedure } from "../trpc"
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc"
 
 export const blogRouter = createTRPCRouter({
   getInfinitePosts: publicProcedure
@@ -47,8 +45,8 @@ export const blogRouter = createTRPCRouter({
 
   getArticleLikeData: publicProcedure
     .input(z.object({ slug: z.string() }))
-    .query(async ({ input }): Promise<LikeData> => {
-      const session = await auth()
+    .query(async ({ ctx, input }): Promise<LikeData> => {
+      const { db, session } = ctx
 
       // Get the current likes for the article only.
       const currentLikes = await db.query.articleLikes.findMany({
@@ -65,17 +63,18 @@ export const blogRouter = createTRPCRouter({
       return { likes: currentLikes.length, isLiked: !!articleLiked }
     }),
 
-  updateArticleLikes: publicProcedure
+  updateArticleLikes: protectedProcedure
     .input(z.object({ slug: z.string(), isLiked: z.boolean() }))
-    .mutation(async ({ input }) => {
-      const session = await auth()
+    .mutation(async ({ ctx, input }) => {
+      const { db, session } = ctx
+
       if (input.isLiked) {
         await db
           .delete(articleLikes)
           .where(
             and(
               eq(articleLikes.articleSlug, input.slug),
-              eq(articleLikes.userId, session?.user.id!),
+              eq(articleLikes.userId, session.user.id),
               isNull(articleLikes.commentId)
             )
           )
@@ -84,14 +83,17 @@ export const blogRouter = createTRPCRouter({
       } else {
         await db.insert(articleLikes).values({
           articleSlug: input.slug,
-          userId: session?.user.id!,
+          userId: session.user.id,
         })
         return 1
       }
     }),
   getCommentsData: publicProcedure
     .input(z.object({ slug: z.string() }))
-    .query(async ({ input }) => {
+
+    .query(async ({ ctx, input }) => {
+      const { db } = ctx
+
       // filter for this slug
       const data = await db.query.articleComments.findMany({
         with: {
@@ -109,13 +111,13 @@ export const blogRouter = createTRPCRouter({
 
       return data.reverse()
     }),
-  updateCommentLikes: publicProcedure
+  updateCommentLikes: protectedProcedure
     .input(z.custom<CommentProps>())
-    .mutation(async ({ input }) => {
-      const session = await auth()
+    .mutation(async ({ ctx, input }) => {
+      const { db, session } = ctx
 
       const isLiked = !!input.comment.likes.filter(
-        (currentLike) => currentLike.userId === session?.user.id
+        (currentLike) => currentLike.userId === session.user.id
       ).length
 
       if (isLiked) {
@@ -124,7 +126,7 @@ export const blogRouter = createTRPCRouter({
           .where(
             and(
               eq(articleLikes.articleSlug, input.comment.articleSlug),
-              eq(articleLikes.userId, session?.user.id!),
+              eq(articleLikes.userId, session.user.id),
               eq(articleLikes.commentId, input.comment.id)
             )
           )
@@ -133,13 +135,13 @@ export const blogRouter = createTRPCRouter({
       } else {
         await db.insert(articleLikes).values({
           articleSlug: input.comment.articleSlug,
-          userId: session?.user.id!,
+          userId: session.user.id,
           commentId: input.comment.id,
         })
         return 1
       }
     }),
-  addComment: publicProcedure
+  addComment: protectedProcedure
     .input(
       z.object({
         body: z.string(),
@@ -148,15 +150,15 @@ export const blogRouter = createTRPCRouter({
         replyingTo: z.string().optional(),
       })
     )
-    .mutation(async ({ input }) => {
-      const session = await auth()
+    .mutation(async ({ ctx, input }) => {
+      const { db, session } = ctx
 
       const [{ id }] = await db
         .insert(articleComments)
         .values({
           id: ulid(),
           articleSlug: input.slug,
-          userId: session?.user.id!,
+          userId: session.user.id,
           body: input.body,
           parentId: input.replyingToId,
           replyingTo: input.replyingTo,
@@ -171,25 +173,31 @@ export const blogRouter = createTRPCRouter({
 
       return { newCommentId: id }
     }),
-  deleteComment: publicProcedure
+  deleteComment: protectedProcedure
     .input(z.custom<CommentProps>())
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const { db } = ctx
+
       await db
         .delete(articleComments)
         .where(eq(articleComments.id, input.comment.id))
     }),
-  editComment: publicProcedure
+  editComment: protectedProcedure
     .input(
       z.intersection(z.object({ body: z.string() }), z.custom<CommentProps>())
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const { db } = ctx
+
       await db
         .update(articleComments)
         .set({ body: input.body, updatedAt: sqliteTimestampNow(), isEdited: 1 })
         .where(eq(articleComments.id, input.comment.id))
     }),
 
-  fetchInboxLikes: publicProcedure.query(async () => {
+  fetchInboxLikes: protectedProcedure.query(async ({ ctx }) => {
+    const { db } = ctx
+
     const likes = await db.query.articleLikes.findMany({
       with: {
         liker: true,
@@ -200,7 +208,9 @@ export const blogRouter = createTRPCRouter({
     return likes
   }),
 
-  fetchInboxComments: publicProcedure.query(async () => {
+  fetchInboxComments: protectedProcedure.query(async ({ ctx }) => {
+    const { db } = ctx
+
     const [daniel] = await db
       .select()
       .from(users)
@@ -222,9 +232,11 @@ export const blogRouter = createTRPCRouter({
     return comments
   }),
 
-  resolveComment: publicProcedure
+  resolveComment: protectedProcedure
     .input(z.object({ id: z.string(), resolved: z.boolean() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const { db } = ctx
+
       await db
         .update(articleComments)
         .set({ resolved: !input.resolved })
@@ -233,7 +245,9 @@ export const blogRouter = createTRPCRouter({
 
   getArticleViews: publicProcedure
     .input(z.object({ slug: z.string(), author: z.string().optional() }))
-    .query(async ({ input }) => {
+    .query(async ({ ctx, input }) => {
+      const { db } = ctx
+
       const [data] = await db
         .select({ views: articleViews.views })
         .from(articleViews)
@@ -251,7 +265,9 @@ export const blogRouter = createTRPCRouter({
 
   addArticleView: publicProcedure
     .input(z.object({ views: z.number(), slug: z.string() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
+      const { db } = ctx
+
       await db
         .update(articleViews)
         .set({ views: input.views + 1 })

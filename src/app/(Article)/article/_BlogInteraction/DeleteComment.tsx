@@ -30,7 +30,7 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
         refetchOnWindowFocus: false,
       }
     )
-  const { mutateAsync: deleteComment, isLoading } =
+  const { mutateAsync: deleteComment, isPending } =
     api.blogRouter.deleteComment.useMutation({
       onSuccess: () => {
         invalidateCommentsData()
@@ -55,7 +55,7 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
           <SpinnerButton
             className="bg-destructive text-foreground hover:bg-destructive"
             name="Delete"
-            state={isLoading}
+            state={isPending}
             onClick={async () => {
               // TODO make sure the spinner button shows
               await deleteComment({ comment })

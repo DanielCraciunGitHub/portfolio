@@ -50,7 +50,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
         refetchOnWindowFocus: false,
       }
     )
-  const { mutateAsync: addComment, isLoading } =
+  const { mutateAsync: addComment, isPending } =
     api.blogRouter.addComment.useMutation({
       onSuccess: async () => {
         await invalidateCommentsData()
@@ -115,7 +115,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
                 Cancel
               </Button>
             ) : null}
-            <SpinnerButton name="Submit" state={isLoading} type="submit" />
+            <SpinnerButton name="Submit" state={isPending} type="submit" />
           </div>
         </Card>
       </form>
