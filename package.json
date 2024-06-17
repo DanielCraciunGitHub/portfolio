@@ -93,6 +93,7 @@
     "resend": "^3.2.0",
     "sanity": "^3.37.2",
     "schema-dts": "^1.1.2",
+    "server-only": "^0.0.1",
     "sharp": "^0.33.4",
     "sonner": "^1.4.41",
     "stripe": "^14.25.0",

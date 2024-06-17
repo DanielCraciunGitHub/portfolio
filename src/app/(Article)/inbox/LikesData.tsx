@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { siteConfig } from "@/config"
-import { serverClient } from "@/server/serverClient"
+import { api } from "@/server/trpc/serverClient"
 
 import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card"
 interface LikesDataProps {}
 
 export const LikesData = async ({}: LikesDataProps) => {
-  const likesData = await serverClient.blogRouter.fetchInboxLikes()
+  const likesData = await api.blogRouter.fetchInboxLikes()
 
   return (
     <div>

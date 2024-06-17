@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 
 import { Reply, TopComment } from "@/types/blog"
 import {
@@ -22,7 +22,7 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
   const [open, setOpen] = useState(false)
 
   const { refetch: invalidateCommentsData } =
-    trpc.blogRouter.getCommentsData.useQuery(
+    api.blogRouter.getCommentsData.useQuery(
       { slug: comment.articleSlug },
       {
         refetchOnMount: false,
@@ -31,7 +31,7 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
       }
     )
   const { mutateAsync: deleteComment, isLoading } =
-    trpc.blogRouter.deleteComment.useMutation({
+    api.blogRouter.deleteComment.useMutation({
       onSuccess: () => {
         invalidateCommentsData()
       },

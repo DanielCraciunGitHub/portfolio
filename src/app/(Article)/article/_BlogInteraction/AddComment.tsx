@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 import { useParams } from "next/navigation"
 import { siteConfig } from "@/config"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
@@ -42,7 +42,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
   usePersistComment({ value: body, key: FORM_DATA_KEY })
 
   const { refetch: invalidateCommentsData } =
-    trpc.blogRouter.getCommentsData.useQuery(
+    api.blogRouter.getCommentsData.useQuery(
       { slug },
       {
         refetchOnMount: false,
@@ -51,7 +51,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
       }
     )
   const { mutateAsync: addComment, isLoading } =
-    trpc.blogRouter.addComment.useMutation({
+    api.blogRouter.addComment.useMutation({
       onSuccess: async () => {
         await invalidateCommentsData()
         setIsReplying ? setIsReplying(false) : null

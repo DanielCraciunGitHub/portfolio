@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Script from "next/script"
 import { eBookConfig } from "@/config"
-import { serverClient } from "@/server/serverClient"
+import { api } from "@/server/trpc/serverClient"
 
 import { staticMetadata } from "@/config/metadata"
 import { staticStructuredData } from "@/config/structuredData"
@@ -65,7 +65,7 @@ export default async function page({
   )
 }
 async function EbookPrice() {
-  const eBookPrice = await serverClient.paymentRouter.getEbookPrice()
+  const eBookPrice = await api.paymentRouter.getEbookPrice()
   return (
     <div className="flex flex-col">
       <span className="text-center text-4xl text-red-500 line-through">

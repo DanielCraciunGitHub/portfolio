@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "next/navigation"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { debounce } from "lodash"
 import { useSession } from "next-auth/react"
 
@@ -37,7 +37,7 @@ export const ArticleLikeButton = () => {
   const { data: session } = useSession()
 
   const { data, refetch: invalidateLikeData } =
-    trpc.blogRouter.getArticleLikeData.useQuery(
+    api.blogRouter.getArticleLikeData.useQuery(
       { slug: currentSlug },
       {
         refetchOnMount: false,
@@ -51,7 +51,7 @@ export const ArticleLikeButton = () => {
   }, [data])
 
   const { mutateAsync: updateLikeCount } =
-    trpc.blogRouter.updateArticleLikes.useMutation({
+    api.blogRouter.updateArticleLikes.useMutation({
       onMutate: () => {
         // optimistic update of like count
         if (likesData!.isLiked) {

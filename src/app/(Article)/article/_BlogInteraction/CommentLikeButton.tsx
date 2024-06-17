@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { debounce } from "lodash"
 import { useSession } from "next-auth/react"
 
@@ -23,7 +23,7 @@ export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
   })
 
   const { refetch: invalidateCommentsData } =
-    trpc.blogRouter.getCommentsData.useQuery(
+    api.blogRouter.getCommentsData.useQuery(
       { slug: comment.articleSlug },
       {
         refetchOnMount: false,
@@ -33,7 +33,7 @@ export const CommentLikeButton = ({ comment }: CommentLikeButtonProps) => {
     )
 
   const { mutateAsync: updateLikeCount } =
-    trpc.blogRouter.updateCommentLikes.useMutation({
+    api.blogRouter.updateCommentLikes.useMutation({
       onMutate: () => {
         // optimistic update of like count
         if (likesData!.isLiked) {

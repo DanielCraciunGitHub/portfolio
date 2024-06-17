@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -51,7 +51,7 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
   })
 
   const { refetch: invalidateCommentsData } =
-    trpc.blogRouter.getCommentsData.useQuery(
+    api.blogRouter.getCommentsData.useQuery(
       { slug: comment.articleSlug },
       {
         refetchOnMount: false,
@@ -60,7 +60,7 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
       }
     )
   const { mutateAsync: editComment, isLoading } =
-    trpc.blogRouter.editComment.useMutation({
+    api.blogRouter.editComment.useMutation({
       onSuccess: async () => {
         await invalidateCommentsData()
         setOpen(false)

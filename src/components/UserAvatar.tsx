@@ -1,11 +1,11 @@
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 
 import { getInitials } from "@/lib/utils"
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 export const UserAvatar = () => {
-  const { data: session } = trpc.authRouter.getSession.useQuery(undefined, {
+  const { data: session } = api.authRouter.getSession.useQuery(undefined, {
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,

@@ -3,9 +3,9 @@ import { env } from "@/env.mjs"
 
 import { stripe } from "@/lib/stripe"
 
-import { publicProcedure, router } from "../trpc"
+import { createTRPCRouter, publicProcedure } from "../trpc"
 
-export const paymentRouter = router({
+export const paymentRouter = createTRPCRouter({
   getStripeUrl: publicProcedure.query(async () => {
     try {
       const stripeSession = await stripe.checkout.sessions.create({

@@ -14,7 +14,7 @@ import {
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
 import { urlFor, urlForImage } from "../../../sanity/lib/image"
-import { trpc } from "../../server/client"
+import { api } from "../../server/client"
 
 export default function ArticleCard({
   title,
@@ -25,7 +25,7 @@ export default function ArticleCard({
   category,
   _createdAt,
 }: BlogCard) {
-  const { data: views } = trpc.blogRouter.getArticleViews.useQuery(
+  const { data: views } = api.blogRouter.getArticleViews.useQuery(
     { slug: currentSlug, author: author?.name },
     {
       refetchOnMount: false,

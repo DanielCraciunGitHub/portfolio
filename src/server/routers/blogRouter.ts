@@ -12,9 +12,9 @@ import { sqliteTimestampNow } from "@/lib/utils"
 import { sendInbox, sendPublishedPost } from "@/app/_actions/discord"
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
-import { publicProcedure, router } from "../trpc"
+import { createTRPCRouter, publicProcedure } from "../trpc"
 
-export const blogRouter = router({
+export const blogRouter = createTRPCRouter({
   getInfinitePosts: publicProcedure
     .input(
       z.object({

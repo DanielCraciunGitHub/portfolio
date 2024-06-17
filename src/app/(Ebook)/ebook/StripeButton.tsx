@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 
 import { ButtonProps } from "@/components/ui/button"
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
@@ -13,7 +13,7 @@ interface StripeButtonProps extends ButtonProps {
 const StripeButton = ({ className, name }: StripeButtonProps) => {
   const router = useRouter()
   const { refetch: getStripeUrl, isFetching } =
-    trpc.paymentRouter.getStripeUrl.useQuery(undefined, {
+    api.paymentRouter.getStripeUrl.useQuery(undefined, {
       enabled: false,
     })
 

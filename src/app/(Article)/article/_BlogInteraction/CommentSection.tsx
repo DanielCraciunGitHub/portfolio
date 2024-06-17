@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { MessageCircle } from "lucide-react"
 import { useSession } from "next-auth/react"
 
@@ -32,7 +32,7 @@ export const CommentSection = () => {
     }
   }, [searchParams])
 
-  const { data: comments } = trpc.blogRouter.getCommentsData.useQuery(
+  const { data: comments } = api.blogRouter.getCommentsData.useQuery(
     { slug: currentSlug },
     {
       refetchOnMount: false,

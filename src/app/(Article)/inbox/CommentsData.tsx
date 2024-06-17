@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { siteConfig } from "@/config"
-import { trpc } from "@/server/client"
+import { api } from "@/server/client"
 import { Check, Mail, X } from "lucide-react"
 
 import {
@@ -17,18 +17,16 @@ import { Card } from "@/components/ui/card"
 
 export const CommentsData = () => {
   const { data: commentsData, refetch: revalidateInboxComments } =
-    trpc.blogRouter.fetchInboxComments.useQuery(undefined, {
+    api.blogRouter.fetchInboxComments.useQuery(undefined, {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     })
-  const { mutate: resolveComment } = trpc.blogRouter.resolveComment.useMutation(
-    {
-      onSuccess: () => {
-        revalidateInboxComments()
-      },
-    }
-  )
+  const { mutate: resolveComment } = api.blogRouter.resolveComment.useMutation({
+    onSuccess: () => {
+      revalidateInboxComments()
+    },
+  })
 
   return (
     <div>

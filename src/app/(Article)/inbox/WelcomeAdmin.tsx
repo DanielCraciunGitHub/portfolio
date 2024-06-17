@@ -1,12 +1,12 @@
 import { unstable_noStore as noStore } from "next/cache"
 import { redirect } from "next/navigation"
-import { serverClient } from "@/server/serverClient"
+import { api } from "@/server/trpc/serverClient"
 
 interface WelcomeAdminProps {}
 
 export const WelcomeAdmin = async ({}: WelcomeAdminProps) => {
   noStore()
-  const userRole = await serverClient.authRouter.getRole()
+  const userRole = await api.authRouter.getRole()
 
   if (userRole !== "ADMIN") redirect("/")
 

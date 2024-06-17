@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer"
 import { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
 
-import { trpc } from "../../server/client"
+import { api } from "../../server/client"
 import ArticleCard from "./ArticleCard"
 import { ArticleCardsShell } from "./ArticleCardShell"
 import { KeybindsModal } from "./KeybindsModal"
@@ -35,7 +35,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
     isFetching,
     isFetchingNextPage,
     isError,
-  } = trpc.blogRouter.getInfinitePosts.useInfiniteQuery(
+  } = api.blogRouter.getInfinitePosts.useInfiniteQuery(
     {
       limit: articlesPerPage,
       category,

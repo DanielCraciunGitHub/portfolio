@@ -1,4 +1,4 @@
-import { serverClient } from "@/server/serverClient"
+import { api } from "@/server/trpc/serverClient"
 import { Eye } from "lucide-react"
 
 import { formatArticleViews } from "@/lib/utils"
@@ -8,8 +8,8 @@ interface ArticleViewsProps {
 }
 
 const ArticleViews = async ({ title }: ArticleViewsProps) => {
-  const views = await serverClient.blogRouter.getArticleViews({ slug: title })
-  await serverClient.blogRouter.addArticleView({
+  const views = await api.blogRouter.getArticleViews({ slug: title })
+  await api.blogRouter.addArticleView({
     slug: title,
     views: views ?? 0,
   })

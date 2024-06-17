@@ -4,9 +4,9 @@ import { eq, InferSelectModel } from "drizzle-orm"
 
 import { auth } from "@/lib/auth"
 
-import { publicProcedure, router } from "../trpc"
+import { createTRPCRouter, publicProcedure } from "../trpc"
 
-export const authRouter = router({
+export const authRouter = createTRPCRouter({
   getSession: publicProcedure.query(async () => {
     const session = await auth()
 
