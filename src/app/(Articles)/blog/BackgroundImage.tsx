@@ -13,7 +13,6 @@ export const BackgroundImage = ({ className }: BackgroundImageProps) => {
       alt="Background"
       src={InfoLibrary}
       placeholder="blur"
-      quality={100}
       fill
       sizes="100vw"
       className={cn("-z-50 object-cover", className)}

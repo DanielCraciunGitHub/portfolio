@@ -3,6 +3,7 @@ import Script from "next/script"
 import { blogConfig } from "@/config"
 
 import { staticStructuredData } from "@/config/structuredData"
+import { WideMobileBanner } from "@/components/Adsterra"
 import { NavItem } from "@/components/Navbar/NavItem"
 
 import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs"
@@ -26,6 +27,8 @@ export default async function Layout({
           </Link>
 
           <CategoryNavbar />
+
+          <WideMobileBanner />
         </div>
         <main className="flex flex-1 justify-center">{children}</main>
       </section>

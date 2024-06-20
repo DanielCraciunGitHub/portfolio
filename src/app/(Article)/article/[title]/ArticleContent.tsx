@@ -11,6 +11,7 @@ import { baseStructuredData } from "@/config/structuredData"
 import { getCurrentArticle } from "@/lib/blogs"
 import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { WideMobileBanner } from "@/components/Adsterra"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
 import { urlForImage } from "../../../../../sanity/lib/image"
@@ -170,6 +171,8 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         {/* @ts-expect-error - unkown caption type from sanity */}
         <CaptionSource caption={article.image.caption} />
       </div>
+
+      <WideMobileBanner />
 
       <div className="prose prose-xl mb-10 mt-10 break-words dark:prose-invert prose-img:m-0 prose-img:mt-2">
         <PortableText
