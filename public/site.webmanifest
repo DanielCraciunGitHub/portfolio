@@ -23,9 +23,9 @@
       "label": "Application"
     },
     {
-      "src": "/images/daniel.png",
+      "src": "/images/daniel.webp",
       "sizes": "2258x2258",
-      "type": "image/png",
+      "type": "image/webp",
       "label": "Application"
     }
   ],

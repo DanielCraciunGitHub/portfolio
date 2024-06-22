@@ -82,7 +82,7 @@ export default function ArticleCard({
                   />
                 ) : (
                   <AuthorAvatar
-                    avatar="/images/daniel.png"
+                    avatar="/images/daniel.webp"
                     name="Daniel Craciun"
                   />
                 )}

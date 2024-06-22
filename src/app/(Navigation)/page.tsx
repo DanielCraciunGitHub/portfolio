@@ -56,7 +56,7 @@ export default async function Home() {
         </div>
         <div className=" lg:col-span-5 lg:flex">
           <Image
-            src="/images/daniel.png"
+            src="/images/daniel.webp"
             alt="hero image"
             width={300}
             height={300}

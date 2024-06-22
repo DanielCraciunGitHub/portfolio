@@ -41,7 +41,7 @@ export const baseStructuredData: WithContext<WebPage> = {
     jobTitle: "Full-Stack Web Developer",
     disambiguatingDescription: danielConfig.description,
     description: danielConfig.description,
-    image: `${siteConfig.url}/daniel.png`,
+    image: `${siteConfig.url}/daniel.webp`,
     sameAs: siteConfig.socialLinks.map((link) => link.href),
     knowsAbout: baseMetadata.keywords as string[],
     knowsLanguage: ["English", "Romanian", "Italian"],
