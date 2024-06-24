@@ -22,14 +22,14 @@ export async function generateMetadata({
     ...baseMetadata,
     title: { absolute: article.title },
     authors: {
-      name: article.author?.name ?? "Daniel Craciun",
+      name: article.authors?.join(", ") ?? "Daniel Craciun",
       url: siteConfig.url,
     },
     alternates: {
       canonical:
         article.canonical ?? `${siteConfig.url}/article/${article.currentSlug}`,
     },
-    creator: article.author?.name ?? "Daniel Craciun",
+    creator: article.authors?.join(", ") ?? "Daniel Craciun",
     description: `${article.category}: ${article.title} | ${article.subtitle}`,
     keywords: [
       ...new Set([

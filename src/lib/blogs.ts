@@ -14,7 +14,7 @@ export async function getInfiniteBlogs(
             _id,
             _createdAt,
             _updatedAt,
-            author,
+            authors,
             title,
             subtitle,
             category,
@@ -47,7 +47,7 @@ export async function getCurrentArticle(slug: string) {
     "currentSlug": slug.current,
     _createdAt,
     _updatedAt,
-    author,
+    authors,
     title,
     subtitle,
     category,
@@ -63,7 +63,7 @@ export async function getCurrentArticle(slug: string) {
 export async function getArticleMetadata(slug: string) {
   const query = groq`*[_type == "blog" && slug.current == $slug] {
     "currentSlug": slug.current,
-    author,
+    authors,
     title,
     subtitle,
     category,

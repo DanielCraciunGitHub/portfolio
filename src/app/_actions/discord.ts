@@ -17,7 +17,7 @@ type WriterPayload = z.infer<typeof writeForUsFormSchema>
 
 interface PublishedPayload {
   slug: string
-  author?: string
+  authors?: string
 }
 
 interface WelcomePayload {
@@ -143,7 +143,7 @@ export const sendPublishedPost = async (published: PublishedPayload) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        content: `Check out this new article published by ${published.author ?? "Daniel Craciun"}!\n\n${siteConfig.url}/article/${published.slug}`,
+        content: `Check out this new article published by ${published.authors ?? "Daniel Craciun"}!\n\n${siteConfig.url}/article/${published.slug}`,
       }),
     })
   } catch (error: any) {

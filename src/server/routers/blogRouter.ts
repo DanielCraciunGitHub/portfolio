@@ -244,7 +244,12 @@ export const blogRouter = createTRPCRouter({
     }),
 
   getArticleViews: publicProcedure
-    .input(z.object({ slug: z.string(), author: z.string().optional() }))
+    .input(
+      z.object({
+        slug: z.string(),
+        authors: z.string().optional(),
+      })
+    )
     .query(async ({ ctx, input }) => {
       const { db } = ctx
 
@@ -256,7 +261,7 @@ export const blogRouter = createTRPCRouter({
       if (!data) {
         await db.insert(articleViews).values({ articleSlug: input.slug })
 
-        await sendPublishedPost({ slug: input.slug, author: input.author })
+        await sendPublishedPost({ slug: input.slug, authors: input.authors })
         return 0
       }
 

@@ -8,13 +8,14 @@ interface Author {
   name: string
   avatar?: Image
   discord?: string
+  social?: string
 }
 
 export interface BlogCard {
   _id: string
   _createdAt: string
   _updatedAt: string
-  author?: Author
+  authors?: Author[]
   title: string
   subtitle?: string
   category: Category
@@ -24,7 +25,7 @@ export interface BlogCard {
 export interface Article {
   _id: string
   _createdAt: string
-  author?: Author
+  authors?: Author[]
   title: string
   subtitle?: string
   category: Category

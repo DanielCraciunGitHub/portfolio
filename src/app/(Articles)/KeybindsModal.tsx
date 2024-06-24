@@ -27,7 +27,7 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
             Dark Mode: <kbd className="rounded bg-muted p-1">Ctrl+Shift+L</kbd>
           </li>
           <li className="p-2">
-            Back Navigation: <kbd className="rounded bg-muted p-1">{"<"}</kbd>
+            Back Navigation: <kbd className="rounded bg-muted p-1">{"←"}</kbd>
           </li>
           <li className="p-2">
             Search: <kbd className="rounded bg-muted p-1">/</kbd>

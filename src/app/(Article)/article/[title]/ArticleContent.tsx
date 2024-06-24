@@ -72,21 +72,35 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         /* @ts-expect-error - unkown caption type from sanity */
         caption: article.image.caption,
       },
-      author: {
-        "@type": "Person",
-        name: article.author?.name ?? danielConfig.name,
-        image: {
-          "@type": "ImageObject",
-          "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
-          url: article.author?.avatar
-            ? urlForImage(article.author.avatar)
-            : `${siteConfig.url}/favicon.ico`,
-          contentUrl: article.author?.avatar
-            ? urlForImage(article.author.avatar)
-            : `${siteConfig.url}/favicon.ico`,
-          caption: article.author?.name ?? danielConfig.name,
-        },
-      },
+      author: article.authors
+        ? article.authors.map((author) => ({
+            "@type": "Person",
+            "@id": `${siteConfig.url}/article/${article.currentSlug}/#${author.name.replace(" ", "")}`,
+            name: author.name ?? danielConfig.name,
+            image: {
+              "@type": "ImageObject",
+              "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
+              url: author.avatar
+                ? urlForImage(author.avatar)
+                : `${siteConfig.url}/favicon.ico`,
+              contentUrl: author.avatar
+                ? urlForImage(author.avatar)
+                : `${siteConfig.url}/favicon.ico`,
+              caption: author.name ?? danielConfig.name,
+            },
+          }))
+        : {
+            "@type": "Person",
+            "@id": `${siteConfig.url}/article/${article.currentSlug}/#DanielCraciun`,
+            name: danielConfig.name,
+            image: {
+              "@type": "ImageObject",
+              "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
+              url: `${siteConfig.url}/favicon.ico`,
+              contentUrl: `${siteConfig.url}/favicon.ico`,
+              caption: danielConfig.name,
+            },
+          },
       breadcrumb: {
         "@type": "BreadcrumbList",
         "@id": `${siteConfig.url}/article/${article.currentSlug}/#breadcrumb`,
@@ -132,17 +146,17 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
           </div>
         </div>
       </div>
-      <div className="mt-3 flex items-center justify-between space-x-4">
-        <div>
-          {article.author ? (
-            <AuthorAvatar
-              avatar={
-                article.author.avatar
-                  ? urlForImage(article.author.avatar)
-                  : undefined
-              }
-              name={article.author.name}
-            />
+      <div className="mt-3 flex items-start justify-between space-x-4">
+        <div className="space-y-2">
+          {article.authors ? (
+            article.authors.map((author) => (
+              <AuthorAvatar
+                key={author.name}
+                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
+                name={author.name}
+                social={author.social}
+              />
+            ))
           ) : (
             <AuthorAvatar avatar="/images/daniel.webp" name="Daniel Craciun" />
           )}

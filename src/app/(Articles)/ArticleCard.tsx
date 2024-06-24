@@ -20,13 +20,13 @@ export default function ArticleCard({
   title,
   currentSlug,
   image,
-  author,
+  authors,
   subtitle,
   category,
   _createdAt,
 }: BlogCard) {
   const { data: views } = api.blogRouter.getArticleViews.useQuery(
-    { slug: currentSlug, author: author?.name },
+    { slug: currentSlug, authors: authors?.join(", ") },
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -71,15 +71,19 @@ export default function ArticleCard({
                 {formatTimeToNow(new Date(_createdAt))}
               </div>
             </CardFooter>
-            <CardFooter className="flex justify-between pt-2 font-semibold">
-              <div>
-                {author ? (
-                  <AuthorAvatar
-                    avatar={
-                      author.avatar ? urlForImage(author.avatar) : undefined
-                    }
-                    name={author.name}
-                  />
+            <CardFooter className="flex items-start justify-between pt-2 font-semibold">
+              <div className="space-y-2">
+                {authors ? (
+                  authors.map((author) => (
+                    <AuthorAvatar
+                      key={author.name}
+                      avatar={
+                        author.avatar ? urlForImage(author.avatar) : undefined
+                      }
+                      name={author.name}
+                      social={author.social}
+                    />
+                  ))
                 ) : (
                   <AuthorAvatar
                     avatar="/images/daniel.webp"

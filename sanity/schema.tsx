@@ -32,22 +32,33 @@ export const schema: { types: SchemaTypeDefinition[] } = {
           validation: (Rule) => Rule.required(),
         },
         {
-          title: "Author",
-          name: "author",
-          type: "object",
-          fields: [
+          name: "authors",
+          title: "Authors",
+          type: "array",
+          of: [
             {
-              type: "image",
-              name: "avatar",
-            },
-            {
-              type: "string",
-              name: "name",
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              type: "string",
-              name: "discord",
+              title: "Author",
+              name: "author",
+              type: "object",
+              fields: [
+                {
+                  type: "image",
+                  name: "avatar",
+                },
+                {
+                  type: "string",
+                  name: "name",
+                  validation: (Rule) => Rule.required(),
+                },
+                {
+                  type: "string",
+                  name: "discord",
+                },
+                {
+                  type: "string",
+                  name: "social",
+                },
+              ],
             },
           ],
         },
