@@ -106,20 +106,20 @@ export const danielConfig = {
       imageHref: "/images/portfolio.png",
     },
     {
+      name: "Next Inject",
+      type: "Website & CLI Tool",
+      description:
+        "A website that features a CLI tool that lets you install modular plugins to build Next.js applications faster, and do so like a hacker.",
+      href: "https://www.npmjs.com/package/next-inject/",
+      imageHref: "/images/next-inject.png",
+    },
+    {
       name: "EduMentorMe",
       type: "Website",
       description:
         "A hub of many unique educational features serving a common purpose, and that is to help students excel in their studies.",
       href: "https://github.com/DanielCraciunGitHub/emm",
       imageHref: "/images/emm.png",
-    },
-    {
-      name: "Ultimate Next.js Boilerplate",
-      type: "Template Repo",
-      description:
-        "A production-ready Next.js starter template using: Auth.js, Drizzle ORM + PlanetScale, tRPC, shadcn/ui, and so much more.",
-      href: "https://github.com/DanielCraciunGitHub/nextjs-template",
-      imageHref: "/images/nextjs-template.png",
     },
     {
       name: "Workout Volume Tracker",
@@ -195,6 +195,11 @@ export const blogConfig = {
       name: "Organisation",
       emoji: "📦",
       href: nameToPath("Organisation"),
+    },
+    {
+      name: "Technology",
+      emoji: "🧑‍💻",
+      href: nameToPath("Technology"),
     },
     {
       name: "Meal Prep",
