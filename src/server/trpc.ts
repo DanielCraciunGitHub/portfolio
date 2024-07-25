@@ -8,7 +8,9 @@
  */
 
 import { db } from "@/db"
+import { users } from "@/db/schema"
 import { initTRPC, TRPCError } from "@trpc/server"
+import { eq } from "drizzle-orm"
 import superjson from "superjson"
 import { ZodError } from "zod"
 
@@ -97,8 +99,31 @@ export const publicProcedure = t.procedure
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" })
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "You are not logged in pussio, stop hacking me.",
+    })
   }
+  return next({
+    ctx: {
+      // infers the `session` as non-nullable
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  })
+})
+export const adminProcedure = t.procedure.use(async ({ ctx, next }) => {
+  const [{ role }] = await ctx.db
+    .select({ role: users.role })
+    .from(users)
+    .where(eq(users.id, ctx.session?.user.id!))
+
+  if (!ctx.session || !ctx.session.user || role === "USER") {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "You are not an admin pussio, stop hacking me.",
+    })
+  }
+
   return next({
     ctx: {
       // infers the `session` as non-nullable

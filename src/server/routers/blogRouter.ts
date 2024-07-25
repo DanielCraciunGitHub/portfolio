@@ -10,7 +10,12 @@ import { sqliteTimestampNow } from "@/lib/utils"
 import { sendInbox, sendPublishedPost } from "@/app/_actions/discord"
 import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc"
+import {
+  adminProcedure,
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "../trpc"
 
 export const blogRouter = createTRPCRouter({
   getInfinitePosts: publicProcedure
@@ -195,7 +200,7 @@ export const blogRouter = createTRPCRouter({
         .where(eq(articleComments.id, input.comment.id))
     }),
 
-  fetchInboxLikes: protectedProcedure.query(async ({ ctx }) => {
+  fetchInboxLikes: adminProcedure.query(async ({ ctx }) => {
     const { db } = ctx
 
     const likes = await db.query.articleLikes.findMany({
@@ -208,7 +213,7 @@ export const blogRouter = createTRPCRouter({
     return likes
   }),
 
-  fetchInboxComments: protectedProcedure.query(async ({ ctx }) => {
+  fetchInboxComments: adminProcedure.query(async ({ ctx }) => {
     const { db } = ctx
 
     const [daniel] = await db
