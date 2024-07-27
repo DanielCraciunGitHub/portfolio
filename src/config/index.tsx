@@ -110,7 +110,7 @@ export const danielConfig = {
       type: "Website & CLI Tool",
       description:
         "A website that features a CLI tool that lets you install modular plugins to build Next.js applications faster, and do so like a hacker.",
-      href: "https://www.npmjs.com/package/next-inject/",
+      href: "https://github.com/DanielCraciunGitHub/next-inject-app/",
       imageHref: "/images/next-inject.png",
     },
     {

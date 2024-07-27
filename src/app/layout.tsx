@@ -42,15 +42,6 @@ export default function RootLayout({
         }}
       />
 
-      <Script
-        id="hydro_config"
-        type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `window.Hydro_tagId = "93b1897c-36a3-40ca-8a68-8922f7801756";`,
-        }}
-      />
-      <Script id="hydro_script" src="https://track.hydro.online/"></Script>
-
       <body className="flex min-h-screen flex-col">
         <NextTopLoader showSpinner={false} color="green" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
