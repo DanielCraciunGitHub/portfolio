@@ -51,7 +51,7 @@ export const siteConfig = {
   ] satisfies NavItem[],
   socialLinks: [
     {
-      href: "https://medium.com/@danielcracbusiness",
+      href: "https://medium.com/@dc0",
       name: "Medium.com",
       icon: <BsMedium />,
     },
