@@ -14,7 +14,7 @@ export const WriteForUs = ({}: WriteForUsProps) => {
   }, [])
 
   return show ? (
-    <div className="relative flex flex-col items-center justify-center bg-black p-1 italic text-white dark:bg-gray-800 md:flex-row">
+    <div className="relative my-0.5 flex flex-col items-center justify-center bg-muted p-1 text-sm italic md:flex-row">
       <div
         onClick={() => {
           setShow(false)
@@ -24,7 +24,7 @@ export const WriteForUs = ({}: WriteForUsProps) => {
       >
         <X />
       </div>
-      ✍️Want to feature your articles on InfoLibrary?✍️&nbsp;
+      Want to feature your articles on Info Library?&nbsp;
       <div>
         <Link className="text-blue-600 underline" href="/write_for_us">
           Write for us

@@ -4,6 +4,7 @@ import { blogConfig } from "@/config"
 
 import { staticStructuredData } from "@/config/structuredData"
 import { NavItem } from "@/components/Navbar/NavItem"
+import { NextInjectBanner } from "@/components/NextInjectBanner"
 
 import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs"
 
@@ -16,6 +17,7 @@ export default async function Layout({
 }) {
   return (
     <>
+      <NextInjectBanner />
       <WriteForUs />
       <section className="mt-4 flex flex-col items-center space-y-4">
         <div className="w-full space-y-6 p-2">
