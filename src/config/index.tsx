@@ -92,9 +92,8 @@ export const danielConfig = {
 
   heroStats: [
     { "6+": "Large-Scale Projects Completed 🎯" },
-    { "10,000+": " Blog Subscribers 🧑‍🤝‍🧑" },
     { "50,000+": "Monthly Blog Reads 📖" },
-    { "100+": "Blog Posts Written 📝" },
+    { "110+": "Blog Posts Written 📝" },
   ] satisfies HeroStat[],
   projects: [
     {

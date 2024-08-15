@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "sst bind next dev",
+    "dev": "next dev",
     "predev": "rm -rf .next",
     "build": "next build",
     "start": "next start",
@@ -76,6 +76,7 @@
     "next-sanity": "^8.5.5",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.11",
+    "node-html-parser": "^6.1.13",
     "nodemailer": "^6.9.13",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",

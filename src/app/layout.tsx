@@ -5,12 +5,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "@/styles/globals.css"
 
+import { Bricolage_Grotesque } from "next/font/google"
 import Script from "next/script"
 import { Analytics } from "@vercel/analytics/react"
 import NextTopLoader from "nextjs-toploader"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
 import { baseStructuredData } from "@/config/structuredData"
+import { cn } from "@/lib/utils"
 import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton"
 import { Provider } from "@/components/providers"
 
@@ -20,6 +22,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   ...baseViewport,
 }
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export default function RootLayout({
   children,
@@ -42,7 +49,7 @@ export default function RootLayout({
         }}
       />
 
-      <body className="flex min-h-screen flex-col">
+      <body className={cn("flex min-h-screen flex-col", bricolage.className)}>
         <NextTopLoader showSpinner={false} color="green" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
           {children}
