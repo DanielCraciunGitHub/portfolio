@@ -40,7 +40,7 @@ export default async function Home() {
           </p>
           <div className="flex space-x-5">
             <Button className="dark:text-foreground" asChild tabIndex={0}>
-              <Link href="/contact">Connect With Me</Link>
+              <Link href="/contact">Contact me</Link>
             </Button>
             <Button
               className="text-foreground"

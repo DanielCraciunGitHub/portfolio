@@ -1,7 +1,7 @@
 import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
 
 export const Footer = () => (
-  <footer className="z-20 p-4">
+  <footer className="z-20 bg-muted p-4">
     <div className="sm:flex sm:items-center sm:justify-between">
       <div className="flex w-full flex-col space-y-3">
         <div className="flex justify-end">

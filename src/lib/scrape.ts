@@ -4,7 +4,10 @@ import { parse } from "node-html-parser"
 export const fetchFollowersCount = async () => {
   try {
     const url = siteConfig.socialLinks[0].href
-    const res = await fetch(`${url}/followers`, { method: "GET" })
+    const res = await fetch(`${url}/followers`, {
+      method: "GET",
+      next: { revalidate: 3600 },
+    })
     const data = await res.text()
 
     const root = parse(data)

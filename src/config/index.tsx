@@ -97,7 +97,7 @@ export const danielConfig = {
   ] satisfies HeroStat[],
   projects: [
     {
-      name: "My Portfolio",
+      name: "Portfolio & Blog",
       type: "Website",
       description:
         "A website that encapsulates my experience as a Web Developer and Blog Writer.",
@@ -127,14 +127,6 @@ export const danielConfig = {
         "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
       href: "https://github.com/DanielCraciunGitHub/workout-app",
       imageHref: "/images/volume-tracker.png",
-    },
-    {
-      name: "create-ndpt-app",
-      type: "CLI Tool",
-      description:
-        "An alternative to 'create-next-app' which provides a production-ready Next.js starter template using: Auth.js, Drizzle ORM + PlanetScale, tRPC, and shadcn/ui.",
-      href: "https://github.com/DanielCraciunGitHub/create-ndpt-app",
-      imageHref: "/images/create-ndpt-app.png",
     },
     {
       name: "Notes App",

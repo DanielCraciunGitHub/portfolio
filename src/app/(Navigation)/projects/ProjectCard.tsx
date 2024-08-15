@@ -23,7 +23,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Card
-      className="flex w-[350px] flex-col self-stretch rounded-lg border-muted-foreground bg-muted ring-1 ring-muted-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-muted dark:ring-muted md:w-[400px] xl:w-[450px]"
+      className="flex w-[350px] flex-col self-stretch rounded-lg border-muted-foreground ring-1 ring-muted-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-muted dark:ring-muted md:w-[400px] xl:w-[450px]"
       tabIndex={0}
     >
       <div className="group relative flex flex-col items-center justify-center">
