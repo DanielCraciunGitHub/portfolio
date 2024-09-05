@@ -54,6 +54,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
     api.blogRouter.addComment.useMutation({
       onSuccess: async () => {
         await invalidateCommentsData()
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         setIsReplying ? setIsReplying(false) : null
       },
     })

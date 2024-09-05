@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default */
+
 "use server"
 
 import { headers } from "next/headers"

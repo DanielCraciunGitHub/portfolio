@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 import Link from "next/link"
 import type { SocialLink } from "@/types"
 

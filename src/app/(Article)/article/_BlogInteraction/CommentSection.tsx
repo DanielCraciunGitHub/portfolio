@@ -48,6 +48,7 @@ export const CommentSection = () => {
   return (
     <Sheet
       onOpenChange={() => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         !openedOnce ? setOpenedOnce(true) : null
         setOpen(!open)
       }}

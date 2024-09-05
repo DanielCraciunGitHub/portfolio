@@ -25,6 +25,7 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session
 
   if (event.type === "checkout.session.completed") {
+    //
   }
 
   return new Response(null, { status: 200 })

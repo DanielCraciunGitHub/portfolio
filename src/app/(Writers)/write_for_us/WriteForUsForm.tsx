@@ -107,7 +107,7 @@ export const WriteForUsForm = ({}: WriteForUsFormProps) => {
                 <div className="space-y-0.5">
                   <FormLabel className="text-base">Name Permission</FormLabel>
                   <FormDescription>
-                    We will use "Anonymous" otherwise.
+                    We will use &quot;Anonymous&quot; otherwise.
                   </FormDescription>
                 </div>
                 <FormControl>

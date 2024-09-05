@@ -160,7 +160,7 @@ const page = async () => {
       <h4 className="border-b text-xl">Usage Data</h4>
       <p>Usage Data is collected automatically when using the Service.</p>
       <p>
-        Usage Data may include information such as Your Device's Internet
+        Usage Data may include information such as Your Device&apos;s Internet
         Protocol address (e.g. IP address), browser type, browser version, the
         pages of our Service that You visit, the time and date of Your visit,
         the time spent on those pages, unique device identifiers and other
@@ -192,14 +192,14 @@ const page = async () => {
       <p>
         If You decide to register through or otherwise grant us access to a
         Third-Party Social Media Service, We may collect Personal data that is
-        already associated with Your Third-Party Social Media Service's account,
-        such as Your name, Your email address, Your activities or Your contact
-        list associated with that account.
+        already associated with Your Third-Party Social Media Service&apos;s
+        account, such as Your name, Your email address, Your activities or Your
+        contact list associated with that account.
       </p>
       <p>
         You may also have the option of sharing additional information with the
-        Company through Your Third-Party Social Media Service's account. If You
-        choose to provide such information and Personal Data, during
+        Company through Your Third-Party Social Media Service&apos;s account. If
+        You choose to provide such information and Personal Data, during
         registration or otherwise, You are giving the Company permission to use,
         share, and store it in a manner consistent with this Privacy Policy.
       </p>
@@ -315,10 +315,11 @@ const page = async () => {
           <p>
             <strong>To contact You:</strong> To contact You by email, telephone
             calls, SMS, or other equivalent forms of electronic communication,
-            such as a mobile application's push notifications regarding updates
-            or informative communications related to the functionalities,
-            products or contracted services, including the security updates,
-            when necessary or reasonable for their implementation.
+            such as a mobile application&apos;s push notifications regarding
+            updates or informative communications related to the
+            functionalities, products or contracted services, including the
+            security updates, when necessary or reasonable for their
+            implementation.
           </p>
         </li>
         <li>
@@ -407,12 +408,13 @@ const page = async () => {
       </p>
       <h3 className="text-2xl font-semibold">Transfer of Your Personal Data</h3>
       <p>
-        Your information, including Personal Data, is processed at the Company's
-        operating offices and in any other places where the parties involved in
-        the processing are located. It means that this information may be
-        transferred to — and maintained on — computers located outside of Your
-        state, province, country or other governmental jurisdiction where the
-        data protection laws may differ than those from Your jurisdiction.
+        Your information, including Personal Data, is processed at the
+        Company&apos;s operating offices and in any other places where the
+        parties involved in the processing are located. It means that this
+        information may be transferred to — and maintained on — computers
+        located outside of Your state, province, country or other governmental
+        jurisdiction where the data protection laws may differ than those from
+        Your jurisdiction.
       </p>
       <p>
         Your consent to this Privacy Policy followed by Your submission of such
@@ -486,7 +488,7 @@ const page = async () => {
         means to protect Your Personal Data, We cannot guarantee its absolute
         security.
       </p>
-      <h2 className="pt-2 text-3xl font-bold">Children's Privacy</h2>
+      <h2 className="pt-2 text-3xl font-bold">Children&apos;s Privacy</h2>
       <p>
         Our Service does not address anyone under the age of 13. We do not
         knowingly collect personally identifiable information from anyone under
@@ -499,15 +501,15 @@ const page = async () => {
       <p>
         If We need to rely on consent as a legal basis for processing Your
         information and Your country requires consent from a parent, We may
-        require Your parent's consent before We collect and use that
+        require Your parent&apos;s consent before We collect and use that
         information.
       </p>
       <h2 className="pt-2 text-3xl font-bold">Links to Other Websites</h2>
       <p>
         Our Service may contain links to other websites that are not operated by
         Us. If You click on a third party link, You will be directed to that
-        third party's site. We strongly advise You to review the Privacy Policy
-        of every site You visit.
+        third party&apos;s site. We strongly advise You to review the Privacy
+        Policy of every site You visit.
       </p>
       <p>
         We have no control over and assume no responsibility for the content,

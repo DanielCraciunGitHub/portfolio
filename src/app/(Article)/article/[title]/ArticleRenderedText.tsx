@@ -28,7 +28,7 @@ export const ArticleRenderedText = ({
   return (
     <>
       <CopyToClipboard text={getParsedContent()}>
-        <button>Copy to Clipboard</button>
+        <button type="button">Copy to Clipboard</button>
       </CopyToClipboard>
       <div
         ref={contentRef}

@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+
 "use client"
 
 import { useState } from "react"
