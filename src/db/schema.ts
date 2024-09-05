@@ -1,12 +1,7 @@
 import type { AdapterAccount } from "@auth/core/adapters"
 import { relations, sql } from "drizzle-orm"
-import {
-  AnySQLiteColumn,
-  integer,
-  primaryKey,
-  sqliteTable,
-  text,
-} from "drizzle-orm/sqlite-core"
+import type { AnySQLiteColumn } from "drizzle-orm/sqlite-core"
+import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
 import { ulid } from "ulid"
 
 export const users = sqliteTable("user", {

@@ -1,5 +1,5 @@
-import { HTMLAttributes } from "react"
-import { Control } from "react-hook-form"
+import type { HTMLAttributes } from "react"
+import type { Control } from "react-hook-form"
 
 import {
   FormControl,

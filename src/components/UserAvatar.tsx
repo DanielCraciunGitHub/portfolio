@@ -1,8 +1,7 @@
 import { api } from "@/server/client"
+import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 
 import { getInitials } from "@/lib/utils"
-
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 export const UserAvatar = () => {
   const { data: session } = api.authRouter.getSession.useQuery(undefined, {

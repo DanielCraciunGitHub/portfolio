@@ -1,6 +1,6 @@
-import { articleComments, articleLikes, users } from "@/db/schema"
-import { InferSelectModel } from "drizzle-orm"
-import { Image, TypedObject } from "sanity"
+import type { articleComments, articleLikes, users } from "@/db/schema"
+import type { InferSelectModel } from "drizzle-orm"
+import type { Image, TypedObject } from "sanity"
 
 type Category = "Web Development" | "Organisation" | "Self Development"
 

@@ -1,21 +1,20 @@
 import { articleComments, articleLikes, articleViews, users } from "@/db/schema"
 import { env } from "@/env.mjs"
 import { and, asc, eq, isNull, or } from "drizzle-orm"
-import { ulid } from "ulid"
-import { z } from "zod"
-
-import { LikeData } from "@/types/blog"
-import { getInfiniteBlogs } from "@/lib/blogs"
-import { sqliteTimestampNow } from "@/lib/utils"
-import { sendInbox, sendPublishedPost } from "@/app/_actions/discord"
-import { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
-
 import {
   adminProcedure,
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
-} from "../trpc"
+} from "src/server/trpc"
+import { ulid } from "ulid"
+import { z } from "zod"
+
+import type { LikeData } from "@/types/blog"
+import { getInfiniteBlogs } from "@/lib/blogs"
+import { sqliteTimestampNow } from "@/lib/utils"
+import { sendInbox, sendPublishedPost } from "@/app/_actions/discord"
+import type { CommentProps } from "@/app/(Article)/article/_BlogInteraction/Comment"
 
 export const blogRouter = createTRPCRouter({
   getInfinitePosts: publicProcedure
@@ -85,13 +84,12 @@ export const blogRouter = createTRPCRouter({
           )
 
         return 0
-      } else {
-        await db.insert(articleLikes).values({
-          articleSlug: input.slug,
-          userId: session.user.id,
-        })
-        return 1
       }
+      await db.insert(articleLikes).values({
+        articleSlug: input.slug,
+        userId: session.user.id,
+      })
+      return 1
     }),
   getCommentsData: publicProcedure
     .input(z.object({ slug: z.string() }))
@@ -137,14 +135,13 @@ export const blogRouter = createTRPCRouter({
           )
 
         return 0
-      } else {
-        await db.insert(articleLikes).values({
-          articleSlug: input.comment.articleSlug,
-          userId: session.user.id,
-          commentId: input.comment.id,
-        })
-        return 1
       }
+      await db.insert(articleLikes).values({
+        articleSlug: input.comment.articleSlug,
+        userId: session.user.id,
+        commentId: input.comment.id,
+      })
+      return 1
     }),
   addComment: protectedProcedure
     .input(

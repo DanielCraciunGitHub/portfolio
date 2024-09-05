@@ -1,12 +1,11 @@
-import { Metadata, Viewport } from "next"
+import type { Metadata, Viewport } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { danielConfig } from "@/config"
+import { HeroStats } from "src/app/(Navigation)/HeroStats"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Button } from "@/components/ui/button"
-
-import { HeroStats } from "./HeroStats"
 
 export const metadata: Metadata = {
   ...baseMetadata,

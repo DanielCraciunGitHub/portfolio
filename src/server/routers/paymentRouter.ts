@@ -1,9 +1,8 @@
 import { siteConfig } from "@/config"
 import { env } from "@/env.mjs"
+import { createTRPCRouter, publicProcedure } from "src/server/trpc"
 
 import { stripe } from "@/lib/stripe"
-
-import { createTRPCRouter, publicProcedure } from "../trpc"
 
 export const paymentRouter = createTRPCRouter({
   getStripeUrl: publicProcedure.query(async () => {

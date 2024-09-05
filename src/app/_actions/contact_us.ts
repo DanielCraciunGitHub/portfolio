@@ -5,13 +5,11 @@ import { env } from "@/env.mjs"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 import nodemailer from "nodemailer"
-import Mail from "nodemailer/lib/mailer"
-import { z } from "zod"
+import type Mail from "nodemailer/lib/mailer"
+import type { z } from "zod"
 
-import {
-  contactFormSchema,
-  googleReCaptchaSchema,
-} from "@/lib/validations/form"
+import type { contactFormSchema } from "@/lib/validations/form"
+import { googleReCaptchaSchema } from "@/lib/validations/form"
 
 // Redis syntax for rate limiting
 const rate = "60 m"

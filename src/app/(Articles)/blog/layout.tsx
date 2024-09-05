@@ -1,12 +1,11 @@
 import Link from "next/link"
 import Script from "next/script"
 import { blogConfig } from "@/config"
+import { WriteForUs } from "src/app/(Writers)/write_for_us/WriteForUs"
 
 import { staticStructuredData } from "@/config/structuredData"
 import { NavItem } from "@/components/Navbar/NavItem"
 import { NextInjectBanner } from "@/components/NextInjectBanner"
-
-import { WriteForUs } from "../../(Writers)/write_for_us/WriteForUs"
 
 export const revalidate = 60
 
@@ -21,7 +20,7 @@ export default async function Layout({
       <WriteForUs />
       <section className="mt-4 flex flex-col items-center space-y-4">
         <div className="w-full space-y-6 p-2">
-          <Link href={`/blog`}>
+          <Link href="/blog">
             <h1 className="text-center text-3xl font-extrabold tracking-tight md:text-4xl xl:text-5xl">
               Info <span className="text-primary">Library</span>
             </h1>
@@ -49,7 +48,7 @@ const CategoryNavbar = () => {
           <NavItem
             page={`/blog${link.href}`}
             text={`${link.name} ${link.emoji ? link.emoji : ""}`}
-            className="ml-2 mr-2 flex self-center"
+            className="mx-2 flex self-center"
             tabIndex={0}
           />
         </div>

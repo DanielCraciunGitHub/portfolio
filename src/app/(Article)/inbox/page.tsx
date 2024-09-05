@@ -1,6 +1,6 @@
-import { CommentsData } from "./CommentsData"
-import { LikesData } from "./LikesData"
-import { WelcomeAdmin } from "./WelcomeAdmin"
+import { CommentsData } from "src/app/(Article)/inbox/CommentsData"
+import { LikesData } from "src/app/(Article)/inbox/LikesData"
+import { WelcomeAdmin } from "src/app/(Article)/inbox/WelcomeAdmin"
 
 interface pageProps {}
 

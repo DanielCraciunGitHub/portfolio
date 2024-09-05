@@ -1,10 +1,9 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import { blogConfig } from "@/config"
+import ArticleCards from "src/app/(Articles)/ArticleCards"
 
 import { staticMetadata } from "@/config/metadata"
 import { pathToName } from "@/lib/utils"
-
-import ArticleCards from "../../ArticleCards"
 
 export const revalidate = 60
 

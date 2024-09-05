@@ -1,6 +1,6 @@
 import { headers } from "next/headers"
 import { env } from "@/env.mjs"
-import Stripe from "stripe"
+import type Stripe from "stripe"
 
 import { stripe } from "@/lib/stripe"
 

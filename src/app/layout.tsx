@@ -1,4 +1,4 @@
-import { Metadata, Viewport } from "next"
+import type { Metadata, Viewport } from "next"
 import { GoogleAnalytics } from "@next/third-parties/google"
 // @ts-ignore - No type declarations
 import { SpeedInsights } from "@vercel/speed-insights/next"

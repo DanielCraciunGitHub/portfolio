@@ -3,19 +3,14 @@ import { useParams } from "next/navigation"
 import { api } from "@/server/client"
 import { debounce } from "lodash"
 import { useSession } from "next-auth/react"
+import { LikeHeart } from "src/app/(Article)/article/_BlogInteraction/LikeHeart"
 
 import { useKeybind } from "@/hooks/useKeybind"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { Popover, PopoverContent } from "@/components/ui/popover"
 import AuthButton from "@/components/Buttons/AuthButton"
 import { LoginModal } from "@/components/LoginModal"
-
-import { LikeHeart } from "./LikeHeart"
 
 export const ArticleLikeButton = () => {
   const { title: currentSlug }: { title: string } = useParams()

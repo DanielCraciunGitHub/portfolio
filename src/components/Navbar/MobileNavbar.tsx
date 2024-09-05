@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config"
 import { Menu } from "lucide-react"
+import { NavItem } from "src/components/Navbar/NavItem"
 
 import {
   Sheet,
@@ -7,8 +8,6 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
-
-import { NavItem } from "./NavItem"
 
 export function MobileNavbar() {
   const [mainItem, ...navItems] = siteConfig.navLinks
@@ -36,7 +35,7 @@ export function MobileNavbar() {
                   <NavItem
                     page={item.href}
                     text={item.name}
-                    className="mb-2 mt-2 flex self-center"
+                    className="my-2 flex self-center"
                   />
                 </SheetClose>
               </div>

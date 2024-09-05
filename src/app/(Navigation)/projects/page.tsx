@@ -1,11 +1,10 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import Script from "next/script"
 import { danielConfig } from "@/config"
+import ProjectCard from "src/app/(Navigation)/projects/ProjectCard"
 
 import { staticMetadata } from "@/config/metadata"
 import { staticStructuredData } from "@/config/structuredData"
-
-import ProjectCard from "./ProjectCard"
 
 export const metadata: Metadata = {
   ...staticMetadata.projects,

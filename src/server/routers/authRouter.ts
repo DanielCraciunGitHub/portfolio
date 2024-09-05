@@ -1,8 +1,11 @@
 import { db } from "@/db"
 import { users } from "@/db/schema"
 import { eq } from "drizzle-orm"
-
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc"
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "src/server/trpc"
 
 export const authRouter = createTRPCRouter({
   getSession: publicProcedure.query(async ({ ctx }) => {

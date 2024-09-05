@@ -2,8 +2,12 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { EllipsisVertical } from "lucide-react"
 import { useSession } from "next-auth/react"
+import { AddComment } from "src/app/(Article)/article/_BlogInteraction/AddComment"
+import { CommentLikeButton } from "src/app/(Article)/article/_BlogInteraction/CommentLikeButton"
+import { DeleteComment } from "src/app/(Article)/article/_BlogInteraction/DeleteComment"
+import { EditComment } from "src/app/(Article)/article/_BlogInteraction/EditComment"
 
-import { Reply, TopComment } from "@/types/blog"
+import type { Reply, TopComment } from "@/types/blog"
 import { formatTimeToNow, getInitials } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -14,11 +18,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
-
-import { AddComment } from "./AddComment"
-import { CommentLikeButton } from "./CommentLikeButton"
-import { DeleteComment } from "./DeleteComment"
-import { EditComment } from "./EditComment"
 
 export interface CommentProps {
   comment: TopComment | Reply

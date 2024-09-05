@@ -8,7 +8,7 @@ export const NextInjectBanner = () => {
   const [show, setShow] = useState<boolean>(false)
 
   useEffect(() => {
-    setShow(!!!localStorage.getItem("nextinject"))
+    setShow(!localStorage.getItem("nextinject"))
   }, [])
 
   return show ? (

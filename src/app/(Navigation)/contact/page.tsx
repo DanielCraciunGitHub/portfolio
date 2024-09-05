@@ -1,12 +1,11 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import Script from "next/script"
 import { siteConfig } from "@/config"
+import ContactForm from "src/app/(Navigation)/contact/ContactForm"
 
 import { staticMetadata } from "@/config/metadata"
 import { staticStructuredData } from "@/config/structuredData"
 import { SocialLinksArray } from "@/components/SocialLinksArray"
-
-import ContactForm from "./ContactForm"
 
 export const metadata: Metadata = {
   ...staticMetadata.contact,

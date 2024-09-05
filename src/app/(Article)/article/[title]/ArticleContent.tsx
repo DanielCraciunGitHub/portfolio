@@ -1,21 +1,20 @@
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Script from "next/script"
+import { urlForImage } from "@/../sanity/lib/image"
 import { danielConfig, siteConfig } from "@/config"
 import { PortableText } from "@portabletext/react"
 import readingDuration from "reading-duration"
-import { WebPage, WithContext } from "schema-dts"
+import type { WebPage, WithContext } from "schema-dts"
+import ArticleViews from "src/app/(Article)/article/ArticleViews"
+import { myPortableTextComponents } from "src/app/(Article)/article/SanityCustomComponents"
 
-import { Article as BlogArticle } from "@/types/blog"
+import type { Article as BlogArticle } from "@/types/blog"
 import { baseStructuredData } from "@/config/structuredData"
 import { getCurrentArticle } from "@/lib/blogs"
 import { CaptionSource, formatTimeToNow } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
-
-import { urlForImage } from "../../../../../sanity/lib/image"
-import ArticleViews from "../ArticleViews"
-import { myPortableTextComponents } from "../SanityCustomComponents"
 
 const BlogInteractor = dynamic(
   () =>
@@ -185,7 +184,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         <CaptionSource caption={article.image.caption} />
       </div>
 
-      <div className="prose prose-xl mb-10 mt-10 break-words dark:prose-invert prose-img:m-0 prose-img:mt-2">
+      <div className="prose prose-xl my-10 break-words dark:prose-invert prose-img:m-0 prose-img:mt-2">
         <PortableText
           value={article.content}
           components={myPortableTextComponents}

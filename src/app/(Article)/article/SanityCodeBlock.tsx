@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import dynamic from "next/dynamic"
-import { CodeInputValue } from "@sanity/code-input"
+import type { CodeInputValue } from "@sanity/code-input"
 import { Clipboard, ClipboardCheck } from "lucide-react"
 import CopyToClipboard from "react-copy-to-clipboard"
 import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/hljs"

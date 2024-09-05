@@ -17,7 +17,7 @@ const ArticleViews = async ({ title }: ArticleViewsProps) => {
   return (
     <div className="flex space-x-1">
       <Eye
-        className={`h-5 w-5 ${views && views > 500 ? "text-yellow-500" : ""}`}
+        className={`size-5 ${views && views > 500 ? "text-yellow-500" : ""}`}
       />
       <div className={`${views && views > 500 ? "text-yellow-500" : ""}`}>
         {formatArticleViews(views ?? 0)}

@@ -1,6 +1,5 @@
 import { siteConfig } from "@/config"
-
-import { NavItem } from "./NavItem"
+import { NavItem } from "src/components/Navbar/NavItem"
 
 export const MainNavbar = () => {
   const [firstLink, ...restLinks] = siteConfig.navLinks
@@ -23,7 +22,7 @@ export const MainNavbar = () => {
               <NavItem
                 page={item.href}
                 text={item.name}
-                className="ml-2 mr-2"
+                className="mx-2"
                 tabIndex={0}
               />
             </span>

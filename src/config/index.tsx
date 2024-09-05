@@ -5,9 +5,8 @@ import {
   BsMedium,
   BsTwitterX,
 } from "react-icons/bs"
-
-import { nameToPath } from "../lib/utils"
-import { HeroStat, NavItem, Project, SocialLink } from "../types"
+import { nameToPath } from "src/lib/utils"
+import type { HeroStat, NavItem, Project, SocialLink } from "src/types"
 
 export const siteConfig = {
   email: "danielcracbusiness@gmail.com",
@@ -48,7 +47,7 @@ export const siteConfig = {
       name: "Privacy",
       href: "/privacy",
     },
-  ] satisfies NavItem[],
+  ] as const satisfies NavItem[],
   socialLinks: [
     {
       href: "https://medium.com/@dc0",

@@ -3,14 +3,14 @@
 import { useState } from "react"
 import { siteConfig } from "@/config"
 import { env } from "@/env.mjs"
-import { AppRouter } from "@/server"
+import type { AppRouter } from "@/server"
 import { api } from "@/server/client"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import {
   unstable_httpBatchStreamLink as httpBatchStreamLink,
   loggerLink,
 } from "@trpc/client"
-import { inferRouterInputs, inferRouterOutputs } from "@trpc/server"
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server"
 import { SessionProvider } from "next-auth/react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
@@ -19,7 +19,7 @@ import SuperJSON from "superjson"
 
 const createQueryClient = () => new QueryClient()
 
-let clientQueryClientSingleton: QueryClient | undefined = undefined
+let clientQueryClientSingleton: QueryClient | undefined
 
 const getQueryClient = () => {
   if (typeof window === "undefined") {
@@ -50,7 +50,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
         }),
         httpBatchStreamLink({
           transformer: SuperJSON,
-          url: siteConfig.url + "/api/trpc",
+          url: `${siteConfig.url}/api/trpc`,
           headers(opts) {
             const headers = new Headers()
             headers.set("x-trpc-source", "nextjs-react")

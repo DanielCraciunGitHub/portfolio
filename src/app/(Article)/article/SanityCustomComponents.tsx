@@ -1,15 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
-import { PortableTextComponents } from "@portabletext/react"
-import { CodeInputValue } from "@sanity/code-input"
-import { SanityImageAssetDocument } from "next-sanity"
+import { urlForImage } from "@/../sanity/lib/image"
+import type { PortableTextComponents } from "@portabletext/react"
+import type { CodeInputValue } from "@sanity/code-input"
+import type { SanityImageAssetDocument } from "next-sanity"
+import { CodeBlock } from "src/app/(Article)/article/SanityCodeBlock"
 
 import { CaptionSource } from "@/lib/utils"
 import { TweetEmbed } from "@/components/TweetEmbed"
 import { YoutubeEmbed } from "@/components/YoutubeEmbed"
-
-import { urlForImage } from "../../../../sanity/lib/image"
-import { CodeBlock } from "./SanityCodeBlock"
 
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {

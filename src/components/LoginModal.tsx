@@ -1,6 +1,9 @@
 "use client"
 
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
+import { Google } from "src/components/SVG/Google"
+import { Button } from "src/components/ui/button"
+import { Separator } from "src/components/ui/separator"
 
 import {
   Dialog,
@@ -12,10 +15,6 @@ import {
 } from "@/components/ui/dialog"
 import { authenticate } from "@/app/_actions/authenticate"
 import { BackgroundImage } from "@/app/(Articles)/blog/BackgroundImage"
-
-import { Google } from "./SVG/Google"
-import { Button } from "./ui/button"
-import { Separator } from "./ui/separator"
 
 interface LoginModalProps {
   buttonNode: ReactNode

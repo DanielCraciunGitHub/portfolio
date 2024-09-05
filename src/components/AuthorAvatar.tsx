@@ -1,8 +1,7 @@
 import Link from "next/link"
+import { Avatar, AvatarFallback, AvatarImage } from "src/components/ui/avatar"
 
 import { getInitials } from "@/lib/utils"
-
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 export const AuthorAvatar = ({
   name,

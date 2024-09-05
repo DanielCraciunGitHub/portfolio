@@ -2,9 +2,9 @@ import { useState } from "react"
 import { api } from "@/server/client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import type { z } from "zod"
 
-import { Reply, TopComment } from "@/types/blog"
+import type { Reply, TopComment } from "@/types/blog"
 import { articleCommentSchema } from "@/lib/validations/form"
 import {
   AlertDialog,
@@ -30,7 +30,7 @@ interface EditCommentProps {
 }
 type Inputs = z.infer<typeof articleCommentSchema>
 
-//const textareaRef = useRef<ElementRef<"textarea">>(null)
+// const textareaRef = useRef<ElementRef<"textarea">>(null)
 
 //   const focusAndSetCursor = () => {
 //     console.log(textareaRef.current)

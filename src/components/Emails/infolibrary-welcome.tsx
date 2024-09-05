@@ -27,7 +27,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="mx-auto my-auto bg-white font-sans">
+        <Body className="m-auto bg-white font-sans">
           <Container className="mx-auto my-16 max-w-xl rounded border border-solid border-gray-300 p-6">
             {/* Image */}
             <Section className="mt-24">

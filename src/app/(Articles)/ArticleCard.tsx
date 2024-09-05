@@ -1,8 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
+import { urlFor, urlForImage } from "@/../sanity/lib/image"
 import { Eye } from "lucide-react"
+import { api } from "src/server/client"
 
-import { BlogCard } from "@/types/blog"
+import type { BlogCard } from "@/types/blog"
 import { formatArticleViews, formatTimeToNow, nameToPath } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -12,9 +14,6 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
-
-import { urlFor, urlForImage } from "../../../sanity/lib/image"
-import { api } from "../../server/client"
 
 export default function ArticleCard({
   title,

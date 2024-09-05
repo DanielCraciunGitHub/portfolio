@@ -3,15 +3,14 @@ import { useParams, useSearchParams } from "next/navigation"
 import { api } from "@/server/client"
 import { MessageCircle } from "lucide-react"
 import { useSession } from "next-auth/react"
+import { AddComment } from "src/app/(Article)/article/_BlogInteraction/AddComment"
+import { Comment } from "src/app/(Article)/article/_BlogInteraction/Comment"
 
 import { useKeybind } from "@/hooks/useKeybind"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LoginModal } from "@/components/LoginModal"
-
-import { AddComment } from "./AddComment"
-import { Comment } from "./Comment"
 
 export const CommentSection = () => {
   const { title: currentSlug }: { title: string } = useParams()

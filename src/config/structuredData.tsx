@@ -1,7 +1,6 @@
 import type { WebPage, WithContext } from "schema-dts"
-
-import { danielConfig, siteConfig, writeForUsConfig } from "."
-import { baseMetadata } from "./metadata"
+import { danielConfig, siteConfig, writeForUsConfig } from "src/config"
+import { baseMetadata } from "src/config/metadata"
 
 export const baseStructuredData: WithContext<WebPage> = {
   "@context": "https://schema.org",

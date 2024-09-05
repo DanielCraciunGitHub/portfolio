@@ -2,10 +2,10 @@
 
 import { siteConfig } from "@/config"
 import { env } from "@/env.mjs"
-import { z } from "zod"
+import type { z } from "zod"
 
 import { articleSlugToTitle } from "@/lib/utils"
-import { writeForUsFormSchema } from "@/lib/validations/form"
+import type { writeForUsFormSchema } from "@/lib/validations/form"
 
 interface InboxPayload {
   commentId: string

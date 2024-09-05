@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { api } from "@/server/client"
 
-import { ButtonProps } from "@/components/ui/button"
+import type { ButtonProps } from "@/components/ui/button"
 import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
 
 interface StripeButtonProps extends ButtonProps {

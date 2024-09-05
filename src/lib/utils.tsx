@@ -62,11 +62,10 @@ function formatDistance(token: string, count: number, options?: any): string {
 
   if (options.addSuffix) {
     if (options.comparison > 0) {
-      return "in " + result
-    } else {
-      if (result === "just now") return result
-      return result + " ago"
+      return `in ${result}`
     }
+    if (result === "just now") return result
+    return `${result} ago`
   }
 
   return result
@@ -108,9 +107,8 @@ export function articleSlugToTitle(slug: string): string {
 export function formatArticleViews(views: number): string {
   if (views >= 1000) {
     return `${(views / 1000).toFixed(1)}k`
-  } else {
-    return String(views)
   }
+  return String(views)
 }
 
 // Format:
@@ -156,7 +154,6 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
         {caption}
       </figcaption>
     )
-  } else {
-    return null
   }
+  return null
 }

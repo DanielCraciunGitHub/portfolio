@@ -5,9 +5,8 @@ import { env } from "@/env.mjs"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 import { Resend } from "resend"
-
-import InfoLibraryCommentReply from "../../components/Emails/infolibrary-comment-reply"
-import InfoLibraryWelcome from "../../components/Emails/infolibrary-welcome"
+import InfoLibraryCommentReply from "src/components/Emails/infolibrary-comment-reply"
+import InfoLibraryWelcome from "src/components/Emails/infolibrary-welcome"
 
 const resend = new Resend(env.RESEND_API_KEY)
 

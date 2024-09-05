@@ -36,11 +36,11 @@ export const CommentsData = () => {
       <div className="space-y-2">
         {commentsData?.map((comment) => {
           return (
-            <div key={comment.id} className={"grid grid-cols-12 grid-rows-1"}>
+            <div key={comment.id} className="grid grid-cols-12 grid-rows-1">
               <Link
                 className={cn(
                   buttonVariants(),
-                  "col-span-1 h-full w-full rounded-r-none"
+                  "col-span-1 size-full rounded-r-none"
                 )}
                 href={`mailto:${comment.author.email}`}
                 target="_blank"
@@ -88,7 +88,7 @@ export const CommentsData = () => {
                     resolved: comment.resolved!,
                   })
                 }
-                className="col-span-1 h-full w-full rounded-l-none"
+                className="col-span-1 size-full rounded-l-none"
                 variant={`${comment.resolved ? "destructive" : "default"}`}
               >
                 {comment.resolved ? <X /> : <Check />}

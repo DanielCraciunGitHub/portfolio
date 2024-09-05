@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Project } from "@/types"
+import type { Project } from "@/types"
 import { BsGithub } from "react-icons/bs"
 
 import { Badge } from "@/components/ui/badge"
@@ -9,7 +9,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 
 interface ProjectCardProps extends Project {}
@@ -35,7 +34,7 @@ export default function ProjectCard({
           height={500}
           className="rounded-t-lg group-hover:blur-sm"
         />
-        <div className="invisible absolute h-full w-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
+        <div className="invisible absolute size-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
           <Link href={href} target="_blank" rel="noopener noreferrer">
             <BsGithub className="size-5 sm:size-10" />
           </Link>

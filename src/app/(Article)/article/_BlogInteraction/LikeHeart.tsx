@@ -10,8 +10,8 @@ export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
       className={`
         ${
           isLiked
-            ? "scale-125  transform fill-red-600 opacity-100 transition duration-300 ease-out"
-            : "scale-100 transform opacity-50 transition duration-300 ease-out"
+            ? "scale-125  fill-red-600 opacity-100 transition duration-300 ease-out"
+            : "scale-100 opacity-50 transition duration-300 ease-out"
         }
         `}
     />

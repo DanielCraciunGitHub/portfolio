@@ -10,7 +10,7 @@ export const WriteForUs = ({}: WriteForUsProps) => {
   const [show, setShow] = useState<boolean>(false)
 
   useEffect(() => {
-    setShow(!!!localStorage.getItem("writeForUs"))
+    setShow(!localStorage.getItem("writeForUs"))
   }, [])
 
   return show ? (

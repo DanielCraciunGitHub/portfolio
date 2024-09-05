@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { api } from "@/server/client"
 
-import { Reply, TopComment } from "@/types/blog"
+import type { Reply, TopComment } from "@/types/blog"
 import {
   AlertDialog,
   AlertDialogCancel,

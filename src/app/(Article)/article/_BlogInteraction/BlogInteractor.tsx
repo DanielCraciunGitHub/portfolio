@@ -1,11 +1,11 @@
 "use client"
 
+import { ArticleLikeButton } from "src/app/(Article)/article/_BlogInteraction/ArticleLikeButton"
+import { CommentSection } from "src/app/(Article)/article/_BlogInteraction/CommentSection"
+import { ShareButton } from "src/app/(Article)/article/_BlogInteraction/ShareButton"
+
 import { useScrollUp } from "@/hooks/useScrollUp"
 import { Card } from "@/components/ui/card"
-
-import { ArticleLikeButton } from "./ArticleLikeButton"
-import { CommentSection } from "./CommentSection"
-import { ShareButton } from "./ShareButton"
 
 export const BlogInteractor = () => {
   const { scrollY, scrollingUp } = useScrollUp()

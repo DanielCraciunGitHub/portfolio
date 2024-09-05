@@ -1,10 +1,10 @@
 import { db } from "@/db"
 import { env } from "@/env.mjs"
-import { Auth } from "@auth/core"
-import { Adapter } from "@auth/core/adapters"
+import type { Adapter } from "@auth/core/adapters"
 import Google from "@auth/core/providers/google"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import NextAuth, { DefaultSession } from "next-auth"
+import type { DefaultSession } from "next-auth"
+import NextAuth from "next-auth"
 
 import { sendWelcome } from "@/app/_actions/discord"
 import { sendWelcomeEmail } from "@/app/_actions/email"

@@ -1,8 +1,7 @@
 import { createCallerFactory, createTRPCRouter } from "@/server/trpc"
-
-import { authRouter } from "./routers/authRouter"
-import { blogRouter } from "./routers/blogRouter"
-import { paymentRouter } from "./routers/paymentRouter"
+import { authRouter } from "src/server/routers/authRouter"
+import { blogRouter } from "src/server/routers/blogRouter"
+import { paymentRouter } from "src/server/routers/paymentRouter"
 
 /**
  * This is the primary router for your server.

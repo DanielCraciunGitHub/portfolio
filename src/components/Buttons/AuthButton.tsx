@@ -1,11 +1,10 @@
 "use client"
 
-import { Session } from "@auth/core/types"
+import type { Session } from "@auth/core/types"
 import { LogInIcon, LogOutIcon } from "lucide-react"
+import { Button } from "src/components/ui/button"
 
 import { authenticate } from "@/app/_actions/authenticate"
-
-import { Button } from "../ui/button"
 
 interface AuthSession {
   session?: Session | null

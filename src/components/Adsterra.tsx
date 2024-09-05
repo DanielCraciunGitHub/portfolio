@@ -31,10 +31,7 @@ export function WideDesktopBanner(): JSX.Element {
 
   return (
     <div className="mt-2 flex justify-center">
-      <div
-        className="items-center justify-center text-center"
-        ref={banner}
-      ></div>
+      <div className="items-center justify-center text-center" ref={banner} />
     </div>
   )
 }
@@ -67,10 +64,7 @@ export function WideMobileBanner(): JSX.Element {
 
   return (
     <div className="mt-2 flex justify-center">
-      <div
-        className="items-center justify-center text-center"
-        ref={banner}
-      ></div>
+      <div className="items-center justify-center text-center" ref={banner} />
     </div>
   )
 }

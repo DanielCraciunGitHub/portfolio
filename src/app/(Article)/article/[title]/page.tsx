@@ -1,11 +1,10 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
+import { urlForImage } from "@/../sanity/lib/image"
 import { siteConfig } from "@/config"
+import { ArticleContent } from "src/app/(Article)/article/[title]/ArticleContent"
 
 import { baseMetadata } from "@/config/metadata"
 import { getArticleMetadata } from "@/lib/blogs"
-
-import { urlForImage } from "../../../../../sanity/lib/image"
-import { ArticleContent } from "./ArticleContent"
 
 export const revalidate = 45
 

@@ -1,15 +1,14 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import Script from "next/script"
 import { writeForUsConfig } from "@/config"
 import { Check, ChevronDown, PersonStanding } from "lucide-react"
+import BenefitCard from "src/app/(Writers)/write_for_us/BenefitCard"
+import { WriteForUsForm } from "src/app/(Writers)/write_for_us/WriteForUsForm"
 
 import { staticMetadata } from "@/config/metadata"
 import { staticStructuredData } from "@/config/structuredData"
 import { Toaster } from "@/components/ui/toaster"
 import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar"
-
-import BenefitCard from "./BenefitCard"
-import { WriteForUsForm } from "./WriteForUsForm"
 
 export const metadata: Metadata = {
   ...staticMetadata.write_for_us,

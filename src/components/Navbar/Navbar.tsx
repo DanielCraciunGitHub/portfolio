@@ -1,5 +1,5 @@
-import { MainNavbar } from "./MainNavbar"
-import { MobileNavbar } from "./MobileNavbar"
+import { MainNavbar } from "src/components/Navbar/MainNavbar"
+import { MobileNavbar } from "src/components/Navbar/MobileNavbar"
 
 export default function NavBar() {
   return (

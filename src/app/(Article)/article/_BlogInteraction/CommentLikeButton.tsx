@@ -2,11 +2,10 @@ import { useState } from "react"
 import { api } from "@/server/client"
 import { debounce } from "lodash"
 import { useSession } from "next-auth/react"
+import type { CommentProps } from "src/app/(Article)/article/_BlogInteraction/Comment"
+import { LikeHeart } from "src/app/(Article)/article/_BlogInteraction/LikeHeart"
 
 import { Button } from "@/components/ui/button"
-
-import { CommentProps } from "./Comment"
-import { LikeHeart } from "./LikeHeart"
 
 interface CommentLikeButtonProps extends CommentProps {}
 

@@ -2,7 +2,8 @@
 
 import { useMemo } from "react"
 import { PortableTextEditor } from "@sanity/portable-text-editor"
-import { PortableTextInput, PortableTextInputProps } from "sanity"
+import type { PortableTextInputProps } from "sanity"
+import { PortableTextInput } from "sanity"
 
 // The custom input with two custom hotkeys
 export const CustomInput = (props: PortableTextInputProps) => {
@@ -34,6 +35,7 @@ export const CustomInput = (props: PortableTextInputProps) => {
             const activeAnnotations =
               PortableTextEditor.activeAnnotations(portableTextEditor)
             const isLinkActive = activeAnnotations.some(
+              // eslint-disable-next-line no-underscore-dangle
               (a) => a._type === "link"
             )
             if (isLinkActive) {

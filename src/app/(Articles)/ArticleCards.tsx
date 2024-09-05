@@ -1,18 +1,19 @@
+/* eslint-disable no-nested-ternary */
+
 "use client"
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { siteConfig } from "@/config"
 import { useInView } from "react-intersection-observer"
+import ArticleCard from "src/app/(Articles)/ArticleCard"
+import { ArticleCardsShell } from "src/app/(Articles)/ArticleCardShell"
+import { KeybindsModal } from "src/app/(Articles)/KeybindsModal"
+import { SearchBar } from "src/app/(Articles)/SearchBar"
+import { api } from "src/server/client"
 
-import { BlogCard } from "@/types/blog"
+import type { BlogCard } from "@/types/blog"
 import { Button } from "@/components/ui/button"
-
-import { api } from "../../server/client"
-import ArticleCard from "./ArticleCard"
-import { ArticleCardsShell } from "./ArticleCardShell"
-import { KeybindsModal } from "./KeybindsModal"
-import { SearchBar } from "./SearchBar"
 
 const articlesPerPage = 6
 
@@ -62,9 +63,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         <SearchBar updateSearchTitle={updateSearchTitle} />
         <KeybindsModal />
       </div>
-      <div
-        className={`mt-6 grid grid-cols-1 place-items-center gap-20 lg:grid-cols-2 2xl:grid-cols-3`}
-      >
+      <div className="mt-6 grid grid-cols-1 place-items-center gap-20 lg:grid-cols-2 2xl:grid-cols-3">
         {isError ? (
           <div className="flex flex-col">
             <div>
@@ -85,6 +84,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
           <ArticleCardsShell />
         ) : (
           blogs?.map((blogCard) => (
+            // eslint-disable-next-line no-underscore-dangle
             <ArticleCard key={blogCard._id} {...blogCard} />
           ))
         )}
@@ -94,7 +94,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         variant="ghost"
         ref={ref}
         tabIndex={-1}
-      ></Button>
+      />
     </div>
   )
 }
