@@ -6,7 +6,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <NavBar />
-      <main className="flex flex-1 justify-center bg-muted">{children}</main>
+      <main className="flex min-h-screen flex-1 justify-center bg-muted">
+        {children}
+      </main>
       <Footer />
       <Toaster />
     </>

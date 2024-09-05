@@ -1,3 +1,4 @@
+import Link from "next/link"
 import {
   BsDiscord,
   BsGithub,
@@ -6,7 +7,7 @@ import {
   BsTwitterX,
 } from "react-icons/bs"
 import { nameToPath } from "src/lib/utils"
-import type { HeroStat, NavItem, Project, SocialLink } from "src/types"
+import type { HeroStat, NavItem, Project, Skills, SocialLink } from "src/types"
 
 export const siteConfig = {
   email: "danielcracbusiness@gmail.com",
@@ -20,18 +21,6 @@ export const siteConfig = {
       href: "/",
     },
     {
-      name: "Blog",
-      href: "/blog",
-    },
-    {
-      name: "Write for Us",
-      href: "/write_for_us",
-    },
-    // {
-    //   name: "eBook",
-    //   href: "/ebook",
-    // },
-    {
       name: "About",
       href: "/about",
     },
@@ -44,8 +33,8 @@ export const siteConfig = {
       href: "/contact",
     },
     {
-      name: "Privacy",
-      href: "/privacy",
+      name: "Blog",
+      href: "/blog",
     },
   ] as const satisfies NavItem[],
   socialLinks: [
@@ -85,37 +74,41 @@ export const danielConfig = {
   name: "Daniel Craciun",
   description: "Full-Stack Web Developer | Medium Blogger",
   aboutMe: [
-    `As a web developer and a freelance blogger, I combine my technical skills and creativity to create engaging and user-friendly Websites and Blogs.`,
-    `I am currently pursuing a BSc in Computer Science at the University of Southampton, where I learn the fundamentals and best practices of Software Engineering and Web Development.`,
+    `Hey everyone 👋, my name is Daniel and I am a full stack web developer and tech writer.`,
+    `I have over 2+ years in this industry, and I am always eager to learn more.`,
+    `I love fitness, I am an avid gym-goer. I also love to cook healthy food and stay in shape.`,
+    `I am also a university student studying for a BSc in Computer Science.`,
   ],
 
   heroStats: [
     { "6+": "Large-Scale Projects Completed 🎯" },
     { "50,000+": "Monthly Blog Reads 📖" },
     { "110+": "Blog Posts Written 📝" },
-  ] satisfies HeroStat[],
+  ] as const satisfies HeroStat[],
   projects: [
     {
       name: "Portfolio & Blog",
       type: "Website",
       description:
-        "A website that encapsulates my experience as a Web Developer and Blog Writer.",
+        "My Portfolio website which includes a personal blog. All built using Next.js, a powerful JavaScript Full-Stack Framework. The portfolio also includes a personal blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
       href: "https://github.com/DanielCraciunGitHub/portfolio",
       imageHref: "/images/portfolio.png",
+      hot: true,
     },
     {
       name: "Next Inject",
-      type: "Website & CLI Tool",
+      type: "CLI Tool",
       description:
-        "A website that features a CLI tool that lets you install modular plugins to build Next.js applications faster, and do so like a hacker.",
-      href: "https://github.com/DanielCraciunGitHub/next-inject-app/",
+        "A command line tool designed for Next.js developers that configures essential parts of your app with a single command. I earned $60+ from this product and I have 20+ satisfied users.",
+      href: "https://github.com/DanielCraciunGitHub/next-inject/",
       imageHref: "/images/next-inject.png",
+      hot: true,
     },
     {
       name: "EduMentorMe",
       type: "Website",
       description:
-        "A hub of many unique educational features serving a common purpose, and that is to help students excel in their studies.",
+        "This project is a hub of many different features used to enhance your education. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students in higher education.",
       href: "https://github.com/DanielCraciunGitHub/emm",
       imageHref: "/images/emm.png",
     },
@@ -137,28 +130,49 @@ export const danielConfig = {
     },
     {
       name: "2D Survival Game",
-      type: "Desktop",
+      type: "Game",
       description:
         "A Unity game in which you battle endless opposition using mystery items.",
       href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
       imageHref: "/images/programmingProject.png",
     },
   ] satisfies Project[],
-  skills: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "SQL",
-    "NOSQL",
-    "Git",
-    "SEO",
-    "C#",
-  ],
+  skills: {
+    FULLSTACK: ["NextJS", "TypeScript", "SQL", "NOSQL", "APIs", "AWS (Basic)"],
+    BACKEND: ["Node", "Express", "Testing (Jest)", "Serverless", "Stripe"],
+    FRONTEND: [
+      "JavaScript",
+      "React",
+      "HTML",
+      "CSS",
+      "UI/UX",
+      "Tailwind",
+      "HTML",
+      "CSS",
+    ],
+    MISC: [
+      "C#",
+      "Haskell",
+      "Git",
+      "AWS (Basic)",
+      "SEO",
+      "CI/CD (GitHub Actions)",
+      "Docker",
+      "Bash",
+      "Python",
+      "Markdown",
+    ],
+  } satisfies Skills,
   education: ["University of Southampton", "Lampton Academy"],
-  certification: ["CS50x"],
+  certification: [
+    <Link
+      key="cs50"
+      href="https://certificates.cs50.io/970d88f2-959d-47d1-973a-4966aa814515.pdf"
+      className="text-blue-500 underline"
+    >
+      CS50x
+    </Link>,
+  ],
 } as const
 
 export const eBookConfig = {
@@ -173,37 +187,30 @@ export const blogConfig = {
   categoryLinks: [
     {
       name: "Web Development",
-      emoji: "🌐",
       href: nameToPath("Web Development"),
     },
     {
       name: "SEO",
-      emoji: "🎯",
       href: nameToPath("SEO"),
     },
     {
-      name: "Organisation",
-      emoji: "📦",
+      name: "Productivity",
       href: nameToPath("Organisation"),
     },
     {
       name: "Technology",
-      emoji: "🧑‍💻",
       href: nameToPath("Technology"),
     },
     {
       name: "Meal Prep",
-      emoji: "🍒",
       href: nameToPath("Meal Prep"),
     },
     {
       name: "Self Development",
-      emoji: "🧑",
       href: nameToPath("Self Development"),
     },
     {
       name: "Writing",
-      emoji: "📝",
       href: nameToPath("Writing"),
     },
   ] satisfies NavItem[],

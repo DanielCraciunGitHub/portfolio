@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 }
 export default function page() {
   return (
-    <section className="container flex items-center justify-center">
-      <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
-        <div className="space-y-6 self-center lg:col-span-5">
+    <section className="flex items-center lg:ml-48">
+      <section className="mx-auto my-24 flex max-w-7xl flex-col items-center justify-center gap-16 p-8 lg:flex-row lg:gap-20 lg:py-20">
+        <div className="flex w-full flex-col space-y-10 lg:items-start">
           <h1 className="mb-4 max-w-3xl text-lg font-semibold md:text-2xl xl:text-3xl">
-            Let's Connect
+            Let&apos;s Connect
           </h1>
           <div className="space-y-4 text-muted-foreground">
             {siteConfig.contactMe.map((paragraph) => (
@@ -35,10 +35,10 @@ export default function page() {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center lg:col-span-7">
+        <div className="flex w-full flex-col">
           <ContactForm />
         </div>
-      </div>
+      </section>
       <Script
         id="WebSite Structured Data"
         type="application/ld+json"

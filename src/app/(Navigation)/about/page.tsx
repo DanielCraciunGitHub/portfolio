@@ -38,11 +38,24 @@ export default function page() {
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="certification">Certification</TabsTrigger>
+            <TabsTrigger value="interests">Interests</TabsTrigger>
           </TabsList>
-          <TabsContent value="skills">
-            {danielConfig.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
+          <TabsContent
+            value="skills"
+            className="flex flex-col space-y-4 xl:flex-row xl:space-x-8 xl:space-y-0"
+          >
+            {Object.entries(danielConfig.skills).map(
+              ([category, skillsList]) => (
+                <div key={category}>
+                  <h1 className="text-2xl font-bold">{category}</h1>
+                  <ul className="list-inside list-disc">
+                    {skillsList.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            )}
           </TabsContent>
           <TabsContent value="education">
             {danielConfig.education.map((institution) => (
@@ -51,8 +64,17 @@ export default function page() {
           </TabsContent>
           <TabsContent value="certification">
             {danielConfig.certification.map((certificate) => (
-              <li key={certificate}>{certificate}</li>
+              <li key={certificate.key}>{certificate}</li>
             ))}
+          </TabsContent>
+          <TabsContent value="interests">
+            <ul className="list-inside list-disc">
+              <li>Self-Development</li>
+              <li>Writing</li>
+              <li>Fitness</li>
+              <li>Nutrition</li>
+              <li>Cooking</li>
+            </ul>
           </TabsContent>
         </Tabs>
       </div>

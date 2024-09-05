@@ -22,7 +22,7 @@ export async function HeroStats() {
         <CardDescription>Live Blog Subscribers 🧑‍🤝‍🧑</CardDescription>
       </CardHeader>
       {danielConfig.heroStats.map((heroStat) => {
-        const [value, label]: [string, string] = Object.entries(heroStat)[0]
+        const [value, label] = Object.entries(heroStat)[0] as [string, string]
 
         return (
           <CardHeader key={value}>

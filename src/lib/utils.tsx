@@ -133,9 +133,9 @@ export function CaptionSource({ caption }: { caption: string | undefined }) {
     const words = caption.split(" ")
     const source = words[words.length - 1]
 
-    const captionWithoutSource = caption.replace(source, "")
+    const captionWithoutSource = caption.replace(source!, "")
 
-    return source.startsWith("https://") ? (
+    return source?.startsWith("https://") ? (
       <figcaption className="block text-sm leading-8 tracking-tight text-muted-foreground sm:text-base">
         {captionWithoutSource}
         {source ? (

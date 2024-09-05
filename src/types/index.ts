@@ -28,5 +28,8 @@ export type Project = {
   description?: string
   imageHref: string | StaticImageData
   href: string
+  hot?: boolean
 }
 export type HeroStat = Record<string, string>
+
+export type Skills = Record<string, string[]>

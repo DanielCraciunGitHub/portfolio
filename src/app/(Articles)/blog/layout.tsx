@@ -47,7 +47,7 @@ const CategoryNavbar = () => {
         <div key={link.name}>
           <NavItem
             page={`/blog${link.href}`}
-            text={`${link.name} ${link.emoji ? link.emoji : ""}`}
+            text={`${link.name}`}
             className="mx-2 flex self-center"
             tabIndex={0}
           />

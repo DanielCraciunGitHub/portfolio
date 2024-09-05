@@ -111,13 +111,13 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     },
   })
 })
-export const adminProcedure = t.procedure.use(async ({ ctx, next }) => {
-  const [{ role }] = await ctx.db
+export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
+  const [user] = await ctx.db
     .select({ role: users.role })
     .from(users)
-    .where(eq(users.id, ctx.session?.user.id!))
+    .where(eq(users.id, ctx.session.user.id))
 
-  if (!ctx.session || !ctx.session.user || role === "USER") {
+  if (user?.role === "USER") {
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: "You are not an admin pussio, stop hacking me.",

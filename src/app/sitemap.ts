@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...blogs.map((blog) => ({
       url: `${siteConfig.url}/article/${blog.currentSlug}`,
+      // eslint-disable-next-line no-underscore-dangle
       lastModified: new Date(blog._updatedAt),
       changeFrequency: "weekly",
       priority: 0.9,

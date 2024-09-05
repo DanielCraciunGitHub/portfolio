@@ -38,7 +38,8 @@ export const blogRouter = createTRPCRouter({
       if (blogs.length < input.limit) {
         nextId = null
       } else {
-        nextId = blogs[blogs.length - 1]._createdAt
+        // eslint-disable-next-line no-underscore-dangle
+        nextId = blogs[blogs.length - 1]?._createdAt
       }
 
       return {
@@ -155,7 +156,7 @@ export const blogRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       const { db, session } = ctx
 
-      const [{ id }] = await db
+      const [user] = await db
         .insert(articleComments)
         .values({
           id: ulid(),
@@ -170,10 +171,10 @@ export const blogRouter = createTRPCRouter({
       await sendInbox({
         body: input.body,
         slug: input.slug,
-        commentId: id,
+        commentId: user?.id!,
       })
 
-      return { newCommentId: id }
+      return { newCommentId: user?.id }
     }),
   deleteComment: protectedProcedure
     .input(z.custom<CommentProps>())
@@ -226,7 +227,7 @@ export const blogRouter = createTRPCRouter({
       },
       where: or(
         isNull(articleComments.parentId),
-        eq(articleComments.replyingTo, daniel.name!)
+        eq(articleComments.replyingTo, daniel?.name!)
       ),
       orderBy: asc(articleComments.resolved),
     })

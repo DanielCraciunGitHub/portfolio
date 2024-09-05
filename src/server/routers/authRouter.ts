@@ -16,6 +16,6 @@ export const authRouter = createTRPCRouter({
       .select({ role: users.role })
       .from(users)
       .where(eq(users.id, ctx.session.user.id))
-    return data.role
+    return data?.role
   }),
 })

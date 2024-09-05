@@ -19,12 +19,18 @@ export default function ProjectCard({
   imageHref,
   description,
   type,
+  hot = false,
 }: ProjectCardProps) {
   return (
     <Card
-      className="flex w-[350px] flex-col self-stretch rounded-lg border-muted-foreground ring-1 ring-muted-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:border-muted dark:ring-muted md:w-[400px] xl:w-[450px]"
+      className={`relative flex w-[350px] flex-col self-stretch rounded-lg border-4 focus-visible:outline-none md:w-[400px] xl:w-[450px] ${hot ? " border-yellow-500" : "border-none"}`}
       tabIndex={0}
     >
+      {hot && (
+        <Badge className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2 bg-yellow-500">
+          Recommended
+        </Badge>
+      )}
       <div className="group relative flex flex-col items-center justify-center">
         <Image
           priority
@@ -32,7 +38,7 @@ export default function ProjectCard({
           alt={name}
           width={500}
           height={500}
-          className="rounded-t-lg group-hover:blur-sm"
+          className="rounded-t-sm group-hover:blur-sm"
         />
         <div className="invisible absolute size-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
           <Link href={href} target="_blank" rel="noopener noreferrer">

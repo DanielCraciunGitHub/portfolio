@@ -22,12 +22,12 @@ export const myPortableTextComponents: PortableTextComponents = {
         {children}
       </Link>
     ),
-    code: ({ value, children }) => (
+    code: ({ children }) => (
       <code className="rounded bg-gray-300 p-0.5 font-mono dark:bg-gray-500">
         {children}
       </code>
     ),
-    strong: ({ value, children }) => <b>{children}</b>,
+    strong: ({ children }) => <b>{children}</b>,
 
     // internalLink: ({ value, children }) => {
     //   const { slug = {} } = value

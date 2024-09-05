@@ -16,9 +16,8 @@ export const baseMetadata: Metadata = {
   creator: danielConfig.name,
   description: danielConfig.description,
   keywords: [
-    ...danielConfig.skills,
+    ...Object.values(danielConfig.skills).flat(),
     ...danielConfig.education,
-    ...danielConfig.certification,
     "Web Development",
     "Programming",
     "Developer",

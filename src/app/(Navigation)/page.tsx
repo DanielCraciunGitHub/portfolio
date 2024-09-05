@@ -29,12 +29,12 @@ export default async function Home() {
       <div className="mt-4 flex justify-center">
         <HeroStats />
       </div>
-      <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
-        <div className=" place-self-center lg:col-span-7">
-          <h1 className="mb-4 max-w-3xl text-4xl font-extrabold tracking-tight text-primary md:text-5xl xl:text-7xl">
+      <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
+        <div className=" flex flex-col items-center place-self-center lg:col-span-7 lg:items-start">
+          <h1 className="mb-4 max-w-3xl text-center text-4xl font-extrabold tracking-tight text-primary md:text-5xl lg:text-start xl:text-7xl">
             {danielConfig.name}
           </h1>
-          <p className="mb-6 max-w-2xl font-mono md:text-lg lg:mb-8 lg:text-xl">
+          <p className="mb-6 max-w-2xl text-center font-mono md:text-lg lg:mb-8 lg:text-start lg:text-xl">
             {danielConfig.description}
           </p>
           <div className="flex space-x-5">

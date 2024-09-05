@@ -62,7 +62,7 @@ export default function ArticleCard({
             <CardFooter className="flex justify-between pb-3">
               <Link href={`/blog${nameToPath(category)}`}>
                 <Badge className="inline-flex bg-muted-foreground font-bold">
-                  {category}
+                  {category === "Organisation" ? "Productivity" : category}
                 </Badge>
               </Link>
 

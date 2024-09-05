@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Script from "next/script"
@@ -135,7 +136,9 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
     <div className="mx-auto mt-5 max-w-2xl">
       <div className="flex items-center justify-between space-x-4">
         <Badge variant="secondary" className="inline-flex">
-          {article.category}
+          {article.category === "Organisation"
+            ? "Productivity"
+            : article.category}
         </Badge>
         <div className="flex flex-row items-center space-x-2 text-sm font-semibold text-muted-foreground">
           <div>{formatTimeToNow(new Date(article._createdAt))}</div>

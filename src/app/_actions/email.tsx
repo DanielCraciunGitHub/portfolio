@@ -34,7 +34,7 @@ export const sendWelcomeEmail = async ({ name, email }: WelcomePayload) => {
     from: "Daniel C. <noreply@danielfullstack.com>",
     to: [email],
     subject: "Info Library",
-    react: InfoLibraryWelcome({ firstName: name.split(" ")[0] }),
+    react: InfoLibraryWelcome({ firstName: name.split(" ")[0]! }),
   })
 
   if (error) {
@@ -69,7 +69,7 @@ export const sendReplyEmail = async ({
     react: InfoLibraryCommentReply({
       body,
       commentLink,
-      senderName: senderName.split(" ")[0],
+      senderName: senderName.split(" ")[0]!,
     }),
   })
 

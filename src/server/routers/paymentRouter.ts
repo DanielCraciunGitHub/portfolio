@@ -22,7 +22,7 @@ export const paymentRouter = createTRPCRouter({
       })
       return stripeSession.url!
     } catch (error) {
-      console.error(error)
+      return undefined
     }
   }),
   getEbookPrice: publicProcedure.query(async () => {
@@ -32,7 +32,7 @@ export const paymentRouter = createTRPCRouter({
 
       return (price.unit_amount! / 100).toString()
     } catch (error: any) {
-      console.error("Error fetching price:", error.message)
+      return undefined
     }
   }),
 })
