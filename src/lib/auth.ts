@@ -53,7 +53,7 @@ export const {
       const { name, email } = user
 
       if (name && email) {
-        const res = await sendWelcomeEmail({ name, email })
+        await sendWelcomeEmail({ name, email })
 
         await sendWelcome({ name, email })
       }

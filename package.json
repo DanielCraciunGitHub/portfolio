@@ -70,7 +70,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
-    "drizzle-orm": "0.30.8",
+    "drizzle-orm": "^0.30.10",
     "embla-carousel-react": "^8.0.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.358.0",

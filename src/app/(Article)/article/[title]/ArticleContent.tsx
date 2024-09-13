@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import { urlForImage } from "@/sanity/lib/image"
+import { api } from "@/server/trpc/serverClient"
 import { PortableText } from "@portabletext/react"
 import { format } from "date-fns"
 import readingDuration from "reading-duration"
@@ -27,6 +28,14 @@ interface ArticleContentProps {
 export const ArticleContent = async ({ title }: ArticleContentProps) => {
   const article = await getCurrentArticle(title)
   const publishedDate = format(new Date(article._createdAt), "MMM dd, yy")
+
+  const views = await api.blogRouter.getArticleViews({
+    slug: title,
+  })
+  await api.blogRouter.addArticleView({
+    slug: title,
+    views: views ?? 0,
+  })
 
   function ReadingDuration() {
     const articleBlockText = article?.content
