@@ -19,7 +19,7 @@ export interface BlogCard {
   title: string
   subtitle?: string
   category: Category
-  image: Image
+  image?: Image
   currentSlug: string
 }
 export interface Article {
@@ -30,7 +30,7 @@ export interface Article {
   subtitle?: string
   category: Category
   content: TypedObject[]
-  image: Image
+  image?: Image
   currentSlug: string
   canonical?: string
 }

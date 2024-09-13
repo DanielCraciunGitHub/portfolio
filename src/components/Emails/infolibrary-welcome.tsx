@@ -68,25 +68,6 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
                 </Link>
               </Text>
             </Section>
-            {/* write_for_us, featured article */}
-            <Section>
-              <Heading className="text-2xl">Opportunity for Writers 🎁</Heading>
-              <Text>
-                At Info Library, we offer a{" "}
-                <strong>no-nonsense zero-effort</strong> way of getting your
-                voice heard.
-              </Text>
-              <Text>
-                Simply link your article, and we will take care of the rest.
-              </Text>
-              <Text>
-                If you are interested, please{" "}
-                <Link href={`${siteConfig.url}/write_for_us`}>
-                  visit our dedicated page
-                </Link>{" "}
-                for writers.
-              </Text>
-            </Section>
             <Hr />
             <Section>
               <Text className="leading-12 text-xs text-gray-400">

@@ -69,7 +69,7 @@ const Navbar1N1 = () => {
             key={firstLink.name}
             page={firstLink.href}
             text={firstLink.name}
-            className="text-xl font-bold"
+            className="text-3xl font-bold"
             tabIndex={0}
             icon={<BsLightningChargeFill fill="green" size={20} />}
           />

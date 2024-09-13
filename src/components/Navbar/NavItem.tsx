@@ -28,7 +28,10 @@ export function NavItem(props: NavItemProps) {
       )}
       {...restProps}
     >
-      {text ?? icon}
+      <div className="flex items-center space-x-1">
+        <div>{icon}</div>
+        <div>{text}</div>
+      </div>
     </Link>
   )
 }

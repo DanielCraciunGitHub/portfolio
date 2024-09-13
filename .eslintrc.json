@@ -28,8 +28,7 @@
         "@typescript-eslint", // TypeScript specific linting rules
         "unused-imports", // Plugin to automatically remove unused imports
         "tailwindcss", // Tailwind CSS specific linting
-        "simple-import-sort", // Plugin to enforce consistent import order
-        "eslint-plugin-absolute-imports"
+        "simple-import-sort" // Plugin to enforce consistent import order
       ],
       "extends": [
         "plugin:tailwindcss/recommended", // Recommended Tailwind CSS linting rules
@@ -52,7 +51,7 @@
             "trailingComma": "es5" // Include trailing commas where valid in ES5
           }
         ], // Prevent conflicts between Prettier and Airbnb ESLint rules
-        "absolute-imports/only-absolute-imports": 2,
+        // "absolute-imports/only-absolute-imports": 2,
         "tailwindcss/no-custom-classname": ["off"], // Allow custom class names (not restricted to Tailwind)
         "import/no-extraneous-dependencies": "off", // Warn about extraneous dependencies in TypeScript files
         "no-param-reassign": "off", // Allow parameter reassignment

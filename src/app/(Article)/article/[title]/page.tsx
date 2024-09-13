@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { urlForImage } from "@/../sanity/lib/image"
 import { siteConfig } from "@/config"
+import { urlForImage } from "@/sanity/lib/image"
 import { ArticleContent } from "src/app/(Article)/article/[title]/ArticleContent"
 
 import { baseMetadata } from "@/config/metadata"
@@ -45,7 +45,9 @@ export async function generateMetadata({
       url: `/article/${article.currentSlug}`,
       images: [
         {
-          url: urlForImage(article.image),
+          url: article.image
+            ? urlForImage(article.image)
+            : "/images/daniel.webp",
           type: "image/png",
           width: 1200,
           height: 630,
@@ -59,7 +61,9 @@ export async function generateMetadata({
       description: article.subtitle,
       images: [
         {
-          url: urlForImage(article.image),
+          url: article.image
+            ? urlForImage(article.image)
+            : "/images/daniel.webp",
           type: "image/png",
           width: 1200,
           height: 630,

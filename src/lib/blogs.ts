@@ -1,7 +1,8 @@
-import { client } from "@/../sanity/lib/client"
 import { groq } from "next-sanity"
 
 import type { Article, BlogCard } from "@/types/blog"
+
+import { client } from "../sanity/lib/client"
 
 export async function getInfiniteBlogs(
   cursor: string,

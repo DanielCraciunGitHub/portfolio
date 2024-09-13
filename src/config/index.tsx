@@ -6,8 +6,9 @@ import {
   BsMedium,
   BsTwitterX,
 } from "react-icons/bs"
-import { nameToPath } from "src/lib/utils"
 import type { HeroStat, NavItem, Project, Skills, SocialLink } from "src/types"
+
+import { nameToPath } from "../lib/utils"
 
 export const siteConfig = {
   email: "danielcracbusiness@gmail.com",
@@ -181,7 +182,7 @@ export const eBookConfig = {
 } as const
 
 export const blogConfig = {
-  title: "Info Library",
+  title: "Blog",
   description:
     "My personal blog, an information library spanning countless niches.",
   categoryLinks: [
@@ -190,12 +191,16 @@ export const blogConfig = {
       href: nameToPath("Web Development"),
     },
     {
-      name: "SEO",
-      href: nameToPath("SEO"),
+      name: "Nextjs",
+      href: nameToPath("Nextjs"),
+    },
+    {
+      name: "Next Inject",
+      href: nameToPath("Next Inject"),
     },
     {
       name: "Productivity",
-      href: nameToPath("Organisation"),
+      href: nameToPath("productivity"),
     },
     {
       name: "Technology",

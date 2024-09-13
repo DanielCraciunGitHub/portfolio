@@ -1,7 +1,8 @@
 import Image from "next/image"
-import InfoLibrary from "@/../public/images/info-library.png"
 
 import { cn } from "@/lib/utils"
+
+import InfoLibrary from "../../../../public/images/info-library.png"
 
 interface BackgroundImageProps {
   className?: string

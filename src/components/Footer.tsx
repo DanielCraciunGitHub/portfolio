@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { siteConfig } from "@/config"
-import { NavItem } from "src/components/Navbar/NavItem"
+import { BsLightningChargeFill } from "react-icons/bs"
+
+import { NavItem } from "@/components/Navbar/NavItem"
 
 // ! A beautiful mobile friendly footer to start out with.
 export const Footer = () => {
-  const [_, ...navItems] = siteConfig.navLinks
+  const [firstItem, ...navItems] = siteConfig.navLinks
 
   return (
     <footer className="z-20 border-t border-muted p-4">
@@ -12,11 +14,12 @@ export const Footer = () => {
         <div className="flex flex-col flex-wrap md:flex-row md:flex-nowrap lg:items-start">
           <div className="mx-auto w-80 max-w-full space-y-1 text-center md:mx-0 md:text-left">
             <NavItem
-              key={_.name}
-              page={_.href}
-              text={_.name}
-              className="text-xl font-bold"
+              key={firstItem.name}
+              page={firstItem.href}
+              text={firstItem.name}
+              className="text-3xl font-bold"
               tabIndex={0}
+              icon={<BsLightningChargeFill size={16} fill="green" />}
             />
             <div className="text-center text-sm text-foreground/50">
               © 2024 Daniel Craciun. All Rights Reserved

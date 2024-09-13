@@ -1,5 +1,11 @@
 import "./src/env.mjs"
 
+import bundleAnalyzer from "@next/bundle-analyzer"
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -17,20 +23,6 @@ const nextConfig = {
       },
     ],
   },
-  // async headers() {
-  //   return [
-  //     {
-  //       source:
-  //         "/api/trpc/(blogRouter.getInfinitePosts.*|blogRouter.getArticleViews.*)",
-  //       headers: [
-  //         {
-  //           key: "Cache-Control",
-  //           value: "s-maxage=1, stale-while-revalidate=1799",
-  //         },
-  //       ],
-  //     },
-  //   ]
-  // },
 }
 
-export default nextConfig
+export default withBundleAnalyzer(nextConfig)

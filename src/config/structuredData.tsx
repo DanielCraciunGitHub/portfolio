@@ -63,36 +63,6 @@ export const baseStructuredData: WithContext<WebPage> = {
 }
 
 export const staticStructuredData = {
-  write_for_us: {
-    ...baseStructuredData,
-    "@id": `${siteConfig.url}/write_for_us`,
-    url: `${siteConfig.url}/write_for_us`,
-    thumbnailUrl: `${siteConfig.url}${writeForUsConfig.image}`,
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      "@id": `${siteConfig.url}/write_for_us/#breadcrumb`,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "DanielFullStack",
-          item: `${siteConfig.url}`,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Info Library",
-          item: `${siteConfig.url}/blog`,
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "Write for Us",
-          item: `${siteConfig.url}/write_for_us`,
-        },
-      ],
-    },
-  },
   projects: {
     ...baseStructuredData,
     "@id": `${siteConfig.url}/projects`,

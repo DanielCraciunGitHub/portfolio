@@ -1,19 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import Script from "next/script"
-import { urlForImage } from "@/../sanity/lib/image"
-import { danielConfig, siteConfig } from "@/config"
+import { urlForImage } from "@/sanity/lib/image"
 import { PortableText } from "@portabletext/react"
+import { format } from "date-fns"
 import readingDuration from "reading-duration"
-import type { WebPage, WithContext } from "schema-dts"
-import ArticleViews from "src/app/(Article)/article/ArticleViews"
 import { myPortableTextComponents } from "src/app/(Article)/article/SanityCustomComponents"
 
-import type { Article as BlogArticle } from "@/types/blog"
-import { baseStructuredData } from "@/config/structuredData"
 import { getCurrentArticle } from "@/lib/blogs"
-import { CaptionSource, formatTimeToNow } from "@/lib/utils"
+import { CaptionSource } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
@@ -31,6 +26,7 @@ interface ArticleContentProps {
 
 export const ArticleContent = async ({ title }: ArticleContentProps) => {
   const article = await getCurrentArticle(title)
+  const publishedDate = format(new Date(article._createdAt), "MMM dd, yy")
 
   function ReadingDuration() {
     const articleBlockText = article?.content
@@ -52,86 +48,6 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
     })
   }
 
-  function ArticleStructuredData(article: BlogArticle) {
-    const featuredImage = urlForImage(article.image)
-
-    const structuredData: WithContext<WebPage> = {
-      ...baseStructuredData,
-      "@id": `${siteConfig.url}/article/${article.currentSlug}`,
-      url: `${siteConfig.url}/article/${article.currentSlug}`,
-      name: `${article.title} - Info Library`,
-      description: article.subtitle,
-      disambiguatingDescription: article.subtitle,
-      datePublished: article._createdAt,
-      thumbnailUrl: featuredImage,
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        "@id": `${siteConfig.url}/article/${article.currentSlug}/#primaryImage`,
-        url: featuredImage,
-        contentUrl: featuredImage,
-        /* @ts-expect-error - unkown caption type from sanity */
-        caption: article.image.caption,
-      },
-      author: article.authors
-        ? article.authors.map((author) => ({
-            "@type": "Person",
-            "@id": `${siteConfig.url}/article/${article.currentSlug}/#${author.name.replace(" ", "")}`,
-            name: author.name ?? danielConfig.name,
-            image: {
-              "@type": "ImageObject",
-              "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
-              url: author.avatar
-                ? urlForImage(author.avatar)
-                : `${siteConfig.url}/favicon.ico`,
-              contentUrl: author.avatar
-                ? urlForImage(author.avatar)
-                : `${siteConfig.url}/favicon.ico`,
-              caption: author.name ?? danielConfig.name,
-            },
-          }))
-        : {
-            "@type": "Person",
-            "@id": `${siteConfig.url}/article/${article.currentSlug}/#DanielCraciun`,
-            name: danielConfig.name,
-            image: {
-              "@type": "ImageObject",
-              "@id": `${siteConfig.url}/article/${article.currentSlug}/#personImage`,
-              url: `${siteConfig.url}/favicon.ico`,
-              contentUrl: `${siteConfig.url}/favicon.ico`,
-              caption: danielConfig.name,
-            },
-          },
-      breadcrumb: {
-        "@type": "BreadcrumbList",
-        "@id": `${siteConfig.url}/article/${article.currentSlug}/#breadcrumb`,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Info Library",
-            item: `${siteConfig.url}/blog`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: article.title,
-            item: `${siteConfig.url}/article/${article.currentSlug}`,
-          },
-        ],
-      },
-    }
-
-    return (
-      <Script
-        id="WebSite Structured Data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
-    )
-  }
-
   return (
     <div className="mx-auto mt-5 max-w-2xl">
       <div className="flex items-center justify-between space-x-4">
@@ -140,32 +56,6 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
             ? "Productivity"
             : article.category}
         </Badge>
-        <div className="flex flex-row items-center space-x-2 text-sm font-semibold text-muted-foreground">
-          <div>{formatTimeToNow(new Date(article._createdAt))}</div>
-          <div>•</div>
-          <div>
-            <ArticleViews title={title} />
-          </div>
-        </div>
-      </div>
-      <div className="mt-3 flex items-start justify-between space-x-4">
-        <div className="space-y-2">
-          {article.authors ? (
-            article.authors.map((author) => (
-              <AuthorAvatar
-                key={author.name}
-                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
-                name={author.name}
-                social={author.social}
-              />
-            ))
-          ) : (
-            <AuthorAvatar avatar="/images/daniel.webp" name="Daniel Craciun" />
-          )}
-        </div>
-        <div className="text-sm font-semibold text-muted-foreground">
-          <ReadingDuration />
-        </div>
       </div>
       <h1 className="mt-2 block text-3xl font-bold leading-8 tracking-tight sm:text-4xl">
         {article.title}
@@ -173,19 +63,45 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
       <h4 className="mt-2 block text-xl leading-8 tracking-tight text-muted-foreground sm:text-2xl">
         {article.subtitle}
       </h4>
-      <div className="flex flex-col items-center justify-center space-y-2">
-        <Image
-          priority
-          src={urlForImage(article.image)}
-          alt={article.title}
-          width={800}
-          height={800}
-          className="mt-5 rounded-md"
-        />
-
-        {/* @ts-expect-error - unkown caption type from sanity */}
-        <CaptionSource caption={article.image.caption} />
+      <div className="mt-3 flex items-center justify-between space-x-4">
+        <div className="flex space-y-2">
+          {article.authors ? (
+            article.authors.map((author) => (
+              <AuthorAvatar
+                dateStr={publishedDate}
+                key={author.name}
+                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
+                name={author.name}
+                social={author.social}
+              />
+            ))
+          ) : (
+            <AuthorAvatar
+              dateStr={publishedDate}
+              avatar="/images/daniel.webp"
+              name="Daniel Craciun"
+            />
+          )}
+        </div>
+        <div className="rounded bg-green-700 px-2 text-sm text-white">
+          <ReadingDuration />
+        </div>
       </div>
+      {article.image ? (
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <Image
+            priority
+            src={urlForImage(article.image)}
+            alt={article.title}
+            width={800}
+            height={800}
+            className="mt-5 rounded-md"
+          />
+
+          {/* @ts-expect-error - unkown caption type from sanity */}
+          <CaptionSource caption={article.image.caption} />
+        </div>
+      ) : null}
 
       <div className="prose prose-xl my-10 break-words dark:prose-invert prose-img:m-0 prose-img:mt-2">
         <PortableText
@@ -194,7 +110,6 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
         />
       </div>
       <BlogInteractor />
-      <ArticleStructuredData {...article} />
     </div>
   )
 }

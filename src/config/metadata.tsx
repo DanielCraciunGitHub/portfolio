@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next"
 import {
   blogConfig,
   danielConfig,
-  eBookConfig,
   siteConfig,
   writeForUsConfig,
 } from "@/config"
@@ -81,40 +80,6 @@ export const staticMetadata = {
     description:
       "The Privacy Policy Related to Info Library and this website as a whole.",
   } satisfies Metadata,
-  write_for_us: {
-    title: { absolute: writeForUsConfig.title },
-    description: writeForUsConfig.description,
-    keywords: [...writeForUsConfig.benefits, "Article", "Publish"],
-    openGraph: {
-      ...baseMetadata.openGraph,
-      title: writeForUsConfig.title,
-      description: writeForUsConfig.description,
-      images: [
-        {
-          url: `${siteConfig.url + writeForUsConfig.image}`,
-          type: "image/png",
-          width: 1200,
-          height: 630,
-          alt: blogConfig.title,
-        },
-      ],
-      url: "/write_for_us",
-    },
-    twitter: {
-      ...baseMetadata.twitter,
-      title: writeForUsConfig.title,
-      description: writeForUsConfig.description,
-      images: [
-        {
-          url: `${siteConfig.url + writeForUsConfig.image}`,
-          type: "image/png",
-          width: 1200,
-          height: 630,
-          alt: blogConfig.title,
-        },
-      ],
-    },
-  } satisfies Metadata,
   blog: {
     title: blogConfig.title,
     description: blogConfig.description,
@@ -150,39 +115,6 @@ export const staticMetadata = {
           width: 1200,
           height: 630,
           alt: blogConfig.title,
-        },
-      ],
-    },
-  } satisfies Metadata,
-  eBook: {
-    title: eBookConfig.title,
-    description: eBookConfig.description,
-    openGraph: {
-      ...baseMetadata.openGraph,
-      url: `/ebook`,
-      title: eBookConfig.title,
-      description: eBookConfig.description,
-      images: [
-        {
-          url: `${siteConfig.url}/images/book-cover.jpg`,
-          type: "image/jpg",
-          width: 1200,
-          height: 630,
-          alt: "Book Cover",
-        },
-      ],
-    },
-    twitter: {
-      ...baseMetadata.openGraph,
-      title: eBookConfig.title,
-      description: eBookConfig.description,
-      images: [
-        {
-          url: `${siteConfig.url}/images/book-cover.jpg`,
-          type: "image/jpg",
-          width: 1200,
-          height: 630,
-          alt: "Book Cover",
         },
       ],
     },

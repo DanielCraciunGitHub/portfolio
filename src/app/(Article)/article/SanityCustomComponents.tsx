@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { urlForImage } from "@/../sanity/lib/image"
+import { urlForImage } from "@/sanity/lib/image"
 import type { PortableTextComponents } from "@portabletext/react"
 import type { CodeInputValue } from "@sanity/code-input"
 import type { SanityImageAssetDocument } from "next-sanity"

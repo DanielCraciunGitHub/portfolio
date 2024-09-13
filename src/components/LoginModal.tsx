@@ -29,7 +29,7 @@ export const LoginModal = ({ buttonNode }: LoginModalProps) => {
         <DialogHeader>
           <DialogTitle className="text-4xl font-bold">Login</DialogTitle>
           <DialogDescription className="text-lg">
-            Join Info Library Today!
+            Login to interact with the article
           </DialogDescription>
         </DialogHeader>
         <Separator />

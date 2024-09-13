@@ -1,7 +1,8 @@
-import { type SchemaTypeDefinition } from "@/../sanity"
-import { CustomInput } from "@/../sanity/lib/HotKeys"
-import { YoutubeEmbed } from "src/components/YoutubeEmbed"
-import { blogConfig } from "src/config"
+import type { SchemaTypeDefinition } from "sanity"
+
+import { YoutubeEmbed } from "../components/YoutubeEmbed"
+import { blogConfig } from "../config"
+import { CustomInput } from "./lib/HotKeys"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -95,7 +96,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
               title: "Caption",
             },
           ],
-          validation: (Rule) => Rule.required(),
         },
         {
           name: "content",

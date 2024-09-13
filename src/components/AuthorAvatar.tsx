@@ -7,10 +7,12 @@ export const AuthorAvatar = ({
   name,
   avatar,
   social,
+  dateStr,
 }: {
-  name: string
+  name?: string
   avatar?: string
   social?: string
+  dateStr: string
 }): JSX.Element => {
   return (
     <Link href={social ?? "#"} className="flex items-center space-x-2">
@@ -19,10 +21,14 @@ export const AuthorAvatar = ({
 
         <AvatarFallback>{getInitials(name)}</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col">
-        <div className="text-xs italic text-muted-foreground">Written by:</div>
-        <div className="text-sm font-semibold italic">{name}</div>
-      </div>
+      {name ? (
+        <div className="flex flex-col">
+          <div className="text-xs italic text-muted-foreground md:text-sm">
+            Published on <span className="font-extrabold">{dateStr}</span> by:
+          </div>
+          <div className="text-sm font-semibold italic">{name}</div>
+        </div>
+      ) : null}
     </Link>
   )
 }

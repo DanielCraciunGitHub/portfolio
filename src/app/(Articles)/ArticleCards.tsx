@@ -90,7 +90,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         )}
       </div>
       <Button
-        className="absolute bottom-64"
+        className="absolute bottom-96"
         variant="ghost"
         ref={ref}
         tabIndex={-1}
