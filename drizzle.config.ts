@@ -13,4 +13,5 @@ export default {
     authToken: env.TURSO_AUTH_TOKEN,
   },
   driver: "turso",
+  verbose: true,
 } satisfies Config

@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createEnv } from "@t3-oss/env-nextjs"
 import dotenv from "dotenv"
 import { z } from "zod"

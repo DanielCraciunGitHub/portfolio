@@ -54,7 +54,6 @@ export const {
 
       if (name && email) {
         const res = await sendWelcomeEmail({ name, email })
-        console.log(res)
 
         await sendWelcome({ name, email })
       }
