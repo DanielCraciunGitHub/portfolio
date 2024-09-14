@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "0fef054c-ac68-452c-93d1-6b8f05b55ebc",
-  "prevId": "977a1263-7148-48ee-bdde-57eb953625e2",
   "tables": {
     "account": {
       "name": "account",
@@ -90,16 +88,23 @@
         "account_userId_user_id_fk": {
           "name": "account_userId_user_id_fk",
           "tableFrom": "account",
+          "columnsFrom": [
+            "userId"
+          ],
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {
         "account_provider_providerAccountId_pk": {
-          "columns": ["provider", "providerAccountId"],
+          "columns": [
+            "provider",
+            "providerAccountId"
+          ],
           "name": "account_provider_providerAccountId_pk"
         }
       },
@@ -180,20 +185,28 @@
         "articleComments_userId_user_id_fk": {
           "name": "articleComments_userId_user_id_fk",
           "tableFrom": "articleComments",
+          "columnsFrom": [
+            "userId"
+          ],
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "articleComments_parentId_articleComments_id_fk": {
           "name": "articleComments_parentId_articleComments_id_fk",
           "tableFrom": "articleComments",
+          "columnsFrom": [
+            "parentId"
+          ],
           "tableTo": "articleComments",
-          "columnsFrom": ["parentId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -244,20 +257,28 @@
         "articleLikes_userId_user_id_fk": {
           "name": "articleLikes_userId_user_id_fk",
           "tableFrom": "articleLikes",
+          "columnsFrom": [
+            "userId"
+          ],
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         },
         "articleLikes_commentId_articleComments_id_fk": {
           "name": "articleLikes_commentId_articleComments_id_fk",
           "tableFrom": "articleLikes",
+          "columnsFrom": [
+            "commentId"
+          ],
           "tableTo": "articleComments",
-          "columnsFrom": ["commentId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -317,11 +338,15 @@
         "session_userId_user_id_fk": {
           "name": "session_userId_user_id_fk",
           "tableFrom": "session",
+          "columnsFrom": [
+            "userId"
+          ],
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {},
@@ -408,7 +433,10 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {
         "verificationToken_identifier_token_pk": {
-          "columns": ["identifier", "token"],
+          "columns": [
+            "identifier",
+            "token"
+          ],
           "name": "verificationToken_identifier_token_pk"
         }
       },
@@ -417,10 +445,11 @@
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {
       "\"newArticleViews\"": "\"articleViews\""
     },
     "columns": {}
-  }
+  },
+  "id": "0fef054c-ac68-452c-93d1-6b8f05b55ebc",
+  "prevId": "977a1263-7148-48ee-bdde-57eb953625e2"
 }
