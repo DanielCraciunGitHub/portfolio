@@ -35,6 +35,7 @@ export const env = createEnv({
 
     TURSO_AUTH_TOKEN: z.string().min(1),
     TURSO_DATABASE_URL: z.string().min(1),
+    AUTH_DRIZZLE_URL: z.string().min(1),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,

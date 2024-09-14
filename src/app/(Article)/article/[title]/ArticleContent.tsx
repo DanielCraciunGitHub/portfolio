@@ -72,8 +72,8 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
       <h4 className="mt-2 block text-xl leading-8 tracking-tight text-muted-foreground sm:text-2xl">
         {article.subtitle}
       </h4>
-      <div className="mt-3 flex items-center justify-between space-x-4">
-        <div className="flex space-y-2">
+      <div className="mt-3 flex flex-col items-start justify-between space-y-2 md:flex-row md:items-center md:space-y-0">
+        <div className="flex flex-col space-y-2 md:flex-row">
           {article.authors ? (
             article.authors.map((author) => (
               <AuthorAvatar

@@ -69,11 +69,7 @@ export const CommentSection = () => {
           <span className="sr-only">Open Comment Menu</span>
         </SheetTrigger>
       )}
-      <SheetContent
-        onClick={() => console.log("clicked")}
-        className="flex flex-col overflow-auto"
-        side="right"
-      >
+      <SheetContent className="flex flex-col overflow-auto" side="right">
         <div>
           <div className="text-lg font-bold">
             Responses({topLevelComments?.length ?? 0})
