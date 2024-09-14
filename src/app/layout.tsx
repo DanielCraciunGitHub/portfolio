@@ -7,6 +7,7 @@ import "@/styles/globals.css"
 
 import { Bricolage_Grotesque } from "next/font/google"
 import Script from "next/script"
+import { Provider } from "@/providers/root"
 import { Analytics } from "@vercel/analytics/react"
 import NextTopLoader from "nextjs-toploader"
 
@@ -14,7 +15,6 @@ import { baseMetadata, baseViewport } from "@/config/metadata"
 import { baseStructuredData } from "@/config/structuredData"
 import { cn } from "@/lib/utils"
 import ScrollToTopButton from "@/components/Buttons/ScrollToTopButton"
-import { Provider } from "@/components/providers"
 
 export const metadata: Metadata = {
   ...baseMetadata,

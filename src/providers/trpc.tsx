@@ -1,22 +1,14 @@
-/* eslint-disable no-return-assign */
-
 "use client"
 
 import { useState } from "react"
 import { siteConfig } from "@/config"
-import { env } from "@/env.mjs"
-import type { AppRouter } from "@/server"
 import { api } from "@/server/client"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import {
   unstable_httpBatchStreamLink as httpBatchStreamLink,
   loggerLink,
 } from "@trpc/client"
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server"
-import { SessionProvider } from "next-auth/react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { type ThemeProviderProps } from "next-themes/dist/types"
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3"
+import type { ThemeProviderProps } from "next-themes/dist/types"
 import SuperJSON from "superjson"
 
 const createQueryClient = () => new QueryClient()
@@ -29,17 +21,11 @@ const getQueryClient = () => {
     return createQueryClient()
   }
   // Browser: use singleton pattern to keep the same query client
+  // eslint-disable-next-line no-return-assign
   return (clientQueryClientSingleton ??= createQueryClient())
 }
 
-export type RouterInputs = inferRouterInputs<AppRouter>
-export type RouterOutputs = inferRouterOutputs<AppRouter>
-
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
-}
-
-export function Provider({ children, ...props }: ThemeProviderProps) {
+export function TrpcProvider({ children }: ThemeProviderProps) {
   const queryClient = getQueryClient()
 
   const [trpcClient] = useState(() =>
@@ -53,7 +39,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
         httpBatchStreamLink({
           transformer: SuperJSON,
           url: `${siteConfig.url}/api/trpc`,
-          headers(opts) {
+          headers() {
             const headers = new Headers()
             headers.set("x-trpc-source", "nextjs-react")
             return headers
@@ -62,18 +48,11 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
       ],
     })
   )
+
   return (
     <QueryClientProvider client={queryClient}>
       <api.Provider client={trpcClient} queryClient={queryClient}>
-        <SessionProvider refetchOnWindowFocus={false}>
-          <NextThemesProvider {...props}>
-            <GoogleReCaptchaProvider
-              reCaptchaKey={env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-            >
-              {children}
-            </GoogleReCaptchaProvider>
-          </NextThemesProvider>
-        </SessionProvider>
+        {children}
       </api.Provider>
     </QueryClientProvider>
   )

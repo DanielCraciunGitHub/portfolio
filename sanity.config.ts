@@ -1,4 +1,3 @@
-/* eslint-disable absolute-imports/only-absolute-imports */
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...index]]/page.tsx` route
  */
