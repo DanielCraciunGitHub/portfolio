@@ -2,7 +2,7 @@ import type { articleComments, articleLikes, users } from "@/db/schema"
 import type { InferSelectModel } from "drizzle-orm"
 import type { Image, TypedObject } from "sanity"
 
-type Category = "Web Development" | "Organisation" | "Self Development"
+type Category = "Web Development" | "Productivity" | "SaaS"
 
 interface Author {
   name: string

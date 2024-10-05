@@ -187,38 +187,18 @@ export const blogConfig = {
     "My personal blog, an information library spanning countless niches.",
   categoryLinks: [
     {
-      name: "Web Development",
-      href: nameToPath("Web Development"),
+      name: "Software Development",
+      href: nameToPath("Software Development"),
     },
     {
-      name: "Nextjs",
-      href: nameToPath("Nextjs"),
-    },
-    {
-      name: "Next Inject",
-      href: nameToPath("Next Inject"),
+      name: "Saas",
+      href: nameToPath("Saas"),
     },
     {
       name: "Productivity",
       href: nameToPath("productivity"),
     },
-    {
-      name: "Technology",
-      href: nameToPath("Technology"),
-    },
-    {
-      name: "Meal Prep",
-      href: nameToPath("Meal Prep"),
-    },
-    {
-      name: "Self Development",
-      href: nameToPath("Self Development"),
-    },
-    {
-      name: "Writing",
-      href: nameToPath("Writing"),
-    },
-  ] satisfies NavItem[],
+  ] as const satisfies NavItem[],
 }
 
 export const writeForUsConfig = {

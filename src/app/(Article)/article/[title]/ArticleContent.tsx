@@ -61,9 +61,7 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
     <div className="mx-auto mt-5 max-w-2xl">
       <div className="flex items-center justify-between space-x-4">
         <Badge variant="secondary" className="inline-flex">
-          {article.category === "Organisation"
-            ? "Productivity"
-            : article.category}
+          {article.category}
         </Badge>
       </div>
       <h1 className="mt-2 block text-3xl font-bold leading-8 tracking-tight sm:text-4xl">

@@ -2,17 +2,17 @@
 
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Link from "next/link"
 import { siteConfig } from "@/config"
+import { useAtom } from "jotai"
 import { useInView } from "react-intersection-observer"
 import ArticleCard from "src/app/(Articles)/ArticleCard"
 import { ArticleCardsShell } from "src/app/(Articles)/ArticleCardShell"
-import { KeybindsModal } from "src/app/(Articles)/KeybindsModal"
-import { SearchBar } from "src/app/(Articles)/SearchBar"
 import { api } from "src/server/client"
 
 import type { BlogCard } from "@/types/blog"
+import { searchAtom } from "@/hooks/searchAtoms"
 import { Button } from "@/components/ui/button"
 
 const articlesPerPage = 6
@@ -23,11 +23,7 @@ interface ArticleCardProps {
 
 export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView()
-  const [searchTitle, setSearchTitle] = useState<string | undefined>()
-
-  const updateSearchTitle = (title: string) => {
-    setSearchTitle(title)
-  }
+  const [searchTitle, _] = useAtom(searchAtom)
 
   const {
     data,
@@ -59,11 +55,7 @@ export default function ArticleCards({ category }: ArticleCardProps) {
 
   return (
     <div className="relative flex flex-col items-center">
-      <div className="flex">
-        <SearchBar updateSearchTitle={updateSearchTitle} />
-        <KeybindsModal />
-      </div>
-      <div className="mt-6 grid grid-cols-1 place-items-center gap-20 lg:grid-cols-2 2xl:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 place-items-center gap-20 2xl:grid-cols-2">
         {isError ? (
           <div className="flex flex-col">
             <div>

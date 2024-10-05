@@ -15,7 +15,7 @@ export const AuthorAvatar = ({
   dateStr: string
 }): JSX.Element => {
   return (
-    <Link href={social ?? "#"} className="flex items-center space-x-2">
+    <Link href={social ?? "/"} className="flex items-center space-x-2">
       <Avatar>
         <AvatarImage src={avatar} />
 

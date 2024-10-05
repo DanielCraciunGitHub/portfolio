@@ -21,7 +21,7 @@ export default function ArticleCard({
   return (
     <Link
       href={`/article/${currentSlug}`}
-      className="flex w-[350px] self-stretch rounded-lg ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:w-[400px] xl:w-[450px]"
+      className="border-lg flex self-stretch rounded-lg border border-muted ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       tabIndex={0}
     >
       <div className="flex flex-col rounded-lg border border-muted">
@@ -37,7 +37,7 @@ export default function ArticleCard({
         ) : null}
         <div className="flex h-full flex-col justify-between">
           <h1 className="text-wrap break-words p-4">
-            <span className="lg:text-2x flex grow text-lg font-bold sm:text-xl xl:text-3xl">
+            <span className="flex grow text-lg font-bold 2xl:text-2xl">
               {title}
             </span>
             <p className="text-base tracking-tight text-muted-foreground md:text-lg">
