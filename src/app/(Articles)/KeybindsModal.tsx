@@ -33,9 +33,6 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
             Search: <kbd className="rounded bg-muted p-1">/</kbd>
           </li>
           <li className="p-2">
-            Like Article: <kbd className="rounded bg-muted p-1">Ctrl+L</kbd>
-          </li>
-          <li className="p-2">
             Comment Menu: <kbd className="rounded bg-muted p-1">Ctrl+M</kbd>
           </li>
           <li className="p-2">

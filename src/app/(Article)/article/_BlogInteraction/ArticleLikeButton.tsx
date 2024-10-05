@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { api } from "@/server/client"
 import { debounce } from "lodash"
 import { useSession } from "next-auth/react"
 import { LikeHeart } from "src/app/(Article)/article/_BlogInteraction/LikeHeart"
 
-import { useKeybind } from "@/hooks/useKeybind"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Popover, PopoverContent } from "@/components/ui/popover"
@@ -14,20 +13,6 @@ import { LoginModal } from "@/components/LoginModal"
 
 export const ArticleLikeButton = () => {
   const { title: currentSlug }: { title: string } = useParams()
-
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
-  useKeybind(
-    buttonRef,
-    { key: "l", ctrlKey: true },
-    debounce(async () => {
-      // 250ms debounced used to prevent API overload
-      await updateLikeCount({
-        slug: currentSlug,
-        isLiked: likesData!.isLiked,
-      })
-    }, 250)
-  )
 
   const { data: session } = useSession()
 
@@ -68,7 +53,6 @@ export const ArticleLikeButton = () => {
             variant="ghost"
             className="hover:bg-inherit hover:text-inherit"
             size="icon"
-            ref={buttonRef}
             onClick={debounce(async () => {
               // 250ms debounced used to prevent API overload
               await updateLikeCount({
