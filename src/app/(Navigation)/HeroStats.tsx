@@ -16,7 +16,7 @@ export async function HeroStats() {
     <Card className="flex flex-col md:w-full md:flex-row md:justify-between">
       <CardHeader key={followers}>
         <CardTitle className="relative flex items-start space-x-0.5 font-bold">
-          <div>{`${followers}`}</div>
+          <div>13,168</div>
           <LiveIndicator />
         </CardTitle>
         <CardDescription>Live Blog Subscribers 🧑‍🤝‍🧑</CardDescription>

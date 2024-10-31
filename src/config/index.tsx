@@ -45,7 +45,7 @@ export const siteConfig = {
       icon: <BsMedium />,
     },
     {
-      href: "https://discord.gg/C2PXBMqpuV",
+      href: "https://discord.gg/CU2G3D4zjB",
       name: "Discord.gg",
       icon: <BsDiscord />,
     },
@@ -73,17 +73,17 @@ export const siteConfig = {
 
 export const danielConfig = {
   name: "Daniel Craciun",
-  description: "Full-Stack Web Developer | Medium Blogger",
+  description: "SaaS Developer | Full-Stack Web Developer | Tech Writer",
   aboutMe: [
-    `Hey everyone 👋, my name is Daniel and I am a full stack web developer and tech writer.`,
+    `Hey everyone 👋, my name is Daniel and I am a SaaS developer, full stack web developer and tech writer.`,
     `I have over 2+ years in this industry, and I am always eager to learn more.`,
     `I love fitness, I am an avid gym-goer. I also love to cook healthy food and stay in shape.`,
     `I am also a university student studying for a BSc in Computer Science.`,
   ],
 
   heroStats: [
-    { "6+": "Large-Scale Projects Completed 🎯" },
-    { "50,000+": "Monthly Blog Reads 📖" },
+    { "7+": "Large-Scale Projects Completed 🎯" },
+    { "45,000+": "Monthly Blog Reads 📖" },
     { "110+": "Blog Posts Written 📝" },
   ] as const satisfies HeroStat[],
   projects: [
