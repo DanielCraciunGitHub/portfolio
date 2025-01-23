@@ -60,7 +60,6 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
     })
   async function onSubmit({ body }: Inputs) {
     form.reset({ body: "" })
-    let res
 
     // If the reply is for a top-level comment
     if (replyingTo && Object.hasOwn(replyingTo as object, "replies")) {
@@ -69,7 +68,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
         slug,
         replyingToId: replyingTo.id,
       })
-      res = await sendReplyEmail({
+      await sendReplyEmail({
         body,
         commentLink: `${siteConfig.url}/article/${slug}?id=${newCommentId}`,
         senderName: session ? session.user.name! : "Anonymous",
@@ -83,7 +82,7 @@ export const AddComment = ({ setIsReplying, replyingTo }: AddCommentProps) => {
         replyingToId: replyingTo.parentId!,
         replyingTo: replyingTo.author.name!,
       })
-      res = await sendReplyEmail({
+      await sendReplyEmail({
         body,
         commentLink: `${siteConfig.url}/article/${slug}?id=${newCommentId}`,
         senderName: session ? session.user.name! : "Anonymous",
@@ -129,7 +128,7 @@ const getSavedBody = () => {
     try {
       return JSON.parse(data)
     } catch (err) {
-      console.error("Error parsing saved data:", err)
+      /* empty catch */
     }
   }
   return ""

@@ -18,7 +18,7 @@ export const siteConfig = {
       : `https://www.danielfullstack.com`,
   navLinks: [
     {
-      name: "DC",
+      name: "",
       href: "/",
     },
     {

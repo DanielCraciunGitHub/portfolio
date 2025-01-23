@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config"
-import { BsLightningChargeFill } from "react-icons/bs"
+import { HomeIcon } from "lucide-react"
 import { DarkModeButton } from "src/components/Buttons/DarkModeButton"
 import { NavItem } from "src/components/Navbar/NavItem"
 
@@ -69,9 +69,8 @@ const Navbar1N1 = () => {
             key={firstLink.name}
             page={firstLink.href}
             text={firstLink.name}
-            className="text-3xl font-bold"
             tabIndex={0}
-            icon={<BsLightningChargeFill fill="green" size={20} />}
+            icon={<HomeIcon size={20} />}
           />
         </div>
         <div className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}>

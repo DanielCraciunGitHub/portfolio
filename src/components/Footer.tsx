@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { siteConfig } from "@/config"
-import { BsLightningChargeFill } from "react-icons/bs"
+import { HomeIcon } from "lucide-react"
 
 import { NavItem } from "@/components/Navbar/NavItem"
 
@@ -17,9 +17,8 @@ export const Footer = () => {
               key={firstItem.name}
               page={firstItem.href}
               text={firstItem.name}
-              className="text-3xl font-bold"
               tabIndex={0}
-              icon={<BsLightningChargeFill size={16} fill="green" />}
+              icon={<HomeIcon size={20} />}
             />
             <div className="text-center text-sm text-foreground/50">
               © 2024 Daniel Craciun. All Rights Reserved

@@ -88,23 +88,16 @@
         "account_userId_user_id_fk": {
           "name": "account_userId_user_id_fk",
           "tableFrom": "account",
-          "columnsFrom": [
-            "userId"
-          ],
+          "columnsFrom": ["userId"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
       },
       "compositePrimaryKeys": {
         "account_provider_providerAccountId_pk": {
-          "columns": [
-            "provider",
-            "providerAccountId"
-          ],
+          "columns": ["provider", "providerAccountId"],
           "name": "account_provider_providerAccountId_pk"
         }
       },
@@ -177,26 +170,18 @@
         "articleComments_userId_user_id_fk": {
           "name": "articleComments_userId_user_id_fk",
           "tableFrom": "articleComments",
-          "columnsFrom": [
-            "userId"
-          ],
+          "columnsFrom": ["userId"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         },
         "articleComments_parentId_articleComments_id_fk": {
           "name": "articleComments_parentId_articleComments_id_fk",
           "tableFrom": "articleComments",
-          "columnsFrom": [
-            "parentId"
-          ],
+          "columnsFrom": ["parentId"],
           "tableTo": "articleComments",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -249,26 +234,18 @@
         "articleLikes_userId_user_id_fk": {
           "name": "articleLikes_userId_user_id_fk",
           "tableFrom": "articleLikes",
-          "columnsFrom": [
-            "userId"
-          ],
+          "columnsFrom": ["userId"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         },
         "articleLikes_commentId_articleComments_id_fk": {
           "name": "articleLikes_commentId_articleComments_id_fk",
           "tableFrom": "articleLikes",
-          "columnsFrom": [
-            "commentId"
-          ],
+          "columnsFrom": ["commentId"],
           "tableTo": "articleComments",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -306,13 +283,9 @@
         "articleViews_userId_user_id_fk": {
           "name": "articleViews_userId_user_id_fk",
           "tableFrom": "articleViews",
-          "columnsFrom": [
-            "userId"
-          ],
+          "columnsFrom": ["userId"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "no action"
         }
@@ -350,13 +323,9 @@
         "session_userId_user_id_fk": {
           "name": "session_userId_user_id_fk",
           "tableFrom": "session",
-          "columnsFrom": [
-            "userId"
-          ],
+          "columnsFrom": ["userId"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -445,10 +414,7 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {
         "verificationToken_identifier_token_pk": {
-          "columns": [
-            "identifier",
-            "token"
-          ],
+          "columns": ["identifier", "token"],
           "name": "verificationToken_identifier_token_pk"
         }
       },

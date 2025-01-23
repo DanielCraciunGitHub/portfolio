@@ -50,7 +50,7 @@ export default function RootLayout({
       />
 
       <body className={cn("flex min-h-screen flex-col", bricolage.className)}>
-        <NextTopLoader showSpinner={false} color="green" />
+        <NextTopLoader showSpinner={false} color="blue" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </Provider>

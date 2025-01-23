@@ -52,7 +52,7 @@ export const sendInbox = async ({ body, slug, commentId }: InboxPayload) => {
       }),
     })
   } catch (error: any) {
-    console.log(error.message)
+    /* empty catch */
   }
 }
 export const sendWelcome = async ({ name, email }: WelcomePayload) => {
@@ -83,7 +83,7 @@ export const sendWelcome = async ({ name, email }: WelcomePayload) => {
       }),
     })
   } catch (error: any) {
-    console.log(error.message)
+    /* empty catch */
   }
 }
 export const sendWriterSubmission = async (writerSubmission: WriterPayload) => {
@@ -132,7 +132,7 @@ export const sendWriterSubmission = async (writerSubmission: WriterPayload) => {
       }),
     })
   } catch (error: any) {
-    console.log(error.message)
+    /* empty catch */
   }
 }
 export const sendPublishedPost = async (published: PublishedPayload) => {
@@ -147,6 +147,6 @@ export const sendPublishedPost = async (published: PublishedPayload) => {
       }),
     })
   } catch (error: any) {
-    console.log(error.message)
+    /* empty catch */
   }
 }
