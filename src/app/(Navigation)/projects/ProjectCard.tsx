@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { Project } from "@/types"
-import { BsGithub, BsGlobe, BsLink } from "react-icons/bs"
+import { BsGithub, BsGlobe } from "react-icons/bs"
 
 import { Badge } from "@/components/ui/badge"
 import {
@@ -45,7 +45,7 @@ export default function ProjectCard({
             {href.includes("github") ? (
               <BsGithub className="size-5 sm:size-10" />
             ) : (
-              <BsGlobe className="size-5 sm:size-10 text-gray-500" />
+              <BsGlobe className="size-5 text-gray-500 sm:size-10" />
             )}
           </Link>
         </div>

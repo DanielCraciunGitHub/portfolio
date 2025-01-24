@@ -65,7 +65,7 @@ export const sendWelcome = async ({ name, email }: WelcomePayload) => {
       body: JSON.stringify({
         embeds: [
           {
-            title: "NEW USER Alert 🚨",
+            title: "NEW DANIELFULLSTACK USER Alert 🚨",
             fields: [
               {
                 name: "Name",

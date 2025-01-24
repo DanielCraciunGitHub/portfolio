@@ -25,8 +25,8 @@ export default function page() {
         />
       </div>
       <div className="lg:col-span-6">
-        <h1 className="mb-4 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl">
-          About Me
+        <h1 className="mb-4 max-w-3xl text-2xl font-bold tracking-tight md:text-3xl xl:text-4xl">
+          A bit about me
         </h1>
         <div className="mb-6 max-w-2xl space-y-4 text-muted-foreground md:text-lg lg:mb-8 lg:text-xl">
           {danielConfig.aboutMe.map((paragraph) => (
@@ -69,11 +69,10 @@ export default function page() {
           </TabsContent>
           <TabsContent value="interests">
             <ul className="list-inside list-disc">
-              <li>Self-Development</li>
-              <li>Writing</li>
+              <li>Productivity</li>
               <li>Fitness</li>
-              <li>Nutrition</li>
-              <li>Cooking</li>
+              <li>Nutrition & Cooking</li>
+              <li>Reading</li>
             </ul>
           </TabsContent>
         </Tabs>

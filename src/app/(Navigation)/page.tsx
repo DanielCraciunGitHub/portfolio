@@ -6,7 +6,7 @@ import { HeroStats } from "src/app/(Navigation)/HeroStats"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Button } from "@/components/ui/button"
-import { ProjectCards } from "@/app/(Navigation)/projects/page"
+import { ProjectCards } from "@/app/(Navigation)/projects/ProjectCards"
 
 export const metadata: Metadata = {
   ...baseMetadata,

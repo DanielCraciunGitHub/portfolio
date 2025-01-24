@@ -75,10 +75,9 @@ export const danielConfig = {
   name: "Daniel Craciun",
   description: "SaaS Developer | Full-Stack Web Developer | Tech Writer",
   aboutMe: [
-    `Hey everyone 👋, my name is Daniel and I am a SaaS developer, full stack web developer and tech writer.`,
-    `I have over 2+ years in this industry, and I am always eager to learn more.`,
-    `I love fitness, I am an avid gym-goer. I also love to cook healthy food and stay in shape.`,
-    `I am also a university student studying for a BSc in Computer Science.`,
+    `My name is Daniel. I love SaaS, full stack web development, and writing (on a good day).`,
+    `I have been on this journey for 2+ years, and I am always learning more.`,
+    `Outside of work, I love the gym, I love to read (all sorts), and I love eating and cooking tasty healthy food.`,
   ],
 
   heroStats: [
@@ -172,7 +171,11 @@ export const danielConfig = {
       "Markdown",
     ],
   } satisfies Skills,
-  education: ["University of Southampton", "Lampton Academy"],
+  education: [
+    "University of Southampton (BSc Computer Science) Oct 2023 - Jun 2026",
+    "Lampton Academy (A-Levels) Sep 2021 - Jun 2023",
+    "Lampton Academy (GCSEs) Sep 2019 - Jun 2021",
+  ],
   certification: [
     <Link
       key="cs50"
