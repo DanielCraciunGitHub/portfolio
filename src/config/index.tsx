@@ -82,19 +82,27 @@ export const danielConfig = {
   ],
 
   heroStats: [
-    { "7+": "Large-Scale Projects Completed 🎯" },
-    { "45,000+": "Monthly Blog Reads 📖" },
-    { "110+": "Blog Posts Written 📝" },
+    { "$100+": "Profit Made from Projects" },
+    { "8+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [
+    {
+      name: "DevMarket",
+      type: "Website",
+      description:
+        "DevMarket is a platform connecting technical and non-technical people to work on projects together. It's designed as an end-to-end solution for cofounder matching, and we want to make cofounder matching easy and effective.",
+      href: "https://www.devmarket.pro",
+      imageHref: "/images/devmarket.png",
+      hot: true,
+    },
     {
       name: "Portfolio & Blog",
       type: "Website",
       description:
-        "My Portfolio website which includes a personal blog. All built using Next.js, a powerful JavaScript Full-Stack Framework. The portfolio also includes a personal blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
+        "My Portfolio website which includes a personal blog, built using Next.js. The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
       href: "https://github.com/DanielCraciunGitHub/portfolio",
       imageHref: "/images/portfolio.png",
-      hot: true,
+      hot: false,
     },
     {
       name: "Next Inject",
@@ -103,7 +111,7 @@ export const danielConfig = {
         "A command line tool designed for Next.js developers that configures essential parts of your app with a single command. I earned $60+ from this product and I have 20+ satisfied users.",
       href: "https://github.com/DanielCraciunGitHub/next-inject/",
       imageHref: "/images/next-inject.png",
-      hot: true,
+      hot: false,
     },
     {
       name: "EduMentorMe",

@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   ...staticMetadata.projects,
 }
 
-export default function page() {
+export const ProjectCards = () => {
   return (
     <div className="flex flex-col items-center">
-      <h1 className="my-6 text-xl font-extrabold tracking-tight md:text-3xl xl:text-5xl">
+      <h1 className="my-6 text-sm self-start font-extrabold tracking-tight md:text-xl xl:text-3xl">
         My Projects
       </h1>
       <div className="grid grid-cols-1 place-items-center gap-20 lg:grid-cols-2 2xl:grid-cols-3">
@@ -31,5 +31,11 @@ export default function page() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function page() {
+  return (
+    <ProjectCards />
   )
 }

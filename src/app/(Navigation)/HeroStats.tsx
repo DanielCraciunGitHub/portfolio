@@ -1,5 +1,5 @@
 import * as React from "react"
-import { danielConfig } from "@/config"
+import { danielConfig, siteConfig } from "@/config"
 
 import { fetchFollowersCount } from "@/lib/scrape"
 import {
@@ -9,18 +9,12 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { LiveIndicator } from "@/components/LiveIndicator"
+import Link from "next/link"
 
 export async function HeroStats() {
   const followers = await fetchFollowersCount()
   return (
     <Card className="flex flex-col md:w-full md:flex-row md:justify-between">
-      <CardHeader key={followers}>
-        <CardTitle className="relative flex items-start space-x-0.5 font-bold">
-          <div>13,168</div>
-          <LiveIndicator />
-        </CardTitle>
-        <CardDescription>Live Blog Subscribers 🧑‍🤝‍🧑</CardDescription>
-      </CardHeader>
       {danielConfig.heroStats.map((heroStat) => {
         const [value, label] = Object.entries(heroStat)[0] as [string, string]
 
@@ -31,6 +25,20 @@ export async function HeroStats() {
           </CardHeader>
         )
       })}
+      <CardHeader>
+        <Link
+          href={siteConfig.socialLinks[0].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          <CardTitle className="relative flex items-start space-x-0.5 font-bold">
+            <div>{followers || "13,500"}</div>
+            <LiveIndicator />
+      </CardTitle>
+        </Link>
+        <CardDescription>Blog Followers</CardDescription>
+      </CardHeader>
     </Card>
   )
 }

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { Project } from "@/types"
-import { BsGithub } from "react-icons/bs"
+import { BsGithub, BsGlobe, BsLink } from "react-icons/bs"
 
 import { Badge } from "@/components/ui/badge"
 import {
@@ -23,12 +23,12 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Card
-      className={`relative flex w-[350px] flex-col self-stretch rounded-lg border-4 focus-visible:outline-none md:w-[400px] xl:w-[450px] ${hot ? " border-yellow-500" : "border-none"}`}
+      className={`relative flex w-[350px] flex-col self-stretch rounded-lg border-4 focus-visible:outline-none md:w-[400px] xl:w-[450px] ${hot ? " border-blue-500" : "border-none"}`}
       tabIndex={0}
     >
       {hot && (
-        <Badge className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2 bg-yellow-500">
-          Recommended
+        <Badge className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2 text-white">
+          New
         </Badge>
       )}
       <div className="group relative flex flex-col items-center justify-center">
@@ -42,7 +42,11 @@ export default function ProjectCard({
         />
         <div className="invisible absolute size-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
           <Link href={href} target="_blank" rel="noopener noreferrer">
-            <BsGithub className="size-5 sm:size-10" />
+            {href.includes("github") ? (
+              <BsGithub className="size-5 sm:size-10" />
+            ) : (
+              <BsGlobe className="size-5 sm:size-10 text-gray-500" />
+            )}
           </Link>
         </div>
       </div>

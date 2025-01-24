@@ -6,6 +6,7 @@ import { HeroStats } from "src/app/(Navigation)/HeroStats"
 
 import { baseMetadata, baseViewport } from "@/config/metadata"
 import { Button } from "@/components/ui/button"
+import { ProjectCards } from "@/app/(Navigation)/projects/page"
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -26,9 +27,6 @@ export const viewport: Viewport = {
 export default async function Home() {
   return (
     <section className="container flex flex-col justify-center">
-      <div className="mt-4 flex justify-center">
-        <HeroStats />
-      </div>
       <div className="z-10 mx-auto grid max-w-screen-2xl space-y-10 py-8 lg:grid-cols-12 lg:gap-8 lg:space-y-0 lg:py-16 xl:gap-32">
         <div className=" flex flex-col items-center place-self-center lg:col-span-7 lg:items-start">
           <h1 className="mb-4 max-w-3xl text-center text-4xl font-extrabold tracking-tight text-primary md:text-5xl lg:text-start xl:text-7xl">
@@ -62,6 +60,12 @@ export default async function Home() {
             className="rounded-full"
           />
         </div>
+      </div>
+      <div className="mt-4 flex justify-center">
+        <HeroStats />
+      </div>
+      <div className="my-10">
+        <ProjectCards />
       </div>
     </section>
   )
