@@ -109,12 +109,6 @@ export const staticStructuredData = {
           name: "Info Library",
           item: `${siteConfig.url}/blog`,
         },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "Write for Us",
-          item: `${siteConfig.url}/write_for_us`,
-        },
       ],
     },
   },
