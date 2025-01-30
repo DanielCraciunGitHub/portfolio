@@ -81,7 +81,7 @@ export const danielConfig = {
   ],
 
   heroStats: [
-    { "$100+": "Profit Made from Projects" },
+    { "$3,900+": "Made from side hustles" },
     { "8+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [
