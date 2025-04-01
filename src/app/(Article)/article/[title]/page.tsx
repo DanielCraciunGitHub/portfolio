@@ -9,13 +9,14 @@ import { getArticleMetadata } from "@/lib/blogs"
 export const revalidate = 45
 
 interface pageProps {
-  params: { title: string }
+  params: Promise<{ title: string }>
 }
 
 export async function generateMetadata({
   params,
 }: pageProps): Promise<Metadata> {
-  const article = await getArticleMetadata(params.title)
+  const { title } = await params
+  const article = await getArticleMetadata(title)
 
   return {
     ...baseMetadata,
@@ -75,5 +76,6 @@ export async function generateMetadata({
 }
 
 export default async function page({ params }: pageProps) {
-  return <ArticleContent title={params.title} />
+  const { title } = await params
+  return <ArticleContent title={title} />
 }
