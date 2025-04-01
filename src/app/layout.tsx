@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7731736693350784"
@@ -49,7 +49,7 @@ export default function RootLayout({
         }}
       />
 
-      <body className={cn("flex min-h-screen flex-col", bricolage.className)}>
+      <body className={cn("flex min-h-screen flex-col", bricolage.className)} suppressHydrationWarning>
         <NextTopLoader showSpinner={false} color="blue" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
           {children}
