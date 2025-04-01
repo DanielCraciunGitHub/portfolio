@@ -9,7 +9,7 @@ import { Comment } from "src/app/(Article)/article/_BlogInteraction/Comment"
 import { useKeybind } from "@/hooks/useKeybind"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { LoginModal } from "@/components/LoginModal"
 
 export const CommentSection = () => {
@@ -54,6 +54,7 @@ export const CommentSection = () => {
       }}
       open={open}
     >
+      <SheetTitle className="hidden">Comments</SheetTitle>
       {!session ? (
         <LoginModal
           buttonNode={

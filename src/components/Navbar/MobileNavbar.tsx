@@ -6,6 +6,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 
@@ -21,6 +22,7 @@ export function MobileNavbar() {
         className="text-4xl"
       />
       <Sheet>
+        <SheetTitle className="hidden">Menu</SheetTitle>
         <div className="flex w-full justify-end">
           <SheetTrigger className="p-2">
             <Menu />
