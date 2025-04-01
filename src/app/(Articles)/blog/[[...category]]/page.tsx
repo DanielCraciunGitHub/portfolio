@@ -9,22 +9,26 @@ import { BlogPageComponent } from "@/components/blog-page"
 
 export const revalidate = 60
 
-export function generateMetadata({ params }: pageProps): Metadata {
+export async function generateMetadata({
+  params,
+}: pageProps): Promise<Metadata> {
+  const { category } = await params
   return {
     ...staticMetadata.blog,
-    title: params.category ? pathToName(params.category[0]) : blogConfig.title,
+    title: category ? pathToName(category[0]) : blogConfig.title,
   }
 }
 
 interface pageProps {
-  params: { category: string[] }
+  params: Promise<{ category: string[] }>
 }
 
 export default async function page({ params }: pageProps) {
-  const category = pathToName(params.category ? params.category[0] : undefined)
+  const { category } = await params
+  const categoryName = pathToName(category ? category[0] : undefined)
   return (
     <>
-      <BlogPageComponent category={category} />
+      <BlogPageComponent category={categoryName} />
       <Script
         id="WebSite Structured Data"
         type="application/ld+json"
