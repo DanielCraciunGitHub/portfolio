@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import {
   blogConfig,
   danielConfig,
+  projects,
   siteConfig,
   writeForUsConfig,
 } from "@/config"
@@ -136,23 +137,23 @@ export const staticMetadata = {
   } satisfies Metadata,
   projects: {
     title: "Projects",
-    description: danielConfig.projects
+    description: projects
       .map(({ description }, i) => `${i + 1}. ${description}`)
       .join("|"),
     keywords: [
-      ...danielConfig.projects.map(({ name }) => name),
+      ...projects.map(({ name }) => name),
       ...baseMetadata.keywords!,
     ],
     openGraph: {
       ...baseMetadata.openGraph,
       url: `/projects`,
       title: "Projects",
-      description: danielConfig.projects.map(({ name }) => name).join("|"),
+      description: projects.map(({ name }) => name).join("|"),
     },
     twitter: {
       ...baseMetadata.openGraph,
       title: "Projects",
-      description: danielConfig.projects.map(({ name }) => name).join("|"),
+      description: projects.map(({ name }) => name).join("|"),
     },
   } satisfies Metadata,
   contact: {

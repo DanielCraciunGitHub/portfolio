@@ -71,20 +71,7 @@ export const siteConfig = {
   ],
 } as const
 
-export const danielConfig = {
-  name: "Daniel Craciun",
-  description: "SaaS Developer | Full-Stack Web Developer | Tech Writer",
-  aboutMe: [
-    `My name is Daniel. I love SaaS, full stack web development, and writing (on a good day).`,
-    `I have been on this journey for 2+ years, and I am always learning more.`,
-    `Outside of work, I love the gym, I love to read (all sorts), and I love eating and cooking tasty healthy food.`,
-  ],
-
-  heroStats: [
-    { "$4,000": "Made from side hustles" },
-    { "8": "Projects Completed" },
-  ] as const satisfies HeroStat[],
-  projects: [
+export const projects = [
     {
       name: "DevMarket",
       type: "Website",
@@ -144,7 +131,21 @@ export const danielConfig = {
       href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
       imageHref: "/images/programmingProject.png",
     },
-  ] satisfies Project[],
+  ] satisfies Project[]
+
+export const danielConfig = {
+  name: "Daniel Craciun",
+  description: "SaaS Developer | Full-Stack Web Developer | Tech Writer",
+  aboutMe: [
+    `My name is Daniel. I love SaaS, full stack web development, and writing (on a good day).`,
+    `I have been on this journey for 2+ years, and I am always learning more.`,
+    `Outside of work, I love the gym, I love to read (all sorts), and I love eating and cooking tasty healthy food.`,
+  ],
+
+  heroStats: [
+    { "$4,000": "Made from side hustles" },
+    { [projects.length]: "Projects Completed" },
+  ] as const satisfies HeroStat[],
   skills: {
     FULLSTACK: ["NextJS", "TypeScript", "SQL", "NOSQL", "APIs", "AWS (Basic)"],
     BACKEND: ["Node", "Express", "Testing (Jest)", "Serverless", "Stripe"],
