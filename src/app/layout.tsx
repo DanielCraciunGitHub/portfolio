@@ -49,7 +49,10 @@ export default function RootLayout({
         }}
       />
 
-      <body className={cn("flex min-h-screen flex-col", bricolage.className)} suppressHydrationWarning>
+      <body
+        className={cn("flex min-h-screen flex-col", bricolage.className)}
+        suppressHydrationWarning
+      >
         <NextTopLoader showSpinner={false} color="blue" />
         <Provider attribute="class" defaultTheme="dark" enableSystem>
           {children}

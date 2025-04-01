@@ -72,66 +72,66 @@ export const siteConfig = {
 } as const
 
 export const projects = [
-    {
-      name: "DevMarket",
-      type: "Website",
-      description:
-        "DevMarket is a platform connecting technical and non-technical people to work on projects together. It's designed as an end-to-end solution for cofounder matching, and we want to make cofounder matching easy and effective.",
-      href: "https://www.devmarket.pro",
-      imageHref: "/images/devmarket.png",
-      hot: true,
-    },
-    {
-      name: "Portfolio & Blog",
-      type: "Website",
-      description:
-        "My Portfolio website which includes a personal blog, built using Next.js. The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
-      href: "https://github.com/DanielCraciunGitHub/portfolio",
-      imageHref: "/images/portfolio.png",
-      hot: false,
-    },
-    {
-      name: "Next Inject",
-      type: "CLI Tool",
-      description:
-        "A command line tool designed for Next.js developers that configures essential parts of your app with a single command. I earned $60+ from this product and I have 20+ satisfied users.",
-      href: "https://github.com/DanielCraciunGitHub/next-inject/",
-      imageHref: "/images/next-inject.png",
-      hot: false,
-    },
-    {
-      name: "EduMentorMe",
-      type: "Website",
-      description:
-        "This project is a hub of many different features used to enhance your education. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students in higher education.",
-      href: "https://github.com/DanielCraciunGitHub/emm",
-      imageHref: "/images/emm.png",
-    },
-    {
-      name: "Workout Volume Tracker",
-      type: "Website",
-      description:
-        "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
-      href: "https://github.com/DanielCraciunGitHub/workout-app",
-      imageHref: "/images/volume-tracker.png",
-    },
-    {
-      name: "Notes App",
-      type: "Website",
-      description:
-        "A 'Google Keep' inspired Notes App that involves CRUD, reminders, authentication, and so much more.",
-      href: "https://github.com/DanielCraciunGitHub/notes-app",
-      imageHref: "/images/notes-app.png",
-    },
-    {
-      name: "2D Survival Game",
-      type: "Game",
-      description:
-        "A Unity game in which you battle endless opposition using mystery items.",
-      href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
-      imageHref: "/images/programmingProject.png",
-    },
-  ] satisfies Project[]
+  {
+    name: "DevMarket",
+    type: "Website",
+    description:
+      "DevMarket is a platform connecting technical and non-technical people to work on projects together. It's designed as an end-to-end solution for cofounder matching, and we want to make cofounder matching easy and effective.",
+    href: "https://www.devmarket.pro",
+    imageHref: "/images/devmarket.png",
+    hot: true,
+  },
+  {
+    name: "Portfolio & Blog",
+    type: "Website",
+    description:
+      "My Portfolio website which includes a personal blog, built using Next.js. The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
+    href: "https://github.com/DanielCraciunGitHub/portfolio",
+    imageHref: "/images/portfolio.png",
+    hot: false,
+  },
+  {
+    name: "Next Inject",
+    type: "CLI Tool",
+    description:
+      "A command line tool designed for Next.js developers that configures essential parts of your app with a single command. I earned $60+ from this product and I have 20+ satisfied users.",
+    href: "https://github.com/DanielCraciunGitHub/next-inject/",
+    imageHref: "/images/next-inject.png",
+    hot: false,
+  },
+  {
+    name: "EduMentorMe",
+    type: "Website",
+    description:
+      "This project is a hub of many different features used to enhance your education. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students in higher education.",
+    href: "https://github.com/DanielCraciunGitHub/emm",
+    imageHref: "/images/emm.png",
+  },
+  {
+    name: "Workout Volume Tracker",
+    type: "Website",
+    description:
+      "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
+    href: "https://github.com/DanielCraciunGitHub/workout-app",
+    imageHref: "/images/volume-tracker.png",
+  },
+  {
+    name: "Notes App",
+    type: "Website",
+    description:
+      "A 'Google Keep' inspired Notes App that involves CRUD, reminders, authentication, and so much more.",
+    href: "https://github.com/DanielCraciunGitHub/notes-app",
+    imageHref: "/images/notes-app.png",
+  },
+  {
+    name: "2D Survival Game",
+    type: "Game",
+    description:
+      "A Unity game in which you battle endless opposition using mystery items.",
+    href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
+    imageHref: "/images/programmingProject.png",
+  },
+] satisfies Project[]
 
 export const danielConfig = {
   name: "Daniel Craciun",

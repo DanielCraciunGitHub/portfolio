@@ -140,10 +140,7 @@ export const staticMetadata = {
     description: projects
       .map(({ description }, i) => `${i + 1}. ${description}`)
       .join("|"),
-    keywords: [
-      ...projects.map(({ name }) => name),
-      ...baseMetadata.keywords!,
-    ],
+    keywords: [...projects.map(({ name }) => name), ...baseMetadata.keywords!],
     openGraph: {
       ...baseMetadata.openGraph,
       url: `/projects`,
