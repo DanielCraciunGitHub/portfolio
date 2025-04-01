@@ -19,12 +19,12 @@ export default function ArticleCard({
   const publishedDate = format(new Date(_createdAt), "MMM dd, yy")
 
   return (
-    <Link
-      href={`/article/${currentSlug}`}
+    <div
       className="border-lg flex self-stretch rounded-lg border border-muted ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       tabIndex={0}
     >
       <div className="flex flex-col rounded-lg border border-muted">
+        <Link href={`/article/${currentSlug}`}>
         {image ? (
           <Image
             src={urlFor(image).size(1200, 600).url()}
@@ -43,9 +43,11 @@ export default function ArticleCard({
             <p className="text-base tracking-tight text-muted-foreground md:text-lg">
               {subtitle}
             </p>
-          </h1>
+            </h1>
+          </div>
+        </Link>
 
-          <div className="flex items-center space-x-4 p-4 font-semibold">
+        <div className="flex items-center space-x-4 p-4 font-semibold">
             {authors ? (
               authors.map((author) => (
                 <AuthorAvatar
@@ -74,6 +76,5 @@ export default function ArticleCard({
           </div>
         </div>
       </div>
-    </Link>
   )
 }
