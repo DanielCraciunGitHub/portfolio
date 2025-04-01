@@ -155,14 +155,11 @@ export const danielConfig = {
       "CSS",
       "UI/UX",
       "Tailwind",
-      "HTML",
-      "CSS",
     ],
     MISC: [
       "C#",
       "Haskell",
       "Git",
-      "AWS (Basic)",
       "SEO",
       "CI/CD (GitHub Actions)",
       "Docker",
@@ -170,7 +167,7 @@ export const danielConfig = {
       "Python",
       "Markdown",
     ],
-  } satisfies Skills,
+  } satisfies Skills,  
   education: [
     "University of Southampton (BSc Computer Science) Oct 2023 - Jun 2026",
     "Lampton Academy (A-Levels) Sep 2021 - Jun 2023",
