@@ -148,14 +148,7 @@ export const danielConfig = {
   skills: {
     FULLSTACK: ["NextJS", "TypeScript", "SQL", "NOSQL", "APIs", "AWS (Basic)"],
     BACKEND: ["Node", "Express", "Testing (Jest)", "Serverless", "Stripe"],
-    FRONTEND: [
-      "JavaScript",
-      "React",
-      "HTML",
-      "CSS",
-      "UI/UX",
-      "Tailwind",
-    ],
+    FRONTEND: ["JavaScript", "React", "HTML", "CSS", "UI/UX", "Tailwind"],
     MISC: [
       "C#",
       "Haskell",
@@ -167,7 +160,7 @@ export const danielConfig = {
       "Python",
       "Markdown",
     ],
-  } satisfies Skills,  
+  } satisfies Skills,
   education: [
     "University of Southampton (BSc Computer Science) Oct 2023 - Jun 2026",
     "Lampton Academy (A-Levels) Sep 2021 - Jun 2023",
