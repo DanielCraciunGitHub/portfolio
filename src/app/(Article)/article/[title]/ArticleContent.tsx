@@ -18,7 +18,6 @@ const BlogInteractor = dynamic(
     import("../_BlogInteraction/BlogInteractor").then(
       (mod) => mod.BlogInteractor
     ),
-  { ssr: false }
 )
 
 interface ArticleContentProps {
