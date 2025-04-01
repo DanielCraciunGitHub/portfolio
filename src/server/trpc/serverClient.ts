@@ -1,7 +1,8 @@
 import "server-only"
 
 import { cache } from "react"
-import { headers, UnsafeUnwrappedHeaders } from "next/headers"
+import type { UnsafeUnwrappedHeaders } from "next/headers"
+import { headers } from "next/headers"
 import { createCaller } from "@/server"
 import { createTRPCContext } from "@/server/trpc"
 

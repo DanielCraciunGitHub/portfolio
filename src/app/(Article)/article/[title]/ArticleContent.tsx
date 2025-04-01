@@ -13,11 +13,8 @@ import { CaptionSource } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { AuthorAvatar } from "@/components/AuthorAvatar"
 
-const BlogInteractor = dynamic(
-  () =>
-    import("../_BlogInteraction/BlogInteractor").then(
-      (mod) => mod.BlogInteractor
-    ),
+const BlogInteractor = dynamic(() =>
+  import("../_BlogInteraction/BlogInteractor").then((mod) => mod.BlogInteractor)
 )
 
 interface ArticleContentProps {
