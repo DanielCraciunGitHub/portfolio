@@ -52,7 +52,7 @@ export const sendReplyEmail = async ({
   senderName,
   receiverEmail,
 }: ReplyPayload) => {
-  const ip = headers().get("x-forwarded-for") ?? ""
+  const ip = (await headers()).get("x-forwarded-for") ?? ""
   const { success, reset } = await ratelimit.limit(ip)
 
   const minsLeft = Math.ceil((reset - new Date().getTime()) / (60 * 1000))

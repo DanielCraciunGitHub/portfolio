@@ -55,7 +55,7 @@ export const receiveEmail = async ({
       throw new Error()
     }
 
-    const ip = headers().get("x-forwarded-for") ?? ""
+    const ip = (await headers()).get("x-forwarded-for") ?? ""
     const { success } = await ratelimit.limit(ip)
 
     if (!success) {
