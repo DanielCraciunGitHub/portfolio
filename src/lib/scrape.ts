@@ -12,7 +12,7 @@ export const fetchFollowersCount = async () => {
 
     const root = parse(data)
 
-    const followersText = root.querySelector('h2:contains("Followers")')?.text
+    const followersText = root.querySelector('h2:contains("followers")')?.text
 
     // Extract the number from the text, e.g., "11.9K followers"
     const followersCount = followersText?.split(" ")[0]

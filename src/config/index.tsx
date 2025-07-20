@@ -81,13 +81,13 @@ export const danielConfig = {
   ],
 
   heroStats: [
-    { "$3,900+": "Made from side hustles" },
-    { "8+": "Projects Completed" },
+    { "$4,500+": "Made from side projects" },
+    { "7+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [
     {
       name: "DevMarket",
-      type: "Website",
+      type: "SaaS",
       description:
         "DevMarket is a platform connecting technical and non-technical people to work on projects together. It's designed as an end-to-end solution for cofounder matching, and we want to make cofounder matching easy and effective.",
       href: "https://www.devmarket.pro",
@@ -95,7 +95,7 @@ export const danielConfig = {
       hot: true,
     },
     {
-      name: "Portfolio & Blog",
+      name: "Portfolio",
       type: "Website",
       description:
         "My Portfolio website which includes a personal blog, built using Next.js. The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
@@ -105,7 +105,7 @@ export const danielConfig = {
     },
     {
       name: "Next Inject",
-      type: "CLI Tool",
+      type: "SaaS CLI Tool",
       description:
         "A command line tool designed for Next.js developers that configures essential parts of your app with a single command. I earned $60+ from this product and I have 20+ satisfied users.",
       href: "https://github.com/DanielCraciunGitHub/next-inject/",
@@ -114,7 +114,7 @@ export const danielConfig = {
     },
     {
       name: "EduMentorMe",
-      type: "Website",
+      type: "SaaS",
       description:
         "This project is a hub of many different features used to enhance your education. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students in higher education.",
       href: "https://github.com/DanielCraciunGitHub/emm",
@@ -122,7 +122,7 @@ export const danielConfig = {
     },
     {
       name: "Workout Volume Tracker",
-      type: "Website",
+      type: "SaaS",
       description:
         "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
       href: "https://github.com/DanielCraciunGitHub/workout-app",
@@ -130,7 +130,7 @@ export const danielConfig = {
     },
     {
       name: "Notes App",
-      type: "Website",
+      type: "SaaS",
       description:
         "A 'Google Keep' inspired Notes App that involves CRUD, reminders, authentication, and so much more.",
       href: "https://github.com/DanielCraciunGitHub/notes-app",

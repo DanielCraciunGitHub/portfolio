@@ -33,7 +33,7 @@ export async function HeroStats() {
           className="hover:underline"
         >
           <CardTitle className="relative flex items-start space-x-0.5 font-bold">
-            <div>{followers || "13,500"}</div>
+            <div>{followers || "14,007"}</div>
             <LiveIndicator />
           </CardTitle>
         </Link>
