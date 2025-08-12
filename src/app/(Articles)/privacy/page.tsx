@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const page = async () => {
   return (
-    <div className="container mx-auto my-4 flex max-w-2xl flex-col space-y-2">
+    <div className="container mx-auto my-4 mt-16 flex max-w-2xl flex-col space-y-2">
       <h1 className="text-center text-4xl font-extrabold">
         Privacy Policy
       </h1>
