@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const SyntaxHighlighter = dynamic(
-  () => import("react-syntax-highlighter"),
+  () => import("react-syntax-highlighter") as any,
   {
     ssr: false,
   }
@@ -39,6 +39,7 @@ export function CodeBlock({ value }: CodeBlockProps) {
       </CopyToClipboard>
 
       {isSyntaxHighlighterLoaded ? (
+        // @ts-ignore
         <SyntaxHighlighter
           language={value.language}
           style={gruvboxDark}
