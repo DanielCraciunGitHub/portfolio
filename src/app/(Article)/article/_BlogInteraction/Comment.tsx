@@ -1,33 +1,37 @@
-import { useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { EllipsisVertical } from "lucide-react"
-import { useSession } from "next-auth/react"
-import { AddComment } from "src/app/(Article)/article/_BlogInteraction/AddComment"
-import { CommentLikeButton } from "src/app/(Article)/article/_BlogInteraction/CommentLikeButton"
-import { DeleteComment } from "src/app/(Article)/article/_BlogInteraction/DeleteComment"
-import { EditComment } from "src/app/(Article)/article/_BlogInteraction/EditComment"
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { EllipsisVertical } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { AddComment } from "src/app/(Article)/article/_BlogInteraction/AddComment";
+import { CommentLikeButton } from "src/app/(Article)/article/_BlogInteraction/CommentLikeButton";
+import { DeleteComment } from "src/app/(Article)/article/_BlogInteraction/DeleteComment";
+import { EditComment } from "src/app/(Article)/article/_BlogInteraction/EditComment";
 
-import type { Reply, TopComment } from "@/types/blog"
-import { formatTimeToNow, getInitials } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import type { Reply, TopComment } from "@/types/blog";
+import { formatTimeToNow, getInitials } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
 
 export interface CommentProps {
-  comment: TopComment | Reply
+  comment: TopComment | Reply;
 }
 
 export const Comment = ({ comment }: CommentProps) => {
-  const searchParams = useSearchParams()
-  const [isReplying, setIsReplying] = useState(false)
+  const searchParams = useSearchParams();
+  const [isReplying, setIsReplying] = useState(false);
 
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   return (
     <Card
@@ -38,7 +42,9 @@ export const Comment = ({ comment }: CommentProps) => {
         <div className="flex items-center space-x-2 overflow-x-auto">
           <Avatar>
             <AvatarImage src={comment.author.image ?? undefined} />
-            <AvatarFallback>{getInitials(comment.author.name!)}</AvatarFallback>
+            <AvatarFallback>
+              {getInitials(comment.author.name!)}
+            </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
             <div className="text-xs font-semibold md:text-sm">
@@ -60,7 +66,10 @@ export const Comment = ({ comment }: CommentProps) => {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="flex w-fit flex-col space-y-2 border-none">
-              <EditComment defaultValue={comment.body!} comment={comment} />
+              <EditComment
+                defaultValue={comment.body!}
+                comment={comment}
+              />
               <DeleteComment comment={comment} />
             </PopoverContent>
           </Popover>
@@ -84,7 +93,7 @@ export const Comment = ({ comment }: CommentProps) => {
         <CommentLikeButton comment={comment} />
         <Button
           onClick={() => {
-            setIsReplying(true)
+            setIsReplying(true);
           }}
         >
           Reply
@@ -94,5 +103,5 @@ export const Comment = ({ comment }: CommentProps) => {
         <AddComment setIsReplying={setIsReplying} replyingTo={comment} />
       ) : null}
     </Card>
-  )
-}
+  );
+};

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 
 export function WideDesktopBanner(): JSX.Element {
-  const banner = useRef<HTMLDivElement>(null)
+  const banner = useRef<HTMLDivElement>(null);
 
   const atOptions = {
     key: "b586374c7176045d24ea3bc156cfe641",
@@ -11,32 +11,35 @@ export function WideDesktopBanner(): JSX.Element {
     height: 90,
     width: 728,
     params: {},
-  }
+  };
   useEffect(() => {
     if (banner.current && !banner.current.firstChild) {
-      const conf = document.createElement("script")
-      const script = document.createElement("script")
+      const conf = document.createElement("script");
+      const script = document.createElement("script");
 
-      script.type = "text/javascript"
-      script.src = `//www.topcreativeformat.com/${atOptions.key}/invoke.js`
+      script.type = "text/javascript";
+      script.src = `//www.topcreativeformat.com/${atOptions.key}/invoke.js`;
 
-      conf.innerHTML = `atOptions = ${JSON.stringify(atOptions)}`
-      conf.type = "text/javascript"
+      conf.innerHTML = `atOptions = ${JSON.stringify(atOptions)}`;
+      conf.type = "text/javascript";
 
-      banner.current.append(conf)
-      banner.current.append(script)
+      banner.current.append(conf);
+      banner.current.append(script);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [banner])
+  }, [banner]);
 
   return (
     <div className="mt-2 flex justify-center">
-      <div className="items-center justify-center text-center" ref={banner} />
+      <div
+        className="items-center justify-center text-center"
+        ref={banner}
+      />
     </div>
-  )
+  );
 }
 export function WideMobileBanner(): JSX.Element {
-  const banner = useRef<HTMLDivElement>(null)
+  const banner = useRef<HTMLDivElement>(null);
 
   const atOptions = {
     key: "aaab0b7b18cdcd0913ebd0dcc9a223fb",
@@ -44,29 +47,32 @@ export function WideMobileBanner(): JSX.Element {
     height: 50,
     width: 320,
     params: {},
-  }
+  };
   useEffect(() => {
     if (banner.current && !banner.current.firstChild) {
-      const conf = document.createElement("script")
-      const script = document.createElement("script")
+      const conf = document.createElement("script");
+      const script = document.createElement("script");
 
-      script.type = "text/javascript"
-      script.src = `//www.topcreativeformat.com/${atOptions.key}/invoke.js`
+      script.type = "text/javascript";
+      script.src = `//www.topcreativeformat.com/${atOptions.key}/invoke.js`;
 
-      conf.innerHTML = `atOptions = ${JSON.stringify(atOptions)}`
-      conf.type = "text/javascript"
+      conf.innerHTML = `atOptions = ${JSON.stringify(atOptions)}`;
+      conf.type = "text/javascript";
 
-      banner.current.append(conf)
-      banner.current.append(script)
+      banner.current.append(conf);
+      banner.current.append(script);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [banner])
+  }, [banner]);
 
   return (
     <div className="mt-2 flex justify-center">
-      <div className="items-center justify-center text-center" ref={banner} />
+      <div
+        className="items-center justify-center text-center"
+        ref={banner}
+      />
     </div>
-  )
+  );
 }
 // export function NativeBanner(): JSX.Element {
 //   const banner = useRef<HTMLDivElement>(null)

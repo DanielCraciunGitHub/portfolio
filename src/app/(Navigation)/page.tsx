@@ -1,12 +1,12 @@
-import type { Metadata, Viewport } from "next"
-import Image from "next/image"
-import Link from "next/link"
-import { danielConfig } from "@/config"
-import { HeroStats } from "src/app/(Navigation)/HeroStats"
+import type { Metadata, Viewport } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { danielConfig } from "@/config";
+import { HeroStats } from "src/app/(Navigation)/HeroStats";
 
-import { baseMetadata, baseViewport } from "@/config/metadata"
-import { Button } from "@/components/ui/button"
-import { ProjectCards } from "@/app/(Navigation)/projects/ProjectCards"
+import { baseMetadata, baseViewport } from "@/config/metadata";
+import { Button } from "@/components/ui/button";
+import { ProjectCards } from "@/app/(Navigation)/projects/ProjectCards";
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     ...baseMetadata.twitter,
     title: { absolute: "Daniel Craciun" },
   },
-}
+};
 export const viewport: Viewport = {
   ...baseViewport,
-}
+};
 
 export default async function Home() {
   return (
@@ -68,5 +68,5 @@ export default async function Home() {
         <ProjectCards />
       </div>
     </section>
-  )
+  );
 }

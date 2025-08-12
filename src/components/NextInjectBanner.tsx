@@ -1,25 +1,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { X } from "lucide-react"
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
 
 export const NextInjectBanner = () => {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    setShow(!localStorage.getItem("nextinject"))
-  }, [])
+    setShow(!localStorage.getItem("nextinject"));
+  }, []);
 
   return show ? (
     <div className="relative flex flex-col items-center justify-center bg-muted p-1 font-mono italic tracking-tight md:flex-row">
       <div
         onClick={() => {
-          setShow(false)
-          localStorage.setItem("nextinject", "true")
+          setShow(false);
+          localStorage.setItem("nextinject", "true");
         }}
         className="absolute right-2 cursor-pointer opacity-50"
       >
@@ -38,5 +38,5 @@ export const NextInjectBanner = () => {
         &nbsp;today!
       </div>
     </div>
-  ) : null
-}
+  ) : null;
+};

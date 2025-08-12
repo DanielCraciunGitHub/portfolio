@@ -1,27 +1,29 @@
-import { siteConfig } from "@/config"
+import { siteConfig } from "@/config";
 
-import SocialLink from "@/components/SocialLink"
+import SocialLink from "@/components/SocialLink";
 
-const socialLinkNames = siteConfig.socialLinks.map((link) => link.name)
+const socialLinkNames = siteConfig.socialLinks.map((link) => link.name);
 
 interface SocialLinksArrayProps {
-  socialLinks: typeof socialLinkNames
+  socialLinks: typeof socialLinkNames;
 }
 
-export const SocialLinksArray = ({ socialLinks }: SocialLinksArrayProps) => {
+export const SocialLinksArray = ({
+  socialLinks,
+}: SocialLinksArrayProps) => {
   const discord = siteConfig.socialLinks.find(
     (link) => link.name === "Discord.gg"
-  )!
+  )!;
   const medium = siteConfig.socialLinks.find(
     (link) => link.name === "Medium.com"
-  )!
-  const x = siteConfig.socialLinks.find((link) => link.name === "X.com")!
+  )!;
+  const x = siteConfig.socialLinks.find((link) => link.name === "X.com")!;
   const linkedIn = siteConfig.socialLinks.find(
     (link) => link.name === "Linkedin.com"
-  )!
+  )!;
   const github = siteConfig.socialLinks.find(
     (link) => link.name === "Github.com"
-  )!
+  )!;
 
   return (
     <div className="flex space-x-2">
@@ -75,5 +77,5 @@ export const SocialLinksArray = ({ socialLinks }: SocialLinksArrayProps) => {
         />
       ) : null}
     </div>
-  )
-}
+  );
+};

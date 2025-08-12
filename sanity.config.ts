@@ -3,14 +3,14 @@
  */
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { codeInput } from "@sanity/code-input"
-import { table } from "@sanity/table"
-import { visionTool } from "@sanity/vision"
-import { defineConfig } from "sanity"
-import { structureTool } from "sanity/structure"
+import { codeInput } from "@sanity/code-input";
+import { table } from "@sanity/table";
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
 
-import { apiVersion, dataset, projectId } from "./src/sanity/env"
-import { schema } from "./src/sanity/schema"
+import { apiVersion, dataset, projectId } from "./src/sanity/env";
+import { schema } from "./src/sanity/schema";
 
 export default defineConfig({
   basePath: "/studio",
@@ -26,4 +26,4 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
   ],
-})
+});

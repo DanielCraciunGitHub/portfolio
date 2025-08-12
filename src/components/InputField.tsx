@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from "react"
-import type { Control } from "react-hook-form"
+import type { HTMLAttributes } from "react";
+import type { Control } from "react-hook-form";
 
 import {
   FormControl,
@@ -8,17 +8,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FormFieldProps extends HTMLAttributes<HTMLInputElement> {
-  name: string
-  label?: string
-  description?: string
-  placeholder?: string
-  type?: "text" | "password" | "textarea" | "tel" | "time"
-  control: Control<any>
+  name: string;
+  label?: string;
+  description?: string;
+  placeholder?: string;
+  type?: "text" | "password" | "textarea" | "tel" | "time";
+  control: Control<any>;
 }
 
 const GenericFormField = ({
@@ -56,6 +56,6 @@ const GenericFormField = ({
         </FormItem>
       )}
     />
-  )
-}
-export default GenericFormField
+  );
+};
+export default GenericFormField;

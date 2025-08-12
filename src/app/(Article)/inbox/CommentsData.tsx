@@ -1,19 +1,23 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { siteConfig } from "@/config"
-import { api } from "@/server/client"
-import { Check, Mail, X } from "lucide-react"
+import Link from "next/link";
+import { siteConfig } from "@/config";
+import { api } from "@/server/client";
+import { Check, Mail, X } from "lucide-react";
 
 import {
   articleSlugToTitle,
   cn,
   formatTimeToNow,
   getInitials,
-} from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+} from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export const CommentsData = () => {
   const { data: commentsData, refetch: revalidateInboxComments } =
@@ -21,12 +25,13 @@ export const CommentsData = () => {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
-    })
-  const { mutate: resolveComment } = api.blogRouter.resolveComment.useMutation({
-    onSuccess: () => {
-      revalidateInboxComments()
-    },
-  })
+    });
+  const { mutate: resolveComment } =
+    api.blogRouter.resolveComment.useMutation({
+      onSuccess: () => {
+        revalidateInboxComments();
+      },
+    });
 
   return (
     <div>
@@ -36,7 +41,10 @@ export const CommentsData = () => {
       <div className="space-y-2">
         {commentsData?.map((comment) => {
           return (
-            <div key={comment.id} className="grid grid-cols-12 grid-rows-1">
+            <div
+              key={comment.id}
+              className="grid grid-cols-12 grid-rows-1"
+            >
               <Link
                 className={cn(
                   buttonVariants(),
@@ -94,9 +102,9 @@ export const CommentsData = () => {
                 {comment.resolved ? <X /> : <Check />}
               </Button>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

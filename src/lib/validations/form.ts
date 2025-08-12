@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const contactFormSchema = z.object({
   email: z
@@ -9,7 +9,7 @@ export const contactFormSchema = z.object({
     .string()
     .min(20, { message: "Enter at least 20 characters." })
     .max(1200, { message: "Exceeded limit of 1200 characters." }),
-})
+});
 
 export const googleReCaptchaSchema = z.object({
   success: z.boolean(),
@@ -17,18 +17,20 @@ export const googleReCaptchaSchema = z.object({
   hostname: z.string(),
   score: z.number(),
   action: z.string().optional(),
-})
+});
 
 export const articleCommentSchema = z.object({
   body: z
     .string()
     .min(4, { message: "Message must contain at least 4 characters" })
     .max(300, { message: "Message must not exceed 300 characters." }),
-})
+});
 
 export const writeForUsFormSchema = z.object({
   email: z.string().optional(),
-  discord: z.string().min(1, { message: "Please enter your discord username" }),
+  discord: z
+    .string()
+    .min(1, { message: "Please enter your discord username" }),
   articleLink: z
     .string()
     .url({ message: "Please enter a valid URL" })
@@ -44,4 +46,4 @@ export const writeForUsFormSchema = z.object({
   profilePicturePermission: z.boolean(),
   namePermission: z.boolean(),
   otherDetails: z.string().optional(),
-})
+});

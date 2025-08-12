@@ -1,34 +1,34 @@
-import { useState } from "react"
-import { api } from "@/server/client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import type { z } from "zod"
+import { useState } from "react";
+import { api } from "@/server/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
 
-import type { Reply, TopComment } from "@/types/blog"
-import { articleCommentSchema } from "@/lib/validations/form"
+import type { Reply, TopComment } from "@/types/blog";
+import { articleCommentSchema } from "@/lib/validations/form";
 import {
   AlertDialog,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
-import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
 
 interface EditCommentProps {
-  defaultValue: string
-  comment: TopComment | Reply
+  defaultValue: string;
+  comment: TopComment | Reply;
 }
-type Inputs = z.infer<typeof articleCommentSchema>
+type Inputs = z.infer<typeof articleCommentSchema>;
 
 // const textareaRef = useRef<ElementRef<"textarea">>(null)
 
@@ -40,15 +40,18 @@ type Inputs = z.infer<typeof articleCommentSchema>
 //       textareaRef.current.selectionStart = textareaRef.current.value.length
 //     }
 // }
-export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
-  const [open, setOpen] = useState(false)
+export const EditComment = ({
+  defaultValue,
+  comment,
+}: EditCommentProps) => {
+  const [open, setOpen] = useState(false);
 
   const form = useForm<Inputs>({
     resolver: zodResolver(articleCommentSchema),
     defaultValues: {
       body: defaultValue,
     },
-  })
+  });
 
   const { refetch: invalidateCommentsData } =
     api.blogRouter.getCommentsData.useQuery(
@@ -58,17 +61,17 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
       }
-    )
+    );
   const { mutateAsync: editComment, isPending } =
     api.blogRouter.editComment.useMutation({
       onSuccess: async () => {
-        await invalidateCommentsData()
-        setOpen(false)
+        await invalidateCommentsData();
+        setOpen(false);
       },
-    })
+    });
 
   async function onSubmit({ body }: Inputs) {
-    await editComment({ body, comment })
+    await editComment({ body, comment });
   }
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -77,7 +80,10 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent className="border-none">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-2"
+          >
             <FormField
               control={form.control}
               name="body"
@@ -91,8 +97,8 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
                       autoFocus
                       onKeyDown={async (event) => {
                         if (event.key === "Enter" && event.ctrlKey) {
-                          event.preventDefault()
-                          await onSubmit({ body: field.value })
+                          event.preventDefault();
+                          await onSubmit({ body: field.value });
                         }
                       }}
                       {...field}
@@ -106,11 +112,15 @@ export const EditComment = ({ defaultValue, comment }: EditCommentProps) => {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-              <SpinnerButton name="Confirm" state={isPending} type="submit" />
+              <SpinnerButton
+                name="Confirm"
+                state={isPending}
+                type="submit"
+              />
             </AlertDialogFooter>
           </form>
         </Form>
       </AlertDialogContent>
     </AlertDialog>
-  )
-}
+  );
+};

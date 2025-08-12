@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import type { ElementRef } from "react"
-import { useRef } from "react"
-import type { PortableTextReactComponents } from "@portabletext/react"
-import { PortableText } from "@portabletext/react"
-import { CopyToClipboard } from "react-copy-to-clipboard"
-import type { TypedObject } from "sanity"
+import type { ElementRef } from "react";
+import { useRef } from "react";
+import type { PortableTextReactComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import type { TypedObject } from "sanity";
 
 interface ArticleRenderedTextProps {
-  content: TypedObject[]
-  customComponents: Partial<PortableTextReactComponents>
+  content: TypedObject[];
+  customComponents: Partial<PortableTextReactComponents>;
 }
 
 export const ArticleRenderedText = ({
   content,
   customComponents,
 }: ArticleRenderedTextProps) => {
-  const contentRef = useRef<ElementRef<"div">>(null)
+  const contentRef = useRef<ElementRef<"div">>(null);
 
   const getParsedContent = (): string => {
     if (contentRef.current) {
-      return contentRef.current.innerHTML
+      return contentRef.current.innerHTML;
     }
-    return ""
-  }
+    return "";
+  };
 
   return (
     <>
@@ -37,5 +37,5 @@ export const ArticleRenderedText = ({
         <PortableText value={content} components={customComponents} />
       </div>
     </>
-  )
-}
+  );
+};

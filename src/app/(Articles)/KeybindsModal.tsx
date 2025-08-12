@@ -1,9 +1,13 @@
-"use client"
+"use client";
 
-import { Command } from "lucide-react"
+import { Command } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface KeybindsModalProps {}
 
@@ -24,7 +28,8 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
         </h1>
         <ul className="list-disc">
           <li className="p-2">
-            Dark Mode: <kbd className="rounded bg-muted p-1">Ctrl+Shift+L</kbd>
+            Dark Mode:{" "}
+            <kbd className="rounded bg-muted p-1">Ctrl+Shift+L</kbd>
           </li>
           <li className="p-2">
             Back Navigation: <kbd className="rounded bg-muted p-1">←</kbd>
@@ -33,13 +38,15 @@ export const KeybindsModal = ({}: KeybindsModalProps) => {
             Search: <kbd className="rounded bg-muted p-1">/</kbd>
           </li>
           <li className="p-2">
-            Comment Menu: <kbd className="rounded bg-muted p-1">Ctrl+M</kbd>
+            Comment Menu:{" "}
+            <kbd className="rounded bg-muted p-1">Ctrl+M</kbd>
           </li>
           <li className="p-2">
-            Share Article: <kbd className="rounded bg-muted p-1">Ctrl+S</kbd>
+            Share Article:{" "}
+            <kbd className="rounded bg-muted p-1">Ctrl+S</kbd>
           </li>
         </ul>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

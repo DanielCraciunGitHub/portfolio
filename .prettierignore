@@ -3,3 +3,5 @@ node_modules
 .next
 build
 .github
+out
+public

@@ -1,5 +1,5 @@
-import * as React from "react"
-import { siteConfig } from "@/config"
+import * as React from "react";
+import { siteConfig } from "@/config";
 import {
   Body,
   Container,
@@ -13,14 +13,16 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components"
+} from "@react-email/components";
 
 interface InfoLibraryWelcomeProps {
-  firstName: string
+  firstName: string;
 }
 
-export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
-  const previewText = `Welcome ${firstName ?? "<FIRSTNAME>"}!`
+export const InfoLibraryWelcome = ({
+  firstName,
+}: InfoLibraryWelcomeProps) => {
+  const previewText = `Welcome ${firstName ?? "<FIRSTNAME>"}!`;
 
   return (
     <Html>
@@ -54,15 +56,17 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
             {/* Welcome Talk */}
             <Section>
               <Text>
-                Hey {firstName ?? "<FIRSTNAME>"} 👋, thank you for joining us!
+                Hey {firstName ?? "<FIRSTNAME>"} 👋, thank you for joining
+                us!
               </Text>
               <Text>
-                As a token of our appreciation, we would like to offer you the{" "}
-                <strong>VIP Role</strong> in our Discord Community.
+                As a token of our appreciation, we would like to offer you
+                the <strong>VIP Role</strong> in our Discord Community.
               </Text>
 
               <Text>
-                This opportunity is available <strong>forever</strong>, and the{" "}
+                This opportunity is available <strong>forever</strong>, and
+                the{" "}
                 <Link href={siteConfig.socialLinks[1].href}>
                   link is live here.
                 </Link>
@@ -72,13 +76,17 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
             <Section>
               <Text className="leading-12 text-xs text-gray-400">
                 This invitation was intended for{" "}
-                <span className="text-black">{firstName ?? "<FIRSTNAME>"}</span>
+                <span className="text-black">
+                  {firstName ?? "<FIRSTNAME>"}
+                </span>
                 . This email was sent from{" "}
                 <span className="text-black">Info Library</span>.
               </Text>
               <Text className="leading-12 text-xs text-gray-400">
                 If you have any questions or concerns, please{" "}
-                <Link href={`mailto:${siteConfig.email}`}>email us here.</Link>
+                <Link href={`mailto:${siteConfig.email}`}>
+                  email us here.
+                </Link>
               </Text>
               {/* <Text className="leading-12 text-xs text-gray-400">
                 <Link href={`${siteConfig.blogUrl}/unsubscribe`}>
@@ -90,7 +98,7 @@ export const InfoLibraryWelcome = ({ firstName }: InfoLibraryWelcomeProps) => {
         </Body>
       </Tailwind>
     </Html>
-  )
-}
+  );
+};
 
-export default InfoLibraryWelcome
+export default InfoLibraryWelcome;

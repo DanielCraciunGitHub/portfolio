@@ -1,11 +1,11 @@
-import Image from "next/image"
+import Image from "next/image";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-import InfoLibrary from "../../../../public/images/info-library.png"
+import InfoLibrary from "../../../../public/images/info-library.png";
 
 interface BackgroundImageProps {
-  className?: string
+  className?: string;
 }
 
 export const BackgroundImage = ({ className }: BackgroundImageProps) => {
@@ -18,5 +18,5 @@ export const BackgroundImage = ({ className }: BackgroundImageProps) => {
       sizes="100vw"
       className={cn("-z-50 object-cover", className)}
     />
-  )
-}
+  );
+};

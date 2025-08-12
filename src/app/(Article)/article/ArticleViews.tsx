@@ -1,18 +1,18 @@
-import { api } from "@/server/trpc/serverClient"
-import { Eye } from "lucide-react"
+import { api } from "@/server/trpc/serverClient";
+import { Eye } from "lucide-react";
 
-import { formatArticleViews } from "@/lib/utils"
+import { formatArticleViews } from "@/lib/utils";
 
 interface ArticleViewsProps {
-  title: string
+  title: string;
 }
 
 const ArticleViews = async ({ title }: ArticleViewsProps) => {
-  const views = await api.blogRouter.getArticleViews({ slug: title })
+  const views = await api.blogRouter.getArticleViews({ slug: title });
   await api.blogRouter.addArticleView({
     slug: title,
     views: views ?? 0,
-  })
+  });
 
   return (
     <div className="flex space-x-1">
@@ -23,6 +23,6 @@ const ArticleViews = async ({ title }: ArticleViewsProps) => {
         {formatArticleViews(views ?? 0)}
       </div>
     </div>
-  )
-}
-export default ArticleViews
+  );
+};
+export default ArticleViews;

@@ -1,17 +1,17 @@
 /* eslint-disable no-underscore-dangle */
-import dynamic from "next/dynamic"
-import Image from "next/image"
-import { urlForImage } from "@/sanity/lib/image"
-import { api } from "@/server/trpc/serverClient"
-import { PortableText } from "@portabletext/react"
-import { format } from "date-fns"
-import readingDuration from "reading-duration"
-import { myPortableTextComponents } from "src/app/(Article)/article/SanityCustomComponents"
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { urlForImage } from "@/sanity/lib/image";
+import { api } from "@/server/trpc/serverClient";
+import { PortableText } from "@portabletext/react";
+import { format } from "date-fns";
+import readingDuration from "reading-duration";
+import { myPortableTextComponents } from "src/app/(Article)/article/SanityCustomComponents";
 
-import { getCurrentArticle } from "@/lib/blogs"
-import { CaptionSource } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { AuthorAvatar } from "@/components/AuthorAvatar"
+import { getCurrentArticle } from "@/lib/blogs";
+import { CaptionSource } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { AuthorAvatar } from "@/components/AuthorAvatar";
 
 const BlogInteractor = dynamic(
   () =>
@@ -19,42 +19,42 @@ const BlogInteractor = dynamic(
       (mod) => mod.BlogInteractor
     ),
   { ssr: false }
-)
+);
 
 interface ArticleContentProps {
-  title: string
+  title: string;
 }
 
 export const ArticleContent = async ({ title }: ArticleContentProps) => {
-  const article = await getCurrentArticle(title)
-  const publishedDate = format(new Date(article._createdAt), "MMM dd, yy")
+  const article = await getCurrentArticle(title);
+  const publishedDate = format(new Date(article._createdAt), "MMM dd, yy");
 
   const views = await api.blogRouter.getArticleViews({
     slug: title,
-  })
+  });
   await api.blogRouter.addArticleView({
     slug: title,
     views: views ?? 0,
-  })
+  });
 
   function ReadingDuration() {
     const articleBlockText = article?.content
       ?.flatMap((content) => content?.children)
       // @ts-ignore
       .map((block) => block?.text)
-      .join(" ")
+      .join(" ");
 
     const articleCode = article?.content
       ?.filter((content) => content?.code)
       .map((content) => content?.code)
-      .join(" ")
+      .join(" ");
 
-    const rawArticleContent = `${articleBlockText}\n\n${articleCode} `
+    const rawArticleContent = `${articleBlockText}\n\n${articleCode} `;
 
     return readingDuration(rawArticleContent, {
       emoji: false,
       wordsPerMinute: 150,
-    })
+    });
   }
 
   return (
@@ -77,7 +77,9 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
               <AuthorAvatar
                 dateStr={publishedDate}
                 key={author.name}
-                avatar={author.avatar ? urlForImage(author.avatar) : undefined}
+                avatar={
+                  author.avatar ? urlForImage(author.avatar) : undefined
+                }
                 name={author.name}
                 social={author.social}
               />
@@ -118,5 +120,5 @@ export const ArticleContent = async ({ title }: ArticleContentProps) => {
       </div>
       <BlogInteractor />
     </div>
-  )
-}
+  );
+};

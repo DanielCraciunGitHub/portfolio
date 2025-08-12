@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { debounce } from "lodash"
+import { useRef } from "react";
+import { debounce } from "lodash";
 
-import { useKeybind } from "@/hooks/useKeybind"
-import { Input } from "@/components/ui/input"
+import { useKeybind } from "@/hooks/useKeybind";
+import { Input } from "@/components/ui/input";
 
 interface SearchBarProps {
-  updateSearchTitle: (title: string) => void
+  updateSearchTitle: (title: string) => void;
 }
 
 export const SearchBar = ({ updateSearchTitle }: SearchBarProps) => {
-  const debouncedUpdateSearchTitle = debounce(updateSearchTitle, 600)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const debouncedUpdateSearchTitle = debounce(updateSearchTitle, 600);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  useKeybind(inputRef, { key: "/" }, () => inputRef.current?.focus())
+  useKeybind(inputRef, { key: "/" }, () => inputRef.current?.focus());
 
   return (
     <div className="flex">
@@ -25,5 +25,5 @@ export const SearchBar = ({ updateSearchTitle }: SearchBarProps) => {
         onChange={(e) => debouncedUpdateSearchTitle(e.target.value)}
       />
     </div>
-  )
-}
+  );
+};

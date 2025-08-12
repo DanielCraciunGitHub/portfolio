@@ -1,23 +1,23 @@
-"use server"
+"use server";
 
-import { headers } from "next/headers"
-import { env } from "@/env.mjs"
-import { Ratelimit } from "@upstash/ratelimit"
-import { Redis } from "@upstash/redis"
-import nodemailer from "nodemailer"
-import type Mail from "nodemailer/lib/mailer"
-import type { z } from "zod"
+import { headers } from "next/headers";
+import { env } from "@/env.mjs";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import nodemailer from "nodemailer";
+import type Mail from "nodemailer/lib/mailer";
+import type { z } from "zod";
 
-import type { contactFormSchema } from "@/lib/validations/form"
-import { googleReCaptchaSchema } from "@/lib/validations/form"
+import type { contactFormSchema } from "@/lib/validations/form";
+import { googleReCaptchaSchema } from "@/lib/validations/form";
 
 // Redis syntax for rate limiting
-const rate = "60 m"
+const rate = "60 m";
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(1, rate),
-})
+});
 
 const captchaVerification = async (token: string) => {
   try {
@@ -26,40 +26,40 @@ const captchaVerification = async (token: string) => {
       {
         method: "POST",
       }
-    )
-    const data = googleReCaptchaSchema.parse(await res.json())
+    );
+    const data = googleReCaptchaSchema.parse(await res.json());
 
     if (data.score > 0.6) {
-      return true
+      return true;
     }
-    return false
+    return false;
   } catch (error: any) {
-    return false
+    return false;
   }
-}
+};
 
 type receiveEmailProps = {
-  contactDetails: z.infer<typeof contactFormSchema>
+  contactDetails: z.infer<typeof contactFormSchema>;
 } & {
-  token: string
-}
+  token: string;
+};
 
 export const receiveEmail = async ({
   token,
   contactDetails,
 }: receiveEmailProps) => {
   try {
-    const captchaSucess = await captchaVerification(token)
+    const captchaSucess = await captchaVerification(token);
 
     if (!captchaSucess) {
-      throw new Error()
+      throw new Error();
     }
 
-    const ip = headers().get("x-forwarded-for") ?? ""
-    const { success } = await ratelimit.limit(ip)
+    const ip = headers().get("x-forwarded-for") ?? "";
+    const { success } = await ratelimit.limit(ip);
 
     if (!success) {
-      throw new Error()
+      throw new Error();
     }
 
     const transport = nodemailer.createTransport({
@@ -68,18 +68,18 @@ export const receiveEmail = async ({
         user: env.NODEMAILER_EMAIL,
         pass: env.NODEMAILER_PASSWORD,
       },
-    })
+    });
     const mailOptions: Mail.Options = {
       from: env.NODEMAILER_EMAIL,
       to: env.NODEMAILER_EMAIL,
       subject: `Message from (${contactDetails.email})`,
       text: contactDetails.message,
-    }
+    };
 
-    await transport.sendMail(mailOptions)
+    await transport.sendMail(mailOptions);
 
-    return true
+    return true;
   } catch (error: unknown) {
-    return false
+    return false;
   }
-}
+};

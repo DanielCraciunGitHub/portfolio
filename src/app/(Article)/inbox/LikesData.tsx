@@ -1,15 +1,23 @@
-import Link from "next/link"
-import { siteConfig } from "@/config"
-import { api } from "@/server/trpc/serverClient"
+import Link from "next/link";
+import { siteConfig } from "@/config";
+import { api } from "@/server/trpc/serverClient";
 
-import { articleSlugToTitle, formatTimeToNow, getInitials } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card } from "@/components/ui/card"
+import {
+  articleSlugToTitle,
+  formatTimeToNow,
+  getInitials,
+} from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
 
 interface LikesDataProps {}
 
 export const LikesData = async ({}: LikesDataProps) => {
-  const likesData = await api.blogRouter.fetchInboxLikes()
+  const likesData = await api.blogRouter.fetchInboxLikes();
 
   return (
     <div>
@@ -36,7 +44,9 @@ export const LikesData = async ({}: LikesDataProps) => {
                       {formatTimeToNow(new Date(like.createdAt!))}
                     </div>
                     <div>
-                      <span className="text-primary">{like.liker.name}</span>{" "}
+                      <span className="text-primary">
+                        {like.liker.name}
+                      </span>{" "}
                       has liked your article.
                     </div>
                     <div className="text-blue-500 underline">
@@ -46,9 +56,9 @@ export const LikesData = async ({}: LikesDataProps) => {
                 </Card>
               </Link>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

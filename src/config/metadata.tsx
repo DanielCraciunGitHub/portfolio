@@ -1,10 +1,10 @@
-import type { Metadata, Viewport } from "next"
+import type { Metadata, Viewport } from "next";
 import {
   blogConfig,
   danielConfig,
   siteConfig,
   writeForUsConfig,
-} from "@/config"
+} from "@/config";
 
 export const baseMetadata: Metadata = {
   title: {
@@ -72,7 +72,7 @@ export const baseMetadata: Metadata = {
   alternates: {
     canonical: "./",
   },
-}
+};
 export const staticMetadata = {
   ...baseMetadata,
   privacy: {
@@ -170,7 +170,7 @@ export const staticMetadata = {
       description: siteConfig.contactMe.join(" "),
     },
   } satisfies Metadata,
-}
+};
 export const baseViewport: Viewport = {
   themeColor: [
     {
@@ -183,4 +183,4 @@ export const baseViewport: Viewport = {
     },
   ],
   colorScheme: "dark light",
-}
+};

@@ -1,31 +1,35 @@
-"use server"
+"use server";
 
-import { siteConfig } from "@/config"
-import { env } from "@/env.mjs"
-import type { z } from "zod"
+import { siteConfig } from "@/config";
+import { env } from "@/env.mjs";
+import type { z } from "zod";
 
-import { articleSlugToTitle } from "@/lib/utils"
-import type { writeForUsFormSchema } from "@/lib/validations/form"
+import { articleSlugToTitle } from "@/lib/utils";
+import type { writeForUsFormSchema } from "@/lib/validations/form";
 
 interface InboxPayload {
-  commentId: string
-  body: string
-  slug: string
+  commentId: string;
+  body: string;
+  slug: string;
 }
 
-type WriterPayload = z.infer<typeof writeForUsFormSchema>
+type WriterPayload = z.infer<typeof writeForUsFormSchema>;
 
 interface PublishedPayload {
-  slug: string
-  authors?: string
+  slug: string;
+  authors?: string;
 }
 
 interface WelcomePayload {
-  name: string
-  email: string
+  name: string;
+  email: string;
 }
 
-export const sendInbox = async ({ body, slug, commentId }: InboxPayload) => {
+export const sendInbox = async ({
+  body,
+  slug,
+  commentId,
+}: InboxPayload) => {
   try {
     await fetch(env.DISCORD_WEBHOOK_URL_INBOX, {
       method: "POST",
@@ -50,11 +54,11 @@ export const sendInbox = async ({ body, slug, commentId }: InboxPayload) => {
           },
         ],
       }),
-    })
+    });
   } catch (error: any) {
     /* empty catch */
   }
-}
+};
 export const sendWelcome = async ({ name, email }: WelcomePayload) => {
   try {
     await fetch(env.DISCORD_WEBHOOK_URL_INBOX, {
@@ -81,12 +85,14 @@ export const sendWelcome = async ({ name, email }: WelcomePayload) => {
           },
         ],
       }),
-    })
+    });
   } catch (error: any) {
     /* empty catch */
   }
-}
-export const sendWriterSubmission = async (writerSubmission: WriterPayload) => {
+};
+export const sendWriterSubmission = async (
+  writerSubmission: WriterPayload
+) => {
   try {
     await fetch(env.DISCORD_WEBHOOK_URL_WRITER, {
       method: "POST",
@@ -130,11 +136,11 @@ export const sendWriterSubmission = async (writerSubmission: WriterPayload) => {
           },
         ],
       }),
-    })
+    });
   } catch (error: any) {
     /* empty catch */
   }
-}
+};
 export const sendPublishedPost = async (published: PublishedPayload) => {
   try {
     await fetch(env.DISCORD_WEBHOOK_URL_PUBLISH, {
@@ -145,8 +151,8 @@ export const sendPublishedPost = async (published: PublishedPayload) => {
       body: JSON.stringify({
         content: `Check out this new article published by ${published.authors ?? "Daniel Craciun"}!\n\n${siteConfig.url}/article/${published.slug}`,
       }),
-    })
+    });
   } catch (error: any) {
     /* empty catch */
   }
-}
+};

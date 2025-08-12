@@ -1,11 +1,11 @@
-import Image from "next/image"
-import Link from "next/link"
-import { urlFor, urlForImage } from "@/sanity/lib/image"
-import { format } from "date-fns"
+import Image from "next/image";
+import Link from "next/link";
+import { urlFor, urlForImage } from "@/sanity/lib/image";
+import { format } from "date-fns";
 
-import type { BlogCard } from "@/types/blog"
-import { formatTimeToNow } from "@/lib/utils"
-import { AuthorAvatar } from "@/components/AuthorAvatar"
+import type { BlogCard } from "@/types/blog";
+import { formatTimeToNow } from "@/lib/utils";
+import { AuthorAvatar } from "@/components/AuthorAvatar";
 
 export default function ArticleCard({
   title,
@@ -15,8 +15,8 @@ export default function ArticleCard({
   subtitle,
   _createdAt,
 }: BlogCard) {
-  const relativeTime = formatTimeToNow(new Date(_createdAt))
-  const publishedDate = format(new Date(_createdAt), "MMM dd, yy")
+  const relativeTime = formatTimeToNow(new Date(_createdAt));
+  const publishedDate = format(new Date(_createdAt), "MMM dd, yy");
 
   return (
     <Link
@@ -75,5 +75,5 @@ export default function ArticleCard({
         </div>
       </div>
     </Link>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-"use server"
+"use server";
 
-import { auth, signIn, signOut } from "@/lib/auth"
+import { auth, signIn, signOut } from "@/lib/auth";
 
 export async function authenticate() {
-  const session = await auth()
+  const session = await auth();
   if (session) {
-    await signOut()
+    await signOut();
   } else {
-    await signIn("google")
+    await signIn("google");
   }
 }

@@ -1,13 +1,13 @@
 /* eslint-disable no-return-assign */
 
-"use client"
+"use client";
 
-import { env } from "@/env.mjs"
-import { TrpcProvider } from "@/providers/trpc"
-import { SessionProvider } from "next-auth/react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { type ThemeProviderProps } from "next-themes/dist/types"
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3"
+import { env } from "@/env.mjs";
+import { TrpcProvider } from "@/providers/trpc";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { type ThemeProviderProps } from "next-themes/dist/types";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export function Provider({ children, ...props }: ThemeProviderProps) {
   return (
@@ -22,5 +22,5 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
         </NextThemesProvider>
       </SessionProvider>
     </TrpcProvider>
-  )
+  );
 }

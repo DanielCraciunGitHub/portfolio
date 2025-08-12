@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { api } from "@/server/client"
+import { useState } from "react";
+import { api } from "@/server/client";
 
-import type { Reply, TopComment } from "@/types/blog"
+import type { Reply, TopComment } from "@/types/blog";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -11,15 +11,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { SpinnerButton } from "@/components/Buttons/SpinnerButton"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { SpinnerButton } from "@/components/Buttons/SpinnerButton";
 
 interface DeleteCommentProps {
-  comment: TopComment | Reply
+  comment: TopComment | Reply;
 }
 export const DeleteComment = ({ comment }: DeleteCommentProps) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const { refetch: invalidateCommentsData } =
     api.blogRouter.getCommentsData.useQuery(
@@ -29,13 +29,13 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
       }
-    )
+    );
   const { mutateAsync: deleteComment, isPending } =
     api.blogRouter.deleteComment.useMutation({
       onSuccess: () => {
-        invalidateCommentsData()
+        invalidateCommentsData();
       },
-    })
+    });
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -58,12 +58,12 @@ export const DeleteComment = ({ comment }: DeleteCommentProps) => {
             state={isPending}
             onClick={async () => {
               // TODO make sure the spinner button shows
-              await deleteComment({ comment })
-              setOpen(false)
+              await deleteComment({ comment });
+              setOpen(false);
             }}
           />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
-}
+  );
+};

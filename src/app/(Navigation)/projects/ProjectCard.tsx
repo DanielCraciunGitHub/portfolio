@@ -1,15 +1,15 @@
-import Image from "next/image"
-import Link from "next/link"
-import type { Project } from "@/types"
-import { BsGithub, BsGlobe } from "react-icons/bs"
+import Image from "next/image";
+import Link from "next/link";
+import type { Project } from "@/types";
+import { BsGithub, BsGlobe } from "react-icons/bs";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface ProjectCardProps extends Project {}
 
@@ -66,5 +66,5 @@ export default function ProjectCard({
         </CardFooter>
       </div>
     </Card>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import { CommentsData } from "src/app/(Article)/inbox/CommentsData"
-import { LikesData } from "src/app/(Article)/inbox/LikesData"
-import { WelcomeAdmin } from "src/app/(Article)/inbox/WelcomeAdmin"
+import { CommentsData } from "src/app/(Article)/inbox/CommentsData";
+import { LikesData } from "src/app/(Article)/inbox/LikesData";
+import { WelcomeAdmin } from "src/app/(Article)/inbox/WelcomeAdmin";
 
 interface pageProps {}
 
@@ -13,6 +13,6 @@ const page = ({}: pageProps) => {
         <LikesData />
       </div>
     </>
-  )
-}
-export default page
+  );
+};
+export default page;

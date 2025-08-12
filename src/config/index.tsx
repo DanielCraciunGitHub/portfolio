@@ -1,14 +1,20 @@
-import Link from "next/link"
+import Link from "next/link";
 import {
   BsDiscord,
   BsGithub,
   BsLinkedin,
   BsMedium,
   BsTwitterX,
-} from "react-icons/bs"
-import type { HeroStat, NavItem, Project, Skills, SocialLink } from "src/types"
+} from "react-icons/bs";
+import type {
+  HeroStat,
+  NavItem,
+  Project,
+  Skills,
+  SocialLink,
+} from "src/types";
 
-import { nameToPath } from "../lib/utils"
+import { nameToPath } from "../lib/utils";
 
 export const siteConfig = {
   email: "danielcracbusiness@gmail.com",
@@ -69,7 +75,7 @@ export const siteConfig = {
     `Connect with me today through social media or by filling in the contact form.`,
     `Thank you.`,
   ],
-} as const
+} as const;
 
 export const danielConfig = {
   name: "Daniel Craciun",
@@ -146,7 +152,14 @@ export const danielConfig = {
     },
   ] satisfies Project[],
   skills: {
-    FULLSTACK: ["NextJS", "TypeScript", "SQL", "NOSQL", "APIs", "AWS (Basic)"],
+    FULLSTACK: [
+      "NextJS",
+      "TypeScript",
+      "SQL",
+      "NOSQL",
+      "APIs",
+      "AWS (Basic)",
+    ],
     BACKEND: ["Node", "Express", "Testing (Jest)", "Serverless", "Stripe"],
     FRONTEND: [
       "JavaScript",
@@ -185,12 +198,12 @@ export const danielConfig = {
       CS50x
     </Link>,
   ],
-} as const
+} as const;
 
 export const eBookConfig = {
   title: "The Ultimate Guide to Next.js",
   description: "Coming Soon...",
-} as const
+} as const;
 
 export const blogConfig = {
   title: "Blog",
@@ -210,7 +223,7 @@ export const blogConfig = {
       href: nameToPath("productivity"),
     },
   ] as const satisfies NavItem[],
-}
+};
 
 export const writeForUsConfig = {
   title: "Write For Us",
@@ -232,4 +245,4 @@ export const writeForUsConfig = {
     "Enter some Optional Details",
     "That's it!",
   ],
-}
+};

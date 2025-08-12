@@ -1,24 +1,24 @@
-import { siteConfig } from "@/config"
-import { HomeIcon } from "lucide-react"
-import { DarkModeButton } from "src/components/Buttons/DarkModeButton"
-import { NavItem } from "src/components/Navbar/NavItem"
+import { siteConfig } from "@/config";
+import { HomeIcon } from "lucide-react";
+import { DarkModeButton } from "src/components/Buttons/DarkModeButton";
+import { NavItem } from "src/components/Navbar/NavItem";
 
 // ! Disable this to remove the green separator lines in the navbar.
-const divider = true
+const divider = true;
 // ! Enable this to add a darkmode button in the navbar.
-const darkModeButton = false
+const darkModeButton = false;
 
 interface MainNavbarProps {
-  type?: "1-n-1" | "1-n"
+  type?: "1-n-1" | "1-n";
 }
 
 export const MainNavbar = ({ type = "1-n" }: MainNavbarProps) => {
-  return type === "1-n" ? <Navbar1N /> : <Navbar1N1 />
-}
+  return type === "1-n" ? <Navbar1N /> : <Navbar1N1 />;
+};
 
 const Navbar1N = () => {
   // ! This will provide a 1-n navbar layout, where n is a variable number of navbar links.
-  const [firstLink, ...rest] = siteConfig.navLinks
+  const [firstLink, ...rest] = siteConfig.navLinks;
 
   return (
     <div className="hidden bg-background lg:flex lg:justify-center lg:p-3">
@@ -34,7 +34,9 @@ const Navbar1N = () => {
           />
         </div>
         {/* Right side - The rest of the navigation links */}
-        <div className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}>
+        <div
+          className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}
+        >
           {rest.map((item) => (
             <span key={item.name}>
               <NavItem
@@ -53,13 +55,13 @@ const Navbar1N = () => {
         </div>
       ) : null}
     </div>
-  )
-}
+  );
+};
 const Navbar1N1 = () => {
   // ! This will provide a 1-n-1 navbar layout, where n is a variable number of navbar links.
-  const [firstLink, ...restLinks] = siteConfig.navLinks
-  const lastLink = restLinks.pop()!
-  const middleLinks = restLinks
+  const [firstLink, ...restLinks] = siteConfig.navLinks;
+  const lastLink = restLinks.pop()!;
+  const middleLinks = restLinks;
 
   return (
     <div className="hidden bg-background lg:flex lg:justify-center lg:p-3">
@@ -73,7 +75,9 @@ const Navbar1N1 = () => {
             icon={<HomeIcon size={20} />}
           />
         </div>
-        <div className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}>
+        <div
+          className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}
+        >
           {middleLinks.map((item) => (
             <span key={item.name}>
               <NavItem
@@ -85,7 +89,9 @@ const Navbar1N1 = () => {
             </span>
           ))}
         </div>
-        <div className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}>
+        <div
+          className={`flex ${divider ? "divide-x-2 divide-primary" : ""}`}
+        >
           <span key={lastLink.name}>
             <NavItem
               page={lastLink.href}
@@ -100,5 +106,5 @@ const Navbar1N1 = () => {
         <DarkModeButton />
       </div>
     </div>
-  )
-}
+  );
+};

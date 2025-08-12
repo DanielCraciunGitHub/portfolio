@@ -1,12 +1,12 @@
-import Link from "next/link"
-import { siteConfig } from "@/config"
-import { HomeIcon } from "lucide-react"
+import Link from "next/link";
+import { siteConfig } from "@/config";
+import { HomeIcon } from "lucide-react";
 
-import { NavItem } from "@/components/Navbar/NavItem"
+import { NavItem } from "@/components/Navbar/NavItem";
 
 // ! A beautiful mobile friendly footer to start out with.
 export const Footer = () => {
-  const [firstItem, ...navItems] = siteConfig.navLinks
+  const [firstItem, ...navItems] = siteConfig.navLinks;
 
   return (
     <footer className="z-20 border-t border-muted p-4">
@@ -52,5 +52,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};

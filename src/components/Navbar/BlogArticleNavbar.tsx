@@ -1,23 +1,27 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import Link from "next/link"
-import { FaChevronLeft } from "react-icons/fa"
+import { useRef } from "react";
+import Link from "next/link";
+import { FaChevronLeft } from "react-icons/fa";
 
-import { cn } from "@/lib/utils"
-import { useKeybind } from "@/hooks/useKeybind"
-import { buttonVariants } from "@/components/ui/button"
-import { DarkModeButton } from "@/components/Buttons/DarkModeButton"
-import { SocialLinksArray } from "@/components/SocialLinksArray"
+import { cn } from "@/lib/utils";
+import { useKeybind } from "@/hooks/useKeybind";
+import { buttonVariants } from "@/components/ui/button";
+import { DarkModeButton } from "@/components/Buttons/DarkModeButton";
+import { SocialLinksArray } from "@/components/SocialLinksArray";
 
 interface BlogArticleNavbarProps {
-  returnTo: "/blog" | "/"
+  returnTo: "/blog" | "/";
 }
 
-export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
-  const anchorRef = useRef<HTMLAnchorElement>(null)
+export const BlogArticleNavbar = ({
+  returnTo,
+}: BlogArticleNavbarProps) => {
+  const anchorRef = useRef<HTMLAnchorElement>(null);
 
-  useKeybind(anchorRef, { key: "ArrowLeft" }, () => anchorRef.current?.click())
+  useKeybind(anchorRef, { key: "ArrowLeft" }, () =>
+    anchorRef.current?.click()
+  );
 
   return (
     <nav className="z-50">
@@ -48,5 +52,5 @@ export const BlogArticleNavbar = ({ returnTo }: BlogArticleNavbarProps) => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};

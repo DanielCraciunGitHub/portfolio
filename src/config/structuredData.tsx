@@ -1,6 +1,6 @@
-import type { WebPage, WithContext } from "schema-dts"
-import { danielConfig, siteConfig, writeForUsConfig } from "src/config"
-import { baseMetadata } from "src/config/metadata"
+import type { WebPage, WithContext } from "schema-dts";
+import { danielConfig, siteConfig, writeForUsConfig } from "src/config";
+import { baseMetadata } from "src/config/metadata";
 
 export const baseStructuredData: WithContext<WebPage> = {
   "@context": "https://schema.org",
@@ -49,18 +49,20 @@ export const baseStructuredData: WithContext<WebPage> = {
   breadcrumb: {
     "@type": "BreadcrumbList",
     "@id": `${siteConfig.url}/#breadcrumb`,
-    itemListElement: siteConfig.navLinks.map(({ name, href }, position) => ({
-      "@type": "ListItem",
-      position: position + 1,
-      name,
-      item: `${siteConfig.url}${href}`,
-    })),
+    itemListElement: siteConfig.navLinks.map(
+      ({ name, href }, position) => ({
+        "@type": "ListItem",
+        position: position + 1,
+        name,
+        item: `${siteConfig.url}${href}`,
+      })
+    ),
   },
   isPartOf: {
     "@type": "WebSite",
     "@id": `${siteConfig.url}/#website`,
   },
-}
+};
 
 export const staticStructuredData = {
   projects: {
@@ -113,5 +115,5 @@ export const staticStructuredData = {
     },
   },
 } satisfies {
-  [key: string]: WithContext<WebPage>
-}
+  [key: string]: WithContext<WebPage>;
+};

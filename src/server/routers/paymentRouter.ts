@@ -1,8 +1,8 @@
-import { siteConfig } from "@/config"
-import { env } from "@/env.mjs"
-import { createTRPCRouter, publicProcedure } from "src/server/trpc"
+import { siteConfig } from "@/config";
+import { env } from "@/env.mjs";
+import { createTRPCRouter, publicProcedure } from "src/server/trpc";
 
-import { stripe } from "@/lib/stripe"
+import { stripe } from "@/lib/stripe";
 
 export const paymentRouter = createTRPCRouter({
   getStripeUrl: publicProcedure.query(async () => {
@@ -19,20 +19,20 @@ export const paymentRouter = createTRPCRouter({
             quantity: 1,
           },
         ],
-      })
-      return stripeSession.url!
+      });
+      return stripeSession.url!;
     } catch (error) {
-      return undefined
+      return undefined;
     }
   }),
   getEbookPrice: publicProcedure.query(async () => {
     try {
-      const priceId = env.EBOOK_PRODUCT_ID // Replace with your actual price ID
-      const price = await stripe.prices.retrieve(priceId)
+      const priceId = env.EBOOK_PRODUCT_ID; // Replace with your actual price ID
+      const price = await stripe.prices.retrieve(priceId);
 
-      return (price.unit_amount! / 100).toString()
+      return (price.unit_amount! / 100).toString();
     } catch (error: any) {
-      return undefined
+      return undefined;
     }
   }),
-})
+});

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import type { ReactNode } from "react"
-import { TwitterTweetEmbed } from "react-twitter-embed"
+import type { ReactNode } from "react";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
 interface TweetEmbedProps {
-  tweetId: string
-  placeholder?: ReactNode
+  tweetId: string;
+  placeholder?: ReactNode;
 }
 
 export const TweetEmbed = ({ tweetId, placeholder }: TweetEmbedProps) => {
@@ -17,5 +17,5 @@ export const TweetEmbed = ({ tweetId, placeholder }: TweetEmbedProps) => {
       }}
       placeholder={placeholder}
     />
-  )
-}
+  );
+};

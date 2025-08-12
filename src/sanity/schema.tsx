@@ -1,8 +1,8 @@
-import type { SchemaTypeDefinition } from "sanity"
+import type { SchemaTypeDefinition } from "sanity";
 
-import { YoutubeEmbed } from "../components/YoutubeEmbed"
-import { blogConfig } from "../config"
-import { CustomInput } from "./lib/HotKeys"
+import { YoutubeEmbed } from "../components/YoutubeEmbed";
+import { blogConfig } from "../config";
+import { CustomInput } from "./lib/HotKeys";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -170,7 +170,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
               fields: [{ type: "string", name: "videoId" }],
               components: {
                 preview: (props: any) => {
-                  return <YoutubeEmbed videoid={props.title} />
+                  return <YoutubeEmbed videoid={props.title} />;
                 },
               },
             },
@@ -188,4 +188,4 @@ export const schema: { types: SchemaTypeDefinition[] } = {
       ],
     },
   ],
-}
+};

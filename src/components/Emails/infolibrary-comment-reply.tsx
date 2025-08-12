@@ -1,5 +1,5 @@
-import * as React from "react"
-import { siteConfig } from "@/config"
+import * as React from "react";
+import { siteConfig } from "@/config";
 import {
   Body,
   Container,
@@ -13,12 +13,12 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components"
+} from "@react-email/components";
 
 interface InfoLibraryWelcomeProps {
-  body: string
-  commentLink: string
-  senderName: string
+  body: string;
+  commentLink: string;
+  senderName: string;
 }
 
 export const InfoLibraryCommentReply = ({
@@ -26,7 +26,7 @@ export const InfoLibraryCommentReply = ({
   commentLink,
   senderName,
 }: InfoLibraryWelcomeProps) => {
-  const previewText = `Reply from ${senderName}`
+  const previewText = `Reply from ${senderName}`;
 
   return (
     <Html>
@@ -74,7 +74,9 @@ export const InfoLibraryCommentReply = ({
             <Section>
               <Text className="leading-12 text-xs text-gray-400">
                 If you have any questions or concerns, please{" "}
-                <Link href={`mailto:${siteConfig.email}`}>email us here.</Link>
+                <Link href={`mailto:${siteConfig.email}`}>
+                  email us here.
+                </Link>
               </Text>
               {/* <Text className="leading-12 text-xs text-gray-400">
                 <Link href={`${siteConfig.blogUrl}/unsubscribe`}>
@@ -86,7 +88,7 @@ export const InfoLibraryCommentReply = ({
         </Body>
       </Tailwind>
     </Html>
-  )
-}
+  );
+};
 
-export default InfoLibraryCommentReply
+export default InfoLibraryCommentReply;

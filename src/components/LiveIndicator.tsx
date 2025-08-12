@@ -8,5 +8,5 @@ export const LiveIndicator = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

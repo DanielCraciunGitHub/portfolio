@@ -1,14 +1,14 @@
-import Image from "next/image"
-import Link from "next/link"
-import { urlForImage } from "@/sanity/lib/image"
-import type { PortableTextComponents } from "@portabletext/react"
-import type { CodeInputValue } from "@sanity/code-input"
-import type { SanityImageAssetDocument } from "next-sanity"
-import { CodeBlock } from "src/app/(Article)/article/SanityCodeBlock"
+import Image from "next/image";
+import Link from "next/link";
+import { urlForImage } from "@/sanity/lib/image";
+import type { PortableTextComponents } from "@portabletext/react";
+import type { CodeInputValue } from "@sanity/code-input";
+import type { SanityImageAssetDocument } from "next-sanity";
+import { CodeBlock } from "src/app/(Article)/article/SanityCodeBlock";
 
-import { CaptionSource } from "@/lib/utils"
-import { TweetEmbed } from "@/components/TweetEmbed"
-import { YoutubeEmbed } from "@/components/YoutubeEmbed"
+import { CaptionSource } from "@/lib/utils";
+import { TweetEmbed } from "@/components/TweetEmbed";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 export const myPortableTextComponents: PortableTextComponents = {
   marks: {
@@ -59,17 +59,17 @@ export const myPortableTextComponents: PortableTextComponents = {
       </div>
     ),
     Code: ({ value }: { value: CodeInputValue }) => {
-      return <CodeBlock value={value} />
+      return <CodeBlock value={value} />;
     },
     Divider: () => <hr className="my-4 border-muted-foreground/50" />,
     Table: () => {
-      return null
+      return null;
     },
     Tweet: ({ value }: any) => {
-      return <TweetEmbed tweetId={value.tweetId} />
+      return <TweetEmbed tweetId={value.tweetId} />;
     },
     Youtube: ({ value }: any) => {
-      return <YoutubeEmbed videoid={value.videoId} />
+      return <YoutubeEmbed videoid={value.videoId} />;
     },
   },
-}
+};

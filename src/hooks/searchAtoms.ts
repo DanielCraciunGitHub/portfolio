@@ -1,3 +1,3 @@
-import { atom } from "jotai"
+import { atom } from "jotai";
 
-export const searchAtom = atom<string | undefined>()
+export const searchAtom = atom<string | undefined>();

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { blogConfig } from "@/config"
-import { useAtom } from "jotai"
+import Link from "next/link";
+import { blogConfig } from "@/config";
+import { useAtom } from "jotai";
 
-import { searchAtom } from "@/hooks/searchAtoms"
-import ArticleCards from "@/app/(Articles)/ArticleCards"
-import { KeybindsModal } from "@/app/(Articles)/KeybindsModal"
-import { SearchBar } from "@/app/(Articles)/SearchBar"
+import { searchAtom } from "@/hooks/searchAtoms";
+import ArticleCards from "@/app/(Articles)/ArticleCards";
+import { KeybindsModal } from "@/app/(Articles)/KeybindsModal";
+import { SearchBar } from "@/app/(Articles)/SearchBar";
 
 export function BlogPageComponent({ category }: { category?: string }) {
-  const [_, setSearchTitle] = useAtom(searchAtom)
+  const [_, setSearchTitle] = useAtom(searchAtom);
 
   return (
     <div className="min-h-screen">
@@ -71,7 +71,9 @@ export function BlogPageComponent({ category }: { category?: string }) {
               <h2 className="mb-4 text-xl font-semibold">Search</h2>
               <div className="flex">
                 <SearchBar
-                  updateSearchTitle={(title: string) => setSearchTitle(title)}
+                  updateSearchTitle={(title: string) =>
+                    setSearchTitle(title)
+                  }
                 />
                 <KeybindsModal />
               </div>
@@ -80,5 +82,5 @@ export function BlogPageComponent({ category }: { category?: string }) {
         </div>
       </main>
     </div>
-  )
+  );
 }

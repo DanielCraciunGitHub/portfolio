@@ -1,29 +1,29 @@
 /* eslint-disable no-nested-ternary */
 
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import Link from "next/link"
-import { siteConfig } from "@/config"
-import { useAtom } from "jotai"
-import { useInView } from "react-intersection-observer"
-import ArticleCard from "src/app/(Articles)/ArticleCard"
-import { ArticleCardsShell } from "src/app/(Articles)/ArticleCardShell"
-import { api } from "src/server/client"
+import { useEffect } from "react";
+import Link from "next/link";
+import { siteConfig } from "@/config";
+import { useAtom } from "jotai";
+import { useInView } from "react-intersection-observer";
+import ArticleCard from "src/app/(Articles)/ArticleCard";
+import { ArticleCardsShell } from "src/app/(Articles)/ArticleCardShell";
+import { api } from "src/server/client";
 
-import type { BlogCard } from "@/types/blog"
-import { searchAtom } from "@/hooks/searchAtoms"
-import { Button } from "@/components/ui/button"
+import type { BlogCard } from "@/types/blog";
+import { searchAtom } from "@/hooks/searchAtoms";
+import { Button } from "@/components/ui/button";
 
-const articlesPerPage = 6
+const articlesPerPage = 6;
 
 interface ArticleCardProps {
-  category?: BlogCard["category"] | string | undefined
+  category?: BlogCard["category"] | string | undefined;
 }
 
 export default function ArticleCards({ category }: ArticleCardProps) {
-  const { ref, inView } = useInView()
-  const [searchTitle, _] = useAtom(searchAtom)
+  const { ref, inView } = useInView();
+  const [searchTitle, _] = useAtom(searchAtom);
 
   const {
     data,
@@ -44,14 +44,14 @@ export default function ArticleCards({ category }: ArticleCardProps) {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
     }
-  )
+  );
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      fetchNextPage()
+      fetchNextPage();
     }
-  }, [fetchNextPage, inView, hasNextPage])
-  const blogs = data?.pages.flatMap((page) => page.blogs)
+  }, [fetchNextPage, inView, hasNextPage]);
+  const blogs = data?.pages.flatMap((page) => page.blogs);
 
   return (
     <div className="relative flex flex-col items-center">
@@ -88,5 +88,5 @@ export default function ArticleCards({ category }: ArticleCardProps) {
         tabIndex={-1}
       />
     </div>
-  )
+  );
 }

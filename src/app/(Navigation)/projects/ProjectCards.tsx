@@ -1,6 +1,6 @@
-import { danielConfig } from "@/config"
+import { danielConfig } from "@/config";
 
-import ProjectCard from "@/app/(Navigation)/projects/ProjectCard"
+import ProjectCard from "@/app/(Navigation)/projects/ProjectCard";
 
 export const ProjectCards = () => {
   return (
@@ -14,5 +14,5 @@ export const ProjectCards = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

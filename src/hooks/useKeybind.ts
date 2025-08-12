@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import type { RefObject } from "react"
-import { useEffect } from "react"
+import type { RefObject } from "react";
+import { useEffect } from "react";
 
 type FocusableElement =
   | HTMLInputElement
   | HTMLTextAreaElement
   | HTMLSelectElement
   | HTMLButtonElement
-  | HTMLAnchorElement
+  | HTMLAnchorElement;
 
-type Key = string
+type Key = string;
 
 interface KeyCombination {
-  key: Key
-  ctrlKey?: boolean
-  shiftKey?: boolean
-  altKey?: boolean
+  key: Key;
+  ctrlKey?: boolean;
+  shiftKey?: boolean;
+  altKey?: boolean;
 }
 
 export const useKeybind = (
@@ -31,21 +31,21 @@ export const useKeybind = (
         ctrlKey = false,
         shiftKey = false,
         altKey = false,
-      } = keyCombination
+      } = keyCombination;
       if (
         event.ctrlKey === ctrlKey &&
         event.shiftKey === shiftKey &&
         event.altKey === altKey &&
         event.key.toLowerCase() === key.toLowerCase()
       ) {
-        event.preventDefault()
-        callback()
+        event.preventDefault();
+        callback();
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [ref, keyCombination, callback])
-}
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [ref, keyCombination, callback]);
+};

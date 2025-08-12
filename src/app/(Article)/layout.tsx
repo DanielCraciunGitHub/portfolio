@@ -1,7 +1,11 @@
-import { Toaster } from "@/components/ui/toaster"
-import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar"
+import { Toaster } from "@/components/ui/toaster";
+import { BlogArticleNavbar } from "@/components/Navbar/BlogArticleNavbar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <BlogArticleNavbar returnTo="/blog" />
@@ -9,5 +13,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="container">{children}</main>
       <Toaster />
     </>
-  )
+  );
 }

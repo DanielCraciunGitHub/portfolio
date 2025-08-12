@@ -1,8 +1,8 @@
-import { groq } from "next-sanity"
+import { groq } from "next-sanity";
 
-import type { Article, BlogCard } from "@/types/blog"
+import type { Article, BlogCard } from "@/types/blog";
 
-import { client } from "../sanity/lib/client"
+import { client } from "../sanity/lib/client";
 
 export async function getInfiniteBlogs(
   cursor: string,
@@ -20,26 +20,28 @@ export async function getInfiniteBlogs(
             category,
             "currentSlug": slug.current,
             image,
-          }`
+          }`;
 
   const blogs = await client.fetch<BlogCard[]>(query, {
     cursor,
     category: category ?? "",
-  })
+  });
 
-  return blogs
+  return blogs;
 }
 
 export async function getSitemapBlogData() {
   const query = groq`*[_type == "blog"] | order(_createdAt desc) {
             _updatedAt,
             "currentSlug": slug.current,
-          }`
+          }`;
 
   const blogs =
-    await client.fetch<Pick<BlogCard, "currentSlug" | "_updatedAt">[]>(query)
+    await client.fetch<Pick<BlogCard, "currentSlug" | "_updatedAt">[]>(
+      query
+    );
 
-  return blogs
+  return blogs;
 }
 
 export async function getCurrentArticle(slug: string) {
@@ -55,10 +57,10 @@ export async function getCurrentArticle(slug: string) {
     content,
     canonical
 }[0]
-`
-  const article = await client.fetch<Article>(query, { slug })
+`;
+  const article = await client.fetch<Article>(query, { slug });
 
-  return article
+  return article;
 }
 export async function getArticleMetadata(slug: string) {
   const query = groq`*[_type == "blog" && slug.current == $slug] {
@@ -70,10 +72,10 @@ export async function getArticleMetadata(slug: string) {
     image,
     canonical
 }[0]
-`
+`;
   const article = await client.fetch<
     Omit<Article, "_id" | "content" | "_createdAt">
-  >(query, { slug })
+  >(query, { slug });
 
-  return article
+  return article;
 }

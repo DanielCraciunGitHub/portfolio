@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { YouTubeEmbed } from "@next/third-parties/google"
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 // Reference: https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#youtube-embed
 interface YoutubeEmbedProps {
-  videoid: string
-  params?: string
+  videoid: string;
+  params?: string;
 }
 
 export const YoutubeEmbed = ({ videoid, params }: YoutubeEmbedProps) => {
-  return <YouTubeEmbed videoid={videoid} params={params} />
-}
+  return <YouTubeEmbed videoid={videoid} params={params} />;
+};

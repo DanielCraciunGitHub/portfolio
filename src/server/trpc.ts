@@ -7,14 +7,14 @@
  * need to use are documented accordingly near the end.
  */
 
-import { db } from "@/db"
-import { users } from "@/db/schema"
-import { initTRPC, TRPCError } from "@trpc/server"
-import { eq } from "drizzle-orm"
-import superjson from "superjson"
-import { ZodError } from "zod"
+import { db } from "@/db";
+import { users } from "@/db/schema";
+import { initTRPC, TRPCError } from "@trpc/server";
+import { eq } from "drizzle-orm";
+import superjson from "superjson";
+import { ZodError } from "zod";
 
-import { auth } from "@/lib/auth"
+import { auth } from "@/lib/auth";
 
 /**
  * 1. CONTEXT
@@ -29,14 +29,14 @@ import { auth } from "@/lib/auth"
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const session = await auth()
+  const session = await auth();
 
   return {
     db,
     session,
     ...opts,
-  }
-}
+  };
+};
 
 /**
  * 2. INITIALIZATION
@@ -55,16 +55,16 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
         zodError:
           error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
-    }
+    };
   },
-})
+});
 
 /**
  * Create a server-side caller.
  *
  * @see https://trpc.io/docs/server/server-side-calls
  */
-export const { createCallerFactory } = t
+export const { createCallerFactory } = t;
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
@@ -78,7 +78,7 @@ export const { createCallerFactory } = t
  *
  * @see https://trpc.io/docs/router
  */
-export const createTRPCRouter = t.router
+export const createTRPCRouter = t.router;
 
 /**
  * Public (unauthenticated) procedure
@@ -87,7 +87,7 @@ export const createTRPCRouter = t.router
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure
+export const publicProcedure = t.procedure;
 
 /**
  * Protected (authenticated) procedure
@@ -102,32 +102,34 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: "You are not logged in pussio, stop hacking me.",
-    })
+    });
   }
   return next({
     ctx: {
       // infers the `session` as non-nullable
       session: { ...ctx.session, user: ctx.session.user },
     },
-  })
-})
-export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
-  const [user] = await ctx.db
-    .select({ role: users.role })
-    .from(users)
-    .where(eq(users.id, ctx.session.user.id))
+  });
+});
+export const adminProcedure = protectedProcedure.use(
+  async ({ ctx, next }) => {
+    const [user] = await ctx.db
+      .select({ role: users.role })
+      .from(users)
+      .where(eq(users.id, ctx.session.user.id));
 
-  if (user?.role === "USER") {
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: "You are not an admin pussio, stop hacking me.",
-    })
+    if (user?.role === "USER") {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "You are not an admin pussio, stop hacking me.",
+      });
+    }
+
+    return next({
+      ctx: {
+        // infers the `session` as non-nullable
+        session: { ...ctx.session, user: ctx.session.user },
+      },
+    });
   }
-
-  return next({
-    ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
-    },
-  })
-})
+);

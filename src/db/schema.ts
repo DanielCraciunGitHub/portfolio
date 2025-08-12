@@ -1,8 +1,13 @@
-import type { AdapterAccount } from "@auth/core/adapters"
-import { relations, sql } from "drizzle-orm"
-import type { AnySQLiteColumn } from "drizzle-orm/sqlite-core"
-import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
-import { ulid } from "ulid"
+import type { AdapterAccount } from "@auth/core/adapters";
+import { relations, sql } from "drizzle-orm";
+import type { AnySQLiteColumn } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
+import { ulid } from "ulid";
 
 export const users = sqliteTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -11,7 +16,7 @@ export const users = sqliteTable("user", {
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
   role: text("role", { enum: ["ADMIN", "USER"] }).default("USER"),
-})
+});
 
 export const accounts = sqliteTable(
   "account",
@@ -35,7 +40,7 @@ export const accounts = sqliteTable(
       columns: [account.provider, account.providerAccountId],
     }),
   })
-)
+);
 
 export const sessions = sqliteTable("session", {
   sessionToken: text("sessionToken").notNull().primaryKey(),
@@ -43,7 +48,7 @@ export const sessions = sqliteTable("session", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   expires: integer("expires", { mode: "timestamp_ms" }).notNull(),
-})
+});
 
 export const verificationTokens = sqliteTable(
   "verificationToken",
@@ -55,12 +60,12 @@ export const verificationTokens = sqliteTable(
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
-)
+);
 
 export const articleViews = sqliteTable("articleViews", {
   articleSlug: text("articleSlug", { length: 255 }).notNull().primaryKey(),
   views: integer("views", { mode: "number" }).default(0),
-})
+});
 
 export const articleLikes = sqliteTable("articleLikes", {
   id: text("id", { length: 255 })
@@ -76,7 +81,7 @@ export const articleLikes = sqliteTable("articleLikes", {
   ),
   articleSlug: text("articleSlug", { length: 255 }).notNull(),
   createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`),
-})
+});
 export const articleComments = sqliteTable("articleComments", {
   id: text("id", { length: 255 })
     .notNull()
@@ -95,7 +100,7 @@ export const articleComments = sqliteTable("articleComments", {
     { onDelete: "cascade" }
   ),
   resolved: integer("resolved", { mode: "boolean" }).default(false),
-})
+});
 
 export const usersRelations = relations(users, ({ many }) => ({
   author: many(articleComments, {
@@ -104,7 +109,7 @@ export const usersRelations = relations(users, ({ many }) => ({
   liker: many(articleLikes, {
     relationName: "liker",
   }),
-}))
+}));
 
 export const likesRelations = relations(articleLikes, ({ one }) => ({
   liker: one(users, {
@@ -116,7 +121,7 @@ export const likesRelations = relations(articleLikes, ({ one }) => ({
     fields: [articleLikes.commentId],
     references: [articleComments.id],
   }),
-}))
+}));
 
 export const commentsRelations = relations(
   articleComments,
@@ -136,4 +141,4 @@ export const commentsRelations = relations(
       relationName: "replies",
     }),
   })
-)
+);

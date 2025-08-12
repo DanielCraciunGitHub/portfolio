@@ -1,13 +1,13 @@
-import { Certificate } from "aws-cdk-lib/aws-certificatemanager"
-import type { SSTConfig } from "sst"
-import { NextjsSite } from "sst/constructs"
+import { Certificate } from "aws-cdk-lib/aws-certificatemanager";
+import type { SSTConfig } from "sst";
+import { NextjsSite } from "sst/constructs";
 
 export default {
   config(_input) {
     return {
       name: "portfolio",
       region: "us-east-1",
-    }
+    };
   },
   stacks(app) {
     app.stack(function Site({ stack }) {
@@ -21,9 +21,12 @@ export default {
 
           RESEND_API_KEY: process.env.RESEND_API_KEY!,
 
-          DISCORD_WEBHOOK_URL_INBOX: process.env.DISCORD_WEBHOOK_URL_INBOX!,
-          DISCORD_WEBHOOK_URL_WRITER: process.env.DISCORD_WEBHOOK_URL_WRITER!,
-          DISCORD_WEBHOOK_URL_PUBLISH: process.env.DISCORD_WEBHOOK_URL_PUBLISH!,
+          DISCORD_WEBHOOK_URL_INBOX:
+            process.env.DISCORD_WEBHOOK_URL_INBOX!,
+          DISCORD_WEBHOOK_URL_WRITER:
+            process.env.DISCORD_WEBHOOK_URL_WRITER!,
+          DISCORD_WEBHOOK_URL_PUBLISH:
+            process.env.DISCORD_WEBHOOK_URL_PUBLISH!,
 
           STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY!,
           STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY!,
@@ -62,11 +65,11 @@ export default {
             ),
           },
         },
-      })
+      });
 
       stack.addOutputs({
         SiteUrl: site.url,
-      })
-    })
+      });
+    });
   },
-} satisfies SSTConfig
+} satisfies SSTConfig;
