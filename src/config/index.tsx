@@ -94,7 +94,7 @@ export const danielConfig = {
   heroStats: [
     { "$5,500+": "Made from side projects" },
     { "240+": "Active users on DevMarket" },
-    { "8+": "Projects Completed" },
+    { "7+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [
     {
@@ -104,6 +104,8 @@ export const danielConfig = {
         "GymSimple is a workout planner and player. We are solving the overhead that comes with bloated feature-rich apps and only including essential features.",
       href: "https://github.com/DanielCraciunGitHub/gymsimple",
       imageHref: "/images/gymsimple.jpg",
+      startDate: "2025-07",
+      endDate: "2025-08",
     },
     {
       name: "DevMarket",
@@ -113,15 +115,18 @@ export const danielConfig = {
       href: "https://www.devmarket.pro",
       imageHref: "/images/devmarket.png",
       hot: true,
+      startDate: "2024-12",
+      endDate: "2025-04",
     },
     {
-      name: "Blog System",
+      name: "Blog System & Portfolio",
       type: "Website",
       description:
-        "Here you can find my personal blog. The blog includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers.",
+        "The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers.",
       href: "https://github.com/DanielCraciunGitHub/portfolio",
       imageHref: "/images/portfolio.png",
       hot: false,
+      startDate: "2024-01",
     },
     {
       name: "Next Inject",
@@ -131,6 +136,8 @@ export const danielConfig = {
       href: "https://github.com/DanielCraciunGitHub/next-inject/",
       imageHref: "/images/next-inject.png",
       hot: false,
+      startDate: "2024-08",
+      endDate: "2024-10",
     },
     {
       name: "EduMentorMe",
@@ -139,14 +146,8 @@ export const danielConfig = {
         "This project is a hub of many different features used to enhance your education. Each feature is unique and serves a common purpose, which is to boost the grades of all UK students in higher education.",
       href: "https://github.com/DanielCraciunGitHub/emm",
       imageHref: "/images/emm.png",
-    },
-    {
-      name: "Workout Volume Tracker",
-      type: "SaaS",
-      description:
-        "An app that lets you input your workout volume (sets and repetitions) for every muscle group, then check your progress in a modern dashboard.",
-      href: "https://github.com/DanielCraciunGitHub/workout-app",
-      imageHref: "/images/volume-tracker.png",
+      startDate: "2023-06",
+      endDate: "2023-09",
     },
     {
       name: "Notes App",
@@ -155,6 +156,8 @@ export const danielConfig = {
         "A 'Google Keep' inspired Notes App that involves CRUD, reminders, authentication, and so much more.",
       href: "https://github.com/DanielCraciunGitHub/notes-app",
       imageHref: "/images/notes-app.png",
+      startDate: "2023-11",
+      endDate: "2024-02",
     },
     {
       name: "2D Survival Game",
@@ -163,6 +166,8 @@ export const danielConfig = {
         "A Unity game in which you battle endless opposition using mystery items.",
       href: "https://github.com/DanielCraciunGitHub/ProgrammingProject",
       imageHref: "/images/programmingProject.png",
+      startDate: "2022-09",
+      endDate: "2023-01",
     },
   ] satisfies Project[],
   skills: {

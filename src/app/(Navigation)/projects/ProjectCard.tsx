@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types";
-import { BsGithub, BsGlobe } from "react-icons/bs";
+import { BsCalendar, BsGithub, BsGlobe } from "react-icons/bs";
 
+import { formatProjectDates } from "@/lib/dateUtils";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription } from "@/components/ui/card";
 
@@ -14,6 +15,8 @@ export default function ProjectCard({
   imageHref,
   description,
   type,
+  startDate,
+  endDate,
 }: ProjectCardProps) {
   return (
     <Card className="group relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
@@ -55,9 +58,15 @@ export default function ProjectCard({
           <h3 className="line-clamp-1 text-xl font-bold transition-colors group-hover:text-primary">
             {name}
           </h3>
-          <Badge variant="secondary" className="text-xs">
-            {type}
-          </Badge>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="secondary" className="text-xs">
+              {type}
+            </Badge>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <BsCalendar className="size-3" />
+              <span>{formatProjectDates(startDate, endDate)}</span>
+            </div>
+          </div>
         </div>
 
         <CardDescription className="line-clamp-3 text-sm leading-relaxed">

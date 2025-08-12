@@ -29,6 +29,8 @@ export type Project = {
   imageHref: string | StaticImageData;
   href: string;
   hot?: boolean;
+  startDate: string;
+  endDate?: string; // Optional - if not provided, defaults to "Present"
 };
 export type HeroStat = Record<string, string>;
 

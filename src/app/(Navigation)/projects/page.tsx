@@ -43,7 +43,7 @@ export default function page() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 gap-8 text-center md:grid-cols-4">
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-primary">8+</div>
+              <div className="text-3xl font-bold text-primary">7+</div>
               <div className="text-muted-foreground">Projects done</div>
             </div>
             <div className="space-y-2">
