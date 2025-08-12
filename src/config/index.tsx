@@ -79,7 +79,7 @@ export const siteConfig = {
 
 export const danielConfig = {
   name: "Daniel Craciun",
-  description: "SaaS Developer | Full-Stack Web Developer | Tech Writer",
+  description: "SaaS Developer | Full-Stack Web Developer",
   aboutMe: [
     `My name is Daniel. I love SaaS, full stack web development, and writing (on a good day).`,
     `I have been on this journey for 2+ years, and I am always learning more.`,
@@ -87,7 +87,7 @@ export const danielConfig = {
   ],
 
   heroStats: [
-    { "$4,500+": "Made from side projects" },
+    { "$5,500+": "Made from side projects" },
     { "7+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [

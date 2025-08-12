@@ -2,10 +2,8 @@ import { siteConfig } from "@/config";
 
 import SocialLink from "@/components/SocialLink";
 
-const socialLinkNames = siteConfig.socialLinks.map((link) => link.name);
-
 interface SocialLinksArrayProps {
-  socialLinks: typeof socialLinkNames;
+  socialLinks: typeof siteConfig.socialLinks;
 }
 
 export const SocialLinksArray = ({
@@ -27,7 +25,7 @@ export const SocialLinksArray = ({
 
   return (
     <div className="flex space-x-2">
-      {socialLinks.includes("Discord.gg") ? (
+      {socialLinks?.includes(discord) ? (
         <SocialLink
           key={discord.href}
           name={discord.name}
@@ -37,7 +35,7 @@ export const SocialLinksArray = ({
         />
       ) : null}
 
-      {socialLinks.includes("Medium.com") ? (
+      {socialLinks?.includes(medium) ? (
         <SocialLink
           key={medium.href}
           name={medium.name}
@@ -47,7 +45,7 @@ export const SocialLinksArray = ({
         />
       ) : null}
 
-      {socialLinks.includes("X.com") ? (
+      {socialLinks?.includes(x) ? (
         <SocialLink
           key={x.href}
           name={x.name}
@@ -57,7 +55,7 @@ export const SocialLinksArray = ({
         />
       ) : null}
 
-      {socialLinks.includes("Linkedin.com") ? (
+      {socialLinks?.includes(linkedIn) ? (
         <SocialLink
           key={linkedIn.href}
           name={linkedIn.name}
@@ -67,7 +65,7 @@ export const SocialLinksArray = ({
         />
       ) : null}
 
-      {socialLinks.includes("Github.com") ? (
+      {socialLinks?.includes(github) ? (
         <SocialLink
           key={github.href}
           name={github.name}

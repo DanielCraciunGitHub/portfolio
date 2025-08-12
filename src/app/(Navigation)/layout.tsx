@@ -10,9 +10,7 @@ export default function Layout({
   return (
     <>
       <NavBar />
-      <main className="flex min-h-screen flex-1 justify-center bg-muted">
-        {children}
-      </main>
+      <main className="bg-background">{children}</main>
       <Footer />
       <Toaster />
     </>
