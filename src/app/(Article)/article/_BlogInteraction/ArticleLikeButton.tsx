@@ -52,13 +52,12 @@ export const ArticleLikeButton = () => {
     });
 
   return (
-    <div className="flex items-center text-white">
+    <div className="flex items-center">
       <Popover>
         {session ? (
           <Button
             variant="ghost"
-            className="hover:bg-inherit hover:text-inherit"
-            size="icon"
+            className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary"
             onClick={debounce(async () => {
               // 250ms debounced used to prevent API overload
               await updateLikeCount({
@@ -68,27 +67,30 @@ export const ArticleLikeButton = () => {
             }, 250)}
           >
             <LikeHeart isLiked={likesData?.isLiked} />
+            <span className="text-sm font-medium">
+              {likesData?.likes ?? "--"}
+            </span>
           </Button>
         ) : (
           <LoginModal
             buttonNode={
               <Button
                 variant="ghost"
-                size="icon"
-                className="hover:bg-inherit hover:text-inherit"
+                className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary"
               >
                 <LikeHeart isLiked={likesData?.isLiked} />
+                <span className="text-sm font-medium">
+                  {likesData?.likes ?? "--"}
+                </span>
               </Button>
             }
           />
         )}
-        <PopoverContent className="flex flex-col space-y-4 border-muted-foreground/50 text-center">
+        <PopoverContent className="flex flex-col space-y-4 border-border/50 text-center">
           <Label>Login to like this article ❤️</Label>
           <AuthButton session={session} />
         </PopoverContent>
       </Popover>
-
-      <div className="font-bold">{likesData?.likes ?? "--"}</div>
     </div>
   );
 };

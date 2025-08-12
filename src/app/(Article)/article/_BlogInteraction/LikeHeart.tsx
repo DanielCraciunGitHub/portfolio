@@ -7,13 +7,11 @@ interface LikeHeartProps {
 export const LikeHeart = ({ isLiked }: LikeHeartProps) => {
   return (
     <Heart
-      className={`
-        ${
-          isLiked
-            ? "scale-125  fill-red-600 opacity-100 transition duration-300 ease-out"
-            : "scale-100 opacity-50 transition duration-300 ease-out"
-        }
-        `}
+      className={`size-4 transition-all duration-300 ease-out ${
+        isLiked
+          ? "scale-110 fill-red-500 text-red-500"
+          : "scale-100 text-muted-foreground group-hover:text-primary"
+      }`}
     />
   );
 };

@@ -32,6 +32,10 @@ export const siteConfig = {
       href: "/about",
     },
     {
+      name: "Experience",
+      href: "/experience",
+    },
+    {
       name: "Projects",
       href: "/projects",
     },
@@ -80,31 +84,41 @@ export const siteConfig = {
 export const danielConfig = {
   name: "Daniel Craciun",
   description: "SaaS Developer | Full-Stack Web Developer",
+  yoe: 3,
   aboutMe: [
-    `My name is Daniel. I love SaaS, full stack web development, and writing (on a good day).`,
-    `I have been on this journey for 2+ years, and I am always learning more.`,
-    `Outside of work, I love the gym, I love to read (all sorts), and I love eating and cooking tasty healthy food.`,
+    `My name is Daniel. I'm a Computer Science student at the University of Southampton with a passion for full-stack development and building SaaS products.`,
+    `I have more than 3 years of experience creating full stack web apps, mobile apps, games, and SaaS products. I've built successful products like DevMarket, which has 240+ active users and generates revenue through Stripe.`,
+    `I enjoy fitness, self-development, business, nutrition, and travel. I love turning ideas into reality with code.`,
   ],
 
   heroStats: [
     { "$5,500+": "Made from side projects" },
-    { "7+": "Projects Completed" },
+    { "240+": "Active users on DevMarket" },
+    { "8+": "Projects Completed" },
   ] as const satisfies HeroStat[],
   projects: [
+    {
+      name: "GymSimple",
+      type: "Mobile App",
+      description:
+        "GymSimple is a workout planner and player. We are solving the overhead that comes with bloated feature-rich apps and only including essential features.",
+      href: "https://github.com/DanielCraciunGitHub/gymsimple",
+      imageHref: "/images/gymsimple.jpg",
+    },
     {
       name: "DevMarket",
       type: "SaaS",
       description:
-        "DevMarket is a platform connecting technical and non-technical people to work on projects together. It's designed as an end-to-end solution for cofounder matching, and we want to make cofounder matching easy and effective.",
+        "DevMarket is a platform connecting people to work on SaaS projects together. I earned $100+ from this product and I have 200+ satisfied users.",
       href: "https://www.devmarket.pro",
       imageHref: "/images/devmarket.png",
       hot: true,
     },
     {
-      name: "Portfolio",
+      name: "Blog System",
       type: "Website",
       description:
-        "My Portfolio website which includes a personal blog, built using Next.js. The portfolio includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers on average.",
+        "Here you can find my personal blog. The blog includes a blog built from scratch that is loved by thousands of users, reaching 300+ daily readers.",
       href: "https://github.com/DanielCraciunGitHub/portfolio",
       imageHref: "/images/portfolio.png",
       hot: false,
@@ -156,40 +170,56 @@ export const danielConfig = {
       "NextJS",
       "TypeScript",
       "SQL",
-      "NOSQL",
+      "NoSQL",
+      "AWS",
+      "Sentry",
+      "Prisma",
       "APIs",
-      "AWS (Basic)",
     ],
-    BACKEND: ["Node", "Express", "Testing (Jest)", "Serverless", "Stripe"],
     FRONTEND: [
-      "JavaScript",
       "React",
+      "Tailwind CSS",
       "HTML",
       "CSS",
+      "JavaScript",
       "UI/UX",
-      "Tailwind",
-      "HTML",
-      "CSS",
+    ],
+    BACKEND: [
+      "Node.js",
+      "Express",
+      "Jest",
+      "Cypress",
+      "Serverless",
+      "Stripe",
+      "Open Banking APIs",
     ],
     MISC: [
-      "C#",
-      "Haskell",
       "Git",
-      "AWS (Basic)",
-      "SEO",
       "CI/CD (GitHub Actions)",
       "Docker",
       "Bash",
       "Python",
       "Markdown",
+      "Java",
+      "C#",
+      "Haskell",
+      "SEO",
     ],
   } satisfies Skills,
   education: [
-    "University of Southampton (BSc Computer Science) Oct 2023 - Jun 2026",
-    "Lampton Academy (A-Levels) Sep 2021 - Jun 2023",
-    "Lampton Academy (GCSEs) Sep 2019 - Jun 2021",
+    "University of Southampton - BSc (Hons) Computer Science (Oct 2023 - Jun 2026)",
+    "Coursework: Data Structures & Algorithms, Java Programming, Software Modelling, Computer Systems, Machine Learning & AI, Agile Team Software Project, Cloud App Development",
+    "Lampton Academy - A-Levels (Sep 2021 - Jun 2023)",
+    "Lampton Academy - GCSEs (Sep 2019 - Jun 2021)",
   ],
   certification: [
+    <Link
+      key="synergix"
+      href={`${siteConfig.url}/synergix.pdf`}
+      className="text-blue-500 underline"
+    >
+      Synergix Internship Recommendation Letter
+    </Link>,
     <Link
       key="cs50"
       href="https://certificates.cs50.io/970d88f2-959d-47d1-973a-4966aa814515.pdf"
@@ -207,8 +237,7 @@ export const eBookConfig = {
 
 export const blogConfig = {
   title: "Blog",
-  description:
-    "My personal blog, an information library spanning countless niches.",
+  description: "My info library for my learning journey.",
   categoryLinks: [
     {
       name: "Software Development",

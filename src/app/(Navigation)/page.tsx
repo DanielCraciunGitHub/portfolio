@@ -65,7 +65,7 @@ export default async function Home() {
                     href="/contact"
                     className="inline-flex items-center"
                   >
-                    Let&apos;s join forces
+                    Let&apos;s talk
                     <Zap className="ml-2 size-5" />
                   </Link>
                 </Button>
@@ -105,12 +105,22 @@ export default async function Home() {
                   {/* Floating badges */}
                   <div className="absolute -left-4 -top-4 rounded-full border border-border/50 bg-card/90 px-4 py-2 shadow-lg backdrop-blur-sm">
                     <span className="text-sm font-semibold text-primary">
-                      Full Stack
+                      Full stack dev
+                    </span>
+                  </div>
+                  <div className="absolute -right-4 -top-4 rounded-full border border-border/50 bg-card/90 px-4 py-2 shadow-lg backdrop-blur-sm">
+                    <span className="text-sm font-semibold text-primary">
+                      SaaS builder
                     </span>
                   </div>
                   <div className="absolute -bottom-4 -right-4 rounded-full border border-border/50 bg-card/90 px-4 py-2 shadow-lg backdrop-blur-sm">
                     <span className="text-sm font-semibold text-primary">
-                      SaaS Dev
+                      Comp sci student
+                    </span>
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 rounded-full border border-border/50 bg-card/90 px-4 py-2 shadow-lg backdrop-blur-sm">
+                    <span className="text-sm font-semibold text-primary">
+                      {danielConfig.yoe}+ years in the game
                     </span>
                   </div>
                 </div>

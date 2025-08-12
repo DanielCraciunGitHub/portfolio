@@ -8,7 +8,7 @@ export default function Layout({
   return (
     <>
       <BlogArticleNavbar returnTo="/" />
-      <main>{children}</main>
+      <main className="pt-24 lg:pt-16">{children}</main>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config";
 import { useAtom } from "jotai";
+import { ArrowRight } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import ArticleCard from "src/app/(Articles)/ArticleCard";
 import { ArticleCardsShell } from "src/app/(Articles)/ArticleCardShell";
@@ -13,7 +14,6 @@ import { api } from "src/server/client";
 
 import type { BlogCard } from "@/types/blog";
 import { searchAtom } from "@/hooks/searchAtoms";
-import { Button } from "@/components/ui/button";
 
 const articlesPerPage = 6;
 
@@ -23,7 +23,7 @@ interface ArticleCardProps {
 
 export default function ArticleCards({ category }: ArticleCardProps) {
   const { ref, inView } = useInView();
-  const [searchTitle, _] = useAtom(searchAtom);
+  const [searchTitle] = useAtom(searchAtom);
 
   const {
     data,
@@ -54,21 +54,26 @@ export default function ArticleCards({ category }: ArticleCardProps) {
   const blogs = data?.pages.flatMap((page) => page.blogs);
 
   return (
-    <div className="relative flex flex-col items-center">
-      <div className="mt-6 grid grid-cols-1 place-items-center gap-20 2xl:grid-cols-2">
+    <div className="relative">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         {isError ? (
-          <div className="flex flex-col">
-            <div>
-              <div className="text-3xl font-extrabold text-red-500">
+          <div className="col-span-full">
+            <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-12 text-center">
+              <div className="mb-4 text-2xl font-bold text-destructive">
                 Articles are not loading?
               </div>
+              <p className="mb-4 text-muted-foreground">
+                There seems to be an issue loading the articles. Please try
+                the direct link below.
+              </p>
               <Link
-                className="text-blue-500 underline"
+                className="inline-flex items-center gap-2 font-medium text-primary hover:underline"
                 href={`${siteConfig.url}/blog`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Please try this URL
+                Try this URL
+                <ArrowRight className="size-4" />
               </Link>
             </div>
           </div>
@@ -81,12 +86,19 @@ export default function ArticleCards({ category }: ArticleCardProps) {
           ))
         )}
       </div>
-      <Button
-        className="absolute bottom-96"
-        variant="ghost"
+
+      {/* Loading trigger */}
+      <div
         ref={ref}
-        tabIndex={-1}
-      />
+        className="mt-8 flex h-20 items-center justify-center"
+      >
+        {isFetchingNextPage && (
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="h-4 w-4 animate-spin rounded-full border-b-2 border-primary"></div>
+            Loading more articles...
+          </div>
+        )}
+      </div>
     </div>
   );
 }

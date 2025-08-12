@@ -4,12 +4,7 @@ import type { Project } from "@/types";
 import { BsGithub, BsGlobe } from "react-icons/bs";
 
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardDescription } from "@/components/ui/card";
 
 interface ProjectCardProps extends Project {}
 
@@ -19,51 +14,79 @@ export default function ProjectCard({
   imageHref,
   description,
   type,
-  hot = false,
 }: ProjectCardProps) {
   return (
-    <Card
-      className={`relative flex w-[350px] flex-col self-stretch rounded-lg border-4 focus-visible:outline-none md:w-[400px] xl:w-[450px] ${hot ? " border-blue-500" : "border-none"}`}
-      tabIndex={0}
-    >
-      {hot && (
-        <Badge className="absolute left-1/2 top-0 z-50 -translate-x-1/2 -translate-y-1/2 text-white">
-          New
-        </Badge>
-      )}
-      <div className="group relative flex flex-col items-center justify-center">
+    <Card className="group relative overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+      <div className="relative overflow-hidden">
         <Image
           priority
           src={imageHref}
           alt={name}
           width={500}
-          height={500}
-          className="rounded-t-sm group-hover:blur-sm"
+          height={300}
+          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="invisible absolute size-full space-x-10 group-hover:visible group-hover:flex group-hover:items-center group-hover:justify-center">
-          <Link href={href} target="_blank" rel="noopener noreferrer">
+
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
             {href.includes("github") ? (
-              <BsGithub className="size-5 sm:size-10" />
+              <>
+                <BsGithub className="size-5" />
+                View Code
+              </>
             ) : (
-              <BsGlobe className="size-5 text-gray-500 sm:size-10" />
+              <>
+                <BsGlobe className="size-5" />
+                Visit Site
+              </>
             )}
           </Link>
         </div>
       </div>
-      <div className="flex h-full flex-col justify-between">
-        <CardHeader className="text-wrap break-words">
-          <span className="lg:text-2x flex grow text-lg font-bold sm:text-xl xl:text-3xl">
+
+      <div className="space-y-4 p-6">
+        <div className="space-y-2">
+          <h3 className="line-clamp-1 text-xl font-bold transition-colors group-hover:text-primary">
             {name}
-          </span>
-          <CardDescription className="text-base tracking-tight md:text-lg">
-            {description}
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <Badge className="inline-flex bg-muted-foreground font-bold">
+          </h3>
+          <Badge variant="secondary" className="text-xs">
             {type}
           </Badge>
-        </CardFooter>
+        </div>
+
+        <CardDescription className="line-clamp-3 text-sm leading-relaxed">
+          {description}
+        </CardDescription>
+
+        <div className="pt-2">
+          <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            Learn more
+            <svg
+              className="size-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </Link>
+        </div>
       </div>
     </Card>
   );

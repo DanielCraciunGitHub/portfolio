@@ -10,7 +10,7 @@ export default function Layout({
     <>
       <BlogArticleNavbar returnTo="/blog" />
 
-      <main className="container">{children}</main>
+      <main className="container pt-16 lg:pt-20">{children}</main>
       <Toaster />
     </>
   );

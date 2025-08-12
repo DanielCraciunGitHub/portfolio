@@ -17,11 +17,11 @@ export const SearchBar = ({ updateSearchTitle }: SearchBarProps) => {
   useKeybind(inputRef, { key: "/" }, () => inputRef.current?.focus());
 
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <Input
-        className="w-fit border border-muted-foreground/50 bg-muted text-center sm:rounded sm:rounded-l-lg sm:rounded-r-none"
+        className="flex-1 rounded-l-lg rounded-r-none border border-border bg-background placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary"
         ref={inputRef}
-        placeholder="Search"
+        placeholder="Search articles..."
         onChange={(e) => debouncedUpdateSearchTitle(e.target.value)}
       />
     </div>

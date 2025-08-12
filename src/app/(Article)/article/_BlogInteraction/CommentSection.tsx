@@ -7,7 +7,7 @@ import { AddComment } from "src/app/(Article)/article/_BlogInteraction/AddCommen
 import { Comment } from "src/app/(Article)/article/_BlogInteraction/Comment";
 
 import { useKeybind } from "@/hooks/useKeybind";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { LoginModal } from "@/components/LoginModal";
@@ -57,16 +57,30 @@ export const CommentSection = () => {
       {!session ? (
         <LoginModal
           buttonNode={
-            <Button variant="ghost">
-              <MessageCircle />
+            <Button
+              variant="ghost"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary"
+            >
+              <MessageCircle className="size-4" />
+              <span className="text-sm font-medium">
+                {topLevelComments?.length ?? 0}
+              </span>
               <span className="sr-only">Open Comment Menu</span>
             </Button>
           }
         />
       ) : (
-        <SheetTrigger className={buttonVariants({ variant: "ghost" })}>
-          <MessageCircle />
-          <span className="sr-only">Open Comment Menu</span>
+        <SheetTrigger asChild>
+          <Button
+            variant="ghost"
+            className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary"
+          >
+            <MessageCircle className="size-4" />
+            <span className="text-sm font-medium">
+              {topLevelComments?.length ?? 0}
+            </span>
+            <span className="sr-only">Open Comment Menu</span>
+          </Button>
         </SheetTrigger>
       )}
       <SheetContent className="flex flex-col overflow-auto" side="right">

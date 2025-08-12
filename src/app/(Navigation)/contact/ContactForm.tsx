@@ -60,7 +60,7 @@ const ContactForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex w-full flex-col justify-center space-y-8 sm:w-2/3"
+        className="flex w-full flex-col space-y-6"
       >
         <InputField
           name="email"
@@ -72,11 +72,15 @@ const ContactForm = () => {
           name="message"
           label="Message"
           type="textarea"
-          placeholder="Message..."
+          placeholder="Ask anything..."
           control={form.control}
         />
         <GoogleNotice />
-        <SpinnerButton name="Send" state={isLoading} type="submit" />
+        <SpinnerButton
+          name="Send Message"
+          state={isLoading}
+          type="submit"
+        />
       </form>
     </Form>
   );
