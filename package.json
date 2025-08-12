@@ -13,7 +13,8 @@
     "drop": "drizzle-kit drop",
     "studio": "drizzle-kit studio",
     "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
-    "check-types": "tsc --noEmit --pretty"
+    "check-types": "tsc --noEmit --pretty",
+    "prepare": "husky"
   },
   "dependencies": {
     "@auth/core": "^0.28.2",
